@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="/-_-/ServerPage.css" type="text/css" />
+    <link rel="stylesheet" href="/-_-/default.css" type="text/css" />
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+
+    <script type="text/javascript" src="/-_-/json2.js"></script>
+    <script type="text/javascript" src="/-_-/swfupload.js"></script>
+    <script type="text/javascript" src="/-_-/swfupload.queue.js"></script>
+    <script type="text/javascript" src="/-_-/fileprogress.js"></script>
+    <script type="text/javascript" src="/-_-/handlers.js"></script>
+	<script type="text/javascript" src="/-_-/lib.js"></script>
+    <script type="text/javascript" src="/-_-/express.js"></script>
+
+    <script type="text/javascript">
+        
+		window.onload = function() {
+			initSwfUpload("/", "");
+		}
+        
+//        window.onbeforeunload=stoprefresh; //注册关闭前的事件 
+//        window.onunload = UnloadConfirm; //注册关闭后的事件 
+//        
+//        function stoprefresh() 
+//        { 
+//            return "您将丢失所有未完成的操作"; 
+//        } 
+//        
+//        function UnloadConfirm() 
+//        { 
+//        } 
+
+	</script>
+</head>
+<body>
+<div id="allWrapper">
+	<div id="headerWraper">
+		<div id="headerHighlight" >
+		<div id="header">
+		
+			<div class="logo">
+				<img src="/-_-/iPhoneAppIcon@2x.png" alt="icon57" width="57" height="57"/>
+				<h1>PP助手</h1>
+  			</div>
+
+ 			<div class="deviceName">
+				<h4 id="deviceName"></h4>
+	  		</div>
+	  		
+            <div style="position: absolute; left: 70px; top: 45px;">
+                <button onclick="doGET(systemPath, 'action=browse', browseHandler);">PP助手系统文档</button>
+                <button onclick="doGET(userPath, 'action=browse', browseHandler);">PP助手无线传输文档</button>
+  			</div>
+	  		
+	  		  <div class="urlDiv">
+     				<div class="outer">
+      				  <div class="inner">
+          			  <b id="currentPath"></b>
+       				 </div>
+    			 </div>
+   			 </div>
+		</div>
+		</div>
+	</div>
+
+	<div id="pageContentWraper">
+		<div id="pageContent">
+			
+			<div id="browseContentWraper">
+				<div id="browseContnent">
+					<table class="filesTable" width="100%" cellpadding="3px" cellspacing="0px">
+            			<thead>
+                			<tr>
+                    			<td class="fileName" align="left">名称</td>
+                    			<td class="fileLastMod" align="left">修改时间</td>
+                    			<td class="fileSize" align="right" style="padding-right:30px;">大小</td>
+                			</tr>
+            			</thead>
+            		</table>
+				</div>
+			</div>
+			
+			<div id="sideTools">
+				<div class="toolsBox">
+					<div class="uploadTitle">创建文件夹</p></div>
+           			<div class="uploadBox">
+           				<span style="padding-top: 2px;">
+           					<input id="createFolderText" name="nameFileUpload1" type="text" class="pageTextBox" style="vertical-align: top;"/>
+           				</span>
+           				<span>
+           					<img id="createFolderBt" onclick="createFolder();" src="/-_-/createFolder.png" style="padding-top: -4px; vertical-align: top;" /> 
+  						</span>
+           			</div>
+           			<div id="createFolderMsg" class="cfmessage"></div>
+				</div>
+				<div class="toolsBox">
+					<form method="post" id="form1" enctype="multipart/form-data">
+						<div class="uploadTitle">上传文件</div>
+           				<div class="uploadBox">
+					  		<div id="degradedUploadUI" style="display: none;">
+           			 			<input name="nameFileUpload1" type="file" id="idFileUpload1" class="pageTextBox" />
+	        					<button type="submit">上传</button>
+							</div>
+
+                            <div id="flashUploadUI">
+                                <span>
+                                    <span id="multiUploadSWFPlaceholder">
+                                        <div>FlashPlayer播放器没有安装，请安装！</div>
+                                    </span>
+                                    <span>
+										<img id="btnCancelMultiUpload" src="/-_-/cancelUploads.png" style="display: none;" />
+        							</span>
+                                </span>
+                                <span>暂时不支持往创建的中文文件夹里上传文件，请见谅！</span>
+                                <div class="fieldset flash" id="fsUploadProgress">
+
+                                </div>
+					  		</div>
+          				</div>
+          			</form>
+				</div>
+
+			</div>
+			
+		</div>
+		<div id="footerPlaceholder"/></div>
+	</div>
+</div>
+
+<div id="footerWraper">
+  <div id="footerHighlight">
+	<div id="footer">
+    	<div class="footerNav">
+       		<ul>
+       			<li class="active"><a href="http://www.25pp.com" target="_blank">PP助手官网</a></li>
+    		</ul>
+    	</div>
+    	<div style="clear: both;">
+			<p class="copyright">Copyright © 2011 Imagam, Inc. All rights reserved. </p>	
+   		</div>
+ 	</div>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+//
+// Prefix header for all source files of the 'qiyouxi' target in the 'qiyouxi' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+
+#import "QYXObjectExtension.h"
+#import "NSObject+SBJSON.h"
+#import "LQImageLoader.h"
+
+#define LocalString(key) NSLocalizedStringFromTable(key, @"qiyouxi", NULL) 
+#define DEFAULT_GAME_ICON [UIImage imageNamed:@"icon_small.png"]
+
+
+#import "QYXData.h"
+#import "LQDownloadManager.h"
+

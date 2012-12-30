@@ -1,0 +1,66 @@
+/* 
+  qiyouxi.strings
+  qiyouxi
+
+  Created by 谢哲 on 12-7-31.
+  Copyright (c) 2012年 科技有限公司. All rights reserved.
+*/
+
+
+label.week = "星期日,星期一,星期二,星期三,星期四,星期五,星期六";
+label.month = "%.4d年%.2d月";
+
+
+default.announce = "七游戏，天天都精彩";
+
+tab.comments = "评论(%d)";
+
+nick.default = "七友";
+
+tabbar.tab1 = "首页";
+tabbar.tab2 = "tab2";
+tabbar.tab3 = "tab3";
+tabbar.tab4 = "tab4";
+tabbar.more = "更多";
+
+
+download.section.downloading = "下载中";
+download.section.downloaded = "未安装";
+download.section.installed = "已安装";
+
+
+button.start = "启动";
+button.download = "下载";
+button.pause = "暂停";
+button.resume = "继续";
+button.restart = "重下";
+button.cancel = "取消";
+button.install = "安装";
+button.uninstall = "卸载";
+button.delete = "删除";
+button.installing = "安装中";
+
+
+ego.releaserefresh = "松开开始刷新";
+ego.pulltorefresh = "下拉以便刷新";
+ego.loading = "正在更新";
+ego.lastupdate = "最后更新";
+ego.pulluptorefresh = "上拉以便刷新";
+
+evaluator.nicklabel = "小编: %@";
+
+
+info.download.add = "%@加入下载队列";
+info.download.remove = "%@移出了下载队列";
+info.download.install = "%@正在安装中...";
+info.download.install.success = "%@安装成功";
+info.download.install.fail = "%@安装失败";
+info.download.fail = "%@下载失败";
+
+network.error = "网络不给力，请稍后刷新";
+
+
+feedback.error.nocontact = "请填入联系方式";
+feedback.error.nocontent = "请填入反馈内容";
+
+comment.error.nocontent = "请填入评论内容";

@@ -1,0 +1,163 @@
+﻿
+/*------------------ COLORS --------------------*/
+#headerWraper { xbackground-color: #AAA; border-bottom:2px solid #83858c;}
+#browseContnent { background: #e0e5f0; }
+#footerWraper { xbackground-color: #AAA;  border-top: 2px solid #83858c;}
+h4 { color: #555; }
+.message { background: #c6cad4; }
+.toolsBox { background: #c6cad4; }
+.uploadTitle { background: #83858c; color: #FFF;} .uploadTitle p { color: #DDD;}
+
+.filesTable thead { background: #83858c; color: #FFF; }
+
+.filesTable thead .fileLastMod { background: #66686e; }
+.filesTable tbody .fileLastMod { background: #e8edf9; }
+.filesTable tbody td { color: #555; }
+.filesTable tbody .fileName a { color: #333; }
+
+.footerNav ul li.active a { color: #e0e5f0; background-color:#66686e; }
+.footerNav ul li a:hover { color:#e8edf9; background-color:#83858c; }
+#footer .copyright { color: #83858c; }
+.urlDiv { color: #66686e; }
+#header .logo h1 { color: #343538; }
+#header .deviceName h4 { color: #242527; }
+
+/*----------------------------------------------*/
+
+
+/*------------------html body--------------------*/
+* { margin: 0; padding: 0;}
+img { border: none; }
+html { height:100%; background-color: #ffffff; }
+body { font-size: 9pt; height: 100%; background-color: #fff;  color: #000; font-family: "Lucida Sans Unicode", 'Lucida Grande', Verdana, Helvetica, Arial, Sans-Serif; font-style: normal; }
+a:hover, a:visited:hover, .secondary a:hover, .secondary a:visited:hover { text-decoration:underline; }
+h2, h2 a, h2 a:visited, h3, h3, a, h3 a:visited, h4, h4 a, h4 a:visited { color: #444444; }
+a, a:visited { color: #279EBA; }
+h2, h2 a, h2 a:hover, h2 a:visited, h3, h3, a, h3 a:hover, h3 a:visited, h4, h4 a, h4 a:hover, h4 a:visited { text-decoration:none; }
+h4 { font-size: 24pt; }
+
+div, h1, h2, p, form, label, input, textarea, img, span{ margin:0; padding:0; }
+ul { margin:0; padding:0; list-style-type:none; font-size:0; }
+.spacer { clear:both;  font-size:0;  line-height:0; }
+
+/*------------------top part--------------------*/
+#allWrapper { background: #FFFFFF none repeat scroll 0 0; margin: 0 auto; min-height: 100%; padding: 0; text-align: left; top: 0; width: 100%; }
+
+/*header */
+#headerWraper { height:90px;
+	background:transparent url(/-_-/headerBk.png) repeat scroll 0 0;
+	background:transparent url(headerBk.png) repeat scroll 0 0;
+	
+	 width:100%; xheight:128px; margin:0 auto;
+	
+	xbackground:transparent url(headerBk.png) repeat scroll 0 0;
+	xbackground-image:url(/-_-/headerBk.png );
+	xbackground-position:center top;
+	xbackground-repeat:repeat-x; }
+	
+#headerHighlight {
+	
+	background: transparent url(headerHighlight.png) no-repeat scroll 0 0;
+	background: transparent url(/-_-/headerHighlight.png) no-repeat scroll 0 0;
+	top: 0px;
+	left: 0px;
+}
+	
+#header { width:940px; height:90px; margin:0 auto; position:relative; 
+	xbackground: transparent url(headerHighlight.png) no-repeat scroll -0 -100;
+	xbackground: transparent url(/-_-/headerHighlight.png) no-repeat scroll 0 0;
+	top: 0px;
+	left: 0px;
+}
+#header img { position:absolute;  left: 15px;  top: 56px; top: 46px; }
+#header .logo img { position: absolute; left: 5px; top: 6px; }
+#header .logo h1 { position: absolute; left: 68px; top: 10px; }
+
+
+#header .deviceName { position: absolute; right: 0px; top: 5px; }
+
+.urlDiv { position: absolute; left: 5px; top: 48px; xbackground: #66cc66; xborder-top: solid 1px #bbb; margin-top: 20px;  }
+.urlDiv .outer { padding: 3px; }
+.urlDiv .outer .inner { xpadding-top: 2px; vertical-align: bottom; margin-bottom: 3px }
+
+
+/*------------------pageContent--------------------*/
+#pageContentWraper { xbackground-color: #666; padding-top: 10;}
+#pageContent { width: 980px; margin: 0px auto; xbackground:#888; }
+
+#browseContentWraper { width: 665px; display:inline; float:left; margin-left:10px; margin-right:5px; position:relative; xpadding:10px; }
+
+#browseContnent { margin-top:10px; padding: 7px; 
+			-moz-border-radius: 8px; -webkit-border-radius: 8px; }
+			
+.message { clear:both; padding: 4px; margin-bottom: 7px; -moz-border-radius: 6px; -webkit-border-radius: 6px; }
+
+#sideTools { xheight: 300px; width: 260px; display:inline; float:left; margin-left:10px; margin-right:10px; position:relative; xbackground: #aaa; xpadding:5px;}
+.toolsBox { clear: both; width: 260px; margin-top: 10px; xpadding: 5px; 
+		-moz-border-radius: 6px; -webkit-border-radius: 6px; }
+
+.uploadTitle { text-align:center; padding: 2px 0px 2px 0px; font-weight: bold; -moz-border-radius: 6px; -webkit-border-radius: 6px; border-radius: 6px;}
+.uploadBox { margin-top: 6px; padding: 5px; overflow: hidden; }
+#flashUploadUI span { float:left; width:120px; height:40px; display:inline; }
+
+.cfmessage { color: green; padding: 0px 4px 4px 4px; -moz-border-radius: 6px; -webkit-border-radius: 6px; }
+.errorText { color: red; }
+
+#createFolderText { border:1px solid #83858c; height: 22px; font-size:120%;  width: 166px; }
+
+
+/* from old page */
+
+.filesTable { }
+.filesTable thead { text-align:justify; }
+.filesTable thead td { padding: 3px 5px; font-weight: bold; }
+.filesTable thead .fileName { xwidth:50%;}
+.filesTable thead .fileName a { margin: 0px 10px 0px 3px }
+.filesTable thead .fileLastMod { xwidth:25%; xborder-left: solid 2px #fff; }
+.filesTable thead .fileSize { xwidth:25%; xborder-left: solid 2px #fff; }
+
+.filesTable tbody { }
+.filesTable tbody td { padding: 1px 5px; white-space:nowrap; overflow: hidden; }
+
+.filesTable tbody tr { xbackground: #ccc; }
+.filesTable tbody .fileName { width:52%; overflow: hidden; }
+.filesTable tbody .fileLastMod { width:30%; xborder-left: solid 2px #fff;  }
+.filesTable tbody .fileSize { width:18%; xborder-left: solid 2px #fff;  }
+
+.filesTable .fileIcon { margin: 0px 5px 0px 0px }
+.filesTable .deleteIcon { margin: 0px -5px -2px 5px; cursor: pointer;}
+.filesTable .downloadIcon { margin: 0px -5px -3px 5px; cursor: pointer; }
+
+.pageTextBox { border: 1px solid #FFFFFF; }
+.progressBarInProgress, .progressBarComplete, .progressBarError { font-size: 0px; width: 0%; height: 2px; background-color: blue; margin-top: 2px; }
+.progressBarComplete { width: 100%; background-color: green; xvisibility: hidden; }
+.progressBarError {	width: 100%; background-color: red;	visibility: hidden; }
+.xprogressContainer { xposition: fixed; display: block; width: 100%; }
+.progressCancel { float: left; position: relative; display: block; margin-left: -20px; left: -5px; cursor: pointer; }
+a.progressCancel:hover { background-position: 0px 0px; }
+
+/* content */
+.entry-content { margin: 30px; }
+
+/*------------------footer--------------------*/
+#footerPlaceholder { height: 60px; clear: both; }
+#footerWraper { margin: -60px auto 0; height: 58px; clear: both; padding: 0; width: 100%; 
+	background:transparent url(/-_-/headerBk.png) repeat scroll 0 0;
+	background:transparent url(headerBk.png) repeat scroll 0 0;}
+#footerHighlight {
+	background: transparent url(footerHighlight.png) no-repeat scroll 0 0;
+	background: transparent url(/-_-/footerHighlight.png) no-repeat scroll 0 0;
+	height: 58px; width: 100%; 
+}
+	
+	
+#footer { clear: both; width: 940px; margin: 0 auto; position: relative; padding: 0px 10px 0 10px; text-align: left; }
+#footer .copyright { font: normal 11px/11px Tahoma, Arial, Helvetica, sans-serif; position: absolute; left: 10px; top: 38px; }
+
+.footerNav { float: left; margin-right: 20px; width: 500px; }
+.footerNav ul { }
+.footerNav ul li { padding: 0px; float:left; margin:5px 10px 0 0; display: block;  font: 12px/18px Arial, Helvetica, sans-serif; }
+.footerNav ul li a { padding: 2px 5px 2px 5px; color: #898989; font-weight: bold; 
+	-moz-border-radius: 4px; -webkit-border-radius: 4px; }
+.footerNav ul li.active a { font-weight: bold; }
+.footerNav ul li a:hover {  }
