@@ -184,6 +184,12 @@
 		F26CD20516911E7600E1E30B /* LQGameInfoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD20316911E7600E1E30B /* LQGameInfoListViewController.xib */; };
 		F26CD20916913ED200E1E30B /* LQGameMoreItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD20816913ED200E1E30B /* LQGameMoreItemTableViewCell.m */; };
 		F26CD20B16913F8C00E1E30B /* LQGameMoreItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD20A16913F8C00E1E30B /* LQGameMoreItemTableViewCell.xib */; };
+		F26CD24816917DFB00E1E30B /* LQCategorySectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD24716917DFB00E1E30B /* LQCategorySectionHeader.xib */; };
+		F26CD24C169180E300E1E30B /* LQCategorySectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD24B169180E200E1E30B /* LQCategorySectionHeader.m */; };
+		F26CD24E16918A2300E1E30B /* LQRecommendSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD24D16918A2300E1E30B /* LQRecommendSectionHeader.xib */; };
+		F26CD25116918D1300E1E30B /* LQRecommendSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD25016918D1200E1E30B /* LQRecommendSectionHeader.m */; };
+		F26CD254169193DB00E1E30B /* LQAdTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD253169193DB00E1E30B /* LQAdTableViewCell.m */; };
+		F26CD256169194A400E1E30B /* LQAdTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD255169194A400E1E30B /* LQAdTableViewCell.xib */; };
 		F2B7A657168FDE5A00679C6E /* LQFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */; };
 		F2B7A658168FDE5A00679C6E /* LQFirstPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */; };
 		F2B7A65D168FE10500679C6E /* LQSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A65B168FE10400679C6E /* LQSearchViewController.m */; };
@@ -1058,6 +1064,15 @@
 		F26CD20716913ED200E1E30B /* LQGameMoreItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQGameMoreItemTableViewCell.h; sourceTree = "<group>"; };
 		F26CD20816913ED200E1E30B /* LQGameMoreItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQGameMoreItemTableViewCell.m; sourceTree = "<group>"; };
 		F26CD20A16913F8C00E1E30B /* LQGameMoreItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQGameMoreItemTableViewCell.xib; sourceTree = "<group>"; };
+		F26CD24716917DFB00E1E30B /* LQCategorySectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQCategorySectionHeader.xib; sourceTree = "<group>"; };
+		F26CD24A169180E200E1E30B /* LQCategorySectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQCategorySectionHeader.h; sourceTree = "<group>"; };
+		F26CD24B169180E200E1E30B /* LQCategorySectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQCategorySectionHeader.m; sourceTree = "<group>"; };
+		F26CD24D16918A2300E1E30B /* LQRecommendSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQRecommendSectionHeader.xib; sourceTree = "<group>"; };
+		F26CD24F16918D1100E1E30B /* LQRecommendSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQRecommendSectionHeader.h; sourceTree = "<group>"; };
+		F26CD25016918D1200E1E30B /* LQRecommendSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQRecommendSectionHeader.m; sourceTree = "<group>"; };
+		F26CD252169193DA00E1E30B /* LQAdTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQAdTableViewCell.h; sourceTree = "<group>"; };
+		F26CD253169193DB00E1E30B /* LQAdTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQAdTableViewCell.m; sourceTree = "<group>"; };
+		F26CD255169194A400E1E30B /* LQAdTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQAdTableViewCell.xib; sourceTree = "<group>"; };
 		F2B7A654168FDE5800679C6E /* LQFirstPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQFirstPageViewController.h; sourceTree = "<group>"; };
 		F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQFirstPageViewController.m; sourceTree = "<group>"; };
 		F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQFirstPageViewController.xib; sourceTree = "<group>"; };
@@ -1798,6 +1813,15 @@
 				43D54E1E15CBBC8E007D83AE /* LQDownloadTableViewCell.m */,
 				4348B7CB15CBC14B0086DE04 /* LQInstallTableViewCell.h */,
 				4348B7CC15CBC14B0086DE04 /* LQInstallTableViewCell.m */,
+				F26CD24716917DFB00E1E30B /* LQCategorySectionHeader.xib */,
+				F26CD24A169180E200E1E30B /* LQCategorySectionHeader.h */,
+				F26CD24B169180E200E1E30B /* LQCategorySectionHeader.m */,
+				F26CD24D16918A2300E1E30B /* LQRecommendSectionHeader.xib */,
+				F26CD24F16918D1100E1E30B /* LQRecommendSectionHeader.h */,
+				F26CD25016918D1200E1E30B /* LQRecommendSectionHeader.m */,
+				F26CD252169193DA00E1E30B /* LQAdTableViewCell.h */,
+				F26CD253169193DB00E1E30B /* LQAdTableViewCell.m */,
+				F26CD255169194A400E1E30B /* LQAdTableViewCell.xib */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -3497,6 +3521,9 @@
 				F2E1655B169071300049BD05 /* LQGameDetailViewController.xib in Resources */,
 				F26CD20516911E7600E1E30B /* LQGameInfoListViewController.xib in Resources */,
 				F26CD20B16913F8C00E1E30B /* LQGameMoreItemTableViewCell.xib in Resources */,
+				F26CD24816917DFB00E1E30B /* LQCategorySectionHeader.xib in Resources */,
+				F26CD24E16918A2300E1E30B /* LQRecommendSectionHeader.xib in Resources */,
+				F26CD256169194A400E1E30B /* LQAdTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3569,6 +3596,9 @@
 				F2E1655A169071300049BD05 /* LQGameDetailViewController.m in Sources */,
 				F26CD20416911E7600E1E30B /* LQGameInfoListViewController.m in Sources */,
 				F26CD20916913ED200E1E30B /* LQGameMoreItemTableViewCell.m in Sources */,
+				F26CD24C169180E300E1E30B /* LQCategorySectionHeader.m in Sources */,
+				F26CD25116918D1300E1E30B /* LQRecommendSectionHeader.m in Sources */,
+				F26CD254169193DB00E1E30B /* LQAdTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,11 +17,16 @@
 }
 @property (unsafe_unretained) IBOutlet UIScrollView* scrollView;
 
-@property (unsafe_unretained) IBOutlet LQAdvertiseView* advView;
+//@property (unsafe_unretained) IBOutlet LQAdvertiseView* advView;
 
 @property (unsafe_unretained) IBOutlet UITableView* historyView;
 
 - (IBAction)onReload:(id)sender;
+- (void)onLoadSoft:(id)sender;
+- (void)onLoadGame:(id)sender;
+- (void)onLoadRing:(id)sender;
+- (void)onLoadWallpaper:(id)sender;
 - (void) onGameDetail:(id)sender;
+
 
 @end

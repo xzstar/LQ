@@ -12,6 +12,9 @@
 #import "LQGameDetailViewController.h"
 #import "LQGameInfoListViewController.h"
 #import "LQGameMoreItemTableViewCell.h"
+#import "LQCategorySectionHeader.h"
+#import "LQRecommendSectionHeader.h"
+#import "LQAdTableViewCell.h"
 @interface LQFirstPageViewController ()
 @property (nonatomic, strong) NSDictionary* announcement;
 @property (nonatomic, strong) NSArray* advertisements;
@@ -25,7 +28,7 @@
 @synthesize advertisements;
 
 @synthesize scrollView;
-@synthesize advView;
+//@synthesize advView;
 @synthesize histories;
 @synthesize historyView;
 
@@ -87,7 +90,7 @@
 - (void)loadViews{
     [super loadViews];
     
-    self.advView.delegate = self;
+    //self.advView.delegate = self;
     
     
 }
@@ -137,12 +140,14 @@
 - (void)loadTodayAdvs:(NSArray*)advs{
     self.advertisements = advs;
     
-    NSMutableArray* imageUrls = [NSMutableArray arrayWithCapacity:advs.count];
-    for (NSDictionary* adv in advs){
-        [imageUrls addObject:[adv objectForKey:@"adv_icon"]];
-    }
+//    NSMutableArray* imageUrls = [NSMutableArray arrayWithCapacity:advs.count];
+//    for (NSDictionary* adv in advs){
+//        [imageUrls addObject:[adv objectForKey:@"adv_icon"]];
+//    }
     
-    self.advView.imageUrls = imageUrls;
+    //self.advView.imageUrls = imageUrls;
+    [self.historyView reloadData];
+
 }
 - (void)loadHistoryGames:(NSDictionary*)result{
     self.historyView.hidden = NO;
@@ -154,7 +159,8 @@
     int currentDate = 0;
     
     for (NSDictionary* game in [result objectForKey:@"items"]){
-        int date = [[game objectForKey:@"idate"] intValue];
+        //int date = [[game objectForKey:@"idate"] intValue];
+        int date = 20121231;
         if (date != currentDate){
             if (items != nil){
                 [self.histories addObject:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -183,23 +189,49 @@
 
 #pragma mark - TableView DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.histories.count;
+    return 2;//self.histories.count+1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSDictionary* dayGame = [self.histories objectAtIndex:section];
-    NSArray* games = [dayGame objectForKey:@"items"];
-    return games.count;
+    if(section == 0)
+        return 1;
+    else{
+        if(self.histories.count == 0)
+            return 0;
+        
+        NSDictionary* dayGame = [self.histories objectAtIndex:0];
+        NSArray* games = [dayGame objectForKey:@"items"];
+        return games.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     LQHistoryTableViewCell* cell;
-    if(indexPath.section == selectedSection &&
+
+    if(indexPath.section==0 && indexPath.row ==0){
+        LQAdTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ad"];
+        if(cell == nil){
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"LQAdTableViewCell" owner:self options:nil]objectAtIndex:0];
+        }
+        [cell setDelegate:self];
+        
+        if(advertisements.count>0){
+            NSMutableArray* imageUrls = [NSMutableArray arrayWithCapacity:self.advertisements.count];
+            for (NSDictionary* adv in self.advertisements){
+                [imageUrls addObject:[adv objectForKey:@"adv_icon"]];
+            }
+            cell.advView.imageUrls = imageUrls;
+        }
+        return cell;
+        
+    }
+    else if(indexPath.section == selectedSection &&
        indexPath.row == selectedRow){
         cell = [tableView dequeueReusableCellWithIdentifier:@"moreitem"];
         if (cell == nil){
             cell = [[[NSBundle mainBundle] loadNibNamed:@"LQGameMoreItemTableViewCell" owner:self options:nil] objectAtIndex:0];
         }
+        
     }
     else{
         cell = [tableView dequeueReusableCellWithIdentifier:@"history"];
@@ -207,7 +239,7 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:@"HistoryTableViewCell" owner:self options:nil] objectAtIndex:0];
         }
     }
-    NSDictionary* dayGame = [self.histories objectAtIndex:indexPath.section];
+    NSDictionary* dayGame = [self.histories objectAtIndex:0 /*indexPath.section*/];
     NSArray* games = [dayGame objectForKey:@"items"];
     cell.gameInfo = [games objectAtIndex:indexPath.row];
     
@@ -218,15 +250,45 @@
 
 #pragma mark - TableView Data Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30.0;
+    if(section == 0){
+        return 44.0;
+    }
+    else if(section ==1) {
+        return 34.0;
+    }
+    else {
+        return 0;
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    NSDictionary* dayGame = [self.histories objectAtIndex:section];
-    
-    LQHistoryTableSectionHeader* header = [[[NSBundle mainBundle] loadNibNamed:@"HistoryTableSectionHeader" owner:self options:nil] objectAtIndex:0];
-    [header setDate:[dayGame objectForKey:@"date"]];
-    return header;
+    if(section == 0)
+    {
+        LQCategorySectionHeader *header = [[[NSBundle mainBundle] loadNibNamed:@"LQCategorySectionHeader" owner:self options:nil]objectAtIndex:0];
+        
+        [header addInfoButtonsTarget:self action:@selector(onLoadSoft:) tag:0];
+        [header addInfoButtonsTarget:self action:@selector(onLoadGame:) tag:1];
+        
+        return header;
+        
+
+    }
+    else if(section == 1)
+    {
+        LQRecommendSectionHeader *header = [[[NSBundle mainBundle] loadNibNamed:@"LQRecommendSectionHeader" owner:self options:nil]objectAtIndex:0];
+        return header;
+        
+    }
+
+//    else {
+//        NSDictionary* dayGame = [self.histories objectAtIndex:section];
+//        
+//        LQHistoryTableSectionHeader *header = [[[NSBundle mainBundle] loadNibNamed:@"HistoryTableSectionHeader" owner:self options:nil] objectAtIndex:0];
+//        [header setDate:[dayGame objectForKey:@"date"]];
+//        return header;
+//
+//    }
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -312,6 +374,25 @@
 
 #pragma mark - Actions
 
+- (void)onLoadSoft:(id)sender{
+    LQGameInfoListViewController* controller  = [[LQGameInfoListViewController alloc] init ];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)onLoadGame:(id)sender{
+    LQGameInfoListViewController* controller  = [[LQGameInfoListViewController alloc] init ];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)onLoadRing:(id)sender{
+    LQGameInfoListViewController* controller  = [[LQGameInfoListViewController alloc] init ];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)onLoadWallpaper:(id)sender{
+    LQGameInfoListViewController* controller  = [[LQGameInfoListViewController alloc] init ];
+    [self.navigationController pushViewController:controller animated:YES];
+}
 
 - (IBAction)onReload:(id)sender{
 /*    [self loadRecommends];
