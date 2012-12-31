@@ -12,8 +12,8 @@
 @property (nonatomic, strong) LQGameInfo* gameInfo;
 
 - (IBAction)onActionButton:(id)sender;
-- (IBAction)onDetailButton:(id)sender;
-
+//- (IBAction)onDetailButton:(id)sender;
+//- (void) showActionView:(bool) shown;
 //- (void) onSelected:(bool) selected;
 - (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
 
@@ -24,7 +24,6 @@
 @property (unsafe_unretained) IBOutlet UILabel* gameTitleLabel;
 @property (unsafe_unretained) IBOutlet UILabel* gameDetailLabel;
 @property (unsafe_unretained) IBOutlet UIButton* actionButton;
-@property (unsafe_unretained) IBOutlet UIView* gameActionView;
 @property (unsafe_unretained) IBOutlet UIView* gameInfoView;
 
 @end

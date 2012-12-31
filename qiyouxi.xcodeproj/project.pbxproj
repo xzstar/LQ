@@ -180,6 +180,10 @@
 		F219D4E3168C97E100F8CA45 /* LQDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4E2168C97E100F8CA45 /* LQDetailView.xib */; };
 		F219D4E5168C980100F8CA45 /* LQPostCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4E4168C980100F8CA45 /* LQPostCommentView.xib */; };
 		F219D4E7168C982E00F8CA45 /* LQDownloadManageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4E6168C982E00F8CA45 /* LQDownloadManageView.xib */; };
+		F26CD20416911E7600E1E30B /* LQGameInfoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD20216911E7600E1E30B /* LQGameInfoListViewController.m */; };
+		F26CD20516911E7600E1E30B /* LQGameInfoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD20316911E7600E1E30B /* LQGameInfoListViewController.xib */; };
+		F26CD20916913ED200E1E30B /* LQGameMoreItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD20816913ED200E1E30B /* LQGameMoreItemTableViewCell.m */; };
+		F26CD20B16913F8C00E1E30B /* LQGameMoreItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD20A16913F8C00E1E30B /* LQGameMoreItemTableViewCell.xib */; };
 		F2B7A657168FDE5A00679C6E /* LQFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */; };
 		F2B7A658168FDE5A00679C6E /* LQFirstPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */; };
 		F2B7A65D168FE10500679C6E /* LQSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A65B168FE10400679C6E /* LQSearchViewController.m */; };
@@ -1048,6 +1052,12 @@
 		F219D4E2168C97E100F8CA45 /* LQDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQDetailView.xib; sourceTree = "<group>"; };
 		F219D4E4168C980100F8CA45 /* LQPostCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQPostCommentView.xib; sourceTree = "<group>"; };
 		F219D4E6168C982E00F8CA45 /* LQDownloadManageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQDownloadManageView.xib; sourceTree = "<group>"; };
+		F26CD20116911E7600E1E30B /* LQGameInfoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQGameInfoListViewController.h; sourceTree = "<group>"; };
+		F26CD20216911E7600E1E30B /* LQGameInfoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQGameInfoListViewController.m; sourceTree = "<group>"; };
+		F26CD20316911E7600E1E30B /* LQGameInfoListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQGameInfoListViewController.xib; sourceTree = "<group>"; };
+		F26CD20716913ED200E1E30B /* LQGameMoreItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQGameMoreItemTableViewCell.h; sourceTree = "<group>"; };
+		F26CD20816913ED200E1E30B /* LQGameMoreItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQGameMoreItemTableViewCell.m; sourceTree = "<group>"; };
+		F26CD20A16913F8C00E1E30B /* LQGameMoreItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQGameMoreItemTableViewCell.xib; sourceTree = "<group>"; };
 		F2B7A654168FDE5800679C6E /* LQFirstPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQFirstPageViewController.h; sourceTree = "<group>"; };
 		F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQFirstPageViewController.m; sourceTree = "<group>"; };
 		F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQFirstPageViewController.xib; sourceTree = "<group>"; };
@@ -1759,6 +1769,7 @@
 			isa = PBXGroup;
 			children = (
 				434BF5DF15C780B500CCE2CC /* HistoryTableViewCell.xib */,
+				F26CD20A16913F8C00E1E30B /* LQGameMoreItemTableViewCell.xib */,
 				434BF5EE15C787FF00CCE2CC /* HistoryTableSectionHeader.xib */,
 				434BF5F615C78E7800CCE2CC /* CategoryTableViewCell.xib */,
 				43CC7B1515C92B31006A9C3C /* CommentTableViewCell.xib */,
@@ -1767,6 +1778,8 @@
 				4348B7C815CBC0D10086DE04 /* InstallTableViewCell.xib */,
 				434BF5E115C7812A00CCE2CC /* LQHistoryTableViewCell.h */,
 				434BF5E215C7812A00CCE2CC /* LQHistoryTableViewCell.m */,
+				F26CD20716913ED200E1E30B /* LQGameMoreItemTableViewCell.h */,
+				F26CD20816913ED200E1E30B /* LQGameMoreItemTableViewCell.m */,
 				434BF5F015C788B200CCE2CC /* LQHistoryTableSectionHeader.h */,
 				434BF5F115C788B200CCE2CC /* LQHistoryTableSectionHeader.m */,
 				434BF5F315C78E3100CCE2CC /* LQCategoryTableViewCell.h */,
@@ -1918,6 +1931,9 @@
 				F2E165571690712E0049BD05 /* LQGameDetailViewController.h */,
 				F2E165581690712F0049BD05 /* LQGameDetailViewController.m */,
 				F2E165591690712F0049BD05 /* LQGameDetailViewController.xib */,
+				F26CD20116911E7600E1E30B /* LQGameInfoListViewController.h */,
+				F26CD20216911E7600E1E30B /* LQGameInfoListViewController.m */,
+				F26CD20316911E7600E1E30B /* LQGameInfoListViewController.xib */,
 			);
 			path = qiyouxi;
 			sourceTree = "<group>";
@@ -3479,6 +3495,8 @@
 				F2B7A668168FE1A700679C6E /* LQUpdateViewController.xib in Resources */,
 				F2B7A66D168FE1C200679C6E /* LQMoreViewController.xib in Resources */,
 				F2E1655B169071300049BD05 /* LQGameDetailViewController.xib in Resources */,
+				F26CD20516911E7600E1E30B /* LQGameInfoListViewController.xib in Resources */,
+				F26CD20B16913F8C00E1E30B /* LQGameMoreItemTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3549,6 +3567,8 @@
 				F2B7A667168FE1A700679C6E /* LQUpdateViewController.m in Sources */,
 				F2B7A66C168FE1C200679C6E /* LQMoreViewController.m in Sources */,
 				F2E1655A169071300049BD05 /* LQGameDetailViewController.m in Sources */,
+				F26CD20416911E7600E1E30B /* LQGameInfoListViewController.m in Sources */,
+				F26CD20916913ED200E1E30B /* LQGameMoreItemTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

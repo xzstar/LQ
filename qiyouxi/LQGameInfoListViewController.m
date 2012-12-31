@@ -1,31 +1,23 @@
 //
-//  LQFirstPageViewController.m
+//  LQGameInfoListViewController.m
 //  qiyouxi
 //
-//  Created by Xie Zhe on 12-12-30.
-//  Copyright (c) 2012年 微云即趣科技有限公司. All rights reserved.
+//  Created by Xie Zhe on 12-12-31.
+//  Copyright (c) 2012年 LQ科技有限公司. All rights reserved.
 //
 
-#import "LQFirstPageViewController.h"
+#import "LQGameInfoListViewController.h"
 #import "LQHistoryTableViewCell.h"
 #import "LQHistoryTableSectionHeader.h"
 #import "LQGameDetailViewController.h"
-#import "LQGameInfoListViewController.h"
 #import "LQGameMoreItemTableViewCell.h"
-@interface LQFirstPageViewController ()
-@property (nonatomic, strong) NSDictionary* announcement;
-@property (nonatomic, strong) NSArray* advertisements;
+@interface LQGameInfoListViewController ()
 @property (nonatomic, strong) NSMutableArray* histories;
 
 - (void)loadData;
 @end
 
-@implementation LQFirstPageViewController
-@synthesize announcement;
-@synthesize advertisements;
-
-@synthesize scrollView;
-@synthesize advView;
+@implementation LQGameInfoListViewController
 @synthesize histories;
 @synthesize historyView;
 
@@ -46,6 +38,7 @@
     // Do any additional setup after loading the view from its nib.
     selectedRow = -1;
     selectedSection = -1;
+
 }
 
 - (void)viewDidUnload
@@ -86,25 +79,12 @@
 #pragma mark - View Init
 - (void)loadViews{
     [super loadViews];
-    
-    self.advView.delegate = self;
-    
-    
 }
 
 #pragma mark - Data Init
-- (void)loadRecommends{
-    [self startLoading];
-    [self.client loadTodayRecommendation:[NSDate date]];
-}
 
 - (void)loadData{
     [super loadData];
-    
-
-    [self.client loadTodayAdvs];
-    
-//    [self loadRecommends];
     
     self.histories = [NSMutableArray array];
     
@@ -115,35 +95,6 @@
     
 }
 
-//- (void)loadTodayGames:(NSArray*)games{
-//    int index = 0;
-//    for (NSDictionary * game in games){
-//        LQRecommendButton* button = [sortedButtons objectAtIndex:index];
-//        [button setTitle:[game objectForKey:@"name"] forState:UIControlStateNormal];
-//        NSDictionary* images = [game objectForKey:@"pic"];
-//        NSString* largeImage = [images objectForKey:@"big"];
-//        NSString* smallImage = [images objectForKey:@"small"];
-//        if (button == self.gameButton1 ||
-//            button == self.gameButton5){
-//            [button loadImageUrl:largeImage defaultImage:nil];
-//        }else{
-//            [button loadImageUrl:smallImage defaultImage:nil];
-//        }
-//        button.tag = [[game objectForKey:@"id"] intValue];
-//        index++;
-//    }
-//}
-
-- (void)loadTodayAdvs:(NSArray*)advs{
-    self.advertisements = advs;
-    
-    NSMutableArray* imageUrls = [NSMutableArray arrayWithCapacity:advs.count];
-    for (NSDictionary* adv in advs){
-        [imageUrls addObject:[adv objectForKey:@"adv_icon"]];
-    }
-    
-    self.advView.imageUrls = imageUrls;
-}
 - (void)loadHistoryGames:(NSDictionary*)result{
     self.historyView.hidden = NO;
     
@@ -183,7 +134,7 @@
 
 #pragma mark - TableView DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return self.histories.count;
+    return  self.histories.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -213,21 +164,20 @@
     
     [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:0];
     return cell;
-    
 }
 
 #pragma mark - TableView Data Delegate
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 30.0;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    NSDictionary* dayGame = [self.histories objectAtIndex:section];
-    
-    LQHistoryTableSectionHeader* header = [[[NSBundle mainBundle] loadNibNamed:@"HistoryTableSectionHeader" owner:self options:nil] objectAtIndex:0];
-    [header setDate:[dayGame objectForKey:@"date"]];
-    return header;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 30.0;
+//}
+//
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    NSDictionary* dayGame = [self.histories objectAtIndex:section];
+//    
+//    LQHistoryTableSectionHeader* header = [[[NSBundle mainBundle] loadNibNamed:@"HistoryTableSectionHeader" owner:self options:nil] objectAtIndex:0];
+//    [header setDate:[dayGame objectForKey:@"date"]];
+//    return header;
+//}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if(selectedRow!= indexPath.row
@@ -241,10 +191,10 @@
     }
     [self.historyView reloadData];
     
-//    NSDictionary* dayGame = [self.histories objectAtIndex:indexPath.section];
-//    NSArray* games = [dayGame objectForKey:@"items"];
+    //    NSDictionary* dayGame = [self.histories objectAtIndex:indexPath.section];
+    //    NSArray* games = [dayGame objectForKey:@"items"];
     
-//    [self performSegueWithIdentifier:@"gotoDetail" sender:[games objectAtIndex:indexPath.row]];
+    //    [self performSegueWithIdentifier:@"gotoDetail" sender:[games objectAtIndex:indexPath.row]];
 }
 
 
@@ -265,17 +215,6 @@
 - (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{
     [super handleNetworkOK];
     switch (command) {
-//        case C_COMMAND_GETRECOMMENDATION:
-//            [self endLoading];
-//            if ([result isKindOfClass:[NSArray class]]){
-//                [self loadTodayGames:result];
-//            }
-//            break;
-        case C_COMMAND_GETTODAYADVS:
-            if ([result isKindOfClass:[NSArray class]]){
-                [self loadTodayAdvs:result];
-            }
-            break;
         case C_COMMAND_GETHISTORY:
             [self endLoading];
             if ([result isKindOfClass:[NSDictionary class]]){
@@ -288,20 +227,6 @@
 }
 
 - (void)handleNetworkError:(LQClientError*)error{
-//    switch (error.command) {
-//        case C_COMMAND_GETRECOMMENDATION:
-//            [self endLoading];
-//            if (self.advertisements.count > 0){
-//                [super handleNetworkErrorHint];
-//            }else{
-//                [super handleNetworkError:error];
-//            }
-//            break;
-//        case C_COMMAND_GETTODAYADVS:
-//        case C_COMMAND_GETANNOUNCEMENT:
-//        default:
-//            break;
-//    }
     [self endLoading];
     if (self.histories.count > 0){
         [super handleNetworkErrorHint];
@@ -314,18 +239,7 @@
 
 
 - (IBAction)onReload:(id)sender{
-/*    [self loadRecommends];
-    
-    if (self.advertisements == nil){
-        [self.client loadTodayAdvs];
-    }
-    
-    if (self.announcement == nil){
-        [self.client loadAnnouncement];
-    }*/
-    
-    LQGameInfoListViewController* controller  = [[LQGameInfoListViewController alloc] init ];
-    [self.navigationController pushViewController:controller animated:YES];
+
 }
 
 - (void) onGameDetail:(id)sender{
@@ -333,9 +247,7 @@
     int tag = button.tag;
     LQGameDetailViewController *controller = [[LQGameDetailViewController alloc] init];
     controller.gameId = tag;
-    [self.navigationController pushViewController:controller animated:YES];
-    
-    
-
+    [self.navigationController pushViewController:controller animated:YES];    
 }
+
 @end

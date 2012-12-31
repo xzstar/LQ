@@ -12,7 +12,8 @@
 #import "LQAdvertiseView.h"
 
 @interface LQFirstPageViewController : LQViewController<UITableViewDelegate, UITableViewDataSource>{
-    NSInteger selectedIndex;
+    NSInteger selectedRow;
+    NSInteger selectedSection;
 }
 @property (unsafe_unretained) IBOutlet UIScrollView* scrollView;
 

@@ -12,7 +12,7 @@
 @implementation LQHistoryTableViewCell
 @synthesize gameIconView, gameDetailLabel, gameTitleLabel, actionButton;
 @synthesize gameInfo;
-@synthesize gameInfoView,gameActionView;
+@synthesize gameInfoView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -94,9 +94,35 @@
         self.gameIconView.image = image;
     }
 }
-- (IBAction)onDetailButton:(id)sender{
-    
-}
+
+//- (IBAction)onDetailButton:(id)sender{
+//    [gameIconView setHidden:true];
+//    bool isHidden = ![gameActionView isHidden];
+//    [gameActionView setHidden:isHidden];
+//    
+//    CGRect frame = self.frame;
+//    
+//    if(isHidden)
+//        frame.size.height -= gameActionView.frame.size.height;
+//    else {
+//        frame.size.height += gameActionView.frame.size.height;
+//    }
+//    self.frame = frame;
+//}
+//
+//- (void) showActionView:(bool) shown {
+//    bool isHidden = ![gameActionView isHidden];
+//    [gameActionView setHidden:isHidden];
+//    
+//    CGRect frame = self.frame;
+//    
+//    if(isHidden)
+//        frame.size.height =gameInfoView.frame.size.height; 
+//    else {
+//        frame.size.height = gameInfoView.frame.size.height+ gameActionView.frame.size.height;
+//    }
+//    self.frame = frame;
+//}
 
 - (IBAction)onActionButton:(id)sender{
     QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:self.gameInfo.gameId];
