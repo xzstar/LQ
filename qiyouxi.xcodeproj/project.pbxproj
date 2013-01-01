@@ -190,6 +190,19 @@
 		F26CD25116918D1300E1E30B /* LQRecommendSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD25016918D1200E1E30B /* LQRecommendSectionHeader.m */; };
 		F26CD254169193DB00E1E30B /* LQAdTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD253169193DB00E1E30B /* LQAdTableViewCell.m */; };
 		F26CD256169194A400E1E30B /* LQAdTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD255169194A400E1E30B /* LQAdTableViewCell.xib */; };
+		F26CD29E1693069F00E1E30B /* AudioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD2941693069F00E1E30B /* AudioButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F26CD29F1693069F00E1E30B /* AudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD2961693069F00E1E30B /* AudioPlayer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F26CD2A01693069F00E1E30B /* AudioStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD2981693069F00E1E30B /* AudioStreamer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F26CD2A11693069F00E1E30B /* loading.png in Resources */ = {isa = PBXBuildFile; fileRef = F26CD29A1693069F00E1E30B /* loading.png */; };
+		F26CD2A21693069F00E1E30B /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = F26CD29B1693069F00E1E30B /* play.png */; };
+		F26CD2A31693069F00E1E30B /* screenshots.png in Resources */ = {isa = PBXBuildFile; fileRef = F26CD29C1693069F00E1E30B /* screenshots.png */; };
+		F26CD2A41693069F00E1E30B /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = F26CD29D1693069F00E1E30B /* stop.png */; };
+		F26CD2AA1693070000E1E30B /* AudioListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD2A61693070000E1E30B /* AudioListViewController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F26CD2AB1693070000E1E30B /* AudioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD2A71693070000E1E30B /* AudioCell.xib */; };
+		F26CD2AC1693070000E1E30B /* AudioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD2A91693070000E1E30B /* AudioCell.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F26CD2AE1693070D00E1E30B /* AudioListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD2AD1693070D00E1E30B /* AudioListViewController.xib */; };
+		F26CD2B016930A8800E1E30B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26CD2AF16930A8800E1E30B /* AudioToolbox.framework */; };
+		F26CD2B216930A8F00E1E30B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26CD2B116930A8F00E1E30B /* CFNetwork.framework */; };
 		F2B7A657168FDE5A00679C6E /* LQFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */; };
 		F2B7A658168FDE5A00679C6E /* LQFirstPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */; };
 		F2B7A65D168FE10500679C6E /* LQSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A65B168FE10400679C6E /* LQSearchViewController.m */; };
@@ -1073,6 +1086,24 @@
 		F26CD252169193DA00E1E30B /* LQAdTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQAdTableViewCell.h; sourceTree = "<group>"; };
 		F26CD253169193DB00E1E30B /* LQAdTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQAdTableViewCell.m; sourceTree = "<group>"; };
 		F26CD255169194A400E1E30B /* LQAdTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQAdTableViewCell.xib; sourceTree = "<group>"; };
+		F26CD2931693069F00E1E30B /* AudioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioButton.h; sourceTree = "<group>"; };
+		F26CD2941693069F00E1E30B /* AudioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioButton.m; sourceTree = "<group>"; };
+		F26CD2951693069F00E1E30B /* AudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioPlayer.h; sourceTree = "<group>"; };
+		F26CD2961693069F00E1E30B /* AudioPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioPlayer.m; sourceTree = "<group>"; };
+		F26CD2971693069F00E1E30B /* AudioStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioStreamer.h; sourceTree = "<group>"; };
+		F26CD2981693069F00E1E30B /* AudioStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioStreamer.m; sourceTree = "<group>"; };
+		F26CD29A1693069F00E1E30B /* loading.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loading.png; sourceTree = "<group>"; };
+		F26CD29B1693069F00E1E30B /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		F26CD29C1693069F00E1E30B /* screenshots.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = screenshots.png; sourceTree = "<group>"; };
+		F26CD29D1693069F00E1E30B /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
+		F26CD2A51693070000E1E30B /* AudioListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioListViewController.h; sourceTree = "<group>"; };
+		F26CD2A61693070000E1E30B /* AudioListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioListViewController.m; sourceTree = "<group>"; };
+		F26CD2A71693070000E1E30B /* AudioCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioCell.xib; sourceTree = "<group>"; };
+		F26CD2A81693070000E1E30B /* AudioCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioCell.h; sourceTree = "<group>"; };
+		F26CD2A91693070000E1E30B /* AudioCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioCell.m; sourceTree = "<group>"; };
+		F26CD2AD1693070D00E1E30B /* AudioListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioListViewController.xib; sourceTree = "<group>"; };
+		F26CD2AF16930A8800E1E30B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		F26CD2B116930A8F00E1E30B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		F2B7A654168FDE5800679C6E /* LQFirstPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQFirstPageViewController.h; sourceTree = "<group>"; };
 		F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQFirstPageViewController.m; sourceTree = "<group>"; };
 		F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQFirstPageViewController.xib; sourceTree = "<group>"; };
@@ -1727,6 +1758,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F26CD2B216930A8F00E1E30B /* CFNetwork.framework in Frameworks */,
+				F26CD2B016930A8800E1E30B /* AudioToolbox.framework in Frameworks */,
 				43CC7B0D15C9060B006A9C3C /* QuartzCore.framework in Frameworks */,
 				43F5ED3015C65424001A0F8D /* UIKit.framework in Frameworks */,
 				43F5ED3215C65424001A0F8D /* Foundation.framework in Frameworks */,
@@ -1864,6 +1897,8 @@
 		43F5ED2015C65424001A0F8D = {
 			isa = PBXGroup;
 			children = (
+				F26CD2B116930A8F00E1E30B /* CFNetwork.framework */,
+				F26CD2AF16930A8800E1E30B /* AudioToolbox.framework */,
 				43CC7B0C15C9060B006A9C3C /* QuartzCore.framework */,
 				43F5EDFE15C658B0001A0F8D /* Icon@2x.png */,
 				43D54E0B15CB7448007D83AE /* qiyouxi.entitlements */,
@@ -1894,6 +1929,7 @@
 		43F5ED3515C65424001A0F8D /* qiyouxi */ = {
 			isa = PBXGroup;
 			children = (
+				F26CD27D1693063E00E1E30B /* Audio */,
 				F2ED56AD168FCC2900E12C5F /* imageResource */,
 				438E82B815CF8D5A003BD09E /* egorefreshtable */,
 				43D54E1A15CB7AD0007D83AE /* API */,
@@ -2079,6 +2115,45 @@
 				43F5EDA815C6556A001A0F8D /* today_normal@2x.png */,
 				43F5EDA915C6556A001A0F8D /* today_pressed@2x.png */,
 				43F5EDAA15C6556A001A0F8D /* top_bg.jpg */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		F26CD27D1693063E00E1E30B /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				F26CD2AD1693070D00E1E30B /* AudioListViewController.xib */,
+				F26CD2A51693070000E1E30B /* AudioListViewController.h */,
+				F26CD2A61693070000E1E30B /* AudioListViewController.m */,
+				F26CD2A71693070000E1E30B /* AudioCell.xib */,
+				F26CD2A81693070000E1E30B /* AudioCell.h */,
+				F26CD2A91693070000E1E30B /* AudioCell.m */,
+				F26CD2921693069F00E1E30B /* AudioPlayer */,
+			);
+			name = Audio;
+			sourceTree = "<group>";
+		};
+		F26CD2921693069F00E1E30B /* AudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				F26CD2931693069F00E1E30B /* AudioButton.h */,
+				F26CD2941693069F00E1E30B /* AudioButton.m */,
+				F26CD2951693069F00E1E30B /* AudioPlayer.h */,
+				F26CD2961693069F00E1E30B /* AudioPlayer.m */,
+				F26CD2971693069F00E1E30B /* AudioStreamer.h */,
+				F26CD2981693069F00E1E30B /* AudioStreamer.m */,
+				F26CD2991693069F00E1E30B /* images */,
+			);
+			path = AudioPlayer;
+			sourceTree = "<group>";
+		};
+		F26CD2991693069F00E1E30B /* images */ = {
+			isa = PBXGroup;
+			children = (
+				F26CD29A1693069F00E1E30B /* loading.png */,
+				F26CD29B1693069F00E1E30B /* play.png */,
+				F26CD29C1693069F00E1E30B /* screenshots.png */,
+				F26CD29D1693069F00E1E30B /* stop.png */,
 			);
 			path = images;
 			sourceTree = "<group>";
@@ -3524,6 +3599,12 @@
 				F26CD24816917DFB00E1E30B /* LQCategorySectionHeader.xib in Resources */,
 				F26CD24E16918A2300E1E30B /* LQRecommendSectionHeader.xib in Resources */,
 				F26CD256169194A400E1E30B /* LQAdTableViewCell.xib in Resources */,
+				F26CD2A11693069F00E1E30B /* loading.png in Resources */,
+				F26CD2A21693069F00E1E30B /* play.png in Resources */,
+				F26CD2A31693069F00E1E30B /* screenshots.png in Resources */,
+				F26CD2A41693069F00E1E30B /* stop.png in Resources */,
+				F26CD2AB1693070000E1E30B /* AudioCell.xib in Resources */,
+				F26CD2AE1693070D00E1E30B /* AudioListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3599,6 +3680,11 @@
 				F26CD24C169180E300E1E30B /* LQCategorySectionHeader.m in Sources */,
 				F26CD25116918D1300E1E30B /* LQRecommendSectionHeader.m in Sources */,
 				F26CD254169193DB00E1E30B /* LQAdTableViewCell.m in Sources */,
+				F26CD29E1693069F00E1E30B /* AudioButton.m in Sources */,
+				F26CD29F1693069F00E1E30B /* AudioPlayer.m in Sources */,
+				F26CD2A01693069F00E1E30B /* AudioStreamer.m in Sources */,
+				F26CD2AA1693070000E1E30B /* AudioListViewController.m in Sources */,
+				F26CD2AC1693070000E1E30B /* AudioCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -55,8 +55,13 @@
 //                                                        tag:index++]];
 //    LQTodayViewController* todayController = [[LQTodayViewController alloc] init];  
 //    LQHistoryViewController* historyController = [[LQHistoryViewController alloc] init];
+    
     LQFirstPageViewController * first = [[LQFirstPageViewController alloc] initWithNibName:@"LQFirstPageViewController"
                                                          bundle:nil];  
+    UINavigationController *tab1Nav = [[UINavigationController alloc] init];
+    [tab1Nav setNavigationBarHidden:YES];
+    [tab1Nav pushViewController:first animated:NO];
+
     LQSearchViewController * search = [[LQSearchViewController alloc] initWithNibName:@"LQSearchViewController"
                                                                                     bundle:nil];  
     LQDownloadViewController * download = [[LQDownloadViewController alloc] initWithNibName:@"LQDownloadViewController"
@@ -66,7 +71,7 @@
     LQMoreViewController * more = [[LQMoreViewController alloc] initWithNibName:@"LQMoreViewController"
                                                                                     bundle:nil];  
     
-    NSArray *viewControllerArray = [NSArray arrayWithObjects:/*todayController,historyController,downloadController,feedbackViewController,postCommentViewController,*/first,search,download,update,more,nil];  
+    NSArray *viewControllerArray = [NSArray arrayWithObjects:/*todayController,historyController,downloadController,feedbackViewController,postCommentViewController,*/tab1Nav,search,download,update,more,nil];  
     self.viewControllers = viewControllerArray;  
 
     NSArray* items = self.tabBar.items;

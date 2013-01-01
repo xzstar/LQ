@@ -15,11 +15,12 @@
 #import "LQCategorySectionHeader.h"
 #import "LQRecommendSectionHeader.h"
 #import "LQAdTableViewCell.h"
+#import "AudioListViewController.h"
+
 @interface LQFirstPageViewController ()
 @property (nonatomic, strong) NSDictionary* announcement;
 @property (nonatomic, strong) NSArray* advertisements;
 @property (nonatomic, strong) NSMutableArray* histories;
-
 - (void)loadData;
 @end
 
@@ -268,6 +269,8 @@
         
         [header addInfoButtonsTarget:self action:@selector(onLoadSoft:) tag:0];
         [header addInfoButtonsTarget:self action:@selector(onLoadGame:) tag:1];
+        [header addInfoButtonsTarget:self action:@selector(onLoadRing:) tag:2];
+        [header addInfoButtonsTarget:self action:@selector(onLoadWallpaper::) tag:3];
         
         return header;
         
@@ -312,7 +315,6 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    int height = cell.frame.size.height;
     return cell.frame.size.height;
 }
 
@@ -385,7 +387,7 @@
 }
 
 - (void)onLoadRing:(id)sender{
-    LQGameInfoListViewController* controller  = [[LQGameInfoListViewController alloc] init ];
+    AudioListViewController * controller  = [[AudioListViewController alloc] init ];
     [self.navigationController pushViewController:controller animated:YES];
 }
 
