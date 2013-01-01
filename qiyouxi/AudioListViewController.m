@@ -32,7 +32,8 @@ static NSArray *itemArray;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
+    selectedRow = -1;
+
     self.title = @"音乐列表";
     
     itemArray = [[NSArray arrayWithObjects:
@@ -43,6 +44,7 @@ static NSArray *itemArray;
                   [NSDictionary dictionaryWithObjectsAndKeys:@"桔子香水", @"song", @"任贤齐", @"artise", @"http://y1.eoews.com/assets/ringtones/2012/6/29/36195/mx8an3zgp2k4s5aywkr7wkqtqj0dh1vxcvii287a.mp3", @"url", nil],
                   
                  nil] retain];
+    
 }
 
 - (void)viewDidUnload
@@ -93,19 +95,35 @@ static NSArray *itemArray;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70.f;
+    //return 70.f;
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"AudioCell";
     
-    AudioCell *cell = (AudioCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        NSArray *nibArray = [[NSBundle mainBundle] loadNibNamed:CellIdentifier owner:self options:nil];
-        cell = (AudioCell *)[nibArray objectAtIndex:0];
-        [cell configurePlayerButton];
+    AudioCell *cell;
+    
+    if(indexPath.row == selectedRow){
+        cell = [tableView dequeueReusableCellWithIdentifier:@"AudioMoreItemCell"];
+        if (cell == nil){
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"AudioMoreItemCell" owner:self options:nil] objectAtIndex:0];
+            [cell configurePlayerButton];
+
+        }
+        
     }
+    else{
+        cell = [tableView dequeueReusableCellWithIdentifier:@"AudioCell"];
+        if (cell == nil){
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"AudioCell" owner:self options:nil] objectAtIndex:0];
+            [cell configurePlayerButton];
+        }
+    }
+
+    
     
     // Configure the cell..
     NSDictionary *item = [itemArray objectAtIndex:indexPath.row];
@@ -122,7 +140,16 @@ static NSArray *itemArray;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    //[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(selectedRow!= indexPath.row
+       ){
+        selectedRow = indexPath.row;
+    }
+    else {
+        selectedRow = -1;
+    }
+    [self.tableView reloadData];
+
 }
 
 @end

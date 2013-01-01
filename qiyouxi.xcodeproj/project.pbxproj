@@ -203,6 +203,8 @@
 		F26CD2AE1693070D00E1E30B /* AudioListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD2AD1693070D00E1E30B /* AudioListViewController.xib */; };
 		F26CD2B016930A8800E1E30B /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26CD2AF16930A8800E1E30B /* AudioToolbox.framework */; };
 		F26CD2B216930A8F00E1E30B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26CD2B116930A8F00E1E30B /* CFNetwork.framework */; };
+		F26CD2B71693148400E1E30B /* AudioMoreItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD2B61693148400E1E30B /* AudioMoreItemCell.m */; };
+		F26CD2B9169314D900E1E30B /* AudioMoreItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD2B8169314D900E1E30B /* AudioMoreItemCell.xib */; };
 		F2B7A657168FDE5A00679C6E /* LQFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */; };
 		F2B7A658168FDE5A00679C6E /* LQFirstPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */; };
 		F2B7A65D168FE10500679C6E /* LQSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A65B168FE10400679C6E /* LQSearchViewController.m */; };
@@ -1104,6 +1106,9 @@
 		F26CD2AD1693070D00E1E30B /* AudioListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioListViewController.xib; sourceTree = "<group>"; };
 		F26CD2AF16930A8800E1E30B /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		F26CD2B116930A8F00E1E30B /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		F26CD2B51693148400E1E30B /* AudioMoreItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioMoreItemCell.h; sourceTree = "<group>"; };
+		F26CD2B61693148400E1E30B /* AudioMoreItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioMoreItemCell.m; sourceTree = "<group>"; };
+		F26CD2B8169314D900E1E30B /* AudioMoreItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioMoreItemCell.xib; sourceTree = "<group>"; };
 		F2B7A654168FDE5800679C6E /* LQFirstPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQFirstPageViewController.h; sourceTree = "<group>"; };
 		F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQFirstPageViewController.m; sourceTree = "<group>"; };
 		F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQFirstPageViewController.xib; sourceTree = "<group>"; };
@@ -2128,6 +2133,9 @@
 				F26CD2A71693070000E1E30B /* AudioCell.xib */,
 				F26CD2A81693070000E1E30B /* AudioCell.h */,
 				F26CD2A91693070000E1E30B /* AudioCell.m */,
+				F26CD2B51693148400E1E30B /* AudioMoreItemCell.h */,
+				F26CD2B61693148400E1E30B /* AudioMoreItemCell.m */,
+				F26CD2B8169314D900E1E30B /* AudioMoreItemCell.xib */,
 				F26CD2921693069F00E1E30B /* AudioPlayer */,
 			);
 			name = Audio;
@@ -3605,6 +3613,7 @@
 				F26CD2A41693069F00E1E30B /* stop.png in Resources */,
 				F26CD2AB1693070000E1E30B /* AudioCell.xib in Resources */,
 				F26CD2AE1693070D00E1E30B /* AudioListViewController.xib in Resources */,
+				F26CD2B9169314D900E1E30B /* AudioMoreItemCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3685,6 +3694,7 @@
 				F26CD2A01693069F00E1E30B /* AudioStreamer.m in Sources */,
 				F26CD2AA1693070000E1E30B /* AudioListViewController.m in Sources */,
 				F26CD2AC1693070000E1E30B /* AudioCell.m in Sources */,
+				F26CD2B71693148400E1E30B /* AudioMoreItemCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

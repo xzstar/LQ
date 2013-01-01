@@ -101,7 +101,7 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrameSize">{439, 69}</string>
+						<string key="NSFrameSize">{320, 69}</string>
 						<reference key="NSSuperview" ref="184341685"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
@@ -116,12 +116,13 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{439, 70}</string>
+				<string key="NSFrameSize">{320, 70}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="151640647"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="151640647"/>
 				<string key="IBUIReuseIdentifier">AudioCell</string>
 				<real value="74" key="IBUIRowHeight"/>

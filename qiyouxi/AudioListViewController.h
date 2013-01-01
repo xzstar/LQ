@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "LQViewController.h"
 @class AudioPlayer;
 
 @interface AudioListViewController : LQViewController <UITableViewDelegate, UITableViewDataSource>
 {
     AudioPlayer *_audioPlayer;
+    NSInteger selectedRow;
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
