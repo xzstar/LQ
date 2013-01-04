@@ -191,6 +191,9 @@
         if (dataFormat == F_JSON)
         {
             NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+            body = [body stringByReplacingOccurrencesOfString:@"\r\n"withString:@""];
+            
+
             id json = nil;
             //there may be no result for POST or DELETE method
             if (statusCode == 204 ||

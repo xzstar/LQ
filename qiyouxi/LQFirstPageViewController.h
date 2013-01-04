@@ -14,6 +14,7 @@
 @interface LQFirstPageViewController : LQViewController<UITableViewDelegate, UITableViewDataSource>{
     NSInteger selectedRow;
     NSInteger selectedSection;
+    int currentRecommendIndex; // 0 apps 1 topics
 }
 @property (unsafe_unretained) IBOutlet UIScrollView* scrollView;
 
@@ -26,7 +27,7 @@
 - (void)onLoadGame:(id)sender;
 - (void)onLoadRing:(id)sender;
 - (void)onLoadWallpaper:(id)sender;
-- (void) onGameDetail:(id)sender;
-
+- (void)onGameDetail:(id)sender;
+- (void)onSwitchRecommendSection:(id)sender;
 
 @end

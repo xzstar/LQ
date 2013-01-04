@@ -21,12 +21,18 @@
 @property (nonatomic, strong) NSDictionary* announcement;
 @property (nonatomic, strong) NSArray* advertisements;
 @property (nonatomic, strong) NSMutableArray* histories;
+
+//推荐应用
+@property (nonatomic, strong) NSArray* recommendApps;
+//推荐专题
+@property (nonatomic, strong) NSArray* recommendTopics;
 - (void)loadData;
 @end
 
 @implementation LQFirstPageViewController
 @synthesize announcement;
 @synthesize advertisements;
+@synthesize recommendApps,recommendTopics;
 
 @synthesize scrollView;
 //@synthesize advView;
@@ -50,6 +56,7 @@
     // Do any additional setup after loading the view from its nib.
     selectedRow = -1;
     selectedSection = -1;
+    currentRecommendIndex = 0;
 }
 
 - (void)viewDidUnload
@@ -99,23 +106,25 @@
 #pragma mark - Data Init
 - (void)loadRecommends{
     [self startLoading];
-    [self.client loadTodayRecommendation:[NSDate date]];
+    //[self.client loadTodayRecommendation:[NSDate date]];
+    [self.client loadRecommendation];
+
 }
 
 - (void)loadData{
     [super loadData];
     
 
-    [self.client loadTodayAdvs];
+ //   [self.client loadTodayAdvs];
     
-//    [self loadRecommends];
+    [self loadRecommends];
     
     self.histories = [NSMutableArray array];
     
     [self startLoading];
-    NSDate* today = [[NSDate date] dateByAddingTimeInterval:-3600*24];
+    //NSDate* today = [[NSDate date] dateByAddingTimeInterval:-3600*24];
     
-    [self.client loadHistory:today days:7];
+//    [self.client loadHistory:today days:7];
     
 }
 
@@ -147,9 +156,33 @@
 //    }
     
     //self.advView.imageUrls = imageUrls;
-    [self.historyView reloadData];
+    //[self.historyView reloadData];
 
 }
+
+- (void)loadApps:(NSArray*) apps{
+    NSMutableArray* items = [NSMutableArray array];
+
+    for (NSDictionary* game in apps){
+        [items addObject:[[LQGameInfo alloc] initWithAPIResult:game]];
+    }
+    self.recommendApps = items;
+   // [self.historyView reloadData];
+
+}
+
+- (void) loadTopics:(NSArray*) topics{
+    NSMutableArray* items = [NSMutableArray array];
+    
+    for (NSDictionary* game in topics){
+        [items addObject:[[LQGameInfo alloc] initWithAPIResult:game]];
+    }
+
+    self.recommendTopics = items;
+    //[self.historyView reloadData];
+
+}
+
 - (void)loadHistoryGames:(NSDictionary*)result{
     self.historyView.hidden = NO;
     
@@ -197,12 +230,13 @@
     if(section == 0)
         return 1;
     else{
-        if(self.histories.count == 0)
-            return 0;
-        
-        NSDictionary* dayGame = [self.histories objectAtIndex:0];
-        NSArray* games = [dayGame objectForKey:@"items"];
-        return games.count;
+//        if(self.histories.count == 0)
+//            return 0;
+//        
+//        NSDictionary* dayGame = [self.histories objectAtIndex:0];
+//        NSArray* games = [dayGame objectForKey:@"items"];
+//        return games.count;
+        return currentRecommendIndex==0?recommendApps.count:recommendTopics.count;
     }
 }
 
@@ -219,7 +253,7 @@
         if(advertisements.count>0){
             NSMutableArray* imageUrls = [NSMutableArray arrayWithCapacity:self.advertisements.count];
             for (NSDictionary* adv in self.advertisements){
-                [imageUrls addObject:[adv objectForKey:@"adv_icon"]];
+                [imageUrls addObject:[adv objectForKey:@"image_url"]];
             }
             cell.advView.imageUrls = imageUrls;
         }
@@ -240,10 +274,13 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:@"HistoryTableViewCell" owner:self options:nil] objectAtIndex:0];
         }
     }
-    NSDictionary* dayGame = [self.histories objectAtIndex:0 /*indexPath.section*/];
-    NSArray* games = [dayGame objectForKey:@"items"];
-    cell.gameInfo = [games objectAtIndex:indexPath.row];
-    
+//    NSDictionary* dayGame = [self.histories objectAtIndex:0 /*indexPath.section*/];
+//    NSArray* games = [dayGame objectForKey:@"items"];
+//    cell.gameInfo = [games objectAtIndex:indexPath.row];
+//    
+    cell.gameInfo = currentRecommendIndex==0?[recommendApps objectAtIndex:indexPath.row]:
+    [recommendTopics objectAtIndex:indexPath.row];
+       
     [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:0];
     return cell;
     
@@ -279,6 +316,9 @@
     else if(section == 1)
     {
         LQRecommendSectionHeader *header = [[[NSBundle mainBundle] loadNibNamed:@"LQRecommendSectionHeader" owner:self options:nil]objectAtIndex:0];
+        [header addInfoButtonsTarget:self action:@selector(onSwitchRecommendSection:) tag:0];
+        [header addInfoButtonsTarget:self action:@selector(onSwitchRecommendSection:) tag:1];
+
         return header;
         
     }
@@ -329,12 +369,17 @@
 - (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{
     [super handleNetworkOK];
     switch (command) {
-//        case C_COMMAND_GETRECOMMENDATION:
-//            [self endLoading];
-//            if ([result isKindOfClass:[NSArray class]]){
-//                [self loadTodayGames:result];
-//            }
-//            break;
+        case C_COMMAND_GETRECOMMENDATION:
+            [self endLoading];
+            if ([result isKindOfClass:[NSDictionary class]]){
+               // [self loadTodayGames:result];
+                [self loadTodayAdvs:[result objectForKey:@"nominates"]];
+                [self loadApps:[result objectForKey:@"apps"]];
+                [self loadTopics:[result objectForKey:@"zhuantis"]];
+                [self.historyView reloadData];
+            }
+            break;
+    
         case C_COMMAND_GETTODAYADVS:
             if ([result isKindOfClass:[NSArray class]]){
                 [self loadTodayAdvs:result];
@@ -417,8 +462,17 @@
     LQGameDetailViewController *controller = [[LQGameDetailViewController alloc] init];
     controller.gameId = tag;
     [self.navigationController pushViewController:controller animated:YES];
-    
-    
+}
 
+- (void)onSwitchRecommendSection:(id)sender{
+    UIButton* button = sender;
+    int tag = button.tag;
+    if(tag == currentRecommendIndex)
+        return;
+    else {
+        currentRecommendIndex = tag;
+        [self.historyView reloadData];
+    }
+    
 }
 @end

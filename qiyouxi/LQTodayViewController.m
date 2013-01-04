@@ -206,6 +206,8 @@
     self.advView.imageUrls = imageUrls;
 }
 
+
+
 #pragma mark - Network Callback
 - (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{
     [super handleNetworkOK];

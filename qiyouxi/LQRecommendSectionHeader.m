@@ -27,6 +27,30 @@
     // Drawing code
 }
 */
+
+- (void) onClick:(id) sender{    
+    if(sender == softButton)
+    {
+        UIImage *image = [UIImage imageNamed:@"home_tabbar_soft_down.png"];
+        
+        [softButton setBackgroundImage:image forState:UIControlStateNormal];
+        
+        image = [UIImage imageNamed:@"home_tabbar_special.png"];
+        
+        [topicButton setBackgroundImage:image forState:UIControlStateNormal];
+    }
+    else {
+        UIImage *image = [UIImage imageNamed:@"home_tabbar_soft.png"];
+        
+        [softButton setBackgroundImage:image forState:UIControlStateNormal];
+        
+        image = [UIImage imageNamed:@"home_tabbar_special_down.png"];
+        
+        [topicButton setBackgroundImage:image forState:UIControlStateNormal];
+    }
+
+}
+
 - (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag{
     UIButton *actionButton;
     if(tag==0)
@@ -35,6 +59,7 @@
         actionButton = topicButton;
      
     [actionButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [actionButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
     actionButton.tag = tag;
 }
 

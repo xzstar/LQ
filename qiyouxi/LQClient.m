@@ -146,6 +146,24 @@
 }
 
 #pragma mark - API
+- (void)loadRecommendation{
+    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                HTTP_GET, P_INTERNAL_METHOD,
+                                @"jPoHFsMC5a33cPTRNJTPxw", @"api_key",
+                                @"5d881200fb9da931009e9080b87d9df99c6aa320",@"nonce",
+                                @"1285553664174",@"timestamp",
+                                @"66cbf30b84b2b7a63f790b058a088945",@"api_sig",
+                                @"homepage",@"op",
+                                nil];
+    [self processCommand:[NSString stringWithFormat:@"%@%@", @"http://appserver.liqucn.com/ios", @"/request.php"]
+                 command:C_COMMAND_GETRECOMMENDATION
+                  format:F_JSON
+              parameters:parameters
+                encoding:NO];
+
+    
+}
+
 - (void)loadTodayRecommendation:(NSDate*)date{
     NSDateFormatter* format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"yyyyMMdd"];

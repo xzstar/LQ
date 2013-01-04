@@ -28,6 +28,16 @@
 @property (nonatomic, strong) NSString* downloadUrl;
 @property (nonatomic, strong) NSString* package;
 
+@property (nonatomic, strong) NSString* imageUrl;
+@property (nonatomic, strong) NSString* versionCode;
+@property (nonatomic, strong) NSString* tags;
+@property (nonatomic, strong) NSString* price;
+@property (nonatomic, strong) NSString* rating;
+
+//专题用
+@property (nonatomic, strong) NSString* intro;
+@property (nonatomic, strong) NSString* date;
+
 - (id)initWithAPIResult:(NSDictionary*)result;
 
 @end

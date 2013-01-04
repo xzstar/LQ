@@ -25,6 +25,7 @@
 @interface LQClient : LQClientBase
 - (void)loadLaunchImage;
 
+- (void)loadRecommendation;
 - (void)loadTodayRecommendation:(NSDate*)date;
 - (void)loadTodayAdvs;
 - (void)loadAnnouncement;

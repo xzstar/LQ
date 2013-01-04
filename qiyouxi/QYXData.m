@@ -22,6 +22,10 @@
 
 @synthesize package;
 
+@synthesize imageUrl,versionCode,tags,price,rating;
+
+@synthesize intro,date;
+
 - (id)initWithAPIResult:(NSDictionary*)result{
     self = [super init];
     if (self != nil){
@@ -59,10 +63,19 @@
         self.commentCount = [[result objectForKey:@"comment_count"] intValue];
         
         self.downloadUrl = [result objectForKey:@"download_url"];
-        self.package = [result objectForKey:@"package_id"];
+        self.package = [result objectForKey:@"package"];
         
 //        self.downloadUrl = @"http://172.16.96.53/~wangqing/ukongarith.ipa";
 //        self.package = @"com.ukongame.UKongArithZh";// [result objectForKey:@"package"];
+        
+
+        self.imageUrl = [result objectForKey:@"image_url"];
+        self.versionCode = [result objectForKey:@"versionCode"];
+        self.tags= [result objectForKey:@"tags"];
+        self.price = [result objectForKey:@"price"];
+        self.rating = [result objectForKey:@"rating"];
+        self.intro = [result objectForKey:@"intro"];
+        self.date = [result objectForKey:@"date"];
     }
     return self;
 }
