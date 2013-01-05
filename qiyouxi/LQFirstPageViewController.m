@@ -318,7 +318,7 @@
         LQRecommendSectionHeader *header = [[[NSBundle mainBundle] loadNibNamed:@"LQRecommendSectionHeader" owner:self options:nil]objectAtIndex:0];
         [header addInfoButtonsTarget:self action:@selector(onSwitchRecommendSection:) tag:0];
         [header addInfoButtonsTarget:self action:@selector(onSwitchRecommendSection:) tag:1];
-
+        [header setButtonStatus:currentRecommendIndex];
         return header;
         
     }

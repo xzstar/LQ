@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface LQRecommendSectionHeader : UIView
+
 - (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
+- (void) setButtonStatus:(int)index;
 @end
 @interface LQRecommendSectionHeader()
 @property (unsafe_unretained) IBOutlet UIButton* softButton;

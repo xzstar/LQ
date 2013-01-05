@@ -28,8 +28,8 @@
 }
 */
 
-- (void) onClick:(id) sender{    
-    if(sender == softButton)
+- (void) setButtonStatus:(int) index{
+    if(index == 0)
     {
         UIImage *image = [UIImage imageNamed:@"home_tabbar_soft_down.png"];
         
@@ -59,7 +59,7 @@
         actionButton = topicButton;
      
     [actionButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-    [actionButton addTarget:self action:@selector(onClick:) forControlEvents:UIControlEventTouchUpInside];
+    
     actionButton.tag = tag;
 }
 
