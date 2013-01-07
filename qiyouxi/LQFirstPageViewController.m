@@ -223,19 +223,13 @@
 
 #pragma mark - TableView DataSource
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;//self.histories.count+1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(section == 0)
         return 1;
     else{
-//        if(self.histories.count == 0)
-//            return 0;
-//        
-//        NSDictionary* dayGame = [self.histories objectAtIndex:0];
-//        NSArray* games = [dayGame objectForKey:@"items"];
-//        return games.count;
         return currentRecommendIndex==0?recommendApps.count:recommendTopics.count;
     }
 }
@@ -273,15 +267,12 @@
         if (cell == nil){
             cell = [[[NSBundle mainBundle] loadNibNamed:@"HistoryTableViewCell" owner:self options:nil] objectAtIndex:0];
         }
-    }
-//    NSDictionary* dayGame = [self.histories objectAtIndex:0 /*indexPath.section*/];
-//    NSArray* games = [dayGame objectForKey:@"items"];
-//    cell.gameInfo = [games objectAtIndex:indexPath.row];
-//    
+    }  
     cell.gameInfo = currentRecommendIndex==0?[recommendApps objectAtIndex:indexPath.row]:
     [recommendTopics objectAtIndex:indexPath.row];
        
     [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:0];
+
     return cell;
     
 }
@@ -318,19 +309,11 @@
         LQRecommendSectionHeader *header = [[[NSBundle mainBundle] loadNibNamed:@"LQRecommendSectionHeader" owner:self options:nil]objectAtIndex:0];
         [header addInfoButtonsTarget:self action:@selector(onSwitchRecommendSection:) tag:0];
         [header addInfoButtonsTarget:self action:@selector(onSwitchRecommendSection:) tag:1];
+        [header setImageNames:@"home_tabbar_soft.png" leftSelected:@"home_tabbar_soft_down.png" rightNormal:@"home_tabbar_special.png" rightSelected:@"home_tabbar_special_down.png"];
         [header setButtonStatus:currentRecommendIndex];
         return header;
         
     }
-
-//    else {
-//        NSDictionary* dayGame = [self.histories objectAtIndex:section];
-//        
-//        LQHistoryTableSectionHeader *header = [[[NSBundle mainBundle] loadNibNamed:@"HistoryTableSectionHeader" owner:self options:nil] objectAtIndex:0];
-//        [header setDate:[dayGame objectForKey:@"date"]];
-//        return header;
-//
-//    }
     return nil;
 }
 
@@ -345,11 +328,7 @@
         selectedSection = -1;  
     }
     [self.historyView reloadData];
-    
-//    NSDictionary* dayGame = [self.histories objectAtIndex:indexPath.section];
-//    NSArray* games = [dayGame objectForKey:@"items"];
-    
-//    [self performSegueWithIdentifier:@"gotoDetail" sender:[games objectAtIndex:indexPath.row]];
+
 }
 
 

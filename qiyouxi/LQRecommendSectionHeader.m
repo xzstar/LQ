@@ -10,6 +10,7 @@
 
 @implementation LQRecommendSectionHeader
 @synthesize softButton,topicButton;
+@synthesize leftImageNormal,leftImageSelected,rightImageNormal,rightImageSelected;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -28,23 +29,25 @@
 }
 */
 
+
+
 - (void) setButtonStatus:(int) index{
     if(index == 0)
     {
-        UIImage *image = [UIImage imageNamed:@"home_tabbar_soft_down.png"];
+        UIImage *image = [UIImage imageNamed:leftImageSelected];
         
         [softButton setBackgroundImage:image forState:UIControlStateNormal];
         
-        image = [UIImage imageNamed:@"home_tabbar_special.png"];
+        image = [UIImage imageNamed:rightImageNormal];
         
         [topicButton setBackgroundImage:image forState:UIControlStateNormal];
     }
-    else {
-        UIImage *image = [UIImage imageNamed:@"home_tabbar_soft.png"];
+    else { 
+        UIImage *image = [UIImage imageNamed:leftImageNormal ];
         
         [softButton setBackgroundImage:image forState:UIControlStateNormal];
-        
-        image = [UIImage imageNamed:@"home_tabbar_special_down.png"];
+
+        image = [UIImage imageNamed:rightImageSelected];
         
         [topicButton setBackgroundImage:image forState:UIControlStateNormal];
     }
@@ -63,4 +66,13 @@
     actionButton.tag = tag;
 }
 
+- (void) setImageNames:(NSString*) leftNormal 
+          leftSelected:(NSString*) leftSelected
+      rightNormal:(NSString*) rightNormal
+    rightSelected:(NSString*) rightSelected{
+    self.leftImageNormal = leftNormal;
+    self.leftImageSelected = leftSelected;
+    self.rightImageNormal = rightNormal;
+    self.rightImageSelected = rightSelected;
+}
 @end

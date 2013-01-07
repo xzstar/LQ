@@ -9,6 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "LQViewController.h"
 
-@interface LQSearchViewController : LQViewController
+@interface LQSearchViewController : LQViewController<UISearchDisplayDelegate, UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource>
+{
+    int currentRecommendIndex;
+}
+@property(unsafe_unretained) IBOutlet UISearchBar* searchBar;
+@property(unsafe_unretained) IBOutlet UITableView* searchTable;
+@property(unsafe_unretained) IBOutlet UISearchDisplayController *searchBarController;
+@property(unsafe_unretained) IBOutlet UIScrollView*scrollView;
+@property(unsafe_unretained) IBOutlet UIView* searchHistoryView;
+@property(unsafe_unretained) IBOutlet UITableView* searchHistoryTable;
+
+- (void)onSwitchRecommendSection:(id)sender;
 
 @end

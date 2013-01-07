@@ -846,6 +846,8 @@
 		F2ED5BAD168FCC2C00E12C5F /* weibo_partake_v_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ED592D168FCC2B00E12C5F /* weibo_partake_v_bg@2x.png */; };
 		F2F4C455168B3E2700538800 /* LQLoading.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F4C454168B3E2600538800 /* LQLoading.xib */; };
 		F2F4C457168B44FD00538800 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F4C456168B44FC00538800 /* MainWindow.xib */; };
+		F2FF9C7E169A5E5D003D914D /* LQSearchSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FF9C7D169A5E5D003D914D /* LQSearchSectionHeader.m */; };
+		F2FF9C80169A5E9C003D914D /* LQSearchSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2FF9C7F169A5E9B003D914D /* LQSearchSectionHeader.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1756,6 +1758,9 @@
 		F2ED592D168FCC2B00E12C5F /* weibo_partake_v_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo_partake_v_bg@2x.png"; sourceTree = "<group>"; };
 		F2F4C454168B3E2600538800 /* LQLoading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQLoading.xib; sourceTree = "<group>"; };
 		F2F4C456168B44FC00538800 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		F2FF9C7C169A5E5D003D914D /* LQSearchSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQSearchSectionHeader.h; sourceTree = "<group>"; };
+		F2FF9C7D169A5E5D003D914D /* LQSearchSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQSearchSectionHeader.m; sourceTree = "<group>"; };
+		F2FF9C7F169A5E9B003D914D /* LQSearchSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQSearchSectionHeader.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1857,6 +1862,9 @@
 				F26CD24D16918A2300E1E30B /* LQRecommendSectionHeader.xib */,
 				F26CD24F16918D1100E1E30B /* LQRecommendSectionHeader.h */,
 				F26CD25016918D1200E1E30B /* LQRecommendSectionHeader.m */,
+				F2FF9C7F169A5E9B003D914D /* LQSearchSectionHeader.xib */,
+				F2FF9C7C169A5E5D003D914D /* LQSearchSectionHeader.h */,
+				F2FF9C7D169A5E5D003D914D /* LQSearchSectionHeader.m */,
 				F26CD252169193DA00E1E30B /* LQAdTableViewCell.h */,
 				F26CD253169193DB00E1E30B /* LQAdTableViewCell.m */,
 				F26CD255169194A400E1E30B /* LQAdTableViewCell.xib */,
@@ -2826,9 +2834,9 @@
 		43F5ED2215C65424001A0F8D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = QYX;
+				CLASSPREFIX = LQ;
 				LastUpgradeCheck = 0430;
-				ORGANIZATIONNAME = "微云即趣科技有限公司";
+				ORGANIZATIONNAME = "科技有限公司";
 			};
 			buildConfigurationList = 43F5ED2515C65424001A0F8D /* Build configuration list for PBXProject "qiyouxi" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -3614,6 +3622,7 @@
 				F26CD2AB1693070000E1E30B /* AudioCell.xib in Resources */,
 				F26CD2AE1693070D00E1E30B /* AudioListViewController.xib in Resources */,
 				F26CD2B9169314D900E1E30B /* AudioMoreItemCell.xib in Resources */,
+				F2FF9C80169A5E9C003D914D /* LQSearchSectionHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3695,6 +3704,7 @@
 				F26CD2AA1693070000E1E30B /* AudioListViewController.m in Sources */,
 				F26CD2AC1693070000E1E30B /* AudioCell.m in Sources */,
 				F26CD2B71693148400E1E30B /* AudioMoreItemCell.m in Sources */,
+				F2FF9C7E169A5E5D003D914D /* LQSearchSectionHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3718,7 +3728,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3733,6 +3744,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				PROVISIONING_PROFILE = "25144A9B-A27A-493E-92D3-AD377EF261D4";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25144A9B-A27A-493E-92D3-AD377EF261D4";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3743,6 +3756,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3752,6 +3766,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "25144A9B-A27A-493E-92D3-AD377EF261D4";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3760,7 +3775,7 @@
 		43F5ED5515C65424001A0F8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = qiyouxi/qiyouxi.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3778,7 +3793,7 @@
 		43F5ED5615C65424001A0F8D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = qiyouxi/qiyouxi.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "qiyouxi/qiyouxi-Prefix.pch";
