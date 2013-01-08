@@ -16,7 +16,7 @@
 #import "LQRecommendSectionHeader.h"
 #import "LQAdTableViewCell.h"
 #import "AudioListViewController.h"
-
+#import "LQTopicCell.h"
 @interface LQFirstPageViewController ()
 @property (nonatomic, strong) NSDictionary* announcement;
 @property (nonatomic, strong) NSArray* advertisements;
@@ -235,7 +235,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    LQHistoryTableViewCell* cell;
+    
 
     if(indexPath.section==0 && indexPath.row ==0){
         LQAdTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ad"];
@@ -254,26 +254,37 @@
         return cell;
         
     }
-    else if(indexPath.section == selectedSection &&
-       indexPath.row == selectedRow){
-        cell = [tableView dequeueReusableCellWithIdentifier:@"moreitem"];
-        if (cell == nil){
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"LQGameMoreItemTableViewCell" owner:self options:nil] objectAtIndex:0];
+    else if(currentRecommendIndex==0){
+        LQHistoryTableViewCell* cell;
+        if(indexPath.section == selectedSection &&
+           indexPath.row == selectedRow){
+            cell = [tableView dequeueReusableCellWithIdentifier:@"moreitem"];
+            if (cell == nil){
+                cell = [[[NSBundle mainBundle] loadNibNamed:@"LQGameMoreItemTableViewCell"  owner:self options:nil] objectAtIndex:0];
+            }
         }
-        
+        else{
+            cell = [tableView dequeueReusableCellWithIdentifier:@"history"];
+            if (cell == nil){
+                cell = [[[NSBundle mainBundle] loadNibNamed:@"HistoryTableViewCell" owner:self options:nil] objectAtIndex:0];
+            }
+        }  
+        cell.gameInfo = currentRecommendIndex==0?[recommendApps objectAtIndex:indexPath.row]:
+        [recommendTopics objectAtIndex:indexPath.row];
+       
+        [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:0];
+        return cell;
     }
     else{
-        cell = [tableView dequeueReusableCellWithIdentifier:@"history"];
+        LQTopicCell* cell = [tableView dequeueReusableCellWithIdentifier:@"topic"];
         if (cell == nil){
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"HistoryTableViewCell" owner:self options:nil] objectAtIndex:0];
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"LQTopicCell" owner:self options:nil] objectAtIndex:0];
         }
-    }  
-    cell.gameInfo = currentRecommendIndex==0?[recommendApps objectAtIndex:indexPath.row]:
-    [recommendTopics objectAtIndex:indexPath.row];
-       
-    [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:0];
-
-    return cell;
+        cell.gameInfo = [recommendTopics objectAtIndex:indexPath.row];
+        return cell;
+    }
+    
+    
     
 }
 

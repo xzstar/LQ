@@ -10,7 +10,7 @@
 #import "LQDownloadManager.h"
 
 @implementation LQHistoryTableViewCell
-@synthesize gameIconView, gameDetailLabel, gameTitleLabel, actionButton;
+@synthesize gameIconView, gameDetailLabel, gameTitleLabel, actionButton,gameScore,gameComments;
 @synthesize gameInfo;
 @synthesize gameInfoView;
 
@@ -33,7 +33,10 @@
 - (void)setGameInfo:(id)aGameInfo{
     gameInfo = aGameInfo;
     self.gameTitleLabel.text = self.gameInfo.name;
-    self.gameDetailLabel.text = [NSString stringWithFormat:@"%@ | %@MB", self.gameInfo.category, self.gameInfo.size];
+    int size= [self.gameInfo.size intValue];
+    float sizeMB= (float)size/(1024*1024);
+    
+    self.gameDetailLabel.text = [NSString stringWithFormat:@"版本%@|大小%.2fMB|更新时间%@", self.gameInfo.versionCode, sizeMB,self.gameInfo.date];
 
     UIImage* image = [[LQImageLoader sharedInstance] loadImage:self.gameInfo.icon context:self];
     if (image != nil){
@@ -41,6 +44,10 @@
     }else {
         self.gameIconView.image = [UIImage imageNamed:@"icon_small.png"];
     }
+    
+    self.gameComments.text = [NSString stringWithFormat:@"%d个评论",self.gameInfo.commentCount];
+    self.gameScore.text = [NSString stringWithFormat:@"%@分",self.gameInfo.rating];
+                           
 
     NSString* title = nil;
     UIImage* bgImage = nil;
@@ -95,35 +102,6 @@
     }
 }
 
-//- (IBAction)onDetailButton:(id)sender{
-//    [gameIconView setHidden:true];
-//    bool isHidden = ![gameActionView isHidden];
-//    [gameActionView setHidden:isHidden];
-//    
-//    CGRect frame = self.frame;
-//    
-//    if(isHidden)
-//        frame.size.height -= gameActionView.frame.size.height;
-//    else {
-//        frame.size.height += gameActionView.frame.size.height;
-//    }
-//    self.frame = frame;
-//}
-//
-//- (void) showActionView:(bool) shown {
-//    bool isHidden = ![gameActionView isHidden];
-//    [gameActionView setHidden:isHidden];
-//    
-//    CGRect frame = self.frame;
-//    
-//    if(isHidden)
-//        frame.size.height =gameInfoView.frame.size.height; 
-//    else {
-//        frame.size.height = gameInfoView.frame.size.height+ gameActionView.frame.size.height;
-//    }
-//    self.frame = frame;
-//}
-
 - (IBAction)onActionButton:(id)sender{
     QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:self.gameInfo.gameId];
     switch (status) {
@@ -155,17 +133,6 @@
     }
     self.gameInfo = gameInfo;
 }
-
-//- (void)onSelected:(bool) selected{
-//    
-//    [gameActionView setHidden:!selected];
-//    CGRect frame = self.frame;
-//    if(selected)
-//        frame.size.height= gameInfoView.frame.size.height+ gameActionView.frame.size.height;
-//    else
-//        frame.size.height= gameInfoView.frame.size.height;
-//    self.frame = frame;
-//}
 
 - (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag{
      [actionButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];

@@ -74,7 +74,7 @@
         self.tags= [result objectForKey:@"tags"];
         self.price = [result objectForKey:@"price"];
         self.rating = [result objectForKey:@"rating"];
-        self.intro = [result objectForKey:@"intro"];
+        self.intro = [result objectForKey:@"Intro"];
         self.date = [result objectForKey:@"date"];
     }
     return self;
