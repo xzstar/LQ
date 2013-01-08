@@ -421,16 +421,6 @@
 }
 
 - (IBAction)onReload:(id)sender{
-/*    [self loadRecommends];
-    
-    if (self.advertisements == nil){
-        [self.client loadTodayAdvs];
-    }
-    
-    if (self.announcement == nil){
-        [self.client loadAnnouncement];
-    }*/
-    
     LQGameInfoListViewController* controller  = [[LQGameInfoListViewController alloc] init ];
     [self.navigationController pushViewController:controller animated:YES];
 }

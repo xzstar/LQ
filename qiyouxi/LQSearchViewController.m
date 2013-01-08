@@ -8,6 +8,8 @@
 
 #import "LQSearchViewController.h"
 #import "LQSearchSectionHeader.h"
+#import "SearchHistoryItem.h"
+#import "LQSearchHistoryCell.h"
 @interface LQSearchViewController ()
 
 @end
@@ -27,6 +29,7 @@
     if (self) {
         // Custom initialization
         currentRecommendIndex = 0;
+        searchHistoryItems = [NSMutableArray array];
     }
     return self;
 }
@@ -70,10 +73,22 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - searchBar delegate
 -(void)searchBarSearchButtonClicked:(UISearchBar *)searchbar;
 {
 	//键盘消失
 	[searchbar resignFirstResponder];
+    NSString* searchText = [searchbar text];
+    if(searchText.length==0)
+        return;
+    
+    SearchHistoryItem* item = 
+    [SearchHistoryItem searchHistoryItemWithType:@"soft"
+                                            name:[searchbar text]];
+    [searchHistoryItems addObject:item];
+    
+    [searchHistoryTable reloadData];
+    
 }
 
 #pragma mark - TableView DataSource
@@ -83,16 +98,33 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     //if(section == 0)
+    if(tableView == searchHistoryTable)
+        return searchHistoryItems.count;
+    else {
         return 0;
+    }
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(tableView==searchHistoryTable){
+        
+        LQSearchHistoryCell *cell = [tableView dequeueReusableCellWithIdentifier:@"search"];
+        if(cell == nil){
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"LQSearchHistoryCell" owner:self options:nil]objectAtIndex:0];
+        }
+        
+        SearchHistoryItem* item = [searchHistoryItems objectAtIndex:indexPath.row];
+        [cell.type setText:item.type];
+        [cell.name setText:item.name];
+        [cell addInfoButtonsTarget:self action:@selector(onDeleteSearchItem:) tag:indexPath.row];
+        return cell;
+    }
+    return nil;
+}
 #pragma mark - TableView Data Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if(section == 0){
+    if(tableView==searchHistoryTable && section == 0){
         return 45.0;
-    }
-    else if(section ==1) {
-        return 34.0;
     }
     else {
         return 0;
@@ -100,7 +132,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-     if(section == 0)
+     if(tableView==searchHistoryTable && section == 0)
     {
         LQSearchSectionHeader *header = [[[NSBundle mainBundle] loadNibNamed:@"LQSearchSectionHeader" owner:self options:nil]objectAtIndex:0];
         [header addInfoButtonsTarget:self action:@selector(onSwitchRecommendSection:) tag:0];
@@ -127,6 +159,38 @@
         [self.searchHistoryTable reloadData];
     }
 
+}
+
+- (void)onDeleteSearchItem:(id)sender{
+    UIButton* button = sender;
+    int tag = button.tag;
+    if(tag>=0 && tag< searchHistoryItems.count){
+        [searchHistoryItems removeObjectAtIndex:tag];
+        [self.searchHistoryTable reloadData];
+    }
+
+}
+
+#pragma mark -
+#pragma mark UISearchDisplayController Delegate Methods
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+//    [self filterContentForSearchText:searchString scope:
+//     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+//    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+//    [self filterContentForSearchText:[self.searchDisplayController.searchBar text] scope:
+//     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOptions]];
+//    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
 }
 
 @end

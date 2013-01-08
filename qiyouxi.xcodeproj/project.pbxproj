@@ -180,6 +180,10 @@
 		F219D4E3168C97E100F8CA45 /* LQDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4E2168C97E100F8CA45 /* LQDetailView.xib */; };
 		F219D4E5168C980100F8CA45 /* LQPostCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4E4168C980100F8CA45 /* LQPostCommentView.xib */; };
 		F219D4E7168C982E00F8CA45 /* LQDownloadManageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4E6168C982E00F8CA45 /* LQDownloadManageView.xib */; };
+		F23D3B8F169AD70700B7DD46 /* LQSearchHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23D3B8E169AD70700B7DD46 /* LQSearchHistoryCell.m */; };
+		F23D3B92169B02D300B7DD46 /* LQSearchHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */; };
+		F23D3B95169B0C7D00B7DD46 /* SearchHistoryItem.h in Sources */ = {isa = PBXBuildFile; fileRef = F23D3B93169B0C1100B7DD46 /* SearchHistoryItem.h */; };
+		F23D3B96169B0C7D00B7DD46 /* SearchHistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F23D3B94169B0C1200B7DD46 /* SearchHistoryItem.m */; };
 		F26CD20416911E7600E1E30B /* LQGameInfoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD20216911E7600E1E30B /* LQGameInfoListViewController.m */; };
 		F26CD20516911E7600E1E30B /* LQGameInfoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD20316911E7600E1E30B /* LQGameInfoListViewController.xib */; };
 		F26CD20916913ED200E1E30B /* LQGameMoreItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD20816913ED200E1E30B /* LQGameMoreItemTableViewCell.m */; };
@@ -1075,6 +1079,11 @@
 		F219D4E2168C97E100F8CA45 /* LQDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQDetailView.xib; sourceTree = "<group>"; };
 		F219D4E4168C980100F8CA45 /* LQPostCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQPostCommentView.xib; sourceTree = "<group>"; };
 		F219D4E6168C982E00F8CA45 /* LQDownloadManageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQDownloadManageView.xib; sourceTree = "<group>"; };
+		F23D3B8D169AD70700B7DD46 /* LQSearchHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQSearchHistoryCell.h; sourceTree = "<group>"; };
+		F23D3B8E169AD70700B7DD46 /* LQSearchHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQSearchHistoryCell.m; sourceTree = "<group>"; };
+		F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQSearchHistoryCell.xib; sourceTree = "<group>"; };
+		F23D3B93169B0C1100B7DD46 /* SearchHistoryItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchHistoryItem.h; sourceTree = "<group>"; };
+		F23D3B94169B0C1200B7DD46 /* SearchHistoryItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchHistoryItem.m; sourceTree = "<group>"; };
 		F26CD20116911E7600E1E30B /* LQGameInfoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQGameInfoListViewController.h; sourceTree = "<group>"; };
 		F26CD20216911E7600E1E30B /* LQGameInfoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQGameInfoListViewController.m; sourceTree = "<group>"; };
 		F26CD20316911E7600E1E30B /* LQGameInfoListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQGameInfoListViewController.xib; sourceTree = "<group>"; };
@@ -1866,8 +1875,13 @@
 				F2FF9C7C169A5E5D003D914D /* LQSearchSectionHeader.h */,
 				F2FF9C7D169A5E5D003D914D /* LQSearchSectionHeader.m */,
 				F26CD252169193DA00E1E30B /* LQAdTableViewCell.h */,
+				F23D3B8D169AD70700B7DD46 /* LQSearchHistoryCell.h */,
+				F23D3B8E169AD70700B7DD46 /* LQSearchHistoryCell.m */,
+				F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */,
 				F26CD253169193DB00E1E30B /* LQAdTableViewCell.m */,
 				F26CD255169194A400E1E30B /* LQAdTableViewCell.xib */,
+				F23D3B93169B0C1100B7DD46 /* SearchHistoryItem.h */,
+				F23D3B94169B0C1200B7DD46 /* SearchHistoryItem.m */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -3623,6 +3637,7 @@
 				F26CD2AE1693070D00E1E30B /* AudioListViewController.xib in Resources */,
 				F26CD2B9169314D900E1E30B /* AudioMoreItemCell.xib in Resources */,
 				F2FF9C80169A5E9C003D914D /* LQSearchSectionHeader.xib in Resources */,
+				F23D3B92169B02D300B7DD46 /* LQSearchHistoryCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3633,6 +3648,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F23D3B95169B0C7D00B7DD46 /* SearchHistoryItem.h in Sources */,
+				F23D3B96169B0C7D00B7DD46 /* SearchHistoryItem.m in Sources */,
 				43F5ED3C15C65424001A0F8D /* main.m in Sources */,
 				43F5ED4015C65424001A0F8D /* QYXAppDelegate.m in Sources */,
 				43F5ED4615C65424001A0F8D /* LQTodayViewController.m in Sources */,
@@ -3705,6 +3722,7 @@
 				F26CD2AC1693070000E1E30B /* AudioCell.m in Sources */,
 				F26CD2B71693148400E1E30B /* AudioMoreItemCell.m in Sources */,
 				F2FF9C7E169A5E5D003D914D /* LQSearchSectionHeader.m in Sources */,
+				F23D3B8F169AD70700B7DD46 /* LQSearchHistoryCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

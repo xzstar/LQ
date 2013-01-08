@@ -12,6 +12,7 @@
 @interface LQSearchViewController : LQViewController<UISearchDisplayDelegate, UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource>
 {
     int currentRecommendIndex;
+    NSMutableArray* searchHistoryItems;
 }
 @property(unsafe_unretained) IBOutlet UISearchBar* searchBar;
 @property(unsafe_unretained) IBOutlet UITableView* searchTable;
@@ -21,5 +22,5 @@
 @property(unsafe_unretained) IBOutlet UITableView* searchHistoryTable;
 
 - (void)onSwitchRecommendSection:(id)sender;
-
+- (void)onDeleteSearchItem:(id)sender;
 @end
