@@ -17,6 +17,8 @@
 #import "LQAdTableViewCell.h"
 #import "AudioListViewController.h"
 #import "LQTopicCell.h"
+#import "LQTablesController.h"
+
 @interface LQFirstPageViewController ()
 @property (nonatomic, strong) NSDictionary* announcement;
 @property (nonatomic, strong) NSArray* advertisements;
@@ -417,7 +419,7 @@
 }
 
 - (void)onLoadGame:(id)sender{
-    LQGameInfoListViewController* controller  = [[LQGameInfoListViewController alloc] init ];
+    LQTablesController * controller  = [[LQTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

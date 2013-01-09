@@ -219,14 +219,15 @@
 		F2B7A668168FE1A700679C6E /* LQUpdateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B7A666168FE1A600679C6E /* LQUpdateViewController.xib */; };
 		F2B7A66C168FE1C200679C6E /* LQMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A66A168FE1C100679C6E /* LQMoreViewController.m */; };
 		F2B7A66D168FE1C200679C6E /* LQMoreViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B7A66B168FE1C200679C6E /* LQMoreViewController.xib */; };
+		F2BAD5DB169D53CF00893F4C /* LQTablesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BAD5D9169D53CF00893F4C /* LQTablesController.m */; };
+		F2BAD5DC169D53CF00893F4C /* LQTablesController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2BAD5DA169D53CF00893F4C /* LQTablesController.xib */; };
+		F2BAD5E0169D6AE800893F4C /* LQPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BAD5DF169D6AE800893F4C /* LQPageController.m */; };
+		F2C2667E169DB9B600382479 /* LQCommonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C2667C169DB9B600382479 /* LQCommonTableViewController.m */; };
+		F2C2667F169DB9B600382479 /* LQCommonTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2C2667D169DB9B600382479 /* LQCommonTableViewController.xib */; };
 		F2E1655A169071300049BD05 /* LQGameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E165581690712F0049BD05 /* LQGameDetailViewController.m */; };
 		F2E1655B169071300049BD05 /* LQGameDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E165591690712F0049BD05 /* LQGameDetailViewController.xib */; };
 		F2E8A368169C458F00B6DC2D /* LQTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E8A367169C458F00B6DC2D /* LQTopicCell.m */; };
-		F2E8A37D169C592A00B6DC2D /* LQTablesContentController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E8A37C169C592A00B6DC2D /* LQTablesContentController.xib */; };
 		F2E8A37F169C60FC00B6DC2D /* LQTopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E8A37E169C60FB00B6DC2D /* LQTopicCell.xib */; };
-		F2E8A380169C625F00B6DC2D /* LQTablesContentController.h in Sources */ = {isa = PBXBuildFile; fileRef = F2E8A37A169C58F800B6DC2D /* LQTablesContentController.h */; };
-		F2E8A381169C625F00B6DC2D /* LQTablesContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E8A37B169C58F800B6DC2D /* LQTablesContentController.m */; };
-		F2E8A382169C625F00B6DC2D /* LQTablesContentController.xib in Sources */ = {isa = PBXBuildFile; fileRef = F2E8A37C169C592A00B6DC2D /* LQTablesContentController.xib */; };
 		F2ED592E168FCC2B00E12C5F /* about_logo-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ED56AE168FCC2900E12C5F /* about_logo-ipad.png */; };
 		F2ED592F168FCC2B00E12C5F /* about_logo-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ED56AF168FCC2900E12C5F /* about_logo-ipad@2x.png */; };
 		F2ED5930168FCC2B00E12C5F /* about_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ED56B0168FCC2900E12C5F /* about_logo.png */; };
@@ -1141,14 +1142,19 @@
 		F2B7A669168FE1C100679C6E /* LQMoreViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQMoreViewController.h; sourceTree = "<group>"; };
 		F2B7A66A168FE1C100679C6E /* LQMoreViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQMoreViewController.m; sourceTree = "<group>"; };
 		F2B7A66B168FE1C200679C6E /* LQMoreViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQMoreViewController.xib; sourceTree = "<group>"; };
+		F2BAD5D8169D53CF00893F4C /* LQTablesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTablesController.h; sourceTree = "<group>"; };
+		F2BAD5D9169D53CF00893F4C /* LQTablesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTablesController.m; sourceTree = "<group>"; };
+		F2BAD5DA169D53CF00893F4C /* LQTablesController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQTablesController.xib; sourceTree = "<group>"; };
+		F2BAD5DE169D6AE800893F4C /* LQPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQPageController.h; sourceTree = "<group>"; };
+		F2BAD5DF169D6AE800893F4C /* LQPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQPageController.m; sourceTree = "<group>"; };
+		F2C2667B169DB9B600382479 /* LQCommonTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQCommonTableViewController.h; sourceTree = "<group>"; };
+		F2C2667C169DB9B600382479 /* LQCommonTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQCommonTableViewController.m; sourceTree = "<group>"; };
+		F2C2667D169DB9B600382479 /* LQCommonTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQCommonTableViewController.xib; sourceTree = "<group>"; };
 		F2E165571690712E0049BD05 /* LQGameDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQGameDetailViewController.h; sourceTree = "<group>"; };
 		F2E165581690712F0049BD05 /* LQGameDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQGameDetailViewController.m; sourceTree = "<group>"; };
 		F2E165591690712F0049BD05 /* LQGameDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQGameDetailViewController.xib; sourceTree = "<group>"; };
 		F2E8A366169C458F00B6DC2D /* LQTopicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTopicCell.h; sourceTree = "<group>"; };
 		F2E8A367169C458F00B6DC2D /* LQTopicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTopicCell.m; sourceTree = "<group>"; };
-		F2E8A37A169C58F800B6DC2D /* LQTablesContentController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LQTablesContentController.h; sourceTree = "<group>"; };
-		F2E8A37B169C58F800B6DC2D /* LQTablesContentController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LQTablesContentController.m; sourceTree = "<group>"; };
-		F2E8A37C169C592A00B6DC2D /* LQTablesContentController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQTablesContentController.xib; sourceTree = "<group>"; };
 		F2E8A37E169C60FB00B6DC2D /* LQTopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQTopicCell.xib; sourceTree = "<group>"; };
 		F2ED56AE168FCC2900E12C5F /* about_logo-ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_logo-ipad.png"; sourceTree = "<group>"; };
 		F2ED56AF168FCC2900E12C5F /* about_logo-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "about_logo-ipad@2x.png"; sourceTree = "<group>"; };
@@ -2036,9 +2042,14 @@
 				F26CD20116911E7600E1E30B /* LQGameInfoListViewController.h */,
 				F26CD20216911E7600E1E30B /* LQGameInfoListViewController.m */,
 				F26CD20316911E7600E1E30B /* LQGameInfoListViewController.xib */,
-				F2E8A37A169C58F800B6DC2D /* LQTablesContentController.h */,
-				F2E8A37B169C58F800B6DC2D /* LQTablesContentController.m */,
-				F2E8A37C169C592A00B6DC2D /* LQTablesContentController.xib */,
+				F2BAD5D8169D53CF00893F4C /* LQTablesController.h */,
+				F2BAD5D9169D53CF00893F4C /* LQTablesController.m */,
+				F2BAD5DA169D53CF00893F4C /* LQTablesController.xib */,
+				F2BAD5DE169D6AE800893F4C /* LQPageController.h */,
+				F2BAD5DF169D6AE800893F4C /* LQPageController.m */,
+				F2C2667B169DB9B600382479 /* LQCommonTableViewController.h */,
+				F2C2667C169DB9B600382479 /* LQCommonTableViewController.m */,
+				F2C2667D169DB9B600382479 /* LQCommonTableViewController.xib */,
 			);
 			path = qiyouxi;
 			sourceTree = "<group>";
@@ -3656,8 +3667,9 @@
 				F26CD2B9169314D900E1E30B /* AudioMoreItemCell.xib in Resources */,
 				F2FF9C80169A5E9C003D914D /* LQSearchSectionHeader.xib in Resources */,
 				F23D3B92169B02D300B7DD46 /* LQSearchHistoryCell.xib in Resources */,
-				F2E8A37D169C592A00B6DC2D /* LQTablesContentController.xib in Resources */,
 				F2E8A37F169C60FC00B6DC2D /* LQTopicCell.xib in Resources */,
+				F2BAD5DC169D53CF00893F4C /* LQTablesController.xib in Resources */,
+				F2C2667F169DB9B600382479 /* LQCommonTableViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3668,9 +3680,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2E8A380169C625F00B6DC2D /* LQTablesContentController.h in Sources */,
-				F2E8A381169C625F00B6DC2D /* LQTablesContentController.m in Sources */,
-				F2E8A382169C625F00B6DC2D /* LQTablesContentController.xib in Sources */,
 				F23D3B95169B0C7D00B7DD46 /* SearchHistoryItem.h in Sources */,
 				F23D3B96169B0C7D00B7DD46 /* SearchHistoryItem.m in Sources */,
 				43F5ED3C15C65424001A0F8D /* main.m in Sources */,
@@ -3747,6 +3756,9 @@
 				F2FF9C7E169A5E5D003D914D /* LQSearchSectionHeader.m in Sources */,
 				F23D3B8F169AD70700B7DD46 /* LQSearchHistoryCell.m in Sources */,
 				F2E8A368169C458F00B6DC2D /* LQTopicCell.m in Sources */,
+				F2BAD5DB169D53CF00893F4C /* LQTablesController.m in Sources */,
+				F2BAD5E0169D6AE800893F4C /* LQPageController.m in Sources */,
+				F2C2667E169DB9B600382479 /* LQCommonTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

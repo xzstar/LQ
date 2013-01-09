@@ -164,6 +164,22 @@
     
 }
 
+- (void)loadSoftNewest{
+    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                HTTP_GET, P_INTERNAL_METHOD,
+                                @"app_list",@"op",
+                                @"new",@"orderby",
+                                @"rj",@"nodeid",
+                                nil];
+    [self processCommand:[NSString stringWithFormat:@"%@%@", @"http://appserver.liqucn.com/ios", @"/request.php"]
+                 command:C_COMMAND_GETSOFTNEWEST
+                  format:F_JSON
+              parameters:parameters
+                encoding:NO];
+
+}
+
+
 - (void)loadTodayRecommendation:(NSDate*)date{
     NSDateFormatter* format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"yyyyMMdd"];
