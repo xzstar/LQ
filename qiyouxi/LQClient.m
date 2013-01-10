@@ -172,13 +172,30 @@
                                 @"rj",@"nodeid",
                                 nil];
     [self processCommand:[NSString stringWithFormat:@"%@%@", @"http://appserver.liqucn.com/ios", @"/request.php"]
-                 command:C_COMMAND_GETSOFTNEWEST
+                 command:C_COMMAND_GETAPPLISTSOFTGAME
                   format:F_JSON
               parameters:parameters
                 encoding:NO];
 
 }
 
+
+- (void) loadAppListSoftGameCommon:(NSString*) nodeid 
+                    orderby:(NSString*) orderby{
+    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                HTTP_GET, P_INTERNAL_METHOD,
+                                @"app_list",@"op",
+                                orderby,@"orderby",
+                                nodeid,@"nodeid",
+                                nil];
+    [self processCommand:[NSString stringWithFormat:@"%@%@", @"http://appserver.liqucn.com/ios", @"/request.php"]
+                 command:C_COMMAND_GETAPPLISTSOFTGAME
+                  format:F_JSON
+              parameters:parameters
+                encoding:NO];
+    
+
+}
 
 - (void)loadTodayRecommendation:(NSDate*)date{
     NSDateFormatter* format = [[NSDateFormatter alloc] init];

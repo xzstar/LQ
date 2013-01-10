@@ -8,13 +8,27 @@
 
 #import <UIKit/UIKit.h>
 #import "LQViewController.h"
+#import "LQCommonTableViewController.h"
 
-@interface LQGameInfoListViewController : LQViewController<UITableViewDelegate, UITableViewDataSource>{
-    NSInteger selectedRow;
-    NSInteger selectedSection;
+#define NODE_ID_SOFT     @"rj"
+#define NODE_ID_GAEM     @"yx"
+
+#define ORDER_BY_NEWEST  @"new"
+#define ORDER_BY_TUIJIAN @"tuijian"
+#define ORDER_BY_WEEk    @"week"
+#define ORDER_BY_MONTH   @"month"
+#define ORDER_BY_TOTAL   @"total"
+
+@interface LQGameInfoListViewController : LQCommonTableViewController{
+    NSString* nodeId;
+    NSString* orderBy;
 }
-@property (unsafe_unretained) IBOutlet UITableView* historyView;
 
-- (IBAction)onReload:(id)sender;
-- (void) onGameDetail:(id)sender;
+@property (nonatomic,strong) NSString* nodeId;
+@property (nonatomic,strong) NSString* orderBy;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil
+               bundle:(NSBundle *)nibBundleOrNil
+               nodeId:(NSString*) aNodeId
+              orderBy:(NSString*) aOrderBy;
 @end

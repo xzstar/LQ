@@ -20,7 +20,7 @@
 #define C_COMMAND_SUBMITCOMMENT C_USER_COMMAND + 9
 #define C_COMMAND_SUBMITFEEDBACK C_USER_COMMAND + 10
 #define C_COMMAND_GETLAUNCHIMAGE C_USER_COMMAND + 11
-#define C_COMMAND_GETSOFTNEWEST C_USER_COMMAND + 12 
+#define C_COMMAND_GETAPPLISTSOFTGAME C_USER_COMMAND + 12 
 
 @interface LQClient : LQClientBase
 - (void)loadLaunchImage;
@@ -35,7 +35,8 @@
 - (void)loadGameInfo:(int)gameId;
 
 - (void)loadSoftNewest;
-
+- (void) loadAppListSoftGameCommon:(NSString*) nodeid 
+                           orderby:(NSString*) orderby;
 - (void)loadUserComments:(int)gameId start:(int)start count:(int)count;
 - (void)submitComment:(int)gameId comment:(NSString*)comment nick:(NSString*)nick;
 - (void)submitFeedback:(NSString*)feedback contact:(NSString*)contact;

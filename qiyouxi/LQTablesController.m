@@ -16,7 +16,7 @@
 
 @implementation LQTablesController
 @synthesize scrollView, viewControllers;
-
+@synthesize nodeId;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -81,7 +81,7 @@
 }
 
 - (void)initPageController{
-    NSArray* names = [[NSArray alloc] initWithObjects:@"最新",@"排行",@"推荐",@"最热", nil];
+    NSArray* names = [[NSArray alloc] initWithObjects:@"最新",@"推荐",@"排行",@"专题", nil];
     
     int width = names.count*(PAGE_NAME_SPAN+PAGE_NAME_WIDTH);
     
@@ -102,11 +102,22 @@
         return;
     
     // replace the placeholder if necessary
-    LQCommonTableViewController *controller = [viewControllers objectAtIndex:page];
+    LQGameInfoListViewController *controller = [viewControllers objectAtIndex:page];
     if ((NSNull *)controller == [NSNull null])
     {
-        controller = [[LQCommonTableViewController alloc] init];
+        NSString* orderBy;
+        if(page == 0){
+            orderBy = ORDER_BY_NEWEST;
+        }
+        else if(page == 1){
+            orderBy = ORDER_BY_TUIJIAN;
+        }
+        else {
+            orderBy = ORDER_BY_WEEk;
+        }
+        controller = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil nodeId:nodeId orderBy:orderBy];
         [viewControllers replaceObjectAtIndex:page withObject:controller];
+        
     }
     
     // add the controller's view to the scroll view
@@ -179,4 +190,7 @@
  pageControlUsed = YES;
  }
 
+- (IBAction)onBack:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

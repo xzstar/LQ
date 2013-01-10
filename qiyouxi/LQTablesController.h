@@ -16,9 +16,13 @@
     LQPageController *pageController;
     // To be used when scrolls originate from the UIPageControl
     BOOL pageControlUsed;
+    NSString* nodeId;
 }
-@property (nonatomic, retain) IBOutlet UIScrollView *scrollView;
 
-@property (nonatomic, retain) NSMutableArray *viewControllers;
+@property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
+@property (nonatomic, strong) NSMutableArray *viewControllers;
+@property (nonatomic, strong) NSString* nodeId;
+
+- (IBAction)onBack:(id)sender;
 @end

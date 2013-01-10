@@ -212,12 +212,12 @@
     [self startLoading];
     selectedRow = -1;
     selectedSection = -1;
-    [self.client loadSoftNewest];
+    //[self.client loadSoftNewest];
 }
 
-- (IBAction)onBack:(id)sender{
-    [self.navigationController popViewControllerAnimated:YES];
-}
+//- (IBAction)onBack:(id)sender{
+//    [self.navigationController popViewControllerAnimated:YES];
+//}
 
 - (void)startLoading{
     self.shadowView = [[UIWindow alloc] initWithFrame:CGRectMake(0, 20, 320, 460)];
@@ -285,22 +285,6 @@
     [self.view addSubview:self.errorView];
 }
 
-#pragma mark - Network Callback
-- (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{
-    [self handleNetworkOK];
-    switch (command) {
-        case C_COMMAND_GETSOFTNEWEST:
-            [self endLoading];
-            if ([result isKindOfClass:[NSDictionary class]]){
-                // [self loadTodayGames:result];
-                [self loadApps:[result objectForKey:@"apps"]];
-            }
-            break;
-            
-        default:
-            break;
-    }
-}
 
 - (void)client:(LQClientBase*)client didFailExecution:(LQClientError*)error{
     [self endLoading];

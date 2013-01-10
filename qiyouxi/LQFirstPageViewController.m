@@ -414,12 +414,14 @@
 #pragma mark - Actions
 
 - (void)onLoadSoft:(id)sender{
-    LQGameInfoListViewController* controller  = [[LQGameInfoListViewController alloc] init ];
+    LQTablesController* controller  = [[LQTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil  ];
+    controller.nodeId = @"rj";
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)onLoadGame:(id)sender{
     LQTablesController * controller  = [[LQTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
+    controller.nodeId = @"yx";
     [self.navigationController pushViewController:controller animated:YES];
 }
 

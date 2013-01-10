@@ -22,7 +22,7 @@
 
 - (void)loadViews;
 - (void)loadData;
-
+- (void)loadApps:(NSArray*) apps;
 - (void)startLoading;
 - (void)endLoading;
 
@@ -31,5 +31,5 @@
 - (void)handleNetworkErrorHint;
 - (void)handleNetworkOK;
 
-- (IBAction)onBack:(id)sender;
+//- (IBAction)onBack:(id)sender;
 @end
