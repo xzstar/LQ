@@ -184,6 +184,9 @@
 		F23D3B92169B02D300B7DD46 /* LQSearchHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */; };
 		F23D3B95169B0C7D00B7DD46 /* SearchHistoryItem.h in Sources */ = {isa = PBXBuildFile; fileRef = F23D3B93169B0C1100B7DD46 /* SearchHistoryItem.h */; };
 		F23D3B96169B0C7D00B7DD46 /* SearchHistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F23D3B94169B0C1200B7DD46 /* SearchHistoryItem.m */; };
+		F266A9DB169F9B7C0014FE75 /* LQRankSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F266A9DA169F9B7B0014FE75 /* LQRankSectionHeader.m */; };
+		F266A9DE169F9B9E0014FE75 /* LQRankSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F266A9DD169F9B9E0014FE75 /* LQRankSectionHeader.xib */; };
+		F266A9E1169F9EBB0014FE75 /* LQRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F266A9E0169F9EBA0014FE75 /* LQRankViewController.m */; };
 		F26CD20416911E7600E1E30B /* LQGameInfoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD20216911E7600E1E30B /* LQGameInfoListViewController.m */; };
 		F26CD20516911E7600E1E30B /* LQGameInfoListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD20316911E7600E1E30B /* LQGameInfoListViewController.xib */; };
 		F26CD20916913ED200E1E30B /* LQGameMoreItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD20816913ED200E1E30B /* LQGameMoreItemTableViewCell.m */; };
@@ -209,6 +212,7 @@
 		F26CD2B216930A8F00E1E30B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26CD2B116930A8F00E1E30B /* CFNetwork.framework */; };
 		F26CD2B71693148400E1E30B /* AudioMoreItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD2B61693148400E1E30B /* AudioMoreItemCell.m */; };
 		F26CD2B9169314D900E1E30B /* AudioMoreItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD2B8169314D900E1E30B /* AudioMoreItemCell.xib */; };
+		F2842791169FE08E00997FC0 /* LQTopicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2842790169FE08E00997FC0 /* LQTopicListViewController.m */; };
 		F2B7A657168FDE5A00679C6E /* LQFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */; };
 		F2B7A658168FDE5A00679C6E /* LQFirstPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */; };
 		F2B7A65D168FE10500679C6E /* LQSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A65B168FE10400679C6E /* LQSearchViewController.m */; };
@@ -1091,6 +1095,11 @@
 		F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQSearchHistoryCell.xib; sourceTree = "<group>"; };
 		F23D3B93169B0C1100B7DD46 /* SearchHistoryItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchHistoryItem.h; sourceTree = "<group>"; };
 		F23D3B94169B0C1200B7DD46 /* SearchHistoryItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchHistoryItem.m; sourceTree = "<group>"; };
+		F266A9D9169F9B7B0014FE75 /* LQRankSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQRankSectionHeader.h; sourceTree = "<group>"; };
+		F266A9DA169F9B7B0014FE75 /* LQRankSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQRankSectionHeader.m; sourceTree = "<group>"; };
+		F266A9DD169F9B9E0014FE75 /* LQRankSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQRankSectionHeader.xib; sourceTree = "<group>"; };
+		F266A9DF169F9EBA0014FE75 /* LQRankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQRankViewController.h; sourceTree = "<group>"; };
+		F266A9E0169F9EBA0014FE75 /* LQRankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQRankViewController.m; sourceTree = "<group>"; };
 		F26CD20116911E7600E1E30B /* LQGameInfoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQGameInfoListViewController.h; sourceTree = "<group>"; };
 		F26CD20216911E7600E1E30B /* LQGameInfoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQGameInfoListViewController.m; sourceTree = "<group>"; };
 		F26CD20316911E7600E1E30B /* LQGameInfoListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQGameInfoListViewController.xib; sourceTree = "<group>"; };
@@ -1127,6 +1136,8 @@
 		F26CD2B51693148400E1E30B /* AudioMoreItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioMoreItemCell.h; sourceTree = "<group>"; };
 		F26CD2B61693148400E1E30B /* AudioMoreItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioMoreItemCell.m; sourceTree = "<group>"; };
 		F26CD2B8169314D900E1E30B /* AudioMoreItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioMoreItemCell.xib; sourceTree = "<group>"; };
+		F284278F169FE08E00997FC0 /* LQTopicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTopicListViewController.h; sourceTree = "<group>"; };
+		F2842790169FE08E00997FC0 /* LQTopicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTopicListViewController.m; sourceTree = "<group>"; };
 		F2B7A654168FDE5800679C6E /* LQFirstPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQFirstPageViewController.h; sourceTree = "<group>"; };
 		F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQFirstPageViewController.m; sourceTree = "<group>"; };
 		F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQFirstPageViewController.xib; sourceTree = "<group>"; };
@@ -1892,6 +1903,9 @@
 				F26CD24D16918A2300E1E30B /* LQRecommendSectionHeader.xib */,
 				F26CD24F16918D1100E1E30B /* LQRecommendSectionHeader.h */,
 				F26CD25016918D1200E1E30B /* LQRecommendSectionHeader.m */,
+				F266A9D9169F9B7B0014FE75 /* LQRankSectionHeader.h */,
+				F266A9DA169F9B7B0014FE75 /* LQRankSectionHeader.m */,
+				F266A9DD169F9B9E0014FE75 /* LQRankSectionHeader.xib */,
 				F2FF9C7F169A5E9B003D914D /* LQSearchSectionHeader.xib */,
 				F2FF9C7C169A5E5D003D914D /* LQSearchSectionHeader.h */,
 				F2FF9C7D169A5E5D003D914D /* LQSearchSectionHeader.m */,
@@ -2050,6 +2064,10 @@
 				F2C2667B169DB9B600382479 /* LQCommonTableViewController.h */,
 				F2C2667C169DB9B600382479 /* LQCommonTableViewController.m */,
 				F2C2667D169DB9B600382479 /* LQCommonTableViewController.xib */,
+				F266A9DF169F9EBA0014FE75 /* LQRankViewController.h */,
+				F266A9E0169F9EBA0014FE75 /* LQRankViewController.m */,
+				F284278F169FE08E00997FC0 /* LQTopicListViewController.h */,
+				F2842790169FE08E00997FC0 /* LQTopicListViewController.m */,
 			);
 			path = qiyouxi;
 			sourceTree = "<group>";
@@ -3670,6 +3688,7 @@
 				F2E8A37F169C60FC00B6DC2D /* LQTopicCell.xib in Resources */,
 				F2BAD5DC169D53CF00893F4C /* LQTablesController.xib in Resources */,
 				F2C2667F169DB9B600382479 /* LQCommonTableViewController.xib in Resources */,
+				F266A9DE169F9B9E0014FE75 /* LQRankSectionHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3759,6 +3778,9 @@
 				F2BAD5DB169D53CF00893F4C /* LQTablesController.m in Sources */,
 				F2BAD5E0169D6AE800893F4C /* LQPageController.m in Sources */,
 				F2C2667E169DB9B600382479 /* LQCommonTableViewController.m in Sources */,
+				F266A9DB169F9B7C0014FE75 /* LQRankSectionHeader.m in Sources */,
+				F266A9E1169F9EBB0014FE75 /* LQRankViewController.m in Sources */,
+				F2842791169FE08E00997FC0 /* LQTopicListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3782,8 +3804,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -3798,8 +3820,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
-				PROVISIONING_PROFILE = "25144A9B-A27A-493E-92D3-AD377EF261D4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25144A9B-A27A-493E-92D3-AD377EF261D4";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -3810,7 +3832,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -3820,7 +3842,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "25144A9B-A27A-493E-92D3-AD377EF261D4";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3830,15 +3852,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "qiyouxi/qiyouxi-Prefix.pch";
 				INFOPLIST_FILE = "qiyouxi/qiyouxi-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "25144A9B-A27A-493E-92D3-AD377EF261D4";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "25144A9B-A27A-493E-92D3-AD377EF261D4";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -3848,13 +3870,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "qiyouxi/qiyouxi-Prefix.pch";
 				INFOPLIST_FILE = "qiyouxi/qiyouxi-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "25144A9B-A27A-493E-92D3-AD377EF261D4";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

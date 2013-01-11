@@ -12,18 +12,18 @@
 #define NAVIGATIONBAR_HEIGHT 44.0
 
 @interface LQCommonTableViewController (){
-     NSMutableArray* appsList;
 }
 @property (nonatomic, strong) UIView* errorView;
 @property (nonatomic, strong) UIWindow* shadowView;
 @property (nonatomic, strong) NSTimer* animationTimer;
-
 @end
 
 @implementation LQCommonTableViewController
 @synthesize errorView;
 @synthesize shadowView;
 @synthesize animationTimer;
+@synthesize nodeId,orderBy;
+@synthesize appsList;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,6 +33,25 @@
         [self loadViews];
         [self loadData];
 
+    }
+    return self;
+}
+
+
+- (id)initWithNibName:(NSString *)nibNameOrNil
+               bundle:(NSBundle *)nibBundleOrNil
+               nodeId:(NSString*) aNodeId
+              orderBy:(NSString*) aOrderBy
+{
+    self = [self initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+        // self.title = NSLocalizedString(@"First", @"First");
+        // self.tabBarItem.image = nil;
+        nodeId = aNodeId;
+        orderBy = aOrderBy;
+        [self loadViews];
+        [self loadData];
     }
     return self;
 }

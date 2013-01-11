@@ -9,6 +9,8 @@
 #import "LQTablesController.h"
 #import "LQGameInfoListViewController.h"
 #import "LQCommonTableViewController.h"
+#import "LQRankViewController.h"
+#import "LQTopicListViewController.h"
 #define kNumberOfPages 4
 @interface LQTablesController ()
 
@@ -17,6 +19,7 @@
 @implementation LQTablesController
 @synthesize scrollView, viewControllers;
 @synthesize nodeId;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -102,20 +105,29 @@
         return;
     
     // replace the placeholder if necessary
-    LQGameInfoListViewController *controller = [viewControllers objectAtIndex:page];
+    LQCommonTableViewController *controller = [viewControllers objectAtIndex:page];
     if ((NSNull *)controller == [NSNull null])
     {
         NSString* orderBy;
         if(page == 0){
             orderBy = ORDER_BY_NEWEST;
+            controller = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil nodeId:nodeId orderBy:orderBy];
+
         }
         else if(page == 1){
             orderBy = ORDER_BY_TUIJIAN;
+            controller = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil nodeId:nodeId orderBy:orderBy];
+
+        }
+        else if(page == 2) {
+            orderBy = ORDER_BY_WEEK;
+            controller = [[LQRankViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil nodeId:nodeId orderBy:orderBy];
         }
         else {
-            orderBy = ORDER_BY_WEEk;
+            orderBy = ORDER_BY_TUIJIAN;
+            controller = [[LQTopicListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil nodeId:nodeId orderBy:orderBy];
+
         }
-        controller = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil nodeId:nodeId orderBy:orderBy];
         [viewControllers replaceObjectAtIndex:page withObject:controller];
         
     }

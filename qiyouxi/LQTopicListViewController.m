@@ -1,37 +1,38 @@
 //
-//  LQGameInfoListViewController.m
+//  LQTopicListViewController.m
 //  qiyouxi
 //
-//  Created by Xie Zhe on 12-12-31.
-//  Copyright (c) 2012年 LQ科技有限公司. All rights reserved.
+//  Created by Xie Zhe on 13-1-11.
+//  Copyright (c) 2013年 科技有限公司. All rights reserved.
 //
 
-#import "LQGameInfoListViewController.h"
-#import "LQGameDetailViewController.h"
-@interface LQGameInfoListViewController ()
+#import "LQTopicListViewController.h"
+#import "LQTopicCell.h"
+@interface LQTopicListViewController ()
+
 @end
 
-@implementation LQGameInfoListViewController
-
+@implementation LQTopicListViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        // self.title = NSLocalizedString(@"First", @"First");
-        // self.tabBarItem.image = nil;
-
     }
     return self;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view.
+}
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -39,11 +40,15 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-
-
-#pragma mark - View Init
-- (void)loadViews{
-    [super loadViews];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    LQTopicCell* cell = [tableView dequeueReusableCellWithIdentifier:@"topic"];
+    if (cell == nil){
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"LQTopicCell" owner:self options:nil] objectAtIndex:0];
+    }
+    cell.gameInfo = [self.appsList objectAtIndex:indexPath.row];
+    return cell;   
+    
 }
 
 #pragma mark - Data Init
