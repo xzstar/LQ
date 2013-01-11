@@ -311,7 +311,7 @@
         [header addInfoButtonsTarget:self action:@selector(onLoadSoft:) tag:0];
         [header addInfoButtonsTarget:self action:@selector(onLoadGame:) tag:1];
         [header addInfoButtonsTarget:self action:@selector(onLoadRing:) tag:2];
-        [header addInfoButtonsTarget:self action:@selector(onLoadWallpaper::) tag:3];
+        [header addInfoButtonsTarget:self action:@selector(onLoadWallpaper:) tag:3];
         
         return header;
         
