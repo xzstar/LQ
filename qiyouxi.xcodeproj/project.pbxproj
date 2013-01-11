@@ -212,7 +212,7 @@
 		F26CD2B216930A8F00E1E30B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26CD2B116930A8F00E1E30B /* CFNetwork.framework */; };
 		F26CD2B71693148400E1E30B /* AudioMoreItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD2B61693148400E1E30B /* AudioMoreItemCell.m */; };
 		F26CD2B9169314D900E1E30B /* AudioMoreItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD2B8169314D900E1E30B /* AudioMoreItemCell.xib */; };
-		F2842791169FE08E00997FC0 /* LQTopicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2842790169FE08E00997FC0 /* LQTopicListViewController.m */; };
+		F2842791169FE08E00997FC0 /* LQCategoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2842790169FE08E00997FC0 /* LQCategoryListViewController.m */; };
 		F2B7A657168FDE5A00679C6E /* LQFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */; };
 		F2B7A658168FDE5A00679C6E /* LQFirstPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */; };
 		F2B7A65D168FE10500679C6E /* LQSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A65B168FE10400679C6E /* LQSearchViewController.m */; };
@@ -1136,8 +1136,8 @@
 		F26CD2B51693148400E1E30B /* AudioMoreItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioMoreItemCell.h; sourceTree = "<group>"; };
 		F26CD2B61693148400E1E30B /* AudioMoreItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioMoreItemCell.m; sourceTree = "<group>"; };
 		F26CD2B8169314D900E1E30B /* AudioMoreItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioMoreItemCell.xib; sourceTree = "<group>"; };
-		F284278F169FE08E00997FC0 /* LQTopicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTopicListViewController.h; sourceTree = "<group>"; };
-		F2842790169FE08E00997FC0 /* LQTopicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTopicListViewController.m; sourceTree = "<group>"; };
+		F284278F169FE08E00997FC0 /* LQCategoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQCategoryListViewController.h; sourceTree = "<group>"; };
+		F2842790169FE08E00997FC0 /* LQCategoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQCategoryListViewController.m; sourceTree = "<group>"; };
 		F2B7A654168FDE5800679C6E /* LQFirstPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQFirstPageViewController.h; sourceTree = "<group>"; };
 		F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQFirstPageViewController.m; sourceTree = "<group>"; };
 		F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQFirstPageViewController.xib; sourceTree = "<group>"; };
@@ -2066,8 +2066,8 @@
 				F2C2667D169DB9B600382479 /* LQCommonTableViewController.xib */,
 				F266A9DF169F9EBA0014FE75 /* LQRankViewController.h */,
 				F266A9E0169F9EBA0014FE75 /* LQRankViewController.m */,
-				F284278F169FE08E00997FC0 /* LQTopicListViewController.h */,
-				F2842790169FE08E00997FC0 /* LQTopicListViewController.m */,
+				F284278F169FE08E00997FC0 /* LQCategoryListViewController.h */,
+				F2842790169FE08E00997FC0 /* LQCategoryListViewController.m */,
 			);
 			path = qiyouxi;
 			sourceTree = "<group>";
@@ -3780,7 +3780,7 @@
 				F2C2667E169DB9B600382479 /* LQCommonTableViewController.m in Sources */,
 				F266A9DB169F9B7C0014FE75 /* LQRankSectionHeader.m in Sources */,
 				F266A9E1169F9EBB0014FE75 /* LQRankViewController.m in Sources */,
-				F2842791169FE08E00997FC0 /* LQTopicListViewController.m in Sources */,
+				F2842791169FE08E00997FC0 /* LQCategoryListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

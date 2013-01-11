@@ -197,6 +197,18 @@
 
 }
 
+- (void) loadCategory:(NSString*) category{
+    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                HTTP_GET, P_INTERNAL_METHOD,
+                                category,@"op",
+                                nil];
+    [self processCommand:[NSString stringWithFormat:@"%@%@", @"http://appserver.liqucn.com/ios", @"/request.php"]
+                 command:C_COMMAND_GETCATEGORY
+                  format:F_JSON
+              parameters:parameters
+                encoding:NO]; 
+}
+
 - (void)loadTodayRecommendation:(NSDate*)date{
     NSDateFormatter* format = [[NSDateFormatter alloc] init];
     [format setDateFormat:@"yyyyMMdd"];

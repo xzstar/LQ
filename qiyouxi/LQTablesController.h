@@ -17,12 +17,15 @@
     // To be used when scrolls originate from the UIPageControl
     BOOL pageControlUsed;
     NSString* nodeId;
+    NSString* categoryId;
 }
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 @property (nonatomic, strong) NSString* nodeId;
+@property (nonatomic, strong) NSString* categoryId;
+
 
 - (IBAction)onBack:(id)sender;
 @end

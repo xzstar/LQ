@@ -33,7 +33,7 @@
 @property (nonatomic,strong) NSString* nodeId;
 @property (nonatomic,strong) NSString* orderBy;
 @property (nonatomic, strong, readonly) LQClient* client;
-@property (nonatomic, strong, readonly) NSMutableArray* appsList;
+@property (nonatomic, strong) NSMutableArray* appsList;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil

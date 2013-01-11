@@ -6,19 +6,21 @@
 //  Copyright (c) 2013年 科技有限公司. All rights reserved.
 //
 
-#import "LQTopicListViewController.h"
+#import "LQCategoryListViewController.h"
 #import "LQTopicCell.h"
-@interface LQTopicListViewController ()
+@interface LQCategoryListViewController ()
 
 @end
 
-@implementation LQTopicListViewController
-
+@implementation LQCategoryListViewController
+@synthesize category;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+             category:(NSString *)aCategory
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        category = aCategory;
     }
     return self;
 }
@@ -47,6 +49,8 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"LQTopicCell" owner:self options:nil] objectAtIndex:0];
     }
     cell.gameInfo = [self.appsList objectAtIndex:indexPath.row];
+    cell.gameDetailLabel.hidden = YES;
+    cell.gameComments.hidden = YES;
     return cell;   
     
 }
@@ -56,29 +60,41 @@
 - (void)loadData{
     [super loadData];
     
-    if(self.orderBy == nil || self.nodeId == nil){
+    if(self.category == nil){
         [self endLoading];
         return;
     }
     //[self startLoading];    
-    [self.client loadAppListSoftGameCommon:self.nodeId orderby:self.orderBy];
+    [self.client loadCategory:category];
 }
 
 #pragma mark - Network Callback
 - (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{
     [self handleNetworkOK];
     switch (command) {
-        case C_COMMAND_GETAPPLISTSOFTGAME:
+        case C_COMMAND_GETCATEGORY:
             [self endLoading];
             if ([result isKindOfClass:[NSDictionary class]]){
                 // [self loadTodayGames:result];
-                [self loadApps:[result objectForKey:@"apps"]];
+                [self loadCats:[result objectForKey:@"cats"]];
             }
             break;
             
         default:
             break;
     }
+}
+
+
+- (void) loadCats:(NSArray*) cats{
+    NSMutableArray* items = [NSMutableArray array];
+    
+    for (NSDictionary* game in cats){
+        [items addObject:[[LQGameInfo alloc] initWithAPIResult:game]];
+    }
+    self.appsList = items;
+    [self.tableView reloadData];
+    
 }
 
 @end

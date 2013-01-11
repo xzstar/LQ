@@ -10,7 +10,7 @@
 #import "LQGameInfoListViewController.h"
 #import "LQCommonTableViewController.h"
 #import "LQRankViewController.h"
-#import "LQTopicListViewController.h"
+#import "LQCategoryListViewController.h"
 #define kNumberOfPages 4
 @interface LQTablesController ()
 
@@ -18,7 +18,7 @@
 
 @implementation LQTablesController
 @synthesize scrollView, viewControllers;
-@synthesize nodeId;
+@synthesize nodeId,categoryId;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -124,8 +124,8 @@
             controller = [[LQRankViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil nodeId:nodeId orderBy:orderBy];
         }
         else {
-            orderBy = ORDER_BY_TUIJIAN;
-            controller = [[LQTopicListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil nodeId:nodeId orderBy:orderBy];
+            //orderBy = ORDER_BY_TUIJIAN;
+            controller = [[LQCategoryListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil category:categoryId];
 
         }
         [viewControllers replaceObjectAtIndex:page withObject:controller];

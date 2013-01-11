@@ -26,6 +26,8 @@
 
 @synthesize intro,date;
 
+@synthesize requestUrl;
+
 - (id)initWithAPIResult:(NSDictionary*)result{
     self = [super init];
     if (self != nil){
@@ -76,6 +78,7 @@
         self.rating = [result objectForKey:@"rating"];
         self.intro = [result objectForKey:@"Intro"];
         self.date = [result objectForKey:@"date"];
+        self.requestUrl = [result objectForKey:@"request_url"];
     }
     return self;
 }

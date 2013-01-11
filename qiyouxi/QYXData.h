@@ -33,7 +33,7 @@
 @property (nonatomic, strong) NSString* tags;
 @property (nonatomic, strong) NSString* price;
 @property (nonatomic, strong) NSString* rating;
-
+@property (nonatomic, strong) NSString* requestUrl;
 //专题用
 @property (nonatomic, strong) NSString* intro;
 @property (nonatomic, strong) NSString* date;

@@ -416,12 +416,15 @@
 - (void)onLoadSoft:(id)sender{
     LQTablesController* controller  = [[LQTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil  ];
     controller.nodeId = @"rj";
+    controller.categoryId = @"show_software_cat";
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)onLoadGame:(id)sender{
     LQTablesController * controller  = [[LQTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
     controller.nodeId = @"yx";
+    controller.categoryId = @"show_game_cat";
+
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -431,8 +434,8 @@
 }
 
 - (void)onLoadWallpaper:(id)sender{
-    LQGameInfoListViewController* controller  = [[LQGameInfoListViewController alloc] init ];
-    [self.navigationController pushViewController:controller animated:YES];
+//    LQGameInfoListViewController* controller  = [[LQGameInfoListViewController alloc] init ];
+//    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)onReload:(id)sender{
