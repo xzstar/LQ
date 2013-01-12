@@ -36,7 +36,7 @@
 @synthesize advertisements;
 @synthesize recommendApps,recommendTopics;
 
-@synthesize scrollView;
+//@synthesize scrollView;
 //@synthesize advView;
 @synthesize histories;
 @synthesize historyView;
@@ -257,25 +257,26 @@
         
     }
     else if(currentRecommendIndex==0){
-        LQHistoryTableViewCell* cell;
         if(indexPath.section == selectedSection &&
            indexPath.row == selectedRow){
-            cell = [tableView dequeueReusableCellWithIdentifier:@"moreitem"];
+            LQGameMoreItemTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"moreitem"];
             if (cell == nil){
                 cell = [[[NSBundle mainBundle] loadNibNamed:@"LQGameMoreItemTableViewCell"  owner:self options:nil] objectAtIndex:0];
             }
+            cell.gameInfo = [recommendApps objectAtIndex:indexPath.row];
+            [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:cell.gameInfo.gameId];
+            [cell addDownloadButtonsTarget:self action:@selector(onGameDetail:) tag:cell.gameInfo.gameId];
+            return cell;
         }
         else{
-            cell = [tableView dequeueReusableCellWithIdentifier:@"history"];
+            LQHistoryTableViewCell *cell= [tableView dequeueReusableCellWithIdentifier:@"history"];
             if (cell == nil){
                 cell = [[[NSBundle mainBundle] loadNibNamed:@"HistoryTableViewCell" owner:self options:nil] objectAtIndex:0];
             }
+            cell.gameInfo = [recommendApps objectAtIndex:indexPath.row];
+            [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:cell.gameInfo.gameId];
+            return cell;
         }  
-        cell.gameInfo = currentRecommendIndex==0?[recommendApps objectAtIndex:indexPath.row]:
-        [recommendTopics objectAtIndex:indexPath.row];
-       
-        [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:cell.gameInfo.gameId];
-        return cell;
     }
     else{
         LQTopicCell* cell = [tableView dequeueReusableCellWithIdentifier:@"topic"];
@@ -285,9 +286,7 @@
         cell.gameInfo = [recommendTopics objectAtIndex:indexPath.row];
         return cell;
     }
-    
-    
-    
+  
 }
 
 #pragma mark - TableView Data Delegate
@@ -351,12 +350,12 @@
 }
 
 
-#pragma mark - ScrollView Delegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-}
+//#pragma mark - ScrollView Delegate
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//}
+//
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+//}
 #pragma mark - Network Callback
 - (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{
     [super handleNetworkOK];
@@ -461,6 +460,9 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (void) onGameDownload:(id)sender{
+    
+}
 - (void)onSwitchRecommendSection:(id)sender{
     UIButton* button = sender;
     int tag = button.tag;

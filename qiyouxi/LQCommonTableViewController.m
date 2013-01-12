@@ -9,6 +9,7 @@
 #import "LQCommonTableViewController.h"
 #import "LQHistoryTableViewCell.h"
 #import "LQGameDetailViewController.h"
+#import "LQGameMoreItemTableViewCell.h"
 #define NAVIGATIONBAR_HEIGHT 44.0
 
 @interface LQCommonTableViewController (){
@@ -25,6 +26,7 @@
 @synthesize nodeId,orderBy,listOperator,keywords;
 @synthesize appsList;
 @synthesize selectedRow,selectedSection;
+@synthesize parent;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -126,22 +128,32 @@
     LQHistoryTableViewCell* cell;
     if(indexPath.section == selectedSection &&
        indexPath.row == selectedRow){
-        cell = [tableView dequeueReusableCellWithIdentifier:@"moreitem"];
+        LQGameMoreItemTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"moreitem"];
         if (cell == nil){
             cell = [[[NSBundle mainBundle] loadNibNamed:@"LQGameMoreItemTableViewCell" owner:self options:nil] objectAtIndex:0];
         }
+        
+        cell.gameInfo = [appsList objectAtIndex:indexPath.row];
+        
+        [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:cell.gameInfo.gameId];
+        [cell addDownloadButtonsTarget:self action:@selector(onGameDownload:) tag:cell.gameInfo.gameId];
+        return cell;
+
     }
+    
     else{
-        cell = [tableView dequeueReusableCellWithIdentifier:@"history"];
+        LQHistoryTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"history"];
         if (cell == nil){
             cell = [[[NSBundle mainBundle] loadNibNamed:@"HistoryTableViewCell" owner:self options:nil] objectAtIndex:0];
         }
+        cell.gameInfo = [appsList objectAtIndex:indexPath.row];
+        
+        [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:cell.gameInfo.gameId];
+        return cell;
+
     }
     
-    cell.gameInfo = [appsList objectAtIndex:indexPath.row];
     
-    [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:cell.gameInfo.gameId];
-    return cell;
     
 }
 
@@ -331,6 +343,15 @@
     int tag = button.tag;
     LQGameDetailViewController *controller = [[LQGameDetailViewController alloc] init];
     controller.gameId = tag;
-    [self.navigationController pushViewController:controller animated:YES];    
+    
+    if(parent!=nil){
+        [parent.navigationController pushViewController:controller animated:YES];
+    }
+    else
+        [self.parentViewController.navigationController pushViewController:controller animated:YES];    
+}
+
+- (void) onGameDownload:(id)sender{
+    
 }
 @end

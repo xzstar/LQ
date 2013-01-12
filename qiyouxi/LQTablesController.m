@@ -11,6 +11,7 @@
 #import "LQCommonTableViewController.h"
 #import "LQRankViewController.h"
 #import "LQCategoryListViewController.h"
+#import "LQGameDetailViewController.h"
 #define kNumberOfPages 4
 @interface LQTablesController ()
 
@@ -80,7 +81,7 @@
     // load the page on either side to avoid flashes when the user starts scrolling
     //
     [self loadScrollViewWithPage:0];
-    [self loadScrollViewWithPage:1];
+    //[self loadScrollViewWithPage:1];
 }
 
 - (void)initPageController{
@@ -153,7 +154,7 @@
         frame.origin.y = 0;
         controller.view.frame = frame;
         [scrollView addSubview:controller.view];
-        
+        controller.parent = self;
         /* NSDictionary *numberItem = [self.contentList objectAtIndex:page];
          controller.numberImage.image = [UIImage imageNamed:[numberItem valueForKey:ImageKey]];
          controller.numberTitle.text = [numberItem valueForKey:NameKey];*/
@@ -177,9 +178,9 @@
     
     
     // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
-    [self loadScrollViewWithPage:page - 1];
+    //[self loadScrollViewWithPage:page - 1];
     [self loadScrollViewWithPage:page];
-    [self loadScrollViewWithPage:page + 1];
+    //[self loadScrollViewWithPage:page + 1];
     
     // A possible optimization would be to unload the views+controllers which are no longer visible
 }
@@ -201,9 +202,9 @@
  int page = pageController.currentPage;
  
  // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
- [self loadScrollViewWithPage:page - 1];
+// [self loadScrollViewWithPage:page - 1];
  [self loadScrollViewWithPage:page];
- [self loadScrollViewWithPage:page + 1];
+// [self loadScrollViewWithPage:page + 1];
  
  // update the scroll view to the appropriate page
  CGRect frame = scrollView.frame;
@@ -213,9 +214,12 @@
  
  // Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
  pageControlUsed = YES;
+ 
+
  }
 
 - (IBAction)onBack:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 @end

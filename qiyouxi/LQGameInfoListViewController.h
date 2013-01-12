@@ -17,6 +17,7 @@
     int type;
 }
 @property (nonatomic,assign) int type;
+
 @end
 
 @class AudioPlayer;

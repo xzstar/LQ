@@ -13,12 +13,10 @@
 #import "LQGameInfoListViewController.h"
 
 #define LQAPPSEARCH @"app_search"
-#define LQLSSEARCH @"ls_search"
-#define LQBZSEARCH @"bz_search"
 
-#define LQAPPSEARCH_HINT @"软件游戏"
-#define LQLSSEARCH_HINT @"铃声"
-#define LQBZSEARCH_HINT @"壁纸"
+//#define LQAPPSEARCH_HINT @"软件游戏"
+//#define LQLSSEARCH_HINT @"铃声"
+//#define LQBZSEARCH_HINT @"壁纸"
 
 @interface LQSearchViewController ()
 
@@ -96,10 +94,18 @@
     SearchHistoryItem* item = 
     [SearchHistoryItem searchHistoryItemWithType:@"soft"
                                             name:[searchbar text]];
+    
+    //移除旧的
+    for (SearchHistoryItem* tempItem in searchHistoryItems) {
+        if(tempItem.name == item.name)
+        {
+            [searchHistoryItems removeObject:tempItem];
+            break;
+        }
+    }
+    
     [searchHistoryItems addObject:item];
-    
     [searchHistoryTable reloadData];
-    
     
     //
     //if(currentRecommendIndex == 0)

@@ -28,6 +28,23 @@
 }
 */
 
+- (void) setButtonStatus:(int) index{
+    [leftButton setBackgroundImage:nil forState:UIControlStateNormal];
+    [middleButton setBackgroundImage:nil forState:UIControlStateNormal];
+    [rightButton setBackgroundImage:nil forState:UIControlStateNormal];
+
+    UIButton* selectedButton;
+    if(index ==0)
+        selectedButton = leftButton;
+    else if(index == 1)
+        selectedButton = middleButton;
+    else
+        selectedButton = rightButton;
+    UIImage *image = [UIImage imageNamed:@"subnav_hover.png"];
+    [selectedButton setBackgroundImage:image forState:UIControlStateNormal];
+    
+}
+
 - (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag{
     UIButton *actionButton;
     if(tag==0)

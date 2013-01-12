@@ -29,6 +29,7 @@
     NSString* listOperator;
     NSString* keywords;
     NSMutableArray* appsList;
+    UIViewController* parent;
 
 }
 
@@ -40,6 +41,7 @@
 @property (nonatomic, strong) NSMutableArray* appsList;
 @property (nonatomic, assign) NSInteger selectedRow;
 @property (nonatomic, assign) NSInteger selectedSection;
+@property (nonatomic, strong) UIViewController* parent;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil
@@ -59,4 +61,7 @@
 - (void)handleNetworkOK;
 
 //- (IBAction)onBack:(id)sender;
+- (void) onGameDetail:(id)sender;
+- (void) onGameDownload:(id)sender;
+
 @end

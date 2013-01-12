@@ -85,7 +85,17 @@
     
     [header addInfoButtonsTarget:self action:@selector(onChangeRank:) tag:0];
     [header addInfoButtonsTarget:self action:@selector(onChangeRank:) tag:1];
-    [header addInfoButtonsTarget:self action:@selector(onChangeRank:) tag:2];        
+    [header addInfoButtonsTarget:self action:@selector(onChangeRank:) tag:2];
+   
+    int selectedIndex = 0;
+    if(self.orderBy == ORDER_BY_WEEK)
+        selectedIndex = 0;
+    else if (self.orderBy == ORDER_BY_MONTH)
+        selectedIndex = 1;
+    else 
+        selectedIndex = 2;
+    
+    [header setButtonStatus:selectedIndex];
     return header;
     
 }
@@ -102,7 +112,7 @@
     else {
         self.orderBy = ORDER_BY_TOTAL;
     }
-    [   self loadData];
+    [self loadData];
 }
 
 @end

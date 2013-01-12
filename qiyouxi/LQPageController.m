@@ -44,7 +44,7 @@
     for(int i=0;i<pageNames.count;i++){
         CGRect frame = CGRectMake(i*(PAGE_NAME_SPAN+PAGE_NAME_WIDTH), PAGE_NAME_HEIGHT_OFFSET , PAGE_NAME_WIDTH, PAGE_NAME_HEIGHT);
         button = [[UIButton alloc] initWithFrame:frame];
-        button.titleLabel.font = [UIFont systemFontOfSize:10.0];
+        button.titleLabel.font = [UIFont systemFontOfSize:12.0];
         button.backgroundColor = [UIColor clearColor];
         [button setTitle:[pageNames objectAtIndex:i] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -53,7 +53,7 @@
         [pageLables addObject:button];
     }
     
-    UIImage* image = [UIImage imageNamed:PAGE_UNDERLINE_BEGIN];
+    UIImage* image = [UIImage imageNamed:PAGE_UNDERLINE_MIDDLE];
     underLineImageView = [[UIImageView alloc] initWithImage:image];
     
     CGRect frame = CGRectMake(0, self.frame.size.height -PAGE_UNERLINE_OFFSET , PAGE_NAME_WIDTH, PAGE_UNERLINE_HEIGHT);
@@ -65,17 +65,17 @@
     if(aCurrentPage>= pageLables.count)
         return;
     
-    NSString* underlineName;
-    if(aCurrentPage == 0)
-        underlineName = PAGE_UNDERLINE_BEGIN;
-    else if(aCurrentPage == pageLables.count -1)
-        underlineName = PAGE_UNDERLINE_END;
-    else
-        underlineName = PAGE_UNDERLINE_MIDDLE;
+//    NSString* underlineName;
+//    if(aCurrentPage == 0)
+//        underlineName = PAGE_UNDERLINE_BEGIN;
+//    else if(aCurrentPage == pageLables.count -1)
+//        underlineName = PAGE_UNDERLINE_END;
+//    else
+//        underlineName = PAGE_UNDERLINE_MIDDLE;
     
     currentPage = aCurrentPage;
-    UIImage* image = [UIImage imageNamed:underlineName];
-    [underLineImageView setImage:image];
+//    UIImage* image = [UIImage imageNamed:underlineName];
+//    [underLineImageView setImage:image];
     
     
     CGRect frame = CGRectMake(currentPage*(PAGE_NAME_SPAN+PAGE_NAME_WIDTH), self.frame.size.height -PAGE_UNERLINE_OFFSET, PAGE_NAME_WIDTH, PAGE_UNERLINE_HEIGHT);

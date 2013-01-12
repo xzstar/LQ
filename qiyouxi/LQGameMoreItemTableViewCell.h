@@ -10,6 +10,11 @@
 
 @interface LQGameMoreItemTableViewCell : LQHistoryTableViewCell
 @property (unsafe_unretained) IBOutlet UIView* gameActionView;
+@property (unsafe_unretained) IBOutlet UIButton* gameInstallNowButton;
+@property (unsafe_unretained) IBOutlet UIButton* gameDownloadButton;
+@property (unsafe_unretained) IBOutlet UIButton* gameDetailButton;
 
 - (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
+- (void) addDownloadButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
+
 @end

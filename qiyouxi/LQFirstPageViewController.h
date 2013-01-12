@@ -16,7 +16,7 @@
     NSInteger selectedSection;
     int currentRecommendIndex; // 0 apps 1 topics
 }
-@property (unsafe_unretained) IBOutlet UIScrollView* scrollView;
+//@property (unsafe_unretained) IBOutlet UIScrollView* scrollView;
 
 //@property (unsafe_unretained) IBOutlet LQAdvertiseView* advView;
 

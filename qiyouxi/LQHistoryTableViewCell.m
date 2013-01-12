@@ -45,55 +45,55 @@
         self.gameIconView.image = [UIImage imageNamed:@"icon_small.png"];
     }
     
-    self.gameComments.text = [NSString stringWithFormat:@"%d个评论",self.gameInfo.commentCount];
-    self.gameScore.text = [NSString stringWithFormat:@"%@分",self.gameInfo.rating];
+    self.gameComments.text = [NSString stringWithFormat:@"共有%d个评论",self.gameInfo.commentCount];
+    self.gameScore.text = [NSString stringWithFormat:@"评分：%@分",self.gameInfo.rating];
                            
 
-    NSString* title = nil;
-    UIImage* bgImage = nil;
-
-    
-    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:self.gameInfo.gameId];
-    switch (status) {
-        case kQYXDSFailed:
-            title = LocalString(@"button.restart");
-            bgImage = [UIImage imageNamed:@"btn_action_left.png"];
-            break;
-        case kQYXDSCompleted:
-            title = LocalString(@"button.install");
-            bgImage = [UIImage imageNamed:@"btn_action_left.png"];
-            break;
-        case kQYXDSInstalling:
-            title = LocalString(@"button.installing");
-            bgImage = [UIImage imageNamed:@"btn_action_left.png"];
-            break;
-        case kQYXDSPaused:
-            title = LocalString(@"button.resume");
-            bgImage = [UIImage imageNamed:@"btn_action_left.png"];
-            break;
-        case kQYXDSRunning:
-            title = LocalString(@"button.pause");
-            bgImage = [UIImage imageNamed:@"btn_action_left.png"];
-            break;
-        case kQYXDSInstalled:
-            title = LocalString(@"button.start");
-            bgImage = [UIImage imageNamed:@"btn_action_left.png"];
-            break;
-        case kQYXDSNotFound:
-            if ([[LQDownloadManager sharedInstance] isGameInstalled:self.gameInfo.package]){
-                title = LocalString(@"button.start");
-                bgImage = [UIImage imageNamed:@"btn_action_left.png"];
-            }else{
-                title = LocalString(@"button.download");
-                bgImage = [UIImage imageNamed:@"btn_download.png"];
-            }
-            break;
-        default:
-            break;
-    }
-
-    [self.actionButton setTitle:title forState:UIControlStateNormal];
-    [self.actionButton setBackgroundImage:bgImage forState:UIControlStateNormal];
+//    NSString* title = nil;
+//    UIImage* bgImage = nil;
+//
+//    
+//    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:self.gameInfo.gameId];
+//    switch (status) {
+//        case kQYXDSFailed:
+//            title = LocalString(@"button.restart");
+//            bgImage = [UIImage imageNamed:@"btn_action_left.png"];
+//            break;
+//        case kQYXDSCompleted:
+//            title = LocalString(@"button.install");
+//            bgImage = [UIImage imageNamed:@"btn_action_left.png"];
+//            break;
+//        case kQYXDSInstalling:
+//            title = LocalString(@"button.installing");
+//            bgImage = [UIImage imageNamed:@"btn_action_left.png"];
+//            break;
+//        case kQYXDSPaused:
+//            title = LocalString(@"button.resume");
+//            bgImage = [UIImage imageNamed:@"btn_action_left.png"];
+//            break;
+//        case kQYXDSRunning:
+//            title = LocalString(@"button.pause");
+//            bgImage = [UIImage imageNamed:@"btn_action_left.png"];
+//            break;
+//        case kQYXDSInstalled:
+//            title = LocalString(@"button.start");
+//            bgImage = [UIImage imageNamed:@"btn_action_left.png"];
+//            break;
+//        case kQYXDSNotFound:
+//            if ([[LQDownloadManager sharedInstance] isGameInstalled:self.gameInfo.package]){
+//                title = LocalString(@"button.start");
+//                bgImage = [UIImage imageNamed:@"btn_action_left.png"];
+//            }else{
+//                title = LocalString(@"button.download");
+//                bgImage = [UIImage imageNamed:@"btn_download.png"];
+//            }
+//            break;
+//        default:
+//            break;
+//    }
+//
+//    [self.actionButton setTitle:title forState:UIControlStateNormal];
+//    [self.actionButton setBackgroundImage:bgImage forState:UIControlStateNormal];
 }
 
 - (void)updateImage:(UIImage*)image forUrl:(NSString*)imageUrl{

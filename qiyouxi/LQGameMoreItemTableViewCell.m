@@ -10,7 +10,7 @@
 
 @implementation LQGameMoreItemTableViewCell
 @synthesize gameActionView;
-
+@synthesize gameDownloadButton,gameInstallNowButton,gameDetailButton;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -32,5 +32,16 @@
     [super addInfoButtonsTarget:target
                          action:action
                             tag:tag];
+    [gameDetailButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    gameDetailButton.tag = tag;
+    
 }
+
+- (void) addDownloadButtonsTarget:(id)target action:(SEL)action tag:(int)tag{
+    [gameInstallNowButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    [gameDownloadButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    gameInstallNowButton.tag = tag;
+    gameDownloadButton.tag = tag;    
+}
+
 @end
