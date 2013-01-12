@@ -9,8 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "LQViewController.h"
 #import "LQCommonTableViewController.h"
+#import "AudioCell.h"
+#import "AudioPlayer.h"
 
 
 
 @interface LQGameInfoListViewController : LQCommonTableViewController
+@end
+
+@class AudioPlayer;
+
+@interface LQRingListViewController : LQGameInfoListViewController{
+    AudioPlayer *_audioPlayer;
+}
 @end

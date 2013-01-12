@@ -10,6 +10,8 @@
 #import "LQAPICache.h"
 
 #define QYX_API_SERVER @"http://www.7youxi.cn/api"
+#define LQ_API_SERVER  @"http://appserver.liqucn.com/ios"
+#define LQ_API_REQUEST @"/request.php"
 
 @implementation LQClient
 #pragma mark - Override
@@ -180,11 +182,12 @@
 }
 
 
-- (void) loadAppListSoftGameCommon:(NSString*) nodeid 
-                    orderby:(NSString*) orderby{
+- (void) loadAppLisCommon:(NSString *)listOperator 
+                   nodeid:(NSString *)nodeid 
+                  orderby:(NSString *)orderby{
     NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                                 HTTP_GET, P_INTERNAL_METHOD,
-                                @"app_list",@"op",
+                                listOperator,@"op",
                                 orderby,@"orderby",
                                 nodeid,@"nodeid",
                                 nil];
@@ -195,6 +198,23 @@
                 encoding:NO];
     
 
+}
+
+- (void) searchAppLisCommon:(NSString *)listOperator 
+                   keywords:(NSString *)keywords 
+{
+    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                HTTP_GET, P_INTERNAL_METHOD,
+                                listOperator,@"op",
+                                keywords,@"keywords",
+                                nil];
+    [self processCommand:[NSString stringWithFormat:@"%@%@", LQ_API_SERVER, LQ_API_REQUEST]
+                 command:C_COMMAND_SEARCH
+                  format:F_JSON
+              parameters:parameters
+                encoding:NO];
+    
+    
 }
 
 - (void) loadCategory:(NSString*) category{
@@ -294,9 +314,11 @@
 - (void)loadGameInfo:(int)gameId{
     NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                                 HTTP_GET, P_INTERNAL_METHOD,
+                                @"app_info",@"op",
                                 [NSNumber numberWithInt:gameId], @"game_id",
+                                [NSNumber numberWithInt:gameId], @"index_id",
                                 nil];
-    [self processCommand:[NSString stringWithFormat:@"%@%@", QYX_API_SERVER, @"/game"]
+    [self processCommand:[NSString stringWithFormat:@"%@%@", LQ_API_SERVER, LQ_API_REQUEST]
                  command:C_COMMAND_GETGAMEINFO
                   format:F_JSON
               parameters:parameters

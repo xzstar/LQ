@@ -22,8 +22,9 @@
 @synthesize errorView;
 @synthesize shadowView;
 @synthesize animationTimer;
-@synthesize nodeId,orderBy;
+@synthesize nodeId,orderBy,listOperator;
 @synthesize appsList;
+@synthesize selectedRow,selectedSection;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -40,6 +41,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil
+         listOperator:(NSString *)aListOperator
                nodeId:(NSString*) aNodeId
               orderBy:(NSString*) aOrderBy
 {
@@ -48,6 +50,7 @@
         // Custom initialization
         // self.title = NSLocalizedString(@"First", @"First");
         // self.tabBarItem.image = nil;
+        listOperator = aListOperator;
         nodeId = aNodeId;
         orderBy = aOrderBy;
         [self loadViews];

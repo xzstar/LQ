@@ -22,6 +22,8 @@
 #define C_COMMAND_GETLAUNCHIMAGE C_USER_COMMAND + 11
 #define C_COMMAND_GETAPPLISTSOFTGAME C_USER_COMMAND + 12 
 #define C_COMMAND_GETCATEGORY C_USER_COMMAND + 13
+#define C_COMMAND_SEARCH C_USER_COMMAND + 14
+
 @interface LQClient : LQClientBase
 - (void)loadLaunchImage;
 
@@ -35,8 +37,12 @@
 - (void)loadGameInfo:(int)gameId;
 
 - (void)loadSoftNewest;
-- (void) loadAppListSoftGameCommon:(NSString*) nodeid 
-                           orderby:(NSString*) orderby;
+- (void) loadAppLisCommon:(NSString*)listOperator 
+                   nodeid:(NSString*) nodeid 
+                  orderby:(NSString*) orderby;
+- (void) searchAppLisCommon:(NSString *)listOperator 
+                   keywords:(NSString *)keywords;
+
 - (void) loadCategory:(NSString*) category;
 
 - (void)loadUserComments:(int)gameId start:(int)start count:(int)count;

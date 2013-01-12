@@ -93,12 +93,15 @@
     self.gameInfo = [[LQGameInfo alloc] initWithAPIResult:result];
     
     self.gameTitleLabel.text = self.gameInfo.name;
-    self.gameDetailLabel.text = [NSString stringWithFormat:@"%@ | %@MB",
-                                 self.gameInfo.category, self.gameInfo.size];
+    int size= [self.gameInfo.size intValue];
+    float sizeMB= (float)size/(1024*1024);
+    
+    self.gameDetailLabel.text = [NSString stringWithFormat:@"%@ | %.2fMB",
+                                 self.gameInfo.tags, sizeMB];
     
     [self.gameIconView loadImageUrl:self.gameInfo.icon defaultImage:DEFAULT_GAME_ICON];
     
-    self.commentLabel.text = self.gameInfo.evaluatorComment;
+    self.commentLabel.text = self.gameInfo.intro; //self.gameInfo.evaluatorComment;
     [self.commentLabel autowrap:self.commentLabelMaxHeight];
     
     self.commentGirlNameLabel.text = [NSString stringWithFormat:LocalString(@"evaluator.nicklabel"), self.gameInfo.evaluatorNickName];
@@ -179,7 +182,7 @@
     switch (command) {
         case C_COMMAND_GETGAMEINFO:
             [self endLoading];
-            [self loadGameInfo:result];
+            [self loadGameInfo:[result objectForKey:@"appinfo"]];
             break;
         case C_COMMAND_GETUSERCOMMENTS:
             [self endLoading];
@@ -277,7 +280,7 @@
 
 #pragma mark - 
 - (void)QYXAdvertiseView:(LQAdvertiseView*)advertiseView selectPage:(int)page{
-    [self performSegueWithIdentifier:@"gotoBrowse" sender:[NSNumber numberWithInt:page]];
+//    [self performSegueWithIdentifier:@"gotoBrowse" sender:[NSNumber numberWithInt:page]];
 }
 
 @end

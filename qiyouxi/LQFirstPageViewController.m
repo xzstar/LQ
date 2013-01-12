@@ -274,7 +274,7 @@
         cell.gameInfo = currentRecommendIndex==0?[recommendApps objectAtIndex:indexPath.row]:
         [recommendTopics objectAtIndex:indexPath.row];
        
-        [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:0];
+        [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:cell.gameInfo.gameId];
         return cell;
     }
     else{
@@ -415,6 +415,7 @@
 
 - (void)onLoadSoft:(id)sender{
     LQTablesController* controller  = [[LQTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil  ];
+    controller.listOperator=@"app_list";
     controller.nodeId = @"rj";
     controller.categoryId = @"show_software_cat";
     [self.navigationController pushViewController:controller animated:YES];
@@ -422,6 +423,7 @@
 
 - (void)onLoadGame:(id)sender{
     LQTablesController * controller  = [[LQTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
+    controller.listOperator=@"app_list";
     controller.nodeId = @"yx";
     controller.categoryId = @"show_game_cat";
 
@@ -429,7 +431,14 @@
 }
 
 - (void)onLoadRing:(id)sender{
-    AudioListViewController * controller  = [[AudioListViewController alloc] init ];
+//    AudioListViewController * controller  = [[AudioListViewController alloc] init ];
+//    [self.navigationController pushViewController:controller animated:YES];
+    
+    LQTablesController * controller  = [[LQTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
+    controller.listOperator=@"ls_list";
+    controller.nodeId = @"ls";
+    controller.categoryId = @"show_ls_cat";
+    
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -446,6 +455,7 @@
 - (void) onGameDetail:(id)sender{
     UIButton *button = sender;
     int tag = button.tag;
+
     LQGameDetailViewController *controller = [[LQGameDetailViewController alloc] init];
     controller.gameId = tag;
     [self.navigationController pushViewController:controller animated:YES];

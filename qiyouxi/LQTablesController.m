@@ -18,7 +18,7 @@
 
 @implementation LQTablesController
 @synthesize scrollView, viewControllers;
-@synthesize nodeId,categoryId;
+@synthesize nodeId,categoryId,listOperator;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -111,17 +111,29 @@
         NSString* orderBy;
         if(page == 0){
             orderBy = ORDER_BY_NEWEST;
-            controller = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil nodeId:nodeId orderBy:orderBy];
+            if (nodeId == @"rj" || nodeId == @"yx") {
+                 controller = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
+            }
+            else{
+                controller = [[LQRingListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
+            }
 
         }
         else if(page == 1){
             orderBy = ORDER_BY_TUIJIAN;
-            controller = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil nodeId:nodeId orderBy:orderBy];
+            if (nodeId == @"rj" || nodeId == @"yx") {
+                controller = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
+            }
+            else{
+                controller = [[LQRingListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
+            }
+            
+
 
         }
         else if(page == 2) {
             orderBy = ORDER_BY_WEEK;
-            controller = [[LQRankViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil nodeId:nodeId orderBy:orderBy];
+            controller = [[LQRankViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
         }
         else {
             //orderBy = ORDER_BY_TUIJIAN;

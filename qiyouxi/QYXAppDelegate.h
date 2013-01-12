@@ -8,17 +8,18 @@
 
 #import <UIKit/UIKit.h>
 @class LQLaunchViewController;
-
+@class LQMainTabBarController;
 
 @interface QYXAppDelegate : UIResponder <UIApplicationDelegate>{
     UINavigationController *navigationController;
     UIWindow *window;
     LQLaunchViewController *launchViewController;
-
+    LQMainTabBarController* main;
 }
 
 @property (strong, nonatomic) IBOutlet UIWindow *window;
 @property (strong, nonatomic) IBOutlet UINavigationController *navigationController;
 @property (strong, nonatomic) IBOutlet LQLaunchViewController *launchViewController;
+@property (strong, nonatomic) IBOutlet LQMainTabBarController * main;
 
 @end

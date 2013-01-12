@@ -97,7 +97,7 @@
 
     [self.gameIconView loadImageUrl:self.gameInfo.icon defaultImage:DEFAULT_GAME_ICON];
 
-    self.commentLabel.text = self.gameInfo.evaluatorComment;
+    self.commentLabel.text = self.gameInfo.intro; //self.gameInfo.evaluatorComment;
     [self.commentLabel autowrap:self.commentLabelMaxHeight];
     
     self.commentGirlNameLabel.text = [NSString stringWithFormat:LocalString(@"evaluator.nicklabel"), self.gameInfo.evaluatorNickName];

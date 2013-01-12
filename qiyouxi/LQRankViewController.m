@@ -55,7 +55,7 @@
         return;
     }
     //[self startLoading];    
-    [self.client loadAppListSoftGameCommon:self.nodeId orderby:self.orderBy];
+    [self.client loadAppLisCommon:self.listOperator nodeid:self.nodeId orderby:self.orderBy];
 }
 
 #pragma mark - Network Callback

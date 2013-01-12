@@ -49,18 +49,25 @@
         
         self.screenShotIsHorizontal = [[result objectForKey:@"screenshot_hr"] boolValue];
         NSMutableArray* imageUrls = [NSMutableArray array];
-        NSArray* screenshots = [result objectForKey:@"screenshots"];
-        for (NSDictionary* screenshot in screenshots){
-            [imageUrls addObject:[screenshot objectForKey:@"small"]];
+        NSArray* screenshots = [result objectForKey:@"arr_photo"];
+        for (NSString* screenshot in screenshots){
+            [imageUrls addObject:screenshot];
         }
         
         self.screenShotsSmall = imageUrls;
         
-        imageUrls = [NSMutableArray array];
-        for (NSDictionary* screenshot in screenshots){
-            [imageUrls addObject:[screenshot objectForKey:@"big"]];
-        }
-        self.screenShotsBig = imageUrls;
+//        NSArray* screenshots = [result objectForKey:@"screenshots"];
+//        for (NSDictionary* screenshot in screenshots){
+//            [imageUrls addObject:[screenshot objectForKey:@"small"]];
+//        }
+//        
+//        self.screenShotsSmall = imageUrls;
+//        
+//        imageUrls = [NSMutableArray array];
+//        for (NSDictionary* screenshot in screenshots){
+//            [imageUrls addObject:[screenshot objectForKey:@"big"]];
+//        }
+//        self.screenShotsBig = imageUrls;
         
         self.commentCount = [[result objectForKey:@"comment_count"] intValue];
         

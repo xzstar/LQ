@@ -13,13 +13,14 @@
 @synthesize window;
 @synthesize navigationController;
 @synthesize launchViewController;
+@synthesize main;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     srand(time(NULL));
     // Override point for customization after application launch.
    	
-    [navigationController pushViewController:launchViewController animated:NO];
+    [navigationController pushViewController:main animated:NO];
     [navigationController setNavigationBarHidden:YES];
     [window addSubview:[navigationController view]];
 	[self.window makeKeyAndVisible];

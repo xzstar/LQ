@@ -26,19 +26,24 @@
     NSInteger selectedSection;
     NSString* nodeId;
     NSString* orderBy;
+    NSString* listOperator;
     NSMutableArray* appsList;
 
 }
 
+@property (nonatomic,strong) NSString* listOperator;
 @property (nonatomic,strong) NSString* nodeId;
 @property (nonatomic,strong) NSString* orderBy;
 @property (nonatomic, strong, readonly) LQClient* client;
 @property (nonatomic, strong) NSMutableArray* appsList;
+@property (nonatomic, assign) NSInteger selectedRow;
+@property (nonatomic, assign) NSInteger selectedSection;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil
-               nodeId:(NSString*) aNodeId
-              orderBy:(NSString*) aOrderBy;
+         listOperator:(NSString *)aListOperator
+               nodeId:(NSString *)aNodeId
+              orderBy:(NSString *)aOrderBy;
 
 - (void)loadViews;
 - (void)loadData;
