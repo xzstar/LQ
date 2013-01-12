@@ -13,8 +13,10 @@
 #import "AudioPlayer.h"
 
 
-
-@interface LQGameInfoListViewController : LQCommonTableViewController
+@interface LQGameInfoListViewController : LQCommonTableViewController{
+    int type;
+}
+@property (nonatomic,assign) int type;
 @end
 
 @class AudioPlayer;

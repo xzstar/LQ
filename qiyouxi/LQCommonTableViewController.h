@@ -27,11 +27,13 @@
     NSString* nodeId;
     NSString* orderBy;
     NSString* listOperator;
+    NSString* keywords;
     NSMutableArray* appsList;
 
 }
 
 @property (nonatomic,strong) NSString* listOperator;
+@property (nonatomic,strong) NSString* keywords;
 @property (nonatomic,strong) NSString* nodeId;
 @property (nonatomic,strong) NSString* orderBy;
 @property (nonatomic, strong, readonly) LQClient* client;

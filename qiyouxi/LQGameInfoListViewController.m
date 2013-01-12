@@ -12,7 +12,7 @@
 @end
 
 @implementation LQGameInfoListViewController
-
+@synthesize type;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,13 +50,29 @@
 
 - (void)loadData{
     [super loadData];
-    
-    if(self.orderBy == nil || self.nodeId == nil){
+    if (self.listOperator == @"app_list" ||
+        self.listOperator == @"ls_list"
+        ) {
+        if(self.orderBy == nil || self.nodeId == nil){
+            [self endLoading];
+            return;
+        }
+        [self.client loadAppLisCommon:self.listOperator nodeid:self.nodeId orderby:self.orderBy];
+        
+    }
+    else if(self.listOperator == @"app_search"){
+        if(self.keywords == nil){
+            [self endLoading];
+            return;
+        }
+        [self.client searchAppLisCommon:self.listOperator keywords:self.keywords];
+            
+    }
+    else {
         [self endLoading];
         return;
     }
-    //[self startLoading];    
-    [self.client loadAppLisCommon:self.listOperator nodeid:self.nodeId orderby:self.orderBy];
+        
 }
 
 #pragma mark - Network Callback
@@ -64,6 +80,7 @@
     [self handleNetworkOK];
     switch (command) {
         case C_COMMAND_GETAPPLISTSOFTGAME:
+        case C_COMMAND_SEARCH:
             [self endLoading];
             if ([result isKindOfClass:[NSDictionary class]]){
                 // [self loadTodayGames:result];

@@ -22,7 +22,7 @@
 @synthesize errorView;
 @synthesize shadowView;
 @synthesize animationTimer;
-@synthesize nodeId,orderBy,listOperator;
+@synthesize nodeId,orderBy,listOperator,keywords;
 @synthesize appsList;
 @synthesize selectedRow,selectedSection;
 

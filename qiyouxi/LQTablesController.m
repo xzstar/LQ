@@ -113,6 +113,7 @@
             orderBy = ORDER_BY_NEWEST;
             if (nodeId == @"rj" || nodeId == @"yx") {
                  controller = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
+                
             }
             else{
                 controller = [[LQRingListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];

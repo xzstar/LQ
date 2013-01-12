@@ -3699,6 +3699,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2B7A65D168FE10500679C6E /* LQSearchViewController.m in Sources */,
 				F23D3B95169B0C7D00B7DD46 /* SearchHistoryItem.h in Sources */,
 				F23D3B96169B0C7D00B7DD46 /* SearchHistoryItem.m in Sources */,
 				43F5ED3C15C65424001A0F8D /* main.m in Sources */,
@@ -3756,7 +3757,6 @@
 				F2ED5B3D168FCC2C00E12C5F /* swfupload.js in Sources */,
 				F2ED5B3E168FCC2C00E12C5F /* swfupload.queue.js in Sources */,
 				F2B7A657168FDE5A00679C6E /* LQFirstPageViewController.m in Sources */,
-				F2B7A65D168FE10500679C6E /* LQSearchViewController.m in Sources */,
 				F2B7A662168FE16400679C6E /* LQDownloadViewController.m in Sources */,
 				F2B7A667168FE1A700679C6E /* LQUpdateViewController.m in Sources */,
 				F2B7A66C168FE1C200679C6E /* LQMoreViewController.m in Sources */,

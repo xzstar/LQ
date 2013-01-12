@@ -8,16 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "LQViewController.h"
-
+@class LQGameInfoListViewController;
 @interface LQSearchViewController : LQViewController<UISearchDisplayDelegate, UISearchBarDelegate,UITableViewDelegate, UITableViewDataSource>
 {
     int currentRecommendIndex;
     NSMutableArray* searchHistoryItems;
+    LQGameInfoListViewController* listController;
 }
 @property(unsafe_unretained) IBOutlet UISearchBar* searchBar;
-@property(unsafe_unretained) IBOutlet UITableView* searchTable;
+@property(unsafe_unretained) IBOutlet UIView* searchResultTable;
 @property(unsafe_unretained) IBOutlet UISearchDisplayController *searchBarController;
-@property(unsafe_unretained) IBOutlet UIScrollView*scrollView;
+@property(unsafe_unretained) IBOutlet UIScrollView* scrollView;
 @property(unsafe_unretained) IBOutlet UIView* searchHistoryView;
 @property(unsafe_unretained) IBOutlet UITableView* searchHistoryTable;
 

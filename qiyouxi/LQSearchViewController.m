@@ -10,6 +10,16 @@
 #import "LQSearchSectionHeader.h"
 #import "SearchHistoryItem.h"
 #import "LQSearchHistoryCell.h"
+#import "LQGameInfoListViewController.h"
+
+#define LQAPPSEARCH @"app_search"
+#define LQLSSEARCH @"ls_search"
+#define LQBZSEARCH @"bz_search"
+
+#define LQAPPSEARCH_HINT @"软件游戏"
+#define LQLSSEARCH_HINT @"铃声"
+#define LQBZSEARCH_HINT @"壁纸"
+
 @interface LQSearchViewController ()
 
 @end
@@ -17,7 +27,7 @@
 @implementation LQSearchViewController
 
 @synthesize searchBar;
-@synthesize searchTable;
+@synthesize searchResultTable;
 @synthesize searchBarController;
 @synthesize scrollView;
 @synthesize searchHistoryView;
@@ -44,18 +54,19 @@
     scrollView.showsHorizontalScrollIndicator = NO;
     scrollView.showsVerticalScrollIndicator = NO;
     scrollView.scrollsToTop = YES;
+    scrollView.alwaysBounceVertical = NO;
     
     CGRect frame = scrollView.frame;
     frame.origin.x = 0;
     frame.origin.y = 0;
-    searchTable.frame = frame;
+    searchResultTable.frame = frame;
     [scrollView addSubview:searchHistoryView];
 
     frame = scrollView.frame;
     frame.origin.x = frame.size.width;
     frame.origin.y = 0;
-    searchTable.frame = frame;
-    [scrollView addSubview:searchTable];
+    searchResultTable.frame = frame;
+    [scrollView addSubview:searchResultTable];
 
     
 
@@ -89,6 +100,29 @@
     
     [searchHistoryTable reloadData];
     
+    
+    //
+    //if(currentRecommendIndex == 0)
+    BOOL needResearch = YES;
+    if(listController==nil)
+    {
+         listController = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil];
+        CGRect frame = searchResultTable.frame;
+        frame.origin.x = 0;
+        listController.view.frame = frame;
+        needResearch = NO;
+    }
+    listController.listOperator =LQAPPSEARCH;
+    listController.keywords = [searchbar text];
+    NSArray* subViews = [searchResultTable subviews];
+    for (UIView* view in subViews) {
+        [view removeFromSuperview];
+    }
+    [searchResultTable addSubview:listController.view];
+    if (needResearch) {
+        [listController loadData];
+    }
+
 }
 
 #pragma mark - TableView DataSource
