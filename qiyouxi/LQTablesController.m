@@ -94,7 +94,7 @@
     pageController = [[LQPageController alloc] initWithFrame:frame];
     [pageController setPageNames:names];
     pageController.currentPage = 0;
-
+    
     [pageController addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:pageController];
 }
@@ -113,34 +113,50 @@
         if(page == 0){
             orderBy = ORDER_BY_NEWEST;
             if (nodeId == @"rj" || nodeId == @"yx") {
-                 controller = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
+                controller = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
                 
             }
-            else{
+            else if(nodeId == @"ls"){
                 controller = [[LQRingListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
             }
-
+            else {
+                controller = [[LQWallpaperListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
+            }
+            
         }
         else if(page == 1){
             orderBy = ORDER_BY_TUIJIAN;
             if (nodeId == @"rj" || nodeId == @"yx") {
                 controller = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
             }
-            else{
+            else if(nodeId == @"ls"){
                 controller = [[LQRingListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
             }
+            else {
+                controller = [[LQWallpaperListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
+            }
             
-
-
+            
+            
         }
         else if(page == 2) {
             orderBy = ORDER_BY_WEEK;
+            if (nodeId == @"rj" || nodeId == @"yx") {
+
             controller = [[LQRankViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
+            }
+            else if(nodeId == @"ls"){
+                controller = [[LQRingRankViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
+            }
+            else {
+                    controller = [[LQWallpaperRankViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
+                }
+            
         }
         else {
             //orderBy = ORDER_BY_TUIJIAN;
             controller = [[LQCategoryListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil category:categoryId];
-
+            
         }
         [viewControllers replaceObjectAtIndex:page withObject:controller];
         
@@ -167,10 +183,10 @@
     // which a scroll event generated from the user hitting the page control triggers updates from
     // the delegate method. We use a boolean to disable the delegate logic when the page control is used.
     if (pageControlUsed)
-     {
-     // do nothing - the scroll was initiated from the page control, not the user dragging
-     return;
-     }	
+    {
+        // do nothing - the scroll was initiated from the page control, not the user dragging
+        return;
+    }	
     // Switch the indicator when more than 50% of the previous/next page is visible
     CGFloat pageWidth = scrollView.frame.size.width;
     int page = floor((scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
@@ -198,25 +214,25 @@
 }
 
 - (IBAction)changePage:(id)sender
- {
- int page = pageController.currentPage;
- 
- // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
-// [self loadScrollViewWithPage:page - 1];
- [self loadScrollViewWithPage:page];
-// [self loadScrollViewWithPage:page + 1];
- 
- // update the scroll view to the appropriate page
- CGRect frame = scrollView.frame;
- frame.origin.x = frame.size.width * page;
- frame.origin.y = 0;
- [scrollView scrollRectToVisible:frame animated:YES];
- 
- // Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
- pageControlUsed = YES;
- 
-
- }
+{
+    int page = pageController.currentPage;
+    
+    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
+    // [self loadScrollViewWithPage:page - 1];
+    [self loadScrollViewWithPage:page];
+    // [self loadScrollViewWithPage:page + 1];
+    
+    // update the scroll view to the appropriate page
+    CGRect frame = scrollView.frame;
+    frame.origin.x = frame.size.width * page;
+    frame.origin.y = 0;
+    [scrollView scrollRectToVisible:frame animated:YES];
+    
+    // Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
+    pageControlUsed = YES;
+    
+    
+}
 
 - (IBAction)onBack:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];

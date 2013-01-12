@@ -8,6 +8,7 @@
 
 #import "LQGameInfoListViewController.h"
 #import "LQGameDetailViewController.h"
+#import "LQWallpaperCell.h"
 @interface LQGameInfoListViewController ()
 @end
 
@@ -51,7 +52,8 @@
 - (void)loadData{
     [super loadData];
     if (self.listOperator == @"app_list" ||
-        self.listOperator == @"ls_list"
+        self.listOperator == @"ls_list"  ||
+        self.listOperator == @"wallpaper_list"
         ) {
         if(self.orderBy == nil || self.nodeId == nil){
             [self endLoading];
@@ -184,6 +186,64 @@
     [self.tableView reloadData];
     
 }
+
+
+
+@end
+
+@implementation LQWallpaperListViewController
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+    self.selectedRow = -1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    //#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    return (self.appsList.count%4)==0?
+    self.appsList.count/4:((self.appsList.count/4)+1);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //return 70.f;
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    LQWallpaperCell *cell;
+ 
+    cell = [tableView dequeueReusableCellWithIdentifier:@"wallpaper"];
+    if (cell == nil){
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"LQWallpaperCell" owner:self options:nil] objectAtIndex:0];
+    }
+    
+    int startIndex = indexPath.row * 4;
+    // Configure the cell..
+    NSMutableArray *itemList = [NSMutableArray array];
+    for(int i=startIndex;i<self.appsList.count&&i<(4+startIndex);i++){
+        LQGameInfo *item = [self.appsList objectAtIndex:i];
+        [itemList addObject:item];
+    }
+    [cell setButtonInfo:itemList];
+    
+    return cell;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return;
+}
+
+
 
 
 

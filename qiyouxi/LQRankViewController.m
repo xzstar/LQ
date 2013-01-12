@@ -8,6 +8,9 @@
 
 #import "LQRankViewController.h"
 #import "LQRankSectionHeader.h"
+#import "LQWallpaperCell.h"
+#import "AudioCell.h"
+#import "AudioPlayer.h"
 @interface LQRankViewController ()
 
 @end
@@ -114,5 +117,115 @@
     }
     [self loadData];
 }
+
+@end
+
+@implementation LQRingRankViewController
+
+- (void)playAudio:(AudioButton *)button
+{    
+    NSInteger index = button.tag;
+    NSDictionary *item = [self.appsList objectAtIndex:index];
+    
+    if (_audioPlayer == nil) {
+        _audioPlayer = [[AudioPlayer alloc] init];
+    }
+    
+    if ([_audioPlayer.button isEqual:button]) {
+        [_audioPlayer play];
+    } else {
+        [_audioPlayer stop];
+        
+        _audioPlayer.button = button; 
+        _audioPlayer.url = [NSURL URLWithString:[item objectForKey:@"url"]];
+        
+        [_audioPlayer play];
+    }   
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //return 70.f;
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"AudioCell";
+    
+    AudioCell *cell;
+    
+    if(indexPath.row == self.selectedRow){
+        cell = [tableView dequeueReusableCellWithIdentifier:@"AudioMoreItemCell"];
+        if (cell == nil){
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"AudioMoreItemCell" owner:self options:nil] objectAtIndex:0];
+            [cell configurePlayerButton];
+            
+        }
+        
+    }
+    else{
+        cell = [tableView dequeueReusableCellWithIdentifier:@"AudioCell"];
+        if (cell == nil){
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"AudioCell" owner:self options:nil] objectAtIndex:0];
+            [cell configurePlayerButton];
+        }
+    }
+    
+    
+    
+    // Configure the cell..
+    LQGameInfo *item = [self.appsList objectAtIndex:indexPath.row];
+    
+    cell.titleLabel.text = item.name;
+    cell.artistLabel.text = item.tags;
+    cell.audioButton.tag = indexPath.row;
+    [cell.audioButton addTarget:self action:@selector(playAudio:) forControlEvents:UIControlEventTouchUpInside];    
+    
+    return cell;
+}
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //[self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(self.selectedRow!= indexPath.row
+       ){
+        self.selectedRow = indexPath.row;
+    }
+    else {
+        self.selectedRow = -1;
+    }
+    [self.tableView reloadData];
+    
+}
+
+@end
+
+@implementation LQWallpaperRankViewController
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    LQWallpaperCell *cell;
+    
+    cell = [tableView dequeueReusableCellWithIdentifier:@"wallpaper"];
+    if (cell == nil){
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"LQWallpaperCell" owner:self options:nil] objectAtIndex:0];
+    }
+    
+    int startIndex = indexPath.row * 4;
+    // Configure the cell..
+    NSMutableArray *itemList = [NSMutableArray array];
+    for(int i=startIndex;i<self.appsList.count&&i<(4+startIndex);i++){
+        LQGameInfo *item = [self.appsList objectAtIndex:i];
+        [itemList addObject:item];
+    }
+    [cell setButtonInfo:itemList];
+    
+    return cell;
+}
+
 
 @end

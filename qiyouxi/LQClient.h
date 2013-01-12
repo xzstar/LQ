@@ -44,7 +44,7 @@
                    keywords:(NSString *)keywords;
 
 - (void) loadCategory:(NSString*) category;
-
+- (void)loadUserComments:(int)gameId;
 - (void)loadUserComments:(int)gameId start:(int)start count:(int)count;
 - (void)submitComment:(int)gameId comment:(NSString*)comment nick:(NSString*)nick;
 - (void)submitFeedback:(NSString*)feedback contact:(NSString*)contact;

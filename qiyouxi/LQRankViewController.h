@@ -12,3 +12,14 @@
 
 -(void) onChangeRank:(id)sender;
 @end
+
+
+@class AudioPlayer;
+@interface LQRingRankViewController : LQRankViewController{
+    AudioPlayer *_audioPlayer;
+}
+@end
+
+@interface LQWallpaperRankViewController : LQRankViewController
+
+@end

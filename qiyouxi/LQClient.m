@@ -325,6 +325,19 @@
                 encoding:NO];
 }
 
+- (void)loadUserComments:(int)gameId{
+    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                HTTP_GET, P_INTERNAL_METHOD,
+                                "app_comments",@"op",
+                                [NSNumber numberWithInt:gameId],@"index_id",
+                                nil];
+    [self processCommand:[NSString stringWithFormat:@"%@%@", LQ_API_SERVER, LQ_API_REQUEST]
+                 command:C_COMMAND_SEARCH
+                  format:F_JSON
+              parameters:parameters
+                encoding:NO];
+
+}
 - (void)loadUserComments:(int)gameId start:(int)start count:(int)count{
     NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                                 HTTP_GET, P_INTERNAL_METHOD,

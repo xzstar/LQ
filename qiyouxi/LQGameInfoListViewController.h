@@ -26,3 +26,9 @@
     AudioPlayer *_audioPlayer;
 }
 @end
+
+@interface LQWallpaperListViewController : LQGameInfoListViewController{
+    
+}
+
+@end

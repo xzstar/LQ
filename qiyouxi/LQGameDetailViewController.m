@@ -174,6 +174,8 @@
     if (self.userComments.count == 0){
         [self startLoading];
         [self.client loadUserComments:self.gameId start:0 count:50];
+        //[self.client loadUserComments:self.gameId];
+
     }
 }
 

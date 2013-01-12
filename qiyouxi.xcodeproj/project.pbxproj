@@ -180,6 +180,8 @@
 		F219D4E3168C97E100F8CA45 /* LQDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4E2168C97E100F8CA45 /* LQDetailView.xib */; };
 		F219D4E5168C980100F8CA45 /* LQPostCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4E4168C980100F8CA45 /* LQPostCommentView.xib */; };
 		F219D4E7168C982E00F8CA45 /* LQDownloadManageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4E6168C982E00F8CA45 /* LQDownloadManageView.xib */; };
+		F230807C16A1B6990052F0C9 /* LQWallpaperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F230807B16A1B6960052F0C9 /* LQWallpaperCell.m */; };
+		F230807E16A1B6B90052F0C9 /* LQWallpaperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F230807D16A1B6B80052F0C9 /* LQWallpaperCell.xib */; };
 		F23D3B8F169AD70700B7DD46 /* LQSearchHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23D3B8E169AD70700B7DD46 /* LQSearchHistoryCell.m */; };
 		F23D3B92169B02D300B7DD46 /* LQSearchHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */; };
 		F23D3B95169B0C7D00B7DD46 /* SearchHistoryItem.h in Sources */ = {isa = PBXBuildFile; fileRef = F23D3B93169B0C1100B7DD46 /* SearchHistoryItem.h */; };
@@ -1090,6 +1092,9 @@
 		F219D4E2168C97E100F8CA45 /* LQDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQDetailView.xib; sourceTree = "<group>"; };
 		F219D4E4168C980100F8CA45 /* LQPostCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQPostCommentView.xib; sourceTree = "<group>"; };
 		F219D4E6168C982E00F8CA45 /* LQDownloadManageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQDownloadManageView.xib; sourceTree = "<group>"; };
+		F230807A16A1B6920052F0C9 /* LQWallpaperCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQWallpaperCell.h; sourceTree = "<group>"; };
+		F230807B16A1B6960052F0C9 /* LQWallpaperCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQWallpaperCell.m; sourceTree = "<group>"; };
+		F230807D16A1B6B80052F0C9 /* LQWallpaperCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQWallpaperCell.xib; sourceTree = "<group>"; };
 		F23D3B8D169AD70700B7DD46 /* LQSearchHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQSearchHistoryCell.h; sourceTree = "<group>"; };
 		F23D3B8E169AD70700B7DD46 /* LQSearchHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQSearchHistoryCell.m; sourceTree = "<group>"; };
 		F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQSearchHistoryCell.xib; sourceTree = "<group>"; };
@@ -1917,6 +1922,9 @@
 				F26CD255169194A400E1E30B /* LQAdTableViewCell.xib */,
 				F23D3B93169B0C1100B7DD46 /* SearchHistoryItem.h */,
 				F23D3B94169B0C1200B7DD46 /* SearchHistoryItem.m */,
+				F230807A16A1B6920052F0C9 /* LQWallpaperCell.h */,
+				F230807B16A1B6960052F0C9 /* LQWallpaperCell.m */,
+				F230807D16A1B6B80052F0C9 /* LQWallpaperCell.xib */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -3689,6 +3697,7 @@
 				F2BAD5DC169D53CF00893F4C /* LQTablesController.xib in Resources */,
 				F2C2667F169DB9B600382479 /* LQCommonTableViewController.xib in Resources */,
 				F266A9DE169F9B9E0014FE75 /* LQRankSectionHeader.xib in Resources */,
+				F230807E16A1B6B90052F0C9 /* LQWallpaperCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3781,6 +3790,7 @@
 				F266A9DB169F9B7C0014FE75 /* LQRankSectionHeader.m in Sources */,
 				F266A9E1169F9EBB0014FE75 /* LQRankViewController.m in Sources */,
 				F2842791169FE08E00997FC0 /* LQCategoryListViewController.m in Sources */,
+				F230807C16A1B6990052F0C9 /* LQWallpaperCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

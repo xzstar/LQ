@@ -442,8 +442,12 @@
 }
 
 - (void)onLoadWallpaper:(id)sender{
-//    LQGameInfoListViewController* controller  = [[LQGameInfoListViewController alloc] init ];
-//    [self.navigationController pushViewController:controller animated:YES];
+    LQTablesController * controller  = [[LQTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
+    controller.listOperator=@"wallpaper_list";
+    controller.nodeId = @"bz";
+    controller.categoryId = @"show_wallpaper_cat";
+    
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (IBAction)onReload:(id)sender{
