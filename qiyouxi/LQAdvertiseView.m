@@ -36,7 +36,7 @@
 
 - (void)setImageUrls:(NSArray *)aImageUrls{
     imageUrls = aImageUrls;
-
+    
     scrollView = [[UIScrollView alloc] initWithFrame:self.bounds];
     [self addSubview:scrollView];
     

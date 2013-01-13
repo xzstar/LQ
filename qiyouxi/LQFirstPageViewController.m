@@ -243,16 +243,17 @@
         LQAdTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ad"];
         if(cell == nil){
             cell = [[[NSBundle mainBundle] loadNibNamed:@"LQAdTableViewCell" owner:self options:nil]objectAtIndex:0];
-        }
-        [cell setDelegate:self];
-        
-        if(advertisements.count>0){
-            NSMutableArray* imageUrls = [NSMutableArray arrayWithCapacity:self.advertisements.count];
-            for (NSDictionary* adv in self.advertisements){
-                [imageUrls addObject:[adv objectForKey:@"image_url"]];
+            [cell setDelegate:self];
+            
+            if(advertisements.count>0){
+                NSMutableArray* imageUrls = [NSMutableArray arrayWithCapacity:self.advertisements.count];
+                for (NSDictionary* adv in self.advertisements){
+                    [imageUrls addObject:[adv objectForKey:@"image_url"]];
+                }
+                cell.advView.imageUrls = imageUrls;
             }
-            cell.advView.imageUrls = imageUrls;
         }
+        
         return cell;
         
     }
@@ -512,5 +513,19 @@
         [self.historyView reloadData];
     }
     
+}
+- (void)QYXAdvertiseView:(LQAdvertiseView*)advertiseView selectPage:(int)page{
+    
+    if(advertisements.count>page){
+        NSDictionary* adv = [advertisements objectAtIndex:page];
+        int gameId = [[adv objectForKey:@"id"] intValue];
+        LQGameDetailViewController *controller = [[LQGameDetailViewController alloc] init];
+        controller.gameId = gameId;
+        [self.navigationController pushViewController:controller animated:YES];
+
+           
+    }
+    
+        
 }
 @end

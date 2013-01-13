@@ -972,6 +972,7 @@
 				<reference key="34.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="34.showNotes"/>
 				<string key="35.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<real value="1" key="35.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<reference key="35.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="35.showNotes"/>
 				<string key="36.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
