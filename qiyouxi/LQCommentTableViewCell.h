@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LQCommentTableViewCell : UITableViewCell
+@interface LQCommentTableViewCell : UITableViewCell<LQImageReceiver>
+
 @property (unsafe_unretained) IBOutlet UILabel* nickLabel;
 @property (unsafe_unretained) IBOutlet UILabel* commentLabel;
 @property (unsafe_unretained) IBOutlet UILabel* deviceLabel;
 @property (unsafe_unretained) IBOutlet UILabel* dateLabel;
 @property (unsafe_unretained) IBOutlet UIView* bottomView;
-
+@property (unsafe_unretained) IBOutlet UIImageView* avatar;
 @property (nonatomic, strong) NSDictionary* comment;
 
 @end

@@ -49,4 +49,6 @@
 - (void)submitComment:(int)gameId comment:(NSString*)comment nick:(NSString*)nick;
 - (void)submitFeedback:(NSString*)feedback contact:(NSString*)contact;
 
+- (void)loadUserMoreComments:(NSString*) moreUrl;
+
 @end

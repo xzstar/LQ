@@ -18,7 +18,6 @@
 @property (assign) BOOL moreCommentsToLoad;
 @property (strong) NSMutableArray* userComments;
 @property (assign) CGFloat commentLabelMaxHeight;
-
 @end
 
 @implementation LQDetailViewController
@@ -121,14 +120,16 @@
 }
 
 - (void)loadUserComments:(NSDictionary*)result{
-    NSArray* items = [[result objectForKey:@"context"] objectForKey:@"items"];
-    int total_count = [[[result objectForKey:@"context"] objectForKey:@"total_count"] intValue];
+//    NSArray* items = [[result objectForKey:@"context"] objectForKey:@"items"];
+//    int total_count = [[[result objectForKey:@"context"] objectForKey:@"total_count"] intValue];
     
+    NSArray* items = [result objectForKey:@"app"];
+    NSString* moreUrl = [result objectForKey:@"more_url"];  
     [self.userComments addObjectsFromArray:items];
     [self.userCommentsView reloadData];    
     
     self.refreshing = NO;
-    self.moreCommentsToLoad = total_count > self.userComments.count;    
+    self.moreCommentsToLoad = (moreUrl!=nil);
     [self.commentsHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.userCommentsView];
     
     if (self.userComments.count > 0){

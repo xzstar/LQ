@@ -92,6 +92,28 @@
 //    return body;
 //}
 
+- (NSString*) getUrl:(NSString*) path{
+    NSURL* url =[[NSURL alloc]initWithString:path];
+    return url.path;
+}
+
+- (NSDictionary*) getParameter:(NSString*) path{
+    NSURL* url =[[NSURL alloc]initWithString:path];
+    NSString* parameterString = url.parameterString;
+    NSArray* items = [parameterString componentsSeparatedByString:@"&"];
+    NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
+    for (NSString* item in items){
+        NSArray* keyvalue = [item componentsSeparatedByString:@"="];
+        if (keyvalue.count == 2){
+            NSString* key = [keyvalue objectAtIndex:0];
+            NSString* value = [keyvalue objectAtIndex:1];
+            [parameters setObject:[value stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding] forKey:key];            
+        }
+    }
+    [parameters setObject:HTTP_GET forKey:P_INTERNAL_METHOD];
+    return parameters;
+
+}
 - (NSData*)getRequestData:(NSMutableURLRequest*)request returningResponse:(NSURLResponse* __autoreleasing *)response error:(NSError* __autoreleasing*)error{
     NSTimeInterval start = [[NSDate date] timeIntervalSince1970];
     NSTimeInterval duration = 0.5;
@@ -328,16 +350,29 @@
 - (void)loadUserComments:(int)gameId{
     NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                                 HTTP_GET, P_INTERNAL_METHOD,
-                                "app_comments",@"op",
+                                @"app_comments",@"op",
                                 [NSNumber numberWithInt:gameId],@"index_id",
                                 nil];
     [self processCommand:[NSString stringWithFormat:@"%@%@", LQ_API_SERVER, LQ_API_REQUEST]
-                 command:C_COMMAND_SEARCH
+                 command:C_COMMAND_GETUSERCOMMENTS
                   format:F_JSON
               parameters:parameters
                 encoding:NO];
 
 }
+
+- (void)loadUserMoreComments:(NSString*) moreUrl{
+    //NSString* url = [self getUrl:moreUrl];
+    NSDictionary* parameters = [self getParameter:moreUrl];
+
+    [self processCommand:[NSString stringWithFormat:@"%@%@", LQ_API_SERVER, LQ_API_REQUEST]
+                 command:C_COMMAND_GETUSERCOMMENTS
+                  format:F_JSON
+              parameters:parameters
+                encoding:NO];
+    
+}
+
 - (void)loadUserComments:(int)gameId start:(int)start count:(int)count{
     NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                                 HTTP_GET, P_INTERNAL_METHOD,

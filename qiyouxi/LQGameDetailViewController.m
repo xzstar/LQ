@@ -12,12 +12,16 @@
 #import "EGORefreshTableHeaderView.h"
 #import "EGORefreshTableFooterView.h"
 
-@interface LQGameDetailViewController ()
+@interface LQGameDetailViewController (){
+    NSString* moreUrl;
+}
 @property (strong) EGORefreshTableHeaderView* commentsHeaderView;
 @property (assign) BOOL refreshing;
 @property (assign) BOOL moreCommentsToLoad;
 @property (strong) NSMutableArray* userComments;
 @property (assign) CGFloat commentLabelMaxHeight;
+@property (strong) NSString* moreUrl;
+
 
 @end
 
@@ -46,6 +50,7 @@
 @synthesize commentsHeaderView;
 @synthesize moreCommentsToLoad;
 @synthesize refreshing;
+@synthesize moreUrl;
 
 #pragma mark - View Init
 - (void)loadViews{
@@ -125,14 +130,18 @@
 }
 
 - (void)loadUserComments:(NSDictionary*)result{
-    NSArray* items = [[result objectForKey:@"context"] objectForKey:@"items"];
-    int total_count = [[[result objectForKey:@"context"] objectForKey:@"total_count"] intValue];
+//    NSArray* items = [[result objectForKey:@"context"] objectForKey:@"items"];
+//    int total_count = [[[result objectForKey:@"context"] objectForKey:@"total_count"] intValue];
+    
+    NSArray* items = [result objectForKey:@"arr_comment"];
+    moreUrl = [result objectForKey:@"more_url"];  
+
     
     [self.userComments addObjectsFromArray:items];
     [self.userCommentsView reloadData];    
     
     self.refreshing = NO;
-    self.moreCommentsToLoad = total_count > self.userComments.count;    
+    self.moreCommentsToLoad = (moreUrl!=nil);//total_count > self.userComments.count;    
     [self.commentsHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.userCommentsView];
     
     if (self.userComments.count > 0){
@@ -144,7 +153,9 @@
 
 - (void)loadMoreComments{
     [self startLoading];
-    [self.client loadUserComments:self.gameId start:self.userComments.count count:50];
+    [self.client loadUserMoreComments:moreUrl];
+
+    //[self.client loadUserComments:self.gameId /*start:self.userComments.count count:50*/];
 }
 
 #pragma mark - Actions
@@ -173,8 +184,8 @@
     
     if (self.userComments.count == 0){
         [self startLoading];
-        [self.client loadUserComments:self.gameId start:0 count:50];
-        //[self.client loadUserComments:self.gameId];
+//        [self.client loadUserComments:self.gameId start:0 count:50];
+        [self.client loadUserComments:self.gameId];
 
     }
 }

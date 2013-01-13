@@ -7,11 +7,12 @@
 //
 
 #import "LQCommentTableViewCell.h"
-
+#import "UIImage+Scale.h"
 @implementation LQCommentTableViewCell
 @synthesize comment;
 @synthesize commentLabel,nickLabel,deviceLabel,dateLabel;
 @synthesize bottomView;
+@synthesize avatar;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -32,22 +33,30 @@
 - (void)setComment:(NSDictionary *)aComment{
     comment = aComment;
     
-    NSString* nick = [aComment objectForKey:@"nickname"];
+    
+    UIImage* defaultImage = [UIImage imageNamed:@"soft_detail_comment_cryptonym_icon.png"];
+    NSString* avatarUrl = [aComment objectForKey:@"user_icon"];
+    UIImage* image = [[LQImageLoader sharedInstance] loadImage:avatarUrl context:self];
+    if (image != nil){
+        
+        [avatar setImage:[image scaleToSize:CGSizeMake(50.0f, 50.0f)]];
+        [avatar setImage:defaultImage];
+    }
+    
+    NSString* nick = [aComment objectForKey:@"author"];
     if (nick.length == 0){
         nick = LocalString(@"nick.default");
     }
     
+    
+
+    
     self.nickLabel.text = nick;
-    self.commentLabel.text = [aComment objectForKey:@"comment"];
+    self.commentLabel.text = [aComment objectForKey:@"data"];
     [self.commentLabel autowrap:INT_MAX];
     
     self.deviceLabel.text = [aComment objectForKey:@"device"];
-    
-    NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"MM-dd HH:mm"];
-    long long time = [[aComment objectForKey:@"time"] longLongValue];
-    NSDate* date = [NSDate dateWithTimeIntervalSince1970:time/1000];
-    self.dateLabel.text = [formatter stringFromDate:date];
+    self.dateLabel.text = [aComment objectForKey:@"date"];
 }
 
 - (void)layoutSubviews{
@@ -66,6 +75,8 @@
     return calSize;
 }
 
-
+- (void)updateImage:(UIImage*)image forUrl:(NSString*)imageUrl{
+    [avatar setImage:[image scaleToSize:CGSizeMake(50.0f, 50.0f)]];
+}
 
 @end
