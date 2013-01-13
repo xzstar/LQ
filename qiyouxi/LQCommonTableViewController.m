@@ -352,6 +352,40 @@
 }
 
 - (void) onGameDownload:(id)sender{
-    
+    UIButton* button = (UIButton*)sender;
+    int gameId = button.tag;
+    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameId];
+    LQGameInfo* info;
+    for (LQGameInfo* tempinfo in appsList) {
+        if(tempinfo.gameId == gameId){
+            info = tempinfo;
+            break;
+        }
+    }
+    switch (status) {
+        case kQYXDSFailed:
+            [[LQDownloadManager sharedInstance] resumeDownloadById:gameId];
+            break;
+            //        case kQYXDSCompleted:
+            //        case kQYXDSInstalling:
+            //            [[LQDownloadManager sharedInstance] installGameBy:self.gameInfo.gameId];
+            //            break;
+            //        case kQYXDSPaused:
+            //            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
+            //            break;
+            //        case kQYXDSRunning:
+            //            [[LQDownloadManager sharedInstance] pauseDownloadById:self.gameInfo.gameId];
+            //            break;
+        case kQYXDSNotFound:
+            if(info!=nil)
+                [[LQDownloadManager sharedInstance] addToDownloadQueue:info suspended:NO];
+            
+            break;
+            //        case kQYXDSInstalled:
+            //            [[LQDownloadManager sharedInstance] startGame:self.gameInfo.package];
+            //            break;
+        default:
+            break;
+    }
 }
 @end

@@ -137,7 +137,7 @@
         [_audioPlayer stop];
         
         _audioPlayer.button = button; 
-        _audioPlayer.url = [NSURL URLWithString:[item objectForKey:@"url"]];
+        _audioPlayer.url = [NSURL URLWithString:[item objectForKey:@"downloadUri"]];
         
         [_audioPlayer play];
     }   

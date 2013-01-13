@@ -84,10 +84,6 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">arrow.png</string>
 						</object>
-						<object class="NSCustomResource" key="IBUIHighlightedBackgroundImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">btn_back_pressed.png</string>
-						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription" id="87723400">
 							<int key="type">2</int>
 							<double key="pointSize">15</double>
@@ -415,7 +411,6 @@
 										<string key="NSFrame">{{5, 203}, {310, 208}}</string>
 										<reference key="NSSuperview" ref="777964684"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
 										<object class="NSColor" key="IBUIBackgroundColor">
 											<int key="NSColorSpace">3</int>
 											<bytes key="NSWhite">MQA</bytes>
@@ -481,7 +476,6 @@
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -557,7 +551,6 @@
 						<string key="NSFrame">{{89, 374}, {143, 35}}</string>
 						<reference key="NSSuperview" ref="893123298"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -1190,7 +1183,6 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="arrow.png">{9, 14}</string>
-			<string key="btn_back_pressed.png">{23, 23}</string>
 			<string key="btn_gamedetail_download_left.png">{143, 35}</string>
 			<string key="foot_bg.png">{320, 49}</string>
 			<string key="game_comment_none.png">{230, 293}</string>

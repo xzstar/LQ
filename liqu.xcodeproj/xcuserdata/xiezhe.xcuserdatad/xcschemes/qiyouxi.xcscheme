@@ -15,8 +15,8 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "43F5ED2A15C65424001A0F8D"
                BuildableName = "qiyouxi.app"
-               BlueprintName = "qiyouxi"
-               ReferencedContainer = "container:qiyouxi.xcodeproj">
+               BlueprintName = "liqu"
+               ReferencedContainer = "container:liqu.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,8 +33,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "43F5ED2A15C65424001A0F8D"
             BuildableName = "qiyouxi.app"
-            BlueprintName = "qiyouxi"
-            ReferencedContainer = "container:qiyouxi.xcodeproj">
+            BlueprintName = "liqu"
+            ReferencedContainer = "container:liqu.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -52,8 +52,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "43F5ED2A15C65424001A0F8D"
             BuildableName = "qiyouxi.app"
-            BlueprintName = "qiyouxi"
-            ReferencedContainer = "container:qiyouxi.xcodeproj">
+            BlueprintName = "liqu"
+            ReferencedContainer = "container:liqu.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <EnvironmentVariables>
@@ -77,8 +77,8 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "43F5ED2A15C65424001A0F8D"
             BuildableName = "qiyouxi.app"
-            BlueprintName = "qiyouxi"
-            ReferencedContainer = "container:qiyouxi.xcodeproj">
+            BlueprintName = "liqu"
+            ReferencedContainer = "container:liqu.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

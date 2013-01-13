@@ -983,14 +983,14 @@
 		43F3743215D1168C000F475B /* LQToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQToast.h; sourceTree = "<group>"; };
 		43F3743315D1168C000F475B /* LQToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQToast.m; sourceTree = "<group>"; };
 		43F3743615D118A7000F475B /* toast_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toast_bg.png; sourceTree = SOURCE_ROOT; };
-		43F5ED2B15C65424001A0F8D /* qiyouxi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = qiyouxi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		43F5ED2B15C65424001A0F8D /* liqu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = liqu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F5ED2F15C65424001A0F8D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		43F5ED3115C65424001A0F8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		43F5ED3315C65424001A0F8D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		43F5ED3715C65424001A0F8D /* qiyouxi-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "qiyouxi-Info.plist"; sourceTree = "<group>"; };
+		43F5ED3715C65424001A0F8D /* liqu-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "liqu-Info.plist"; sourceTree = "<group>"; };
 		43F5ED3915C65424001A0F8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		43F5ED3B15C65424001A0F8D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		43F5ED3D15C65424001A0F8D /* qiyouxi-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "qiyouxi-Prefix.pch"; sourceTree = "<group>"; };
+		43F5ED3D15C65424001A0F8D /* liqu-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "liqu-Prefix.pch"; sourceTree = "<group>"; };
 		43F5ED3E15C65424001A0F8D /* QYXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYXAppDelegate.h; sourceTree = "<group>"; };
 		43F5ED3F15C65424001A0F8D /* QYXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QYXAppDelegate.m; sourceTree = "<group>"; };
 		43F5ED4415C65424001A0F8D /* LQTodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LQTodayViewController.h; sourceTree = "<group>"; };
@@ -1986,7 +1986,7 @@
 		43F5ED2C15C65424001A0F8D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				43F5ED2B15C65424001A0F8D /* qiyouxi.app */,
+				43F5ED2B15C65424001A0F8D /* liqu.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2088,10 +2088,10 @@
 		43F5ED3615C65424001A0F8D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				43F5ED3715C65424001A0F8D /* qiyouxi-Info.plist */,
+				43F5ED3715C65424001A0F8D /* liqu-Info.plist */,
 				43F5ED3815C65424001A0F8D /* InfoPlist.strings */,
 				43F5ED3B15C65424001A0F8D /* main.m */,
-				43F5ED3D15C65424001A0F8D /* qiyouxi-Prefix.pch */,
+				43F5ED3D15C65424001A0F8D /* liqu-Prefix.pch */,
 				434BF5DC15C77DEA00CCE2CC /* qiyouxi.strings */,
 			);
 			name = "Supporting Files";
@@ -2885,9 +2885,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		43F5ED2A15C65424001A0F8D /* qiyouxi */ = {
+		43F5ED2A15C65424001A0F8D /* liqu */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 43F5ED5415C65424001A0F8D /* Build configuration list for PBXNativeTarget "qiyouxi" */;
+			buildConfigurationList = 43F5ED5415C65424001A0F8D /* Build configuration list for PBXNativeTarget "liqu" */;
 			buildPhases = (
 				43F5ED2715C65424001A0F8D /* Sources */,
 				43F5ED2815C65424001A0F8D /* Frameworks */,
@@ -2897,9 +2897,9 @@
 			);
 			dependencies = (
 			);
-			name = qiyouxi;
+			name = liqu;
 			productName = qiyouxi;
-			productReference = 43F5ED2B15C65424001A0F8D /* qiyouxi.app */;
+			productReference = 43F5ED2B15C65424001A0F8D /* liqu.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2912,7 +2912,7 @@
 				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "科技有限公司";
 			};
-			buildConfigurationList = 43F5ED2515C65424001A0F8D /* Build configuration list for PBXProject "qiyouxi" */;
+			buildConfigurationList = 43F5ED2515C65424001A0F8D /* Build configuration list for PBXProject "liqu" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -2924,7 +2924,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				43F5ED2A15C65424001A0F8D /* qiyouxi */,
+				43F5ED2A15C65424001A0F8D /* liqu */,
 			);
 		};
 /* End PBXProject section */
@@ -3871,10 +3871,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "qiyouxi/qiyouxi-Prefix.pch";
-				INFOPLIST_FILE = "qiyouxi/qiyouxi-Info.plist";
+				GCC_PREFIX_HEADER = "qiyouxi/liqu-Prefix.pch";
+				INFOPLIST_FILE = "qiyouxi/liqu-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = liqu;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3888,10 +3888,10 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "qiyouxi/qiyouxi-Prefix.pch";
-				INFOPLIST_FILE = "qiyouxi/qiyouxi-Info.plist";
+				GCC_PREFIX_HEADER = "qiyouxi/liqu-Prefix.pch";
+				INFOPLIST_FILE = "qiyouxi/liqu-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = liqu;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -3901,7 +3901,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		43F5ED2515C65424001A0F8D /* Build configuration list for PBXProject "qiyouxi" */ = {
+		43F5ED2515C65424001A0F8D /* Build configuration list for PBXProject "liqu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43F5ED5215C65424001A0F8D /* Debug */,
@@ -3910,7 +3910,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		43F5ED5415C65424001A0F8D /* Build configuration list for PBXNativeTarget "qiyouxi" */ = {
+		43F5ED5415C65424001A0F8D /* Build configuration list for PBXNativeTarget "liqu" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				43F5ED5515C65424001A0F8D /* Debug */,
