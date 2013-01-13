@@ -66,7 +66,7 @@ static LQDownloadManager* _intance = nil;
                 gameInfo.icon = [dict objectForKey:@"icon"];
                 gameInfo.name = [dict objectForKey:@"name"];
                 gameInfo.category = [dict objectForKey:@"category"];
-                gameInfo.downloadUrl = [dict objectForKey:@"url"];
+                gameInfo.downloadUrl = [dict objectForKey:@"downloadUri"];
                 gameInfo.package = [dict objectForKey:@"package"];
                 
                 obj.gameInfo = gameInfo;
@@ -112,13 +112,13 @@ static LQDownloadManager* _intance = nil;
             [dict setObject:[NSNumber numberWithInt:obj.status] forKey:@"status"];
             [dict setObject:[NSNumber numberWithInt:obj.totalLength] forKey:@"size"];
             NSMutableDictionary* game = [NSMutableDictionary dictionary];
-            
+            //LQGameInfo* gameInfo = obj.gameInfo;
             [game setObject:[NSNumber numberWithInt:obj.gameInfo.gameId] forKey:@"id"];
             [game setObject:obj.gameInfo.name forKey:@"name"];
             [game setObject:obj.gameInfo.icon forKey:@"icon"];
-            [game setObject:obj.gameInfo.downloadUrl forKey:@"url"];
+            [game setObject:obj.gameInfo.downloadUrl forKey:@"downloadUri"];
             [game setObject:obj.gameInfo.package forKey:@"package"];
-            [game setObject:obj.gameInfo.category forKey:@"category"];
+            [game setObject:obj.gameInfo.tags forKey:@"category"];
             
             [dict setObject:game forKey:@"game"];
             

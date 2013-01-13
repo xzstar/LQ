@@ -18,7 +18,7 @@
 #import "AudioListViewController.h"
 #import "LQTopicCell.h"
 #import "LQTablesController.h"
-
+#import "LQDownloadManager.h"
 @interface LQFirstPageViewController ()
 @property (nonatomic, strong) NSDictionary* announcement;
 @property (nonatomic, strong) NSArray* advertisements;
@@ -265,7 +265,7 @@
             }
             cell.gameInfo = [recommendApps objectAtIndex:indexPath.row];
             [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:cell.gameInfo.gameId];
-            [cell addDownloadButtonsTarget:self action:@selector(onGameDetail:) tag:cell.gameInfo.gameId];
+            [cell addDownloadButtonsTarget:self action:@selector(onGameDownload:) tag:cell.gameInfo.gameId];
             return cell;
         }
         else{
@@ -465,7 +465,42 @@
 }
 
 - (void) onGameDownload:(id)sender{
-    
+    UIButton* button = (UIButton*)sender;
+    int gameId = button.tag;
+    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameId];
+    LQGameInfo* info;
+    for (LQGameInfo* tempinfo in recommendApps) {
+        if(tempinfo.gameId == gameId){
+            info = tempinfo;
+            break;
+        }
+    }
+    switch (status) {
+        case kQYXDSFailed:
+            [[LQDownloadManager sharedInstance] resumeDownloadById:gameId];
+            break;
+//        case kQYXDSCompleted:
+//        case kQYXDSInstalling:
+//            [[LQDownloadManager sharedInstance] installGameBy:self.gameInfo.gameId];
+//            break;
+//        case kQYXDSPaused:
+//            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
+//            break;
+//        case kQYXDSRunning:
+//            [[LQDownloadManager sharedInstance] pauseDownloadById:self.gameInfo.gameId];
+//            break;
+        case kQYXDSNotFound:
+            if(info!=nil)
+            [[LQDownloadManager sharedInstance] addToDownloadQueue:info suspended:NO];
+            
+            break;
+//        case kQYXDSInstalled:
+//            [[LQDownloadManager sharedInstance] startGame:self.gameInfo.package];
+//            break;
+        default:
+            break;
+    }
+
 }
 - (void)onSwitchRecommendSection:(id)sender{
     UIButton* button = sender;

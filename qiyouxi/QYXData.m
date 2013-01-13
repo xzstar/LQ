@@ -71,7 +71,7 @@
         
         self.commentCount = [[result objectForKey:@"comment_count"] intValue];
         
-        self.downloadUrl = [result objectForKey:@"download_url"];
+        self.downloadUrl = [result objectForKey:@"downloadUri"];
         self.package = [result objectForKey:@"package"];
         
 //        self.downloadUrl = @"http://172.16.96.53/~wangqing/ukongarith.ipa";
