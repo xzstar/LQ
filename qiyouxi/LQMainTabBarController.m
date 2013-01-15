@@ -128,23 +128,23 @@
         default:
             break;
     }
-    if (item.tag == 3){
-        if (moreBgView == nil){
-            
-            moreBgView = [[[NSBundle mainBundle] loadNibNamed:@"MoreTabView" owner:self options:nil] objectAtIndex:0];
-            [self.view addSubview:moreBgView];
-
-            CGRect frame = moreBgView.frame;
-            frame.origin.x = self.view.bounds.size.width - frame.size.width;
-            frame.origin.y = tabBar.frame.origin.y - frame.size.height;
-            moreBgView.frame = frame;
-            moreBgView.hidden = YES;
-        }
-
-        moreBgView.hidden = !moreBgView.hidden;
-    }else{
-        moreBgView.hidden = YES;
-    }
+//    if (item.tag == 3){
+//        if (moreBgView == nil){
+//            
+//            moreBgView = [[[NSBundle mainBundle] loadNibNamed:@"MoreTabView" owner:self options:nil] objectAtIndex:0];
+//            [self.view addSubview:moreBgView];
+//
+//            CGRect frame = moreBgView.frame;
+//            frame.origin.x = self.view.bounds.size.width - frame.size.width;
+//            frame.origin.y = tabBar.frame.origin.y - frame.size.height;
+//            moreBgView.frame = frame;
+//            moreBgView.hidden = YES;
+//        }
+//
+//        moreBgView.hidden = !moreBgView.hidden;
+//    }else{
+//        moreBgView.hidden = YES;
+//    }
 }
 
 - (IBAction)onManage:(id)sender{

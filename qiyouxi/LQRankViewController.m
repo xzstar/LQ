@@ -58,7 +58,7 @@
         return;
     }
     //[self startLoading];    
-    [self.client loadAppLisCommon:self.listOperator nodeid:self.nodeId orderby:self.orderBy];
+    [self.client loadAppListCommon:self.listOperator nodeid:self.nodeId orderby:self.orderBy];
 }
 
 #pragma mark - Network Callback
@@ -125,7 +125,7 @@
 - (void)playAudio:(AudioButton *)button
 {    
     NSInteger index = button.tag;
-    NSDictionary *item = [self.appsList objectAtIndex:index];
+    LQGameInfo *item = [self.appsList objectAtIndex:index];
     
     if (_audioPlayer == nil) {
         _audioPlayer = [[AudioPlayer alloc] init];
@@ -137,7 +137,7 @@
         [_audioPlayer stop];
         
         _audioPlayer.button = button; 
-        _audioPlayer.url = [NSURL URLWithString:[item objectForKey:@"downloadUri"]];
+        _audioPlayer.url = [NSURL URLWithString:item.downloadUrl];
         
         [_audioPlayer play];
     }   
@@ -152,7 +152,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"AudioCell";
+   // static NSString *CellIdentifier = @"AudioCell";
     
     AudioCell *cell;
     

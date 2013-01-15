@@ -216,6 +216,8 @@
 		F26CD2B71693148400E1E30B /* AudioMoreItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD2B61693148400E1E30B /* AudioMoreItemCell.m */; };
 		F26CD2B9169314D900E1E30B /* AudioMoreItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD2B8169314D900E1E30B /* AudioMoreItemCell.xib */; };
 		F2842791169FE08E00997FC0 /* LQCategoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2842790169FE08E00997FC0 /* LQCategoryListViewController.m */; };
+		F290F84B16A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = F290F84816A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.m */; };
+		F290F84C16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = F290F84A16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m */; };
 		F2B7A657168FDE5A00679C6E /* LQFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */; };
 		F2B7A658168FDE5A00679C6E /* LQFirstPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */; };
 		F2B7A65D168FE10500679C6E /* LQSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A65B168FE10400679C6E /* LQSearchViewController.m */; };
@@ -1146,6 +1148,11 @@
 		F26CD2B8169314D900E1E30B /* AudioMoreItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioMoreItemCell.xib; sourceTree = "<group>"; };
 		F284278F169FE08E00997FC0 /* LQCategoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQCategoryListViewController.h; sourceTree = "<group>"; };
 		F2842790169FE08E00997FC0 /* LQCategoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQCategoryListViewController.m; sourceTree = "<group>"; };
+		F290F84616A4561D00EC712A /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
+		F290F84716A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
+		F290F84816A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
+		F290F84916A4561D00EC712A /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
+		F290F84A16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
 		F2B7A654168FDE5800679C6E /* LQFirstPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQFirstPageViewController.h; sourceTree = "<group>"; };
 		F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQFirstPageViewController.m; sourceTree = "<group>"; };
 		F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQFirstPageViewController.xib; sourceTree = "<group>"; };
@@ -2004,6 +2011,7 @@
 		43F5ED3515C65424001A0F8D /* qiyouxi */ = {
 			isa = PBXGroup;
 			children = (
+				F290F84516A4561C00EC712A /* SVPullToRefresh */,
 				F26CD27D1693063E00E1E30B /* Audio */,
 				F2ED56AD168FCC2900E12C5F /* imageResource */,
 				438E82B815CF8D5A003BD09E /* egorefreshtable */,
@@ -2246,6 +2254,18 @@
 				F26CD29D1693069F00E1E30B /* stop.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		F290F84516A4561C00EC712A /* SVPullToRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				F290F84616A4561D00EC712A /* SVPullToRefresh.h */,
+				F290F84716A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.h */,
+				F290F84816A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.m */,
+				F290F84916A4561D00EC712A /* UIScrollView+SVPullToRefresh.h */,
+				F290F84A16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m */,
+			);
+			path = SVPullToRefresh;
 			sourceTree = "<group>";
 		};
 		F2ED56AD168FCC2900E12C5F /* imageResource */ = {
@@ -3797,6 +3817,8 @@
 				F2842791169FE08E00997FC0 /* LQCategoryListViewController.m in Sources */,
 				F230807C16A1B6990052F0C9 /* LQWallpaperCell.m in Sources */,
 				F25BB3D716A24BF900E8F7EE /* UIImage+Scale.m in Sources */,
+				F290F84B16A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.m in Sources */,
+				F290F84C16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

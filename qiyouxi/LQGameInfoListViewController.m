@@ -9,6 +9,7 @@
 #import "LQGameInfoListViewController.h"
 #import "LQGameDetailViewController.h"
 #import "LQWallpaperCell.h"
+#import "SVPullToRefresh.h"
 @interface LQGameInfoListViewController ()
 @end
 
@@ -59,7 +60,7 @@
             [self endLoading];
             return;
         }
-        [self.client loadAppLisCommon:self.listOperator nodeid:self.nodeId orderby:self.orderBy];
+        [self.client loadAppListCommon:self.listOperator nodeid:self.nodeId orderby:self.orderBy];
         
     }
     else if(self.listOperator == @"app_search"){
@@ -67,16 +68,47 @@
             [self endLoading];
             return;
         }
-        [self.client searchAppLisCommon:self.listOperator keywords:self.keywords];
+        [self.client searchAppListCommon:self.listOperator keywords:self.keywords];
             
     }
     else {
         [self endLoading];
+        [self.tableView.pullToRefreshView stopAnimating];
         return;
     }
         
 }
+- (void)loadMoreData{
+    //[self startLoading];
+    [super loadMoreData];
+    if (self.listOperator == @"app_list" ||
+        self.listOperator == @"ls_list"  ||
+        self.listOperator == @"wallpaper_list"
+        ) {
+        if(self.moreUrl == nil){
+            return;
+        }
+        [self.client loadAppMoreListCommon:self.moreUrl];
+        
+    }
+    else if(self.listOperator == @"app_search"){
+//        if(self.keywords == nil){
+//            [self endLoading];
+//            return;
+//        }
+        if(self.moreUrl == nil){
+            return;
+        }
+        [self.client searchAppMoreListCommon:self.moreUrl];
+        
+    }
+    else {
+        //[self endLoading];
+        [self.tableView.pullToRefreshView stopAnimating];
+        return;
+    }
 
+}
 #pragma mark - Network Callback
 - (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{
     [self handleNetworkOK];
@@ -87,12 +119,23 @@
             if ([result isKindOfClass:[NSDictionary class]]){
                 // [self loadTodayGames:result];
                 [self loadApps:[result objectForKey:@"apps"]];
+                self.moreUrl = [result objectForKey:@"more_url"];
             }
             break;
-            
+        case C_COMMAND_GETAPPLISTSOFTGAME_MORE:  
+        case C_COMMAND_SEARCH_MORE:
+            //[self endLoading];
+            if ([result isKindOfClass:[NSDictionary class]]){
+                [self loadMoreApps:[result objectForKey:@"apps"]];
+                self.moreUrl = [result objectForKey:@"more_url"];
+            }
+            break;
+
         default:
             break;
     }
+    //[self.tableView.pullToRefreshView stopAnimating];
+
 }
 
 
@@ -110,7 +153,7 @@
 - (void)playAudio:(AudioButton *)button
 {    
     NSInteger index = button.tag;
-    NSDictionary *item = [self.appsList objectAtIndex:index];
+    LQGameInfo *item = [self.appsList objectAtIndex:index];
     
     if (_audioPlayer == nil) {
         _audioPlayer = [[AudioPlayer alloc] init];
@@ -122,7 +165,7 @@
         [_audioPlayer stop];
         
         _audioPlayer.button = button; 
-        _audioPlayer.url = [NSURL URLWithString:[item objectForKey:@"url"]];
+        _audioPlayer.url = [NSURL URLWithString:item.downloadUrl];
         
         [_audioPlayer play];
     }   
@@ -137,7 +180,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"AudioCell";
+    //static NSString *CellIdentifier = @"AudioCell";
     
     AudioCell *cell;
     

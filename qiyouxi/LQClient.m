@@ -94,12 +94,12 @@
 
 - (NSString*) getUrl:(NSString*) path{
     NSURL* url =[[NSURL alloc]initWithString:path];
-    return url.path;
+    return [NSString stringWithFormat:@"%@%@",url.host,url.path];
 }
 
 - (NSDictionary*) getParameter:(NSString*) path{
     NSURL* url =[[NSURL alloc]initWithString:path];
-    NSString* parameterString = url.parameterString;
+    NSString* parameterString = url.query;
     NSArray* items = [parameterString componentsSeparatedByString:@"&"];
     NSMutableDictionary* parameters = [NSMutableDictionary dictionary];
     for (NSString* item in items){
@@ -170,16 +170,25 @@
 }
 
 #pragma mark - API
+
+// 分页更多的通用api
+- (void) loadMoreList:(int) command moreUrl:(NSString*)moreUrl{
+    NSDictionary* parameters = [self getParameter:moreUrl];
+    
+    [self processCommand:[NSString stringWithFormat:@"%@%@", LQ_API_SERVER, LQ_API_REQUEST]
+                 command:command
+                  format:F_JSON
+              parameters:parameters
+                encoding:NO];
+}
+
+
 - (void)loadRecommendation{
     NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                                 HTTP_GET, P_INTERNAL_METHOD,
-                                @"jPoHFsMC5a33cPTRNJTPxw", @"api_key",
-                                @"5d881200fb9da931009e9080b87d9df99c6aa320",@"nonce",
-                                @"1285553664174",@"timestamp",
-                                @"66cbf30b84b2b7a63f790b058a088945",@"api_sig",
                                 @"homepage",@"op",
                                 nil];
-    [self processCommand:[NSString stringWithFormat:@"%@%@", @"http://appserver.liqucn.com/ios", @"/request.php"]
+    [self processCommand:[NSString stringWithFormat:@"%@%@", LQ_API_SERVER, LQ_API_REQUEST]
                  command:C_COMMAND_GETRECOMMENDATION
                   format:F_JSON
               parameters:parameters
@@ -204,7 +213,7 @@
 }
 
 
-- (void) loadAppLisCommon:(NSString *)listOperator 
+- (void) loadAppListCommon:(NSString *)listOperator 
                    nodeid:(NSString *)nodeid 
                   orderby:(NSString *)orderby{
     NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -222,7 +231,12 @@
 
 }
 
-- (void) searchAppLisCommon:(NSString *)listOperator 
+
+- (void) loadAppMoreListCommon:(NSString*) moreUrl{
+    [self loadMoreList:C_COMMAND_GETAPPLISTSOFTGAME_MORE moreUrl:moreUrl];
+}
+
+- (void) searchAppListCommon:(NSString *)listOperator 
                    keywords:(NSString *)keywords 
 {
     NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -237,6 +251,10 @@
                 encoding:NO];
     
     
+}
+
+- (void) searchAppMoreListCommon:(NSString*) moreUrl{
+    [self loadMoreList:C_COMMAND_SEARCH_MORE moreUrl:moreUrl];
 }
 
 - (void) loadCategory:(NSString*) category{

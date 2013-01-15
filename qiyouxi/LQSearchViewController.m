@@ -112,14 +112,17 @@
     BOOL needResearch = YES;
     if(listController==nil)
     {
-         listController = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil];
+        listController = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:LQAPPSEARCH keywords:[searchbar text]];
         CGRect frame = searchResultTable.frame;
         frame.origin.x = 0;
         listController.view.frame = frame;
         needResearch = NO;
     }
-    listController.listOperator =LQAPPSEARCH;
-    listController.keywords = [searchbar text];
+    else {
+        listController.keywords = [searchbar text];
+        listController.appsList = nil;
+        [listController loadData];
+    }
     NSArray* subViews = [searchResultTable subviews];
     for (UIView* view in subViews) {
         [view removeFromSuperview];

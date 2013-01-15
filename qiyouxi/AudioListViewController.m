@@ -102,7 +102,7 @@ static NSArray *itemArray;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"AudioCell";
+    //static NSString *CellIdentifier = @"AudioCell";
     
     AudioCell *cell;
     

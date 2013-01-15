@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "LQClientBase.h"
 #import "LQClient.h"
+#import "EGORefreshTableHeaderView.h"
 #define NODE_ID_SOFT     @"rj"
 #define NODE_ID_GAEM     @"yx"
 
@@ -22,6 +23,10 @@
     LQClient* _client;
     BOOL _dataLoaded;
     
+//    BOOL _reloading;  
+//    EGORefreshTableHeaderView *headerView;  
+//    BOOL moreToLoad;
+    
     NSInteger selectedRow;
     NSInteger selectedSection;
     NSString* nodeId;
@@ -30,6 +35,7 @@
     NSString* keywords;
     NSMutableArray* appsList;
     UIViewController* parent;
+    NSString* moreUrl;
 
 }
 
@@ -42,16 +48,23 @@
 @property (nonatomic, assign) NSInteger selectedRow;
 @property (nonatomic, assign) NSInteger selectedSection;
 @property (nonatomic, strong) UIViewController* parent;
-
+@property (nonatomic, assign) BOOL moreToLoad;
+@property (nonatomic, strong) NSString* moreUrl;
+- (id)initWithNibName:(NSString *)nibNameOrNil
+               bundle:(NSBundle *)nibBundleOrNil
+         listOperator:(NSString *)aListOperator
+             keywords:(NSString*)aKeywords;
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil
          listOperator:(NSString *)aListOperator
                nodeId:(NSString *)aNodeId
               orderBy:(NSString *)aOrderBy;
-
+- (void)loadCommon;
 - (void)loadViews;
 - (void)loadData;
+- (void)loadMoreData;
 - (void)loadApps:(NSArray*) apps;
+- (void)loadMoreApps:(NSArray*) apps;
 - (void)startLoading;
 - (void)endLoading;
 

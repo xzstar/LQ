@@ -21,8 +21,10 @@
 #define C_COMMAND_SUBMITFEEDBACK C_USER_COMMAND + 10
 #define C_COMMAND_GETLAUNCHIMAGE C_USER_COMMAND + 11
 #define C_COMMAND_GETAPPLISTSOFTGAME C_USER_COMMAND + 12 
-#define C_COMMAND_GETCATEGORY C_USER_COMMAND + 13
-#define C_COMMAND_SEARCH C_USER_COMMAND + 14
+#define C_COMMAND_GETAPPLISTSOFTGAME_MORE C_USER_COMMAND + 13 
+#define C_COMMAND_GETCATEGORY C_USER_COMMAND + 14
+#define C_COMMAND_SEARCH C_USER_COMMAND + 15
+#define C_COMMAND_SEARCH_MORE C_USER_COMMAND + 16
 
 @interface LQClient : LQClientBase
 - (void)loadLaunchImage;
@@ -37,11 +39,13 @@
 - (void)loadGameInfo:(int)gameId;
 
 - (void)loadSoftNewest;
-- (void) loadAppLisCommon:(NSString*)listOperator 
+- (void) loadAppListCommon:(NSString*)listOperator 
                    nodeid:(NSString*) nodeid 
                   orderby:(NSString*) orderby;
-- (void) searchAppLisCommon:(NSString *)listOperator 
+- (void) loadAppMoreListCommon:(NSString*) moreUrl;
+- (void) searchAppListCommon:(NSString *)listOperator 
                    keywords:(NSString *)keywords;
+- (void) searchAppMoreListCommon:(NSString*) moreUrl;
 
 - (void) loadCategory:(NSString*) category;
 - (void)loadUserComments:(int)gameId;

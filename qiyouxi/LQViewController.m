@@ -81,9 +81,9 @@
     animationView.center = CGPointMake(self.shadowView.bounds.size.width/2, self.shadowView.bounds.size.height/2);
     [self.shadowView addSubview:animationView];
 
-    UIImageView* centerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"progress_center.png"]];
-    centerView.center = animationView.center;
-    [self.shadowView addSubview:centerView];
+//    UIImageView* centerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"progress_center.png"]];
+//    centerView.center = animationView.center;
+//    [self.shadowView addSubview:centerView];
 
     [self.animationTimer invalidate];
     self.animationTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(onLoading:) userInfo:animationView repeats:YES];

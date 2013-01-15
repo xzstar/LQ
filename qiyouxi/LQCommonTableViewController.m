@@ -10,6 +10,7 @@
 #import "LQHistoryTableViewCell.h"
 #import "LQGameDetailViewController.h"
 #import "LQGameMoreItemTableViewCell.h"
+#import "SVPullToRefresh.h"
 #define NAVIGATIONBAR_HEIGHT 44.0
 
 @interface LQCommonTableViewController (){
@@ -27,19 +28,37 @@
 @synthesize appsList;
 @synthesize selectedRow,selectedSection;
 @synthesize parent;
+@synthesize moreToLoad;
+@synthesize moreUrl;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
-        [self loadViews];
-        [self loadData];
+//        [self loadViews];
+//        [self loadData];
+        [self loadCommon];
 
     }
     return self;
 }
+- (id)initWithNibName:(NSString *)nibNameOrNil
+               bundle:(NSBundle *)nibBundleOrNil
+         listOperator:(NSString *)aListOperator
+             keywords:(NSString*)aKeywords{
+    self = [self initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+        // self.title = NSLocalizedString(@"First", @"First");
+        // self.tabBarItem.image = nil;
+        listOperator = aListOperator;
+        keywords = aKeywords;
+        [self loadCommon];
 
+    }
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil
@@ -55,12 +74,30 @@
         listOperator = aListOperator;
         nodeId = aNodeId;
         orderBy = aOrderBy;
-        [self loadViews];
-        [self loadData];
+        [self loadCommon];
     }
     return self;
 }
 
+- (void)loadCommon{
+    [self loadViews];
+    [self loadData];
+    
+    __unsafe_unretained LQCommonTableViewController* weakSelf = self;
+    // setup pull-to-refresh
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [weakSelf loadData];
+        });
+    }];
+    
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [weakSelf loadMoreData];
+        });
+    }];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -125,7 +162,7 @@
     
     // Configure the cell...
     
-    LQHistoryTableViewCell* cell;
+    //LQHistoryTableViewCell* cell;
     if(indexPath.section == selectedSection &&
        indexPath.row == selectedRow){
         LQGameMoreItemTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"moreitem"];
@@ -238,7 +275,15 @@
 }
 
 - (void)loadViews{
-    
+//    if(headerView == nil)  
+//    {  
+//        EGORefreshTableHeaderView *view = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f, 0.0f - self.view.bounds.size.height, self.view.frame.size.width, self.view.bounds.size.height)];  
+//        
+//        view.delegate = self;  
+//        [self.view addSubview:view];  
+//        headerView = view;  
+//    }  
+//    [headerView refreshLastUpdatedDate]; 
 }
 
 - (void)loadData{
@@ -246,12 +291,12 @@
     [self startLoading];
     selectedRow = -1;
     selectedSection = -1;
-    //[self.client loadSoftNewest];
 }
 
-//- (IBAction)onBack:(id)sender{
-//    [self.navigationController popViewControllerAnimated:YES];
-//}
+- (void)loadMoreData{
+    //[self startLoading];
+}
+
 
 - (void)startLoading{
     self.shadowView = [[UIWindow alloc] initWithFrame:CGRectMake(0, 20, 320, 460)];
@@ -263,9 +308,9 @@
     animationView.center = CGPointMake(self.shadowView.bounds.size.width/2, self.shadowView.bounds.size.height/2);
     [self.shadowView addSubview:animationView];
     
-    UIImageView* centerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"progress_center.png"]];
-    centerView.center = animationView.center;
-    [self.shadowView addSubview:centerView];
+//    UIImageView* centerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"progress_center.png"]];
+//    centerView.center = animationView.center;
+//    [self.shadowView addSubview:centerView];
     
     [self.animationTimer invalidate];
     self.animationTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(onLoading:) userInfo:animationView repeats:YES];
@@ -285,8 +330,8 @@
 }
 
 - (void)handleNetworkOK{
-    [self.errorView removeFromSuperview];
-    self.errorView = nil;
+//    [self.errorView removeFromSuperview];
+//    self.errorView = nil;
 }
 
 - (void)handleNetworkErrorHint{
@@ -294,34 +339,36 @@
 }
 
 - (void)handleNetworkError:(LQClientError*)error{
-    [self.errorView removeFromSuperview];
-    CGRect frame = self.view.bounds;
-    frame.origin.y += NAVIGATIONBAR_HEIGHT;
-    frame.size.height -= NAVIGATIONBAR_HEIGHT;
-    self.errorView = [[UIView alloc] initWithFrame:frame];
-    self.errorView.backgroundColor = [UIColor whiteColor];
-    UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"err_network.png"]];
-    imageView.center = CGPointMake(errorView.bounds.size.width/2, errorView.bounds.size.height/2);
-    [self.errorView addSubview:imageView];
-    [self.view addSubview:self.errorView];
+//    [self.errorView removeFromSuperview];
+//    CGRect frame = self.view.bounds;
+//    frame.origin.y += NAVIGATIONBAR_HEIGHT;
+//    frame.size.height -= NAVIGATIONBAR_HEIGHT;
+//    self.errorView = [[UIView alloc] initWithFrame:frame];
+//    self.errorView.backgroundColor = [UIColor whiteColor];
+//    UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"err_network.png"]];
+//    imageView.center = CGPointMake(errorView.bounds.size.width/2, errorView.bounds.size.height/2);
+//    [self.errorView addSubview:imageView];
+//    [self.view addSubview:self.errorView];
 }
 
 - (void)handleNoNetwork{
-    [self.errorView removeFromSuperview];
-    CGRect frame = self.view.bounds;
-    frame.origin.y += NAVIGATIONBAR_HEIGHT;
-    frame.size.height -= NAVIGATIONBAR_HEIGHT;
-    self.errorView = [[UIView alloc] initWithFrame:frame];
-    self.errorView.backgroundColor = [UIColor whiteColor];
-    UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"no_network.png"]];
-    imageView.center = CGPointMake(errorView.bounds.size.width/2, errorView.bounds.size.height/2);
-    [self.errorView addSubview:imageView];
-    [self.view addSubview:self.errorView];
+//    [self.errorView removeFromSuperview];
+//    CGRect frame = self.view.bounds;
+//    frame.origin.y += NAVIGATIONBAR_HEIGHT;
+//    frame.size.height -= NAVIGATIONBAR_HEIGHT;
+//    self.errorView = [[UIView alloc] initWithFrame:frame];
+//    self.errorView.backgroundColor = [UIColor whiteColor];
+//    UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"no_network.png"]];
+//    imageView.center = CGPointMake(errorView.bounds.size.width/2, errorView.bounds.size.height/2);
+//    [self.errorView addSubview:imageView];
+//    [self.view addSubview:self.errorView];
 }
 
 
 - (void)client:(LQClientBase*)client didFailExecution:(LQClientError*)error{
     [self endLoading];
+    [self.tableView.pullToRefreshView stopAnimating];
+    [self.tableView.infiniteScrollingView stopAnimating];
     [self handleNetworkError:error];
 }
 
@@ -329,11 +376,78 @@
 - (void)loadApps:(NSArray*) apps{
     NSMutableArray* items = [NSMutableArray array];
     
+    if(appsList == nil || appsList.count == 0){       
+        for (NSDictionary* game in apps){
+            [items addObject:[[LQGameInfo alloc] initWithAPIResult:game]];
+        }
+        appsList = items;
+        [self.tableView reloadData];
+    }
+    else{
+        int addedEnd = 0;   
+        LQGameInfo* first = [items objectAtIndex:0];
+        for (LQGameInfo* info in items) {
+            if (info.name != first.name) {
+                addedEnd++;
+            }
+            else {
+                break;
+            }
+        }
+        
+        for (int i=0; i<addedEnd; i++) {
+            [appsList insertObject:[apps objectAtIndex:i] atIndex:i];
+        }
+        
+        __unsafe_unretained LQCommonTableViewController* weakSelf = self;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakSelf.tableView beginUpdates];
+            NSMutableArray *indexPaths = [NSMutableArray array];
+            for(int i=0;i<addedEnd;i++)
+            {
+                [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+            }
+            
+            [weakSelf.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationBottom];
+            [weakSelf.tableView endUpdates];
+            [weakSelf.tableView.pullToRefreshView stopAnimating];
+        });
+    }
+    
+}
+
+- (void)loadMoreApps:(NSArray*) apps{
+    NSMutableArray* items = [NSMutableArray array];
+    
     for (NSDictionary* game in apps){
         [items addObject:[[LQGameInfo alloc] initWithAPIResult:game]];
     }
-    appsList = items;
-    [self.tableView reloadData];
+    
+    int oldAppsCount = 0;   
+    int addAppsCount = apps.count;
+    if(appsList ==nil){
+        appsList = items;
+    }
+    else {
+        oldAppsCount = appsList.count;
+        [appsList addObjectsFromArray:items];
+    }
+    
+    __unsafe_unretained LQCommonTableViewController* weakSelf = self;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [weakSelf.tableView beginUpdates];
+        NSMutableArray *indexPaths = [NSMutableArray array];
+        for(int i=oldAppsCount;i<(oldAppsCount+addAppsCount);i++)
+        {
+            [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+        }
+             
+        [weakSelf.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+        [weakSelf.tableView endUpdates];
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+    });
     
 }
 
@@ -388,4 +502,41 @@
             break;
     }
 }
+
+//#pragma mark - EGORefreshTableView
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
+//    if (moreToLoad){
+//        [headerView egoRefreshScrollViewDidScroll:scrollView];
+//    }
+//}
+//
+//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+//    if (moreToLoad){
+//        [headerView egoRefreshScrollViewDidEndDragging:scrollView];
+//    }
+//}
+//
+//
+//#pragma mark -
+//#pragma mark EGORefreshTableHeaderDelegate Methods
+//- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+//    //[self loadCurrentCategory];
+//    [self loadMoreData];
+//}
+//
+//- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+//	return _reloading; // should return if data source model is reloading
+//}
+//
+//- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+//	return [NSDate date]; // should return date data source was last changed
+//}
+//
+//- (float)egoRefreshTableHeaderTableViewHeight:(EGORefreshTableHeaderView*)view{
+//    return self.view.frame.size.height;
+//}
+//
+//- (BOOL)egoRefreshTableHeaderDataSourceNeedLoading:(EGORefreshTableHeaderView*)view{
+//    return moreToLoad;
+//}
 @end
