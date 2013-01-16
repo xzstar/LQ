@@ -94,6 +94,26 @@
     [self.client loadGameInfo:self.gameId];
 }
 
+- (void)loadGameBaseInfo{
+    self.gameTitleLabel.text = self.gameInfo.name;
+    
+    int size= [self.gameInfo.size intValue];
+    float sizeMB= (float)size/(1024*1024);
+    self.gameSize.text =  [NSString stringWithFormat:@"大小:%.2fMB",sizeMB];
+ 
+    self.gameVersion.text = [NSString stringWithFormat:@"版本:%@",gameInfo.versionCode];
+    self.gameScore.text = [NSString stringWithFormat:@"%@分",gameInfo.rating];
+    self.gameType.text = [NSString stringWithFormat:@"分类:%@", gameInfo.tags];
+    self.gameVender.text = [NSString stringWithFormat:@"开发商:%@",@""];
+    
+}
+
+- (void)loadGamePhotoInfo{
+    self.screenShotsView.delegate = self;
+    self.screenShotsView.needRotate = YES;
+    self.screenShotsView.imageUrls = self.gameInfo.screenShotsSmall;
+    
+}
 - (void)loadGameInfo:(NSDictionary*)result{
     self.gameInfo = [[LQGameInfo alloc] initWithAPIResult:result];
     
