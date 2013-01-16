@@ -9,14 +9,14 @@
 #import "LQWallpaperCell.h"
 #import "QYXData.h"
 @implementation LQWallpaperCell
-@synthesize button1,button2,button3,button4;
+@synthesize button1,button2,button3;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         // Initialization code
-        buttonList = [NSArray arrayWithObjects:button1,button2,button3,button4, nil];
+        buttonList = [NSArray arrayWithObjects:button1,button2,button3, nil];
     }
     return self;
 }
@@ -33,7 +33,7 @@
     int i =0;
     gameInfoList = infoList;
     if(buttonList==nil)
-        buttonList = [NSArray arrayWithObjects:button1,button2,button3,button4, nil];
+        buttonList = [NSArray arrayWithObjects:button1,button2,button3, nil];
     
     UIImage* defaultImage = [UIImage imageNamed:@"icon_small.png"] ;
     for (;i<infoList.count && i<buttonList.count;i++) {

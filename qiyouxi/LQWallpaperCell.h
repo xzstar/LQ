@@ -17,7 +17,6 @@
 @property (unsafe_unretained) IBOutlet UIButton* button1;
 @property (unsafe_unretained) IBOutlet UIButton* button2;
 @property (unsafe_unretained) IBOutlet UIButton* button3;
-@property (unsafe_unretained) IBOutlet UIButton* button4;
 
 -(void) setButtonInfo:(NSArray*) infoList;
 @end

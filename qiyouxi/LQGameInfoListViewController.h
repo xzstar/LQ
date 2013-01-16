@@ -30,5 +30,15 @@
 @interface LQWallpaperListViewController : LQGameInfoListViewController{
     
 }
+@end
 
+@interface LQRequestListViewController : LQCommonTableViewController{
+    NSString* requestUrl;
+}
+
+@property (nonatomic,strong) NSString* requestUrl;
+@property (nonatomic,unsafe_unretained) UIButton* backButton;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+           requestUrl:(NSString*) aRequestUrl;
+- (IBAction)onBack:(id)sender;
 @end

@@ -72,6 +72,12 @@ static LQAPICache* _instance = nil;
                 data = [NSData dataWithContentsOfFile:cacheFilePath];
             }   
         }
+        NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        body = [body stringByReplacingOccurrencesOfString:@"\r\n"withString:@""];
+        
+        NSRange range = [body rangeOfString:@"502 Bad Gateway"];
+        if(range.location>0)
+            return nil;
         
         if (data != nil){
             NSHTTPURLResponse* rep = [[NSHTTPURLResponse alloc] initWithURL:request.URL statusCode:200 HTTPVersion:@"1.1" headerFields:nil];
@@ -87,6 +93,14 @@ static LQAPICache* _instance = nil;
     if (![[request HTTPMethod] isEqualToString:@"GET"]){
         return;
     }
+    
+    NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    body = [body stringByReplacingOccurrencesOfString:@"\r\n"withString:@""];
+    
+    NSRange range = [body rangeOfString:@"502 Bad Gateway"];
+    if(range.location>0)
+        return;
+    
     
     NSString* path = [[request URL] path];
     if ([path isEqualToString:@"/api/game/comments"]){

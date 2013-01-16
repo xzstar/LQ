@@ -85,7 +85,7 @@
 }
 
 - (void)initPageController{
-    NSArray* names = [[NSArray alloc] initWithObjects:@"最新",@"推荐",@"排行",@"专题", nil];
+    NSArray* names = [[NSArray alloc] initWithObjects:@"最新",@"推荐",@"排行",@"分类", nil];
     
     int width = names.count*(PAGE_NAME_SPAN+PAGE_NAME_WIDTH);
     

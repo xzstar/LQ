@@ -234,6 +234,7 @@
 
 @end
 
+#define WALLPAPER_COUNT_PERLINE 3
 @implementation LQWallpaperListViewController
 - (void)viewDidLoad
 {
@@ -246,8 +247,8 @@
 {
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return (self.appsList.count%4)==0?
-    self.appsList.count/4:((self.appsList.count/4)+1);
+    return (self.appsList.count%WALLPAPER_COUNT_PERLINE)==0?
+    self.appsList.count/WALLPAPER_COUNT_PERLINE:((self.appsList.count/4)+WALLPAPER_COUNT_PERLINE);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -267,10 +268,10 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"LQWallpaperCell" owner:self options:nil] objectAtIndex:0];
     }
     
-    int startIndex = indexPath.row * 4;
+    int startIndex = indexPath.row * WALLPAPER_COUNT_PERLINE;
     // Configure the cell..
     NSMutableArray *itemList = [NSMutableArray array];
-    for(int i=startIndex;i<self.appsList.count&&i<(4+startIndex);i++){
+    for(int i=startIndex;i<self.appsList.count&&i<(WALLPAPER_COUNT_PERLINE+startIndex);i++){
         LQGameInfo *item = [self.appsList objectAtIndex:i];
         [itemList addObject:item];
     }
@@ -286,8 +287,98 @@
     return;
 }
 
+@end
+
+
+@implementation LQRequestListViewController 
+@synthesize requestUrl;
+@synthesize backButton;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+           requestUrl:(NSString*) aRequestUrl
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+        // self.title = NSLocalizedString(@"First", @"First");
+        // self.tabBarItem.image = nil;
+        requestUrl = aRequestUrl;
+    }
+    return self;
+}
+
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
 
 
 
+#pragma mark - View Init
+- (void)loadViews{
+    [super loadViews];
+}
+
+#pragma mark - Data Init
+
+- (void)loadData{
+    [super loadData];
+    if (self.requestUrl!=nil){
+        [self.client loadRequstList:requestUrl];
+    }
+    else {
+        [self endLoading];
+        [self.tableView.pullToRefreshView stopAnimating];
+        return;
+    }
+    
+}
+- (void)loadMoreData{
+    //[self startLoading];
+    [super loadMoreData];
+    if(self.moreUrl != nil){
+        [self.client loadAppMoreListCommon:self.moreUrl];
+    }
+    else {
+        //[self endLoading];
+        [self.tableView.pullToRefreshView stopAnimating];
+        return;
+    }
+    
+}
+#pragma mark - Network Callback
+- (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{
+    [self handleNetworkOK];
+    switch (command) {
+        case C_COMMAND_GETAPPLISTSOFTGAME:
+            [self endLoading];
+            if ([result isKindOfClass:[NSDictionary class]]){
+                [self loadApps:[result objectForKey:@"apps"]];
+                self.moreUrl = [result objectForKey:@"more_url"];
+            }
+            break;
+        case C_COMMAND_GETAPPLISTSOFTGAME_MORE:  
+            if ([result isKindOfClass:[NSDictionary class]]){
+                [self loadMoreApps:[result objectForKey:@"apps"]];
+                self.moreUrl = [result objectForKey:@"more_url"];
+            }
+            break;
+            
+        default:
+            break;
+    }
+    
+}
+
+- (IBAction)onBack:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 @end

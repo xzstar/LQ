@@ -38,7 +38,7 @@
 - (void)loadGameOfCategory:(int)categoryId start:(int)start count:(int)count;
 - (void)loadGameInfo:(int)gameId;
 
-- (void)loadSoftNewest;
+- (void) loadSoftNewest;
 - (void) loadAppListCommon:(NSString*)listOperator 
                    nodeid:(NSString*) nodeid 
                   orderby:(NSString*) orderby;
@@ -54,5 +54,5 @@
 - (void)submitFeedback:(NSString*)feedback contact:(NSString*)contact;
 
 - (void)loadUserMoreComments:(NSString*) moreUrl;
-
+- (void)loadRequstList:(NSString*) requestUrl;
 @end

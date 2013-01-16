@@ -19,6 +19,7 @@
 #import "LQTopicCell.h"
 #import "LQTablesController.h"
 #import "LQDownloadManager.h"
+#import "LQTopicListViewController.h"
 @interface LQFirstPageViewController ()
 @property (nonatomic, strong) NSDictionary* announcement;
 @property (nonatomic, strong) NSArray* advertisements;
@@ -285,6 +286,7 @@
             cell = [[[NSBundle mainBundle] loadNibNamed:@"LQTopicCell" owner:self options:nil] objectAtIndex:0];
         }
         cell.gameInfo = [recommendTopics objectAtIndex:indexPath.row];
+        [cell addInfoButtonsTarget:self action:@selector(onTopicList:) tag:indexPath.row];
         return cell;
     }
   
@@ -513,6 +515,19 @@
         [self.historyView reloadData];
     }
     
+}
+
+- (void)onTopicList:(id)sender{
+    UIButton* button = sender;
+    int tag = button.tag;
+    if(tag < recommendTopics.count){
+        LQGameInfo* info = [recommendTopics objectAtIndex:tag];
+        LQTopicListViewController * controller  = [[LQTopicListViewController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
+        controller.requestUrl = info.requestUrl;
+        [self.navigationController pushViewController:controller animated:YES];
+        
+        
+    }
 }
 - (void)QYXAdvertiseView:(LQAdvertiseView*)advertiseView selectPage:(int)page{
     

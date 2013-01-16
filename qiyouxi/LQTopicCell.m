@@ -11,7 +11,7 @@
 @implementation LQTopicCell
 @synthesize gameIconView, gameDetailLabel, gameTitleLabel,gameComments;
 @synthesize gameInfo;
-
+@synthesize topicListButton;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -48,6 +48,11 @@
     if ([self.gameInfo.icon isEqualToString:imageUrl]){
         self.gameIconView.image = image;
     }
+}
+
+- (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag{
+    self.topicListButton.tag = tag;
+    [self.topicListButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside]; 
 }
 
 @end

@@ -183,6 +183,7 @@
 }
 
 
+
 - (void)loadRecommendation{
     NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                                 HTTP_GET, P_INTERNAL_METHOD,
@@ -195,6 +196,10 @@
                 encoding:NO];
 
     
+}
+
+- (void)loadRequstList:(NSString*) requestUrl{
+    [self loadMoreList:C_COMMAND_GETAPPLISTSOFTGAME moreUrl:requestUrl];
 }
 
 - (void)loadSoftNewest{

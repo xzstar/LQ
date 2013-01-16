@@ -29,5 +29,5 @@
 - (void)onLoadWallpaper:(id)sender;
 - (void)onGameDetail:(id)sender;
 - (void)onSwitchRecommendSection:(id)sender;
-
+- (void)onTopicList:(id)sender;
 @end

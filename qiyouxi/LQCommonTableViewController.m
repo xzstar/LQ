@@ -38,7 +38,7 @@
         // Custom initialization
 //        [self loadViews];
 //        [self loadData];
-        [self loadCommon];
+        //[self loadCommon];
 
     }
     return self;
@@ -54,7 +54,7 @@
         // self.tabBarItem.image = nil;
         listOperator = aListOperator;
         keywords = aKeywords;
-        [self loadCommon];
+        //[self loadCommon];
 
     }
     return self;
@@ -74,14 +74,17 @@
         listOperator = aListOperator;
         nodeId = aNodeId;
         orderBy = aOrderBy;
-        [self loadCommon];
+        //[self loadCommon];
     }
     return self;
 }
 
 - (void)loadCommon{
     [self loadViews];
-    [self loadData];
+    if (!_dataLoaded) {
+        _dataLoaded = YES;
+        [self loadData];
+    }
     
     __unsafe_unretained LQCommonTableViewController* weakSelf = self;
     // setup pull-to-refresh
@@ -107,7 +110,7 @@
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self loadViews];
+    [self loadCommon];
 
 }
 
@@ -247,7 +250,7 @@
      [self.navigationController pushViewController:detailViewController animated:YES];
      */
     if(selectedRow!= indexPath.row
-       && selectedSection!=indexPath.section){
+        /*&& selectedSection!=indexPath.section*/){
         selectedRow = indexPath.row;
         selectedSection = indexPath.section;    
     }
@@ -375,45 +378,49 @@
 #pragma mark - load apps 
 - (void)loadApps:(NSArray*) apps{
     NSMutableArray* items = [NSMutableArray array];
-    
-    if(appsList == nil || appsList.count == 0){       
-        for (NSDictionary* game in apps){
-            [items addObject:[[LQGameInfo alloc] initWithAPIResult:game]];
-        }
+    for (NSDictionary* game in apps){
+        [items addObject:[[LQGameInfo alloc] initWithAPIResult:game]];
+    }
+   // if(appsList == nil || appsList.count == 0){       
+        
         appsList = items;
         [self.tableView reloadData];
-    }
-    else{
-        int addedEnd = 0;   
-        LQGameInfo* first = [items objectAtIndex:0];
-        for (LQGameInfo* info in items) {
-            if (info.name != first.name) {
-                addedEnd++;
-            }
-            else {
-                break;
-            }
-        }
-        
-        for (int i=0; i<addedEnd; i++) {
-            [appsList insertObject:[apps objectAtIndex:i] atIndex:i];
-        }
-        
-        __unsafe_unretained LQCommonTableViewController* weakSelf = self;
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [weakSelf.tableView beginUpdates];
-            NSMutableArray *indexPaths = [NSMutableArray array];
-            for(int i=0;i<addedEnd;i++)
-            {
-                [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-            }
-            
-            [weakSelf.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationBottom];
-            [weakSelf.tableView endUpdates];
-            [weakSelf.tableView.pullToRefreshView stopAnimating];
-        });
-    }
+        [self.tableView.pullToRefreshView stopAnimating];
+    //}
+//    else if(items.count>0){
+//        int addedEnd = 0;   
+//        LQGameInfo* first = [items objectAtIndex:0];
+//        for (LQGameInfo* info in items) {
+//            if (info.name != first.name) {
+//                addedEnd++;
+//            }
+//            else {
+//                break;
+//            }
+//        }
+//        
+//        for (int i=0; i<addedEnd; i++) {
+//            [appsList insertObject:[apps objectAtIndex:i] atIndex:i];
+//        }
+//        
+//        __unsafe_unretained LQCommonTableViewController* weakSelf = self;
+//        
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            NSMutableArray *indexPaths = [NSMutableArray array];
+//            for(int i=0;i<addedEnd;i++)
+//            {
+//                [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+//            }
+//            
+//            if(indexPaths.count>0){
+//                [weakSelf.tableView beginUpdates];
+//                
+//                [weakSelf.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationBottom];
+//                [weakSelf.tableView endUpdates];
+//            }
+//            [weakSelf.tableView.pullToRefreshView stopAnimating];
+//        });
+//    }
     
 }
 
@@ -437,15 +444,19 @@
     __unsafe_unretained LQCommonTableViewController* weakSelf = self;
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [weakSelf.tableView beginUpdates];
+        
+        
         NSMutableArray *indexPaths = [NSMutableArray array];
         for(int i=oldAppsCount;i<(oldAppsCount+addAppsCount);i++)
         {
             [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
         }
-             
-        [weakSelf.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
-        [weakSelf.tableView endUpdates];
+        if(indexPaths.count>0){
+            [weakSelf.tableView beginUpdates];
+            
+            [weakSelf.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+            [weakSelf.tableView endUpdates];
+        }
         [weakSelf.tableView.infiniteScrollingView stopAnimating];
     });
     
@@ -462,7 +473,7 @@
         [parent.navigationController pushViewController:controller animated:YES];
     }
     else
-        [self.parentViewController.navigationController pushViewController:controller animated:YES];    
+        [self.navigationController pushViewController:controller animated:YES];    
 }
 
 - (void) onGameDownload:(id)sender{
