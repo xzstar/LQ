@@ -8,6 +8,7 @@
 
 #import "LQCategoryListViewController.h"
 #import "LQTopicCell.h"
+#import "LQAppsListWrapperViewController.h"
 @interface LQCategoryListViewController ()
 
 @end
@@ -51,6 +52,7 @@
     cell.gameInfo = [self.appsList objectAtIndex:indexPath.row];
     cell.gameDetailLabel.hidden = YES;
     cell.gameComments.hidden = YES;
+    [cell addInfoButtonsTarget:self action:@selector(onTopicList:) tag:indexPath.row];
     return cell;   
     
 }
@@ -95,6 +97,22 @@
     self.appsList = items;
     [self.tableView reloadData];
     
+}
+
+- (void)onTopicList:(id)sender{
+    UIButton* button = sender;
+    int tag = button.tag;
+    if(tag < self.appsList.count){
+        LQGameInfo* info = [self.appsList objectAtIndex:tag];
+        LQAppsListWrapperViewController * controller  = [[LQAppsListWrapperViewController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
+        controller.requestUrl = info.requestUrl;
+        if(self.parent!=nil)
+            [self.parent.navigationController pushViewController:controller animated:YES];
+        else {
+            [self.navigationController pushViewController:controller animated:YES];
+        }
+        
+    }
 }
 
 @end

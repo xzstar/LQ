@@ -42,3 +42,12 @@
            requestUrl:(NSString*) aRequestUrl;
 - (IBAction)onBack:(id)sender;
 @end
+
+
+@interface LQTopicDetailViewController : LQRequestListViewController
+
+@end
+
+@interface LQAppsListViewController : LQRequestListViewController
+
+@end

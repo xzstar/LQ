@@ -182,6 +182,7 @@
 		F219D4E7168C982E00F8CA45 /* LQDownloadManageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4E6168C982E00F8CA45 /* LQDownloadManageView.xib */; };
 		F21A2DCE16A59AB5001427A8 /* LQTopicListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F21A2DCD16A59AB4001427A8 /* LQTopicListViewController.xib */; };
 		F21A2DD216A5A281001427A8 /* LQTopicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F21A2DD116A5A280001427A8 /* LQTopicListViewController.m */; };
+		F21D4AB216A6B46E00D7CC53 /* LQAppsListWrapperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F21D4AB116A6B46D00D7CC53 /* LQAppsListWrapperViewController.m */; };
 		F230807C16A1B6990052F0C9 /* LQWallpaperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F230807B16A1B6960052F0C9 /* LQWallpaperCell.m */; };
 		F230807E16A1B6B90052F0C9 /* LQWallpaperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F230807D16A1B6B80052F0C9 /* LQWallpaperCell.xib */; };
 		F23D3B8F169AD70700B7DD46 /* LQSearchHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23D3B8E169AD70700B7DD46 /* LQSearchHistoryCell.m */; };
@@ -1100,6 +1101,8 @@
 		F21A2DCD16A59AB4001427A8 /* LQTopicListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQTopicListViewController.xib; sourceTree = "<group>"; };
 		F21A2DD016A5A27F001427A8 /* LQTopicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTopicListViewController.h; sourceTree = "<group>"; };
 		F21A2DD116A5A280001427A8 /* LQTopicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTopicListViewController.m; sourceTree = "<group>"; };
+		F21D4AB016A6B46D00D7CC53 /* LQAppsListWrapperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQAppsListWrapperViewController.h; sourceTree = "<group>"; };
+		F21D4AB116A6B46D00D7CC53 /* LQAppsListWrapperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQAppsListWrapperViewController.m; sourceTree = "<group>"; };
 		F230807A16A1B6920052F0C9 /* LQWallpaperCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQWallpaperCell.h; sourceTree = "<group>"; };
 		F230807B16A1B6960052F0C9 /* LQWallpaperCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQWallpaperCell.m; sourceTree = "<group>"; };
 		F230807D16A1B6B80052F0C9 /* LQWallpaperCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQWallpaperCell.xib; sourceTree = "<group>"; };
@@ -2087,6 +2090,8 @@
 				F2BAD5DA169D53CF00893F4C /* LQTablesController.xib */,
 				F21A2DD016A5A27F001427A8 /* LQTopicListViewController.h */,
 				F21A2DD116A5A280001427A8 /* LQTopicListViewController.m */,
+				F21D4AB016A6B46D00D7CC53 /* LQAppsListWrapperViewController.h */,
+				F21D4AB116A6B46D00D7CC53 /* LQAppsListWrapperViewController.m */,
 				F2BAD5DE169D6AE800893F4C /* LQPageController.h */,
 				F2BAD5DF169D6AE800893F4C /* LQPageController.m */,
 				F2C2667B169DB9B600382479 /* LQCommonTableViewController.h */,
@@ -3829,6 +3834,7 @@
 				F290F84B16A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.m in Sources */,
 				F290F84C16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m in Sources */,
 				F21A2DD216A5A281001427A8 /* LQTopicListViewController.m in Sources */,
+				F21D4AB216A6B46E00D7CC53 /* LQAppsListWrapperViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3905,7 +3911,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "qiyouxi/liqu-Prefix.pch";
 				INFOPLIST_FILE = "qiyouxi/liqu-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = liqu;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -3922,7 +3928,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "qiyouxi/liqu-Prefix.pch";
 				INFOPLIST_FILE = "qiyouxi/liqu-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				PRODUCT_NAME = liqu;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;

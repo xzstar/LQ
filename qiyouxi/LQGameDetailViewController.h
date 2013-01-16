@@ -22,12 +22,12 @@
 @property (strong) IBOutlet UIView* gameInfoPanel;
 
 
-@property (unsafe_unretained) IBOutlet UIScrollView* mainScrolView;
+@property (unsafe_unretained) IBOutlet UIScrollView* mainScrollView;
 
 @property (unsafe_unretained) IBOutlet UIView* gameBaseInfoPanel;
 @property (unsafe_unretained) IBOutlet LQImageButton* gameIconView;
 @property (unsafe_unretained) IBOutlet UILabel* gameTitleLabel;
-@property (unsafe_unretained) IBOutlet UILabel* gameDetailLabel;
+//@property (unsafe_unretained) IBOutlet UILabel* gameDetailLabel;
 @property (unsafe_unretained) IBOutlet UILabel* gameSize;
 @property (unsafe_unretained) IBOutlet UILabel* gameDownloadCount;
 @property (unsafe_unretained) IBOutlet UILabel* gameType;
@@ -42,11 +42,12 @@
 @property (unsafe_unretained) IBOutlet LQAdvertiseView* screenShotsView;
 @property (unsafe_unretained) IBOutlet UIButton* weiboShareButton;
 @property (unsafe_unretained) IBOutlet UIButton* qqShareButton;
+@property (unsafe_unretained) IBOutlet UILabel* gameScore2;
 
 
-
-@property (unsafe_unretained) IBOutlet LQImageButton* commentGirlView;
-@property (unsafe_unretained) IBOutlet UILabel* commentGirlNameLabel;
+//
+//@property (unsafe_unretained) IBOutlet LQImageButton* commentGirlView;
+//@property (unsafe_unretained) IBOutlet UILabel* commentGirlNameLabel;
 
 
 @property (strong) IBOutlet UIView* commentsPanel;

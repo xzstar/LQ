@@ -31,10 +31,17 @@
 @synthesize gameInfo;
 @synthesize userComments;
 @synthesize commentLabelMaxHeight;
+@synthesize mainScrollView;
+
+@synthesize gameVender,gameVersion,gameType,gameScore,gameDownloadCount,gameBaseInfoPanel,gameSize;
+@synthesize installNowButton,downloadNowButton;
+@synthesize weiboShareButton,qqShareButton;
+@synthesize gamePhotoInfoPanel;
+@synthesize gameScore2;
 
 @synthesize gameInfoPanel;
-@synthesize gameIconView, gameTitleLabel, gameDetailLabel;
-@synthesize commentLabel, commentGirlView, commentGirlNameLabel;
+@synthesize gameIconView, gameTitleLabel;
+@synthesize commentLabel;
 @synthesize screenShotsView;
 
 @synthesize contentView;
@@ -68,8 +75,36 @@
     [self.commentsHeaderView refreshLastUpdatedDate];
     
     self.userCommentsView.hidden = YES;
+    
+    
+    
+    
 }
 
+- (void)viewDidLoad{
+    // a page is the width of the scroll view
+    mainScrollView.pagingEnabled = NO;
+    //mainScrollView.contentSize = CGSizeMake(mainScrollView.frame.size.width, 1000);
+    mainScrollView.showsHorizontalScrollIndicator = NO;
+    mainScrollView.showsVerticalScrollIndicator = YES;
+    mainScrollView.scrollsToTop = NO;
+    
+    [gameBaseInfoPanel removeFromSuperview];
+    int height = 0;
+    CGRect frame = gameBaseInfoPanel.frame;
+    height+=frame.size.height;    
+    [mainScrollView addSubview:gameBaseInfoPanel];
+    
+    [gamePhotoInfoPanel removeFromSuperview];
+    frame = gamePhotoInfoPanel.frame;
+    frame.origin.y= height+frame.origin.y;
+    height+=frame.size.height;
+    gamePhotoInfoPanel.frame = frame;
+    [mainScrollView addSubview:gamePhotoInfoPanel];
+    
+    mainScrollView.contentSize = CGSizeMake(mainScrollView.frame.size.width, height);
+    [mainScrollView layoutIfNeeded];
+}
 -  (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
@@ -105,36 +140,42 @@
     self.gameScore.text = [NSString stringWithFormat:@"%@分",gameInfo.rating];
     self.gameType.text = [NSString stringWithFormat:@"分类:%@", gameInfo.tags];
     self.gameVender.text = [NSString stringWithFormat:@"开发商:%@",@""];
-    
+    self.commentLabel.text = gameInfo.intro;
+    [self.commentLabel autowrap:self.commentLabelMaxHeight];
+
 }
 
 - (void)loadGamePhotoInfo{
     self.screenShotsView.delegate = self;
     self.screenShotsView.needRotate = YES;
     self.screenShotsView.imageUrls = self.gameInfo.screenShotsSmall;
+    self.gameScore2.text = [NSString stringWithFormat:@"%@分",gameInfo.rating];
     
 }
 - (void)loadGameInfo:(NSDictionary*)result{
     self.gameInfo = [[LQGameInfo alloc] initWithAPIResult:result];
     
-    self.gameTitleLabel.text = self.gameInfo.name;
-    int size= [self.gameInfo.size intValue];
-    float sizeMB= (float)size/(1024*1024);
+//    self.gameTitleLabel.text = self.gameInfo.name;
+//    int size= [self.gameInfo.size intValue];
+//    float sizeMB= (float)size/(1024*1024);
+//    
+//    self.gameDetailLabel.text = [NSString stringWithFormat:@"%@ | %.2fMB",
+//                                 self.gameInfo.tags, sizeMB];
+//    
+//    [self.gameIconView loadImageUrl:self.gameInfo.icon defaultImage:DEFAULT_GAME_ICON];
+//    
+//    self.commentLabel.text = self.gameInfo.intro; //self.gameInfo.evaluatorComment;
+//    [self.commentLabel autowrap:self.commentLabelMaxHeight];
+//    
+//    self.commentGirlNameLabel.text = [NSString stringWithFormat:LocalString(@"evaluator.nicklabel"), self.gameInfo.evaluatorNickName];
+//    [self.commentGirlView loadImageUrl:self.gameInfo.evaluatorAvatar defaultImage:nil];
+//    
+//    self.screenShotsView.delegate = self;
+//    self.screenShotsView.needRotate = YES;
+//    self.screenShotsView.imageUrls = self.gameInfo.screenShotsSmall;
     
-    self.gameDetailLabel.text = [NSString stringWithFormat:@"%@ | %.2fMB",
-                                 self.gameInfo.tags, sizeMB];
-    
-    [self.gameIconView loadImageUrl:self.gameInfo.icon defaultImage:DEFAULT_GAME_ICON];
-    
-    self.commentLabel.text = self.gameInfo.intro; //self.gameInfo.evaluatorComment;
-    [self.commentLabel autowrap:self.commentLabelMaxHeight];
-    
-    self.commentGirlNameLabel.text = [NSString stringWithFormat:LocalString(@"evaluator.nicklabel"), self.gameInfo.evaluatorNickName];
-    [self.commentGirlView loadImageUrl:self.gameInfo.evaluatorAvatar defaultImage:nil];
-    
-    self.screenShotsView.delegate = self;
-    self.screenShotsView.needRotate = YES;
-    self.screenShotsView.imageUrls = self.gameInfo.screenShotsSmall;
+    [self loadGameBaseInfo];
+    [self loadGamePhotoInfo];
     
     NSString* title = [NSString stringWithFormat:LocalString(@"tab.comments"), self.gameInfo.commentCount];
     [self.commentsButton setTitle:title forState:UIControlStateNormal];

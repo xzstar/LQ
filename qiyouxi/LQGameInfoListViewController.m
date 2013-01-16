@@ -243,6 +243,47 @@
     self.selectedRow = -1;
 }
 
+- (void)loadMoreApps:(NSArray*) apps{
+    NSMutableArray* items = [NSMutableArray array];
+    
+    for (NSDictionary* game in apps){
+        [items addObject:[[LQGameInfo alloc] initWithAPIResult:game]];
+    }
+    
+    int oldAppsCount = 0;   
+    int addAppsCount = apps.count;
+    if(self.appsList ==nil){
+        self.appsList = items;
+    }
+    else {
+        oldAppsCount = self.appsList.count;
+        [self.appsList addObjectsFromArray:items];
+    }
+    
+    __unsafe_unretained LQCommonTableViewController* weakSelf = self;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        
+        NSMutableArray *indexPaths = [NSMutableArray array];
+        int oldRows = [weakSelf.tableView numberOfRowsInSection:0];
+        int newRows = (self.appsList.count%3 == 0)? self.appsList.count/3: (self.appsList.count/3) +1;
+        
+        for(int i=oldRows;i<newRows;i++)
+        {
+            [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+        }
+        if(indexPaths.count>0){
+            [weakSelf.tableView beginUpdates];
+            
+            [weakSelf.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+            [weakSelf.tableView endUpdates];
+        }
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+    });
+    
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     //#warning Incomplete method implementation.
@@ -353,7 +394,51 @@
     }
     
 }
+
+
+
+- (IBAction)onBack:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+@end
+
+
+@implementation LQTopicDetailViewController
+
+- (void) loadTopic:(NSDictionary*) topicInfo{
+    [self loadApps:[topicInfo objectForKey:@"relate_apps"]];
+    
+}
 #pragma mark - Network Callback
+- (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{
+    [self handleNetworkOK];
+    switch (command) {
+        case C_COMMAND_GETAPPLISTSOFTGAME:
+            [self endLoading];
+            if ([result isKindOfClass:[NSDictionary class]]){
+                [self loadTopic:[result objectForKey:@"zhuantiinfo"]];
+                self.moreUrl = [result objectForKey:@"more_url"];
+            }
+            break;
+//        case C_COMMAND_GETAPPLISTSOFTGAME_MORE:  
+//            if ([result isKindOfClass:[NSDictionary class]]){
+//                [self loadMoreApps:[result objectForKey:@"relate_apps"]];
+//                self.moreUrl = [result objectForKey:@"more_url"];
+//            }
+//            break;
+            
+        default:
+            break;
+    }
+    
+}
+
+@end
+
+
+@implementation LQAppsListViewController
+
 - (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{
     [self handleNetworkOK];
     switch (command) {
@@ -377,8 +462,5 @@
     
 }
 
-- (IBAction)onBack:(id)sender{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 @end

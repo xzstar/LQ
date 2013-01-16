@@ -17,4 +17,5 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
              category:(NSString *)aCategory;
+- (void)onTopicList:(id)sender;
 @end

@@ -202,6 +202,10 @@
     [self loadMoreList:C_COMMAND_GETAPPLISTSOFTGAME moreUrl:requestUrl];
 }
 
+- (void)loadTopicList:(NSString*) requestUrl{
+    [self loadMoreList:C_COMMAND_GETTOPICLIST moreUrl:requestUrl];
+}
+
 - (void)loadSoftNewest{
     NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
                                 HTTP_GET, P_INTERNAL_METHOD,

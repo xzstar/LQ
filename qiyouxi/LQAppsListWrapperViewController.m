@@ -1,21 +1,21 @@
 //
-//  LQTopicListViewController.m
+//  LQAppsListWrapperViewController.m
 //  liqu
 //
-//  Created by Xie Zhe on 13-1-15.
+//  Created by Xie Zhe on 13-1-16.
 //  Copyright (c) 2013年 科技有限公司. All rights reserved.
 //
 
-#import "LQTopicListViewController.h"
+#import "LQAppsListWrapperViewController.h"
 #import "LQGameInfoListViewController.h"
-@interface LQTopicListViewController ()
+@interface LQAppsListWrapperViewController ()
 
 @end
 
-@implementation LQTopicListViewController
+@implementation LQAppsListWrapperViewController
 @synthesize requestUrl;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
@@ -78,10 +78,10 @@
         return;
     
     // replace the placeholder if necessary
-    LQTopicDetailViewController *controller = [viewControllers objectAtIndex:page];
+    LQAppsListViewController *controller = [viewControllers objectAtIndex:page];
     if ((NSNull *)controller == [NSNull null])
     {
-        controller = [[LQTopicDetailViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil requestUrl:requestUrl];        
+        controller = [[LQAppsListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil requestUrl:requestUrl];        
         [viewControllers replaceObjectAtIndex:page withObject:controller];
     }
     
