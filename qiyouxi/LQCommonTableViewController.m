@@ -43,6 +43,7 @@
     }
     return self;
 }
+
 - (id)initWithNibName:(NSString *)nibNameOrNil
                bundle:(NSBundle *)nibBundleOrNil
          listOperator:(NSString *)aListOperator
@@ -381,47 +382,11 @@
     for (NSDictionary* game in apps){
         [items addObject:[[LQGameInfo alloc] initWithAPIResult:game]];
     }
-   // if(appsList == nil || appsList.count == 0){       
         
-        appsList = items;
-        [self.tableView reloadData];
-        [self.tableView.pullToRefreshView stopAnimating];
-    //}
-//    else if(items.count>0){
-//        int addedEnd = 0;   
-//        LQGameInfo* first = [items objectAtIndex:0];
-//        for (LQGameInfo* info in items) {
-//            if (info.name != first.name) {
-//                addedEnd++;
-//            }
-//            else {
-//                break;
-//            }
-//        }
-//        
-//        for (int i=0; i<addedEnd; i++) {
-//            [appsList insertObject:[apps objectAtIndex:i] atIndex:i];
-//        }
-//        
-//        __unsafe_unretained LQCommonTableViewController* weakSelf = self;
-//        
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            NSMutableArray *indexPaths = [NSMutableArray array];
-//            for(int i=0;i<addedEnd;i++)
-//            {
-//                [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-//            }
-//            
-//            if(indexPaths.count>0){
-//                [weakSelf.tableView beginUpdates];
-//                
-//                [weakSelf.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationBottom];
-//                [weakSelf.tableView endUpdates];
-//            }
-//            [weakSelf.tableView.pullToRefreshView stopAnimating];
-//        });
-//    }
-    
+    appsList = items;
+    [self.tableView reloadData];
+    [self.tableView.pullToRefreshView stopAnimating];
+
 }
 
 - (void)loadMoreApps:(NSArray*) apps{

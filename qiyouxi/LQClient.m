@@ -464,4 +464,19 @@
               parameters:parameters
                 encoding:NO];
 }
+
+- (void)loadAppUpdate:(NSString*) appList{
+    
+    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                HTTP_GET, P_INTERNAL_METHOD,
+                                @"app_update",@"op",
+                                appList,@"apps_package",
+                                nil];
+    [self processCommand:[NSString stringWithFormat:@"%@%@", LQ_API_SERVER, LQ_API_REQUEST]
+                 command:C_COMMAND_GETAPPUPDATE
+                  format:F_JSON
+              parameters:parameters
+                encoding:NO];
+
+}
 @end

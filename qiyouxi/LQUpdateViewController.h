@@ -11,13 +11,21 @@
 
 static NSString* const installedAppListPath = @"/private/var/mobile/Library/Caches/com.apple.mobile.installation.plist";
 
-@interface InstalledAppReader
+@interface InstalledAppReader:NSObject
 
 +(NSArray *)installedApp;
 +(NSMutableDictionary *)appDescriptionFromDictionary:(NSDictionary *)dictionary;
 
 @end
 
-@interface LQUpdateViewController : LQViewController<UITabBarDelegate>
+@interface LQUpdateViewController : LQViewController<UITabBarDelegate,UITableViewDelegate, UITableViewDataSource>{
+    int selectedSection;
+    int selectedRow;
+    NSMutableArray* appsList;
+}
 
+@property (nonatomic,unsafe_unretained) IBOutlet UITableView *tableView;
+@property (nonatomic,strong) NSMutableArray *appsList;
+- (void) saveAppsList;
+- (void)loadApps:(NSArray*) apps;
 @end

@@ -28,7 +28,7 @@
 #define C_COMMAND_GETTOPICLIST C_USER_COMMAND + 17
 #define C_COMMAND_GETTOPICLIST_MORE C_USER_COMMAND + 18 
 #define C_COMMAND_GETHOTKEYWORDS C_USER_COMMAND + 19
-
+#define C_COMMAND_GETAPPUPDATE C_USER_COMMAND + 20
 @interface LQClient : LQClientBase
 - (void)loadLaunchImage;
 
@@ -61,5 +61,6 @@
 - (void)loadTopicList:(NSString*) requestUrl;
 
 - (void)loadHotKeywords;
+- (void)loadAppUpdate:(NSString*) appList;
 
 @end

@@ -10,7 +10,26 @@
 
 @interface LQConfig : NSObject
 
++ (NSArray*) restoreArray:(NSString*) filename;
++ (void) saveArray:(NSString*) filename savedValue:(NSArray*) savedValue;
+
++ (NSString*) restoreString:(NSString*) filename;
++ (void) saveString:(NSString*) filename savedValue:(NSString*) savedValue;
+
+
+
 + (NSArray*) restoreSearchHistory;
 + (void) saveSearchHisory:(NSArray*) searchHistory;
+
+
++ (NSString*) restoreAppList;
++ (void) saveAppList:(NSString*) appList;
+
++ (NSString*) restoreUpdateAppList;
++ (void) saveUpdateAppList:(NSString*) appList;
+
++ (NSString*) restoreIgnoreAppList;
++ (void) saveIgnoreAppList:(NSString*) appList;
+
 
 @end
