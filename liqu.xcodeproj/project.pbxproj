@@ -868,6 +868,8 @@
 		F2ED5BAC168FCC2C00E12C5F /* weibo_partake_v_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ED592C168FCC2B00E12C5F /* weibo_partake_v_bg.png */; };
 		F2ED5BAD168FCC2C00E12C5F /* weibo_partake_v_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ED592D168FCC2B00E12C5F /* weibo_partake_v_bg@2x.png */; };
 		F2EF704B16A78CF90075F182 /* LQConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EF704A16A78CF90075F182 /* LQConfig.m */; };
+		F2EF705016A7C7740075F182 /* LQWallpaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EF704E16A7C7720075F182 /* LQWallpaperViewController.m */; };
+		F2EF705116A7C7740075F182 /* LQWallpaperViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2EF704F16A7C7730075F182 /* LQWallpaperViewController.xib */; };
 		F2F4C455168B3E2700538800 /* LQLoading.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F4C454168B3E2600538800 /* LQLoading.xib */; };
 		F2F4C457168B44FD00538800 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F4C456168B44FC00538800 /* MainWindow.xib */; };
 		F2FF9C7E169A5E5D003D914D /* LQSearchSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FF9C7D169A5E5D003D914D /* LQSearchSectionHeader.m */; };
@@ -1820,6 +1822,9 @@
 		F2ED592D168FCC2B00E12C5F /* weibo_partake_v_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo_partake_v_bg@2x.png"; sourceTree = "<group>"; };
 		F2EF704916A78CF90075F182 /* LQConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQConfig.h; sourceTree = "<group>"; };
 		F2EF704A16A78CF90075F182 /* LQConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQConfig.m; sourceTree = "<group>"; };
+		F2EF704D16A7C7720075F182 /* LQWallpaperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQWallpaperViewController.h; sourceTree = "<group>"; };
+		F2EF704E16A7C7720075F182 /* LQWallpaperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQWallpaperViewController.m; sourceTree = "<group>"; };
+		F2EF704F16A7C7730075F182 /* LQWallpaperViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQWallpaperViewController.xib; sourceTree = "<group>"; };
 		F2F4C454168B3E2600538800 /* LQLoading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQLoading.xib; sourceTree = "<group>"; };
 		F2F4C456168B44FC00538800 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		F2FF9C7C169A5E5D003D914D /* LQSearchSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQSearchSectionHeader.h; sourceTree = "<group>"; };
@@ -1935,10 +1940,10 @@
 				F2FF9C7F169A5E9B003D914D /* LQSearchSectionHeader.xib */,
 				F2FF9C7C169A5E5D003D914D /* LQSearchSectionHeader.h */,
 				F2FF9C7D169A5E5D003D914D /* LQSearchSectionHeader.m */,
-				F26CD252169193DA00E1E30B /* LQAdTableViewCell.h */,
 				F23D3B8D169AD70700B7DD46 /* LQSearchHistoryCell.h */,
 				F23D3B8E169AD70700B7DD46 /* LQSearchHistoryCell.m */,
 				F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */,
+				F26CD252169193DA00E1E30B /* LQAdTableViewCell.h */,
 				F26CD253169193DB00E1E30B /* LQAdTableViewCell.m */,
 				F26CD255169194A400E1E30B /* LQAdTableViewCell.xib */,
 				F23D3B93169B0C1100B7DD46 /* SearchHistoryItem.h */,
@@ -2107,6 +2112,9 @@
 				F266A9E0169F9EBA0014FE75 /* LQRankViewController.m */,
 				F284278F169FE08E00997FC0 /* LQCategoryListViewController.h */,
 				F2842790169FE08E00997FC0 /* LQCategoryListViewController.m */,
+				F2EF704D16A7C7720075F182 /* LQWallpaperViewController.h */,
+				F2EF704E16A7C7720075F182 /* LQWallpaperViewController.m */,
+				F2EF704F16A7C7730075F182 /* LQWallpaperViewController.xib */,
 			);
 			path = qiyouxi;
 			sourceTree = "<group>";
@@ -3742,6 +3750,7 @@
 				F266A9DE169F9B9E0014FE75 /* LQRankSectionHeader.xib in Resources */,
 				F230807E16A1B6B90052F0C9 /* LQWallpaperCell.xib in Resources */,
 				F21A2DCE16A59AB5001427A8 /* LQTopicListViewController.xib in Resources */,
+				F2EF705116A7C7740075F182 /* LQWallpaperViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3841,6 +3850,7 @@
 				F21A2DD216A5A281001427A8 /* LQTopicListViewController.m in Sources */,
 				F21D4AB216A6B46E00D7CC53 /* LQAppsListWrapperViewController.m in Sources */,
 				F2EF704B16A78CF90075F182 /* LQConfig.m in Sources */,
+				F2EF705016A7C7740075F182 /* LQWallpaperViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

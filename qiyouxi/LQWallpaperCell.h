@@ -19,4 +19,5 @@
 @property (unsafe_unretained) IBOutlet UIButton* button3;
 
 -(void) setButtonInfo:(NSArray*) infoList;
+- (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
 @end

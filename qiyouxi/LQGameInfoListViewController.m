@@ -10,6 +10,10 @@
 #import "LQGameDetailViewController.h"
 #import "LQWallpaperCell.h"
 #import "SVPullToRefresh.h"
+#import "LQWallpaperViewController.h"
+
+#pragma mark -- LQGameInfoListViewController --
+
 @interface LQGameInfoListViewController ()
 @end
 
@@ -141,6 +145,8 @@
 
 @end
 
+#pragma mark -- LQRingListViewController --
+
 @implementation LQRingListViewController
 - (void)viewDidLoad
 {
@@ -234,6 +240,8 @@
 
 @end
 
+#pragma mark -- LQWallpaperListViewController --
+
 #define WALLPAPER_COUNT_PERLINE 3
 @implementation LQWallpaperListViewController
 - (void)viewDidLoad
@@ -316,7 +324,7 @@
         [itemList addObject:item];
     }
     [cell setButtonInfo:itemList];
-    
+    [cell addInfoButtonsTarget:self action:@selector(onWallpaperClicked:) tag:indexPath.row];
     return cell;
 }
 
@@ -327,6 +335,17 @@
     return;
 }
 
+
+- (void) onWallpaperClicked:(id) sender{
+    UIButton* button = (UIButton*)sender;
+    int tag = button.tag;
+    LQWallpaperViewController* controller = [[LQWallpaperViewController alloc]initWithNibName:@"LQWallpaperViewController" bundle:nil];
+    LQGameInfo *item = [self.appsList objectAtIndex:tag];
+
+    controller.imageUrl = item.downloadUrl;
+    controller.titleString = item.name;
+    [self.parent.parentViewController.navigationController pushViewController:controller animated:YES];
+}
 @end
 
 
@@ -435,6 +454,7 @@
 
 @end
 
+#pragma mark -- LQAppsListViewController --
 
 @implementation LQAppsListViewController
 

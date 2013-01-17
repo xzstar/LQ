@@ -66,4 +66,12 @@
         }
     }
 }
+
+- (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag{
+    
+    for(UIButton* button in buttonList){
+        button.tag = tag++;
+        [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    }
+}
 @end
