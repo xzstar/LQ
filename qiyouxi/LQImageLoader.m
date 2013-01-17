@@ -194,6 +194,55 @@ static LQImageLoader* _wiImageLoader = nil;
 }
 
 - (UIImage*)loadImageByName:(NSString*)imageName{
+    
+    UIImage* cachedImage = [_cachedSystemImages objectForKey:imageName];
+    if (cachedImage == nil){
+        
+        float screenScale = 1.0f;
+        
+        if ([[UIScreen mainScreen] respondsToSelector:@selector(scale)]){
+            screenScale = [[UIScreen mainScreen] scale];
+        }
+        
+        NSString* pathExt = [imageName pathExtension];
+        imageName = [[[imageName stringByDeletingPathExtension] stringByAppendingString:@"_hd"] stringByAppendingPathExtension:pathExt];
+        
+        NSString* imagePath = [[NSBundle mainBundle] pathForResource:[imageName stringByDeletingPathExtension] ofType:pathExt];
+        
+        cachedImage = [UIImage imageWithContentsOfFile:imagePath];
+        
+        if (cachedImage != nil){
+            CGImageRef imgRef = cachedImage.CGImage;
+            CGFloat width = cachedImage.size.width;
+            CGFloat height = cachedImage.size.height;
+            if (screenScale == 1.0f){
+                CGFloat scale = 0.5f;
+                UIGraphicsBeginImageContext(CGSizeMake( width * scale, height * scale));
+                CGContextRef context = UIGraphicsGetCurrentContext();
+                if ((cachedImage.imageOrientation == UIImageOrientationDown) ||
+                    (cachedImage.imageOrientation == UIImageOrientationRight) || 
+                    (cachedImage.imageOrientation == UIImageOrientationUp)){
+                    // flip the coordinate space upside down
+                    CGContextScaleCTM(context, 1, -1);
+                    CGContextTranslateCTM(context, 0, - height * scale);
+                }
+                
+                CGContextDrawImage(context, CGRectMake(0, 0, width * scale, height * scale), imgRef);
+                cachedImage = UIGraphicsGetImageFromCurrentImageContext();
+                UIGraphicsEndImageContext();
+            }else{
+                cachedImage = [UIImage imageWithCGImage:cachedImage.CGImage scale:screenScale orientation:cachedImage.imageOrientation];
+            }
+            
+        }else{
+            NSLog(@"imageName %@ does not exist", imageName);
+        }
+        
+        if (cachedImage != nil){
+            [_cachedSystemImages setObject:cachedImage forKey:imageName];
+        }
+    }
+    return cachedImage;
 //    UIImage* cachedImage = [_cachedSystemImages objectForKey:imageName];
 //    if (cachedImage == nil){
 //        NSString* imagePath = [[NSBundle mainBundle] pathForResource:[imageName stringByDeletingPathExtension] ofType:[imageName pathExtension]];
@@ -203,7 +252,7 @@ static LQImageLoader* _wiImageLoader = nil;
 //        }
 //    }
 //    return cachedImage;
-    UIImage* cachedImage = [_cachedSystemImages objectForKey:imageName];
+//    UIImage* cachedImage = [_cachedSystemImages objectForKey:imageName];
     
 //    if (cachedImage == nil){
 //        NSString* imagePath = [WiResourceBundle getImagePath:imageName];
@@ -297,7 +346,7 @@ static LQImageLoader* _wiImageLoader = nil;
 //            [_cachedSystemImages setObject:cachedImage forKey:imageName];
 //        }
 //    }
-    return cachedImage;
+//    return cachedImage;
 }
 
 - (void)clearSystemImages{

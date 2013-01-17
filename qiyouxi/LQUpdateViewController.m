@@ -8,6 +8,39 @@
 
 #import "LQUpdateViewController.h"
 
+@implementation InstalledAppReader
+
+#pragma mark - Init
++(NSMutableArray *)desktopAppsFromDictionary:(NSDictionary *)dictionary
+{
+    NSMutableArray *desktopApps = [NSMutableArray array];
+    
+    for (NSString *appKey in dictionary)
+    {
+        [desktopApps addObject:appKey];
+    }
+    return desktopApps;
+}
+
++(NSArray *)installedApp
+{    
+    BOOL isDir = NO;
+    if([[NSFileManager defaultManager] fileExistsAtPath: installedAppListPath isDirectory: &isDir] && !isDir) 
+    {
+        NSMutableDictionary *cacheDict = [NSDictionary dictionaryWithContentsOfFile: installedAppListPath];
+        NSDictionary *system = [cacheDict objectForKey: @"System"];
+        NSMutableArray *installedApp = [NSMutableArray arrayWithArray:[self desktopAppsFromDictionary:system]];
+        
+        NSDictionary *user = [cacheDict objectForKey: @"User"]; 
+        [installedApp addObjectsFromArray:[self desktopAppsFromDictionary:user]];
+        
+        return installedApp;
+    }
+    
+    return nil;
+}
+@end
+
 @interface LQUpdateViewController ()
 
 @end
@@ -27,6 +60,8 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSArray * array = [InstalledAppReader installedApp];
+    
 }
 
 - (void)viewDidUnload

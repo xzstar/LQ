@@ -79,7 +79,7 @@
         
 
         self.imageUrl = [result objectForKey:@"image_url"];
-        self.versionCode = [result objectForKey:@"versionCode"];
+        self.versionCode = [result objectForKey:@"versionName"];
         self.tags= [result objectForKey:@"tags"];
         self.price = [result objectForKey:@"price"];
         self.rating = [result objectForKey:@"rating"];

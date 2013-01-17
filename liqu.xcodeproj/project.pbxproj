@@ -867,6 +867,7 @@
 		F2ED5BAB168FCC2C00E12C5F /* weibo_partake_v_bg-ipad@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ED592B168FCC2B00E12C5F /* weibo_partake_v_bg-ipad@2x.png */; };
 		F2ED5BAC168FCC2C00E12C5F /* weibo_partake_v_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ED592C168FCC2B00E12C5F /* weibo_partake_v_bg.png */; };
 		F2ED5BAD168FCC2C00E12C5F /* weibo_partake_v_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ED592D168FCC2B00E12C5F /* weibo_partake_v_bg@2x.png */; };
+		F2EF704B16A78CF90075F182 /* LQConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = F2EF704A16A78CF90075F182 /* LQConfig.m */; };
 		F2F4C455168B3E2700538800 /* LQLoading.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F4C454168B3E2600538800 /* LQLoading.xib */; };
 		F2F4C457168B44FD00538800 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2F4C456168B44FC00538800 /* MainWindow.xib */; };
 		F2FF9C7E169A5E5D003D914D /* LQSearchSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F2FF9C7D169A5E5D003D914D /* LQSearchSectionHeader.m */; };
@@ -1817,6 +1818,8 @@
 		F2ED592B168FCC2B00E12C5F /* weibo_partake_v_bg-ipad@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo_partake_v_bg-ipad@2x.png"; sourceTree = "<group>"; };
 		F2ED592C168FCC2B00E12C5F /* weibo_partake_v_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weibo_partake_v_bg.png; sourceTree = "<group>"; };
 		F2ED592D168FCC2B00E12C5F /* weibo_partake_v_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo_partake_v_bg@2x.png"; sourceTree = "<group>"; };
+		F2EF704916A78CF90075F182 /* LQConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQConfig.h; sourceTree = "<group>"; };
+		F2EF704A16A78CF90075F182 /* LQConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQConfig.m; sourceTree = "<group>"; };
 		F2F4C454168B3E2600538800 /* LQLoading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQLoading.xib; sourceTree = "<group>"; };
 		F2F4C456168B44FC00538800 /* MainWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		F2FF9C7C169A5E5D003D914D /* LQSearchSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQSearchSectionHeader.h; sourceTree = "<group>"; };
@@ -1980,6 +1983,8 @@
 				4355484215C8CA090030B21B /* LQClient.m */,
 				4312ED6715D2137D00D0A0FD /* LQAPICache.h */,
 				4312ED6815D2137D00D0A0FD /* LQAPICache.m */,
+				F2EF704916A78CF90075F182 /* LQConfig.h */,
+				F2EF704A16A78CF90075F182 /* LQConfig.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -3835,6 +3840,7 @@
 				F290F84C16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m in Sources */,
 				F21A2DD216A5A281001427A8 /* LQTopicListViewController.m in Sources */,
 				F21D4AB216A6B46E00D7CC53 /* LQAppsListWrapperViewController.m in Sources */,
+				F2EF704B16A78CF90075F182 /* LQConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

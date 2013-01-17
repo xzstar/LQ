@@ -27,6 +27,8 @@
 #define C_COMMAND_SEARCH_MORE C_USER_COMMAND + 16
 #define C_COMMAND_GETTOPICLIST C_USER_COMMAND + 17
 #define C_COMMAND_GETTOPICLIST_MORE C_USER_COMMAND + 18 
+#define C_COMMAND_GETHOTKEYWORDS C_USER_COMMAND + 19
+
 @interface LQClient : LQClientBase
 - (void)loadLaunchImage;
 
@@ -57,5 +59,7 @@
 - (void)loadUserMoreComments:(NSString*) moreUrl;
 - (void)loadRequstList:(NSString*) requestUrl;
 - (void)loadTopicList:(NSString*) requestUrl;
+
+- (void)loadHotKeywords;
 
 @end

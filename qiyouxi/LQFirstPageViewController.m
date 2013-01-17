@@ -333,16 +333,33 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(selectedRow!= indexPath.row
-       && selectedSection!=indexPath.section){
-        selectedRow = indexPath.row;
-        selectedSection = indexPath.section;    
+    if (indexPath.section!=1) {
+        return;
     }
-    else {
-        selectedRow = -1;
-        selectedSection = -1;  
+     if(currentRecommendIndex==0) {
+         if(selectedRow!= indexPath.row){
+             selectedRow = indexPath.row;
+             selectedSection = indexPath.section;    
+         }
+         else {
+             selectedRow = -1;
+             selectedSection = -1;  
+         }
+         [self.historyView reloadData];
     }
-    [self.historyView reloadData];
+     else {
+         int tag = indexPath.row;
+         if(tag < recommendTopics.count){
+             LQGameInfo* info = [recommendTopics objectAtIndex:tag];
+             LQTopicListViewController * controller  = [[LQTopicListViewController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
+             controller.requestUrl = info.requestUrl;
+             [self.navigationController pushViewController:controller animated:YES];
+             
+             
+         }
+
+     }
+    
 
 }
 

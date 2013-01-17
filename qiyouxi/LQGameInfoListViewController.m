@@ -251,7 +251,6 @@
     }
     
     int oldAppsCount = 0;   
-    int addAppsCount = apps.count;
     if(self.appsList ==nil){
         self.appsList = items;
     }

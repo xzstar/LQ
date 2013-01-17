@@ -11,7 +11,7 @@
 #import "SearchHistoryItem.h"
 #import "LQSearchHistoryCell.h"
 #import "LQGameInfoListViewController.h"
-
+#import "LQConfig.h"
 #define LQAPPSEARCH @"app_search"
 
 //#define LQAPPSEARCH_HINT @"软件游戏"
@@ -26,7 +26,6 @@
 
 @synthesize searchBar;
 @synthesize searchResultTable;
-@synthesize searchBarController;
 @synthesize scrollView;
 @synthesize searchHistoryView;
 @synthesize searchHistoryTable;
@@ -37,7 +36,10 @@
     if (self) {
         // Custom initialization
         currentRecommendIndex = 0;
-        searchHistoryItems = [NSMutableArray array];
+        
+        searchHistoryItems = [NSMutableArray arrayWithArray:[LQConfig restoreSearchHistory]];
+        if(searchHistoryItems == nil)
+            searchHistoryItems = [NSMutableArray array];
     }
     return self;
 }
@@ -66,7 +68,7 @@
     searchResultTable.frame = frame;
     [scrollView addSubview:searchResultTable];
 
-    
+    [self.client loadHotKeywords];
 
 }
 
@@ -91,13 +93,13 @@
     if(searchText.length==0)
         return;
     
-    SearchHistoryItem* item = 
-    [SearchHistoryItem searchHistoryItemWithType:@"soft"
-                                            name:[searchbar text]];
-    
+//    SearchHistoryItem* item = 
+//    [SearchHistoryItem searchHistoryItemWithType:@"soft"
+//                                            name:[searchbar text]];
+    NSString* item = [searchbar text];
     //移除旧的
-    for (SearchHistoryItem* tempItem in searchHistoryItems) {
-        if(tempItem.name == item.name)
+    for (NSString* tempItem in searchHistoryItems) {
+        if(tempItem == item)
         {
             [searchHistoryItems removeObject:tempItem];
             break;
@@ -105,32 +107,12 @@
     }
     
     [searchHistoryItems addObject:item];
+    
+    [LQConfig saveSearchHisory:searchHistoryItems];
+    
     [searchHistoryTable reloadData];
     
-    //
-    //if(currentRecommendIndex == 0)
-    BOOL needResearch = YES;
-    if(listController==nil)
-    {
-        listController = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:LQAPPSEARCH keywords:[searchbar text]];
-        CGRect frame = searchResultTable.frame;
-        frame.origin.x = 0;
-        listController.view.frame = frame;
-        needResearch = NO;
-    }
-    else {
-        listController.keywords = [searchbar text];
-        listController.appsList = nil;
-        [listController loadData];
-    }
-    NSArray* subViews = [searchResultTable subviews];
-    for (UIView* view in subViews) {
-        [view removeFromSuperview];
-    }
-    [searchResultTable addSubview:listController.view];
-    if (needResearch) {
-        [listController loadData];
-    }
+    [self search:[searchbar text]];
 
 }
 
@@ -142,7 +124,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     //if(section == 0)
     if(tableView == searchHistoryTable)
-        return searchHistoryItems.count;
+        return currentRecommendIndex==0? searchHistoryItems.count:searchHotKeywordItems.count;
     else {
         return 0;
     }
@@ -155,10 +137,11 @@
         if(cell == nil){
             cell = [[[NSBundle mainBundle] loadNibNamed:@"LQSearchHistoryCell" owner:self options:nil]objectAtIndex:0];
         }
-        
-        SearchHistoryItem* item = [searchHistoryItems objectAtIndex:indexPath.row];
-        [cell.type setText:item.type];
-        [cell.name setText:item.name];
+        NSArray* items =currentRecommendIndex==0? searchHistoryItems:searchHotKeywordItems;
+        NSString* item = [items objectAtIndex:indexPath.row];
+        //[cell.type setText:item.type];
+        [cell hiddenDelButton:currentRecommendIndex!=0];
+        [cell.name setText:item];
         [cell addInfoButtonsTarget:self action:@selector(onDeleteSearchItem:) tag:indexPath.row];
         return cell;
     }
@@ -191,7 +174,21 @@
     return nil;
 }
 
-#pragma recommendSetion callback
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (tableView!=searchHistoryTable) {
+        return;
+    }
+    int row = indexPath.row;
+    NSString* keyword = (currentRecommendIndex==0)?[searchHistoryItems objectAtIndex:row]:[searchHotKeywordItems objectAtIndex:row];
+    
+    [self search:keyword];
+        
+
+
+    
+}
+#pragma mark recommendSetion callback
 - (void)onSwitchRecommendSection:(id)sender{
     UIButton* button = sender;
     int tag = button.tag;
@@ -236,4 +233,65 @@
     return YES;
 }
 
+#pragma mark - Network Callback
+- (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{
+    [super handleNetworkOK];
+    switch (command) {
+        case C_COMMAND_GETHOTKEYWORDS:
+            [self endLoading];
+            if ([result isKindOfClass:[NSDictionary class]]){
+                // [self loadTodayGames:result];
+                [self loadHotkeyword:[result objectForKey:@"$keywords"]];
+            }
+            break;
+            
+      
+        default:
+            break;
+    }
+}
+
+- (void)handleNetworkError:(LQClientError*)error{
+    [super handleNetworkErrorHint];
+}
+
+#pragma mark - load keyword
+-(void) loadHotkeyword:(NSArray*) keywords{
+    searchHotKeywordItems = keywords;
+    if(currentRecommendIndex == 1)
+        [self.searchHistoryTable reloadData];
+
+}
+
+- (void)search:(NSString*)keyword{
+    if (keyword!=nil) {
+        BOOL needSearchAgain = YES;
+        if(listController==nil)
+        {
+            listController = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:LQAPPSEARCH keywords:keyword];
+            CGRect frame = searchResultTable.frame;
+            frame.origin.x = 0;
+            listController.view.frame = frame;
+            needSearchAgain = NO;
+        }
+        else {
+            listController.keywords = keyword;
+            listController.appsList = nil;
+            [listController loadData];
+        }
+        NSArray* subViews = [searchResultTable subviews];
+        for (UIView* view in subViews) {
+            [view removeFromSuperview];
+        }
+        [searchResultTable addSubview:listController.view];
+        if (needSearchAgain) {
+            [listController loadData];
+        }
+        
+        CGRect frame = scrollView.frame;
+        frame.origin.x = frame.size.width ;
+        frame.origin.y = 0;
+        [scrollView scrollRectToVisible:frame animated:YES];
+    }
+}
 @end

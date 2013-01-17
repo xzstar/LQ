@@ -13,15 +13,17 @@
 {
     int currentRecommendIndex;
     NSMutableArray* searchHistoryItems;
+    NSArray* searchHotKeywordItems;
     LQGameInfoListViewController* listController;
 }
 @property(unsafe_unretained) IBOutlet UISearchBar* searchBar;
 @property(unsafe_unretained) IBOutlet UIView* searchResultTable;
-@property(unsafe_unretained) IBOutlet UISearchDisplayController *searchBarController;
 @property(unsafe_unretained) IBOutlet UIScrollView* scrollView;
 @property(unsafe_unretained) IBOutlet UIView* searchHistoryView;
 @property(unsafe_unretained) IBOutlet UITableView* searchHistoryTable;
 
 - (void)onSwitchRecommendSection:(id)sender;
 - (void)onDeleteSearchItem:(id)sender;
+- (void)loadHotkeyword:(NSArray*) keywords;
+- (void)search:(NSString*)keyword;
 @end

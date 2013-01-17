@@ -12,7 +12,7 @@
 #define UNSELECTEDIMAGE @"search_cell_bg_down.png"
 @implementation LQSearchHistoryCell
 @synthesize type,name,deleteButton,cellBg;
-
+@synthesize hiddenDelButton;
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -37,6 +37,10 @@
     }
     
     [cellBg setImage:image];
+}
+
+- (void) hiddenDelButton:(BOOL)aHiddenDelButton{
+    deleteButton.hidden = aHiddenDelButton;
 }
 
 - (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag{

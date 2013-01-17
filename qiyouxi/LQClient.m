@@ -453,4 +453,15 @@
                 encoding:NO];
 }
 
+- (void)loadHotKeywords{
+    NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
+                                HTTP_GET, P_INTERNAL_METHOD,
+                                @"hot_keywords",@"op",
+                                nil];
+    [self processCommand:[NSString stringWithFormat:@"%@%@", LQ_API_SERVER, LQ_API_REQUEST]
+                 command:C_COMMAND_GETHOTKEYWORDS
+                  format:F_JSON
+              parameters:parameters
+                encoding:NO];
+}
 @end
