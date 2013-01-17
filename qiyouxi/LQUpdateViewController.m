@@ -122,7 +122,7 @@
                                 info.name,info.package,info.versionCode];
         [tempArray addObject:tempString];
     }
-[LQConfig saveUpdateAppList:tempArray];
+    [LQConfig saveUpdateAppList:tempArray];
 }
 
 #pragma mark - Network Callback

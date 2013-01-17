@@ -218,6 +218,7 @@
 		F26CD2B216930A8F00E1E30B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F26CD2B116930A8F00E1E30B /* CFNetwork.framework */; };
 		F26CD2B71693148400E1E30B /* AudioMoreItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD2B61693148400E1E30B /* AudioMoreItemCell.m */; };
 		F26CD2B9169314D900E1E30B /* AudioMoreItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD2B8169314D900E1E30B /* AudioMoreItemCell.xib */; };
+		F27CACE916A8319C00451B86 /* LQPostCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27CACE816A8319B00451B86 /* LQPostCommentViewController.xib */; };
 		F2842791169FE08E00997FC0 /* LQCategoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2842790169FE08E00997FC0 /* LQCategoryListViewController.m */; };
 		F290F84B16A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = F290F84816A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.m */; };
 		F290F84C16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = F290F84A16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m */; };
@@ -1157,6 +1158,7 @@
 		F26CD2B51693148400E1E30B /* AudioMoreItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioMoreItemCell.h; sourceTree = "<group>"; };
 		F26CD2B61693148400E1E30B /* AudioMoreItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioMoreItemCell.m; sourceTree = "<group>"; };
 		F26CD2B8169314D900E1E30B /* AudioMoreItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioMoreItemCell.xib; sourceTree = "<group>"; };
+		F27CACE816A8319B00451B86 /* LQPostCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQPostCommentViewController.xib; sourceTree = "<group>"; };
 		F284278F169FE08E00997FC0 /* LQCategoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQCategoryListViewController.h; sourceTree = "<group>"; };
 		F2842790169FE08E00997FC0 /* LQCategoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQCategoryListViewController.m; sourceTree = "<group>"; };
 		F290F84616A4561D00EC712A /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
@@ -2039,6 +2041,7 @@
 				43F5ED3F15C65424001A0F8D /* QYXAppDelegate.m */,
 				F219D4E6168C982E00F8CA45 /* LQDownloadManageView.xib */,
 				F219D4E4168C980100F8CA45 /* LQPostCommentView.xib */,
+				F27CACE816A8319B00451B86 /* LQPostCommentViewController.xib */,
 				F219D4E2168C97E100F8CA45 /* LQDetailView.xib */,
 				F219D4D4168C942500F8CA45 /* LQMainTabBar.xib */,
 				F2F4C456168B44FC00538800 /* MainWindow.xib */,
@@ -3751,6 +3754,7 @@
 				F230807E16A1B6B90052F0C9 /* LQWallpaperCell.xib in Resources */,
 				F21A2DCE16A59AB5001427A8 /* LQTopicListViewController.xib in Resources */,
 				F2EF705116A7C7740075F182 /* LQWallpaperViewController.xib in Resources */,
+				F27CACE916A8319C00451B86 /* LQPostCommentViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

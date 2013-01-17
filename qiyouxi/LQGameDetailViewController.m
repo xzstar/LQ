@@ -11,7 +11,7 @@
 #import "LQImageBrowseViewController.h"
 #import "EGORefreshTableHeaderView.h"
 #import "EGORefreshTableFooterView.h"
-
+#import "LQPostCommentViewController.h"
 @interface LQGameDetailViewController (){
     NSString* moreUrl;
 }
@@ -233,22 +233,26 @@
 }
 
 - (IBAction)onShowComments:(id)sender{
-    [self.gameInfoPanel removeFromSuperview];
-    [self.contentView addSubview:self.commentsPanel];
+//    [self.gameInfoPanel removeFromSuperview];
+//    [self.contentView addSubview:self.commentsPanel];
+//    
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:0.5];
+//    CGPoint center = self.buttonUnderline.center;
+//    center.x = self.commentsButton.center.x;
+//    self.buttonUnderline.center = center;
+//    [UIView commitAnimations];
+//    
+//    if (self.userComments.count == 0){
+//        [self startLoading];
+//        [self.client loadUserComments:self.gameId];
+//
+//    }
+    LQPostCommentViewController* controller = [[LQPostCommentViewController alloc] initWithNibName:@"LQPostCommentViewController" bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
     
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
-    CGPoint center = self.buttonUnderline.center;
-    center.x = self.commentsButton.center.x;
-    self.buttonUnderline.center = center;
-    [UIView commitAnimations];
     
-    if (self.userComments.count == 0){
-        [self startLoading];
-//        [self.client loadUserComments:self.gameId start:0 count:50];
-        [self.client loadUserComments:self.gameId];
-
-    }
+    
 }
 
 #pragma mark - Network Callback
