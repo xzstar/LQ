@@ -11,6 +11,7 @@
 #import "LQGameInfoListViewController.h"
 #import "LQGameMoreItemTableViewCell.h"
 #import "LQGameDetailViewController.h"
+#import "LQIgnoreAppCell.h"
 @implementation InstalledAppReader
 
 #pragma mark - Init
@@ -54,11 +55,17 @@
 @end
 
 @interface LQUpdateViewController ()
-
+- (void) onGameDownload:(id)sender;
+- (void) onGameDetail:(id)sender;
+- (void) onAppIgnore:(id)sender;
+- (void) onAppNotIgnore:(id)sender;
+- (IBAction)onOpenIgnoreView:(id)sender;
+- (IBAction) onCloseIgnoreView:(id)sender;
 @end
 
 @implementation LQUpdateViewController
-@synthesize appsList,tableView;
+@synthesize appsList,tableView,openIgnoreView;
+@synthesize ignoreView,ignoreTableView,closeIgnoreView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -67,6 +74,8 @@
         // Custom initialization
         selectedRow = -1;
         selectedSection = -1;
+        ignoreAppsList = [NSMutableArray array];
+        updateAppsList = [NSMutableArray array];
     }
     return self;
 }
@@ -104,11 +113,36 @@
 #pragma mark - load apps 
 - (void)loadApps:(NSArray*) apps{
     NSMutableArray* items = [NSMutableArray array];
+    
+    NSArray* savedIgnoreList = [LQConfig restoreIgnoreAppList];
+    
+    
     for (NSDictionary* game in apps){
-        [items addObject:[[LQGameInfo alloc] initWithAPIResult:game]];
+        
+        LQGameInfo* gameInfo = [[LQGameInfo alloc] initWithAPIResult:game];
+        [items addObject:gameInfo];
+        
+        BOOL found = NO;
+        for(NSString* package in savedIgnoreList){
+            if(package == gameInfo.package)
+            {
+                found = YES;
+                break;
+            }
+        }
+        
+        if(found){
+            [ignoreAppsList addObject:gameInfo];
+        }
+        else {
+            [updateAppsList addObject:gameInfo];
+        }
+        
     }
     
     appsList = items;
+    
+    
     [self.tableView reloadData];
     
 }
@@ -119,10 +153,17 @@
     for(LQGameInfo* info in self.appsList)
     {
         NSString* tempString = [NSString stringWithFormat:@"%@,%@,%@",
-                                info.name,info.package,info.versionCode];
+                                info.name,info.package,info.icon];
         [tempArray addObject:tempString];
     }
     [LQConfig saveUpdateAppList:tempArray];
+}
+
+- (void) saveIgnoreApp:(LQGameInfo*) info{
+    NSString* tempString = [NSString stringWithFormat:@"%@,%@,%@",
+                            info.name,info.package,info.icon];
+    [ignoreAppsList addObject:tempString];
+
 }
 
 #pragma mark - Network Callback
@@ -161,7 +202,12 @@
 {
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return appsList.count;
+    if (tableView == self.tableView) {
+        return updateAppsList.count;
+    }
+    else {
+        return ignoreAppsList.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -171,34 +217,46 @@
     
     // Configure the cell...
     
-    //LQHistoryTableViewCell* cell;
-    if(indexPath.section == selectedSection &&
-       indexPath.row == selectedRow){
-        LQGameMoreItemTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"moreitem"];
-        if (cell == nil){
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"LQGameMoreItemTableViewCell" owner:self options:nil] objectAtIndex:0];
+    if(tableView == self.tableView){
+        if(indexPath.section == selectedSection &&
+           indexPath.row == selectedRow){
+            LQGameMoreItemTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"moreitem"];
+            if (cell == nil){
+                cell = [[[NSBundle mainBundle] loadNibNamed:@"LQGameMoreItemTableViewCell" owner:self options:nil] objectAtIndex:0];
+            }
+            
+            cell.gameInfo = [updateAppsList objectAtIndex:indexPath.row];
+            [cell setButtonsName:@"立刻安装" middle:@"下载" right:@"暂不更新"];
+            [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:indexPath.row];
+            [cell addLeftButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
+            [cell addMiddleButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
+            [cell addRightButtonTarget:self action:@selector(onAppIgnore:) tag:indexPath.row];
+            return cell;
+            
         }
         
-        cell.gameInfo = [appsList objectAtIndex:indexPath.row];
-        
-        [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:cell.gameInfo.gameId];
-        [cell addDownloadButtonsTarget:self action:@selector(onGameDownload:) tag:cell.gameInfo.gameId];
-        return cell;
-        
-    }
-    
-    else{
-        LQHistoryTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"history"];
-        if (cell == nil){
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"HistoryTableViewCell" owner:self options:nil] objectAtIndex:0];
+        else{
+            LQHistoryTableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:@"history"];
+            if (cell == nil){
+                cell = [[[NSBundle mainBundle] loadNibNamed:@"HistoryTableViewCell" owner:self options:nil] objectAtIndex:0];
+            }
+            cell.gameInfo = [updateAppsList objectAtIndex:indexPath.row];
+            
+            [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:indexPath.row];
+            return cell;
+            
         }
-        cell.gameInfo = [appsList objectAtIndex:indexPath.row];
-        
-        [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:cell.gameInfo.gameId];
-        return cell;
-        
     }
-    
+    else {
+        LQIgnoreAppCell* cell = [self.ignoreTableView dequeueReusableCellWithIdentifier:@"history"];
+        if (cell == nil){
+            cell = [[[NSBundle mainBundle] loadNibNamed:@"LQIgnoreAppCell" owner:self options:nil] objectAtIndex:0];
+        }
+        cell.gameInfo = [ignoreAppsList objectAtIndex:indexPath.row];
+        
+        [cell addInfoButtonsTarget:self action:@selector(onAppNotIgnore:) tag:indexPath.row];
+        return cell;
+    }
     
     
 }
@@ -209,47 +267,57 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(selectedRow!= indexPath.row){
-        selectedRow = indexPath.row;
-        selectedSection = indexPath.section;    
+    if(tableView == self.tableView){
+        if(selectedRow!= indexPath.row){
+            selectedRow = indexPath.row;
+            selectedSection = indexPath.section;    
+        }
+        else {
+            selectedRow = -1;
+            selectedSection = -1;  
+        }
+        [self.tableView reloadData];
     }
-    else {
-        selectedRow = -1;
-        selectedSection = -1;  
-    }
-    [self.tableView reloadData];
-    
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [self tableView:self.tableView cellForRowAtIndexPath:indexPath];
-    return cell.frame.size.height;
+    if (tableView == self.tableView) {
+        UITableViewCell *cell = [self tableView:self.tableView cellForRowAtIndexPath:indexPath];
+        return cell.frame.size.height;
+    }
+    else {
+        UITableViewCell *cell = [self tableView:self.ignoreTableView cellForRowAtIndexPath:indexPath];
+        return cell.frame.size.height;
+    }
+    
 }
 
 - (void) onGameDetail:(id)sender{
     UIButton *button = sender;
-    int tag = button.tag;
+    int row = button.tag;
+    LQGameInfo* gameInfo = [updateAppsList objectAtIndex:row];
     LQGameDetailViewController *controller = [[LQGameDetailViewController alloc] init];
-    controller.gameId = tag;
+    controller.gameId = gameInfo.gameId;
     
     [self.navigationController pushViewController:controller animated:YES];    
 }
 
 - (void) onGameDownload:(id)sender{
     UIButton* button = (UIButton*)sender;
-    int gameId = button.tag;
-    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameId];
-    LQGameInfo* info;
-    for (LQGameInfo* tempinfo in appsList) {
-        if(tempinfo.gameId == gameId){
-            info = tempinfo;
-            break;
-        }
-    }
+    int row = button.tag;
+    LQGameInfo* gameInfo = [updateAppsList objectAtIndex:row];
+    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameInfo.gameId];
+//    LQGameInfo* info;
+//    for (LQGameInfo* tempinfo in updateAppsList) {
+//        if(tempinfo.gameId == gameId){
+//            info = tempinfo;
+//            break;
+//        }
+//    }
     switch (status) {
         case kQYXDSFailed:
-            [[LQDownloadManager sharedInstance] resumeDownloadById:gameId];
+            [[LQDownloadManager sharedInstance] resumeDownloadById:gameInfo.gameId];
             break;
             //        case kQYXDSCompleted:
             //        case kQYXDSInstalling:
@@ -262,8 +330,8 @@
             //            [[LQDownloadManager sharedInstance] pauseDownloadById:self.gameInfo.gameId];
             //            break;
         case kQYXDSNotFound:
-            if(info!=nil)
-                [[LQDownloadManager sharedInstance] addToDownloadQueue:info suspended:NO];
+            if(gameInfo!=nil)
+                [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo suspended:NO];
             
             break;
             //        case kQYXDSInstalled:
@@ -273,4 +341,105 @@
             break;
     }
 }
+
+- (void)onAppIgnore:(id)sender{
+    UIButton* button = (UIButton*)sender;
+    int row = button.tag;
+    LQGameInfo* gameInfo = [updateAppsList objectAtIndex:row];   
+    [ignoreAppsList addObject:gameInfo];
+    [updateAppsList removeObject:gameInfo];
+    
+    LQUpdateViewController* __unsafe_unretained weakSelf = self;
+    selectedRow = -1;
+    selectedSection = -1;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSMutableArray *indexPaths = [NSMutableArray array];
+        [indexPaths addObject:[NSIndexPath indexPathForRow:row inSection:0]];
+ 
+        NSMutableArray *ignoreIndexPaths = [NSMutableArray array];
+        [ignoreIndexPaths addObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+
+        
+        if(indexPaths.count>0){
+            [weakSelf.tableView beginUpdates];            
+            [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+            [weakSelf.tableView endUpdates];
+        }
+    });
+}
+
+- (void)updateList{
+    [updateAppsList removeAllObjects];
+    for(LQGameInfo* gameInfo in appsList){
+        if([ignoreAppsList containsObject:gameInfo]==NO)
+            [updateAppsList addObject:gameInfo];
+        
+    }
+    
+    
+}
+
+
+- (void)onAppNotIgnore:(id)sender{
+    UIButton* button = (UIButton*)sender;
+    int row = button.tag;
+    LQGameInfo* gameInfo = [ignoreAppsList objectAtIndex:row];   
+    [ignoreAppsList removeObject:gameInfo];
+    
+    [self updateList];
+    
+    //[updateAppsList addObject:gameInfo];
+
+    
+    LQUpdateViewController* __unsafe_unretained weakSelf = self;
+    selectedRow = -1;
+    selectedSection = -1;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSMutableArray *indexPaths = [NSMutableArray array];
+        [indexPaths addObject:[NSIndexPath indexPathForRow:0 inSection:0]];
+        
+        NSMutableArray *ignoreIndexPaths = [NSMutableArray array];
+        [ignoreIndexPaths addObject:[NSIndexPath indexPathForRow:row inSection:0]];
+        
+        if(ignoreIndexPaths.count>0){
+            [weakSelf.ignoreTableView beginUpdates];
+            [weakSelf.ignoreTableView deleteRowsAtIndexPaths:ignoreIndexPaths withRowAnimation:UITableViewRowAnimationTop];
+            [weakSelf.ignoreTableView endUpdates];
+            
+        }
+    });
+}
+- (void) onOpenIgnoreView:(id)sender{
+    if(ignoreView.superview == nil){
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:1.5];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+
+        UIViewAnimationTransition transition = UIViewAnimationTransitionCurlUp;
+        
+        [UIView setAnimationTransition:transition forView:self.view cache:YES];
+        CGRect frame = self.view.frame;
+        ignoreView.frame = frame;
+        [self.view addSubview:ignoreView];
+        [ignoreTableView reloadData];
+        [UIView commitAnimations];
+
+    }
+}
+- (void) onCloseIgnoreView:(id)sender{
+    if(ignoreView.superview != nil){
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationDuration:1.5];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+        
+        UIViewAnimationTransition transition = UIViewAnimationTransitionCurlDown;
+        
+        [UIView setAnimationTransition:transition forView:self.view cache:YES];
+        [ignoreView removeFromSuperview];
+        [tableView reloadData];
+        [UIView commitAnimations];
+
+    }
+}
+
 @end

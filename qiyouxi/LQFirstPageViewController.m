@@ -266,8 +266,10 @@
                 cell = [[[NSBundle mainBundle] loadNibNamed:@"LQGameMoreItemTableViewCell"  owner:self options:nil] objectAtIndex:0];
             }
             cell.gameInfo = [recommendApps objectAtIndex:indexPath.row];
-            [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:cell.gameInfo.gameId];
-            [cell addDownloadButtonsTarget:self action:@selector(onGameDownload:) tag:cell.gameInfo.gameId];
+            [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:indexPath.row];
+            [cell addLeftButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
+            [cell addMiddleButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
+            [cell addRightButtonTarget:self action:@selector(onGameDetail:) tag:indexPath.row];
             return cell;
         }
         else{
@@ -276,7 +278,7 @@
                 cell = [[[NSBundle mainBundle] loadNibNamed:@"HistoryTableViewCell" owner:self options:nil] objectAtIndex:0];
             }
             cell.gameInfo = [recommendApps objectAtIndex:indexPath.row];
-            [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:cell.gameInfo.gameId];
+            [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:indexPath.row];
             return cell;
         }  
     }
@@ -477,24 +479,20 @@
 
 - (void) onGameDetail:(id)sender{
     UIButton *button = sender;
-    int tag = button.tag;
-
+    int row = button.tag;
+    LQGameInfo* gameInfo = [recommendApps objectAtIndex:row];
     LQGameDetailViewController *controller = [[LQGameDetailViewController alloc] init];
-    controller.gameId = tag;
+    controller.gameId = gameInfo.gameId;
     [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void) onGameDownload:(id)sender{
     UIButton* button = (UIButton*)sender;
-    int gameId = button.tag;
+    int row = button.tag;
+    LQGameInfo* info = [recommendApps objectAtIndex:row];
+    int gameId = info.gameId;
     QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameId];
-    LQGameInfo* info;
-    for (LQGameInfo* tempinfo in recommendApps) {
-        if(tempinfo.gameId == gameId){
-            info = tempinfo;
-            break;
-        }
-    }
+    
     switch (status) {
         case kQYXDSFailed:
             [[LQDownloadManager sharedInstance] resumeDownloadById:gameId];

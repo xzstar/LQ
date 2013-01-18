@@ -22,9 +22,18 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
     int selectedSection;
     int selectedRow;
     NSMutableArray* appsList;
+    NSMutableArray* updateAppsList;
+    NSMutableArray* ignoreAppsList;
+
 }
 
 @property (nonatomic,unsafe_unretained) IBOutlet UITableView *tableView;
+@property (nonatomic,unsafe_unretained) IBOutlet UIButton* openIgnoreView;
+
+@property (nonatomic,strong) IBOutlet UIView* ignoreView;
+@property (nonatomic,unsafe_unretained) IBOutlet UITableView *ignoreTableView;
+@property (nonatomic,unsafe_unretained) IBOutlet UIButton *closeIgnoreView;
+
 @property (nonatomic,strong) NSMutableArray *appsList;
 - (void) saveAppsList;
 - (void)loadApps:(NSArray*) apps;

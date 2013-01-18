@@ -219,6 +219,8 @@
 		F26CD2B71693148400E1E30B /* AudioMoreItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F26CD2B61693148400E1E30B /* AudioMoreItemCell.m */; };
 		F26CD2B9169314D900E1E30B /* AudioMoreItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F26CD2B8169314D900E1E30B /* AudioMoreItemCell.xib */; };
 		F27CACE916A8319C00451B86 /* LQPostCommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27CACE816A8319B00451B86 /* LQPostCommentViewController.xib */; };
+		F27CACF116A8FB8700451B86 /* LQIgnoreAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F27CACF016A8FB8500451B86 /* LQIgnoreAppCell.m */; };
+		F27CACF416A8FBC500451B86 /* LQIgnoreAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27CACF316A8FBC300451B86 /* LQIgnoreAppCell.xib */; };
 		F2842791169FE08E00997FC0 /* LQCategoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2842790169FE08E00997FC0 /* LQCategoryListViewController.m */; };
 		F290F84B16A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = F290F84816A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.m */; };
 		F290F84C16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = F290F84A16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m */; };
@@ -1159,6 +1161,9 @@
 		F26CD2B61693148400E1E30B /* AudioMoreItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioMoreItemCell.m; sourceTree = "<group>"; };
 		F26CD2B8169314D900E1E30B /* AudioMoreItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AudioMoreItemCell.xib; sourceTree = "<group>"; };
 		F27CACE816A8319B00451B86 /* LQPostCommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQPostCommentViewController.xib; sourceTree = "<group>"; };
+		F27CACEF16A8FB8400451B86 /* LQIgnoreAppCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQIgnoreAppCell.h; sourceTree = "<group>"; };
+		F27CACF016A8FB8500451B86 /* LQIgnoreAppCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQIgnoreAppCell.m; sourceTree = "<group>"; };
+		F27CACF316A8FBC300451B86 /* LQIgnoreAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQIgnoreAppCell.xib; sourceTree = "<group>"; };
 		F284278F169FE08E00997FC0 /* LQCategoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQCategoryListViewController.h; sourceTree = "<group>"; };
 		F2842790169FE08E00997FC0 /* LQCategoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQCategoryListViewController.m; sourceTree = "<group>"; };
 		F290F84616A4561D00EC712A /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
@@ -1953,6 +1958,9 @@
 				F230807A16A1B6920052F0C9 /* LQWallpaperCell.h */,
 				F230807B16A1B6960052F0C9 /* LQWallpaperCell.m */,
 				F230807D16A1B6B80052F0C9 /* LQWallpaperCell.xib */,
+				F27CACEF16A8FB8400451B86 /* LQIgnoreAppCell.h */,
+				F27CACF016A8FB8500451B86 /* LQIgnoreAppCell.m */,
+				F27CACF316A8FBC300451B86 /* LQIgnoreAppCell.xib */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -3755,6 +3763,7 @@
 				F21A2DCE16A59AB5001427A8 /* LQTopicListViewController.xib in Resources */,
 				F2EF705116A7C7740075F182 /* LQWallpaperViewController.xib in Resources */,
 				F27CACE916A8319C00451B86 /* LQPostCommentViewController.xib in Resources */,
+				F27CACF416A8FBC500451B86 /* LQIgnoreAppCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3855,6 +3864,7 @@
 				F21D4AB216A6B46E00D7CC53 /* LQAppsListWrapperViewController.m in Sources */,
 				F2EF704B16A78CF90075F182 /* LQConfig.m in Sources */,
 				F2EF705016A7C7740075F182 /* LQWallpaperViewController.m in Sources */,
+				F27CACF116A8FB8700451B86 /* LQIgnoreAppCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

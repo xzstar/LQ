@@ -17,19 +17,22 @@
 + (void) saveString:(NSString*) filename savedValue:(NSString*) savedValue;
 
 
+#pragma mark - for test
++ (NSString*) restoreAppList;
++ (void) saveAppList:(NSString*) appList;
 
+
+
+#pragma mark - for use
 + (NSArray*) restoreSearchHistory;
 + (void) saveSearchHisory:(NSArray*) searchHistory;
 
 
-+ (NSString*) restoreAppList;
-+ (void) saveAppList:(NSString*) appList;
++ (NSArray*) restoreUpdateAppList;
++ (void) saveUpdateAppList:(NSArray*) appList;
 
-+ (NSString*) restoreUpdateAppList;
-+ (void) saveUpdateAppList:(NSString*) appList;
-
-+ (NSString*) restoreIgnoreAppList;
-+ (void) saveIgnoreAppList:(NSString*) appList;
++ (NSArray*) restoreIgnoreAppList;
++ (void) saveIgnoreAppList:(NSArray*) appList;
 
 
 @end

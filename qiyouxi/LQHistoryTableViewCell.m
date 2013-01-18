@@ -135,8 +135,8 @@
 }
 
 - (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag{
-     [actionButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-    actionButton.tag = self.gameInfo.gameId;
+    [actionButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    actionButton.tag = tag;
 }
 
 @end

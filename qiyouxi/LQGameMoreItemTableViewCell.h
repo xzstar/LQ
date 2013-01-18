@@ -15,6 +15,14 @@
 @property (unsafe_unretained) IBOutlet UIButton* gameDetailButton;
 
 - (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
-- (void) addDownloadButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
+//- (void) addDownloadButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
+
+- (void) setButtonsName:(NSString*)left middle:(NSString*)middle right:(NSString*)right;
+
+- (void) addLeftButtonTarget:(id)target action:(SEL)action tag:(int)tag;
+
+- (void) addMiddleButtonTarget:(id)target action:(SEL)action tag:(int)tag;
+        
+- (void) addRightButtonTarget:(id)target action:(SEL)action tag:(int)tag;
 
 @end
