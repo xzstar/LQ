@@ -18,7 +18,7 @@
 @end
 
 @implementation LQTablesController
-@synthesize scrollView, viewControllers;
+@synthesize scrollView, viewControllers,pageView;
 @synthesize nodeId,categoryId,listOperator;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -87,16 +87,16 @@
 - (void)initPageController{
     NSArray* names = [[NSArray alloc] initWithObjects:@"最新",@"推荐",@"排行",@"分类", nil];
     
-    int width = names.count*(PAGE_NAME_SPAN+PAGE_NAME_WIDTH);
+    //int width = names.count*(PAGE_NAME_SPAN+PAGE_NAME_WIDTH);
     
-    CGRect frame = CGRectMake(320-width, 0, width, 44);
+    CGRect frame = CGRectMake(0, 0, pageView.frame.size.width, pageView.frame.size.height);
     
     pageController = [[LQPageController alloc] initWithFrame:frame];
     [pageController setPageNames:names];
     pageController.currentPage = 0;
     
     [pageController addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:pageController];
+    [self.pageView addSubview:pageController];
 }
 - (void)loadScrollViewWithPage:(int)page
 {

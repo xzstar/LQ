@@ -13,9 +13,11 @@
 #define PAGE_NAME_HEIGHT_OFFSET 5
 @interface LQPageController : UIView {
     NSArray* pageNames;
-    UIImageView* underLineImageView;
+    //UIImageView* underLineImageView;
     NSMutableArray* pageLables;
     NSUInteger currentPage;
+    UIButton* leftButton;
+    UIButton* rightButton;
 }
 
 @property (nonatomic,strong) NSArray* pageNames;

@@ -10,7 +10,7 @@
 
 @implementation LQGameMoreItemTableViewCell
 @synthesize gameActionView;
-@synthesize gameDownloadButton,gameInstallNowButton,gameDetailButton;
+@synthesize middleButton,leftButton,rightButton;
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -45,28 +45,28 @@
 //}
 
 - (void) setButtonsName:(NSString*)left middle:(NSString*)middle right:(NSString*)right{
-    [gameInstallNowButton setTitle:left forState:UIControlStateNormal];
-    gameInstallNowButton.hidden = (left==nil);
+    [leftButton setTitle:left forState:UIControlStateNormal];
+    leftButton.hidden = (left==nil);
     
-    [gameDownloadButton setTitle:middle forState:UIControlStateNormal];
-    gameDownloadButton.hidden = (middle==nil);
+    [middleButton setTitle:middle forState:UIControlStateNormal];
+    middleButton.hidden = (middle==nil);
     
-    [gameDetailButton setTitle:right forState:UIControlStateNormal];
-    gameDetailButton.hidden = (right==nil);
+    [rightButton setTitle:right forState:UIControlStateNormal];
+    rightButton.hidden = (right==nil);
     
 }
 - (void) addLeftButtonTarget:(id)target action:(SEL)action tag:(int)tag{
-    [gameInstallNowButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-    gameInstallNowButton.tag = tag;
+    [leftButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    leftButton.tag = tag;
 
 }
 - (void) addMiddleButtonTarget:(id)target action:(SEL)action tag:(int)tag{
-    [gameDownloadButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-    gameDownloadButton.tag = tag;  
+    [middleButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    middleButton.tag = tag;  
 }
 - (void) addRightButtonTarget:(id)target action:(SEL)action tag:(int)tag{
-    [gameDetailButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
-    gameDetailButton.tag = tag;
+    [rightButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    rightButton.tag = tag;
 }
 
 @end

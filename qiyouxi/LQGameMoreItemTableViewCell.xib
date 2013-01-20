@@ -221,7 +221,7 @@
 									<object class="IBUIImageView" id="58149585">
 										<reference key="NSNextResponder" ref="598313931"/>
 										<int key="NSvFlags">266</int>
-										<string key="NSFrame">{{0, 12}, {320, 40}}</string>
+										<string key="NSFrame">{{0, 6}, {320, 50}}</string>
 										<reference key="NSSuperview" ref="598313931"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="121656828"/>
@@ -329,7 +329,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
-						<string key="NSFrameSize">{320, 104}</string>
+						<string key="NSFrameSize">{320, 105}</string>
 						<reference key="NSSuperview" ref="385310778"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="91915408"/>
@@ -342,7 +342,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 105}</string>
+				<string key="NSFrameSize">{320, 106}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="823834614"/>
@@ -351,7 +351,7 @@
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="823834614"/>
 				<string key="IBUIReuseIdentifier">moreitem</string>
-				<real value="105" key="IBUIRowHeight"/>
+				<real value="106" key="IBUIRowHeight"/>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -422,27 +422,27 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">gameDetailButton</string>
-						<reference key="source" ref="385310778"/>
-						<reference key="destination" ref="1009041704"/>
-					</object>
-					<int key="connectionID">43</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">gameDownloadButton</string>
-						<reference key="source" ref="385310778"/>
-						<reference key="destination" ref="307716749"/>
-					</object>
-					<int key="connectionID">44</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">gameInstallNowButton</string>
+						<string key="label">leftButton</string>
 						<reference key="source" ref="385310778"/>
 						<reference key="destination" ref="121656828"/>
 					</object>
-					<int key="connectionID">45</int>
+					<int key="connectionID">46</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">middleButton</string>
+						<reference key="source" ref="385310778"/>
+						<reference key="destination" ref="307716749"/>
+					</object>
+					<int key="connectionID">47</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">rightButton</string>
+						<reference key="source" ref="385310778"/>
+						<reference key="destination" ref="1009041704"/>
+					</object>
+					<int key="connectionID">48</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -479,8 +479,8 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="121656828"/>
 							<reference ref="307716749"/>
-							<reference ref="58149585"/>
 							<reference ref="1009041704"/>
+							<reference ref="58149585"/>
 						</array>
 						<reference key="parent" ref="385310778"/>
 					</object>
@@ -512,8 +512,8 @@
 							<reference ref="693395686"/>
 							<reference ref="166702393"/>
 							<reference ref="489334989"/>
-							<reference ref="877607365"/>
 							<reference ref="472177722"/>
+							<reference ref="877607365"/>
 						</array>
 						<reference key="parent" ref="385310778"/>
 					</object>
@@ -573,7 +573,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">45</int>
+			<int key="maxID">48</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -582,25 +582,25 @@
 					<string key="superclassName">LQHistoryTableViewCell</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="gameActionView">UIView</string>
-						<string key="gameDetailButton">UIButton</string>
-						<string key="gameDownloadButton">UIButton</string>
-						<string key="gameInstallNowButton">UIButton</string>
+						<string key="leftButton">UIButton</string>
+						<string key="middleButton">UIButton</string>
+						<string key="rightButton">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="gameActionView">
 							<string key="name">gameActionView</string>
 							<string key="candidateClassName">UIView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="gameDetailButton">
-							<string key="name">gameDetailButton</string>
+						<object class="IBToOneOutletInfo" key="leftButton">
+							<string key="name">leftButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="gameDownloadButton">
-							<string key="name">gameDownloadButton</string>
+						<object class="IBToOneOutletInfo" key="middleButton">
+							<string key="name">middleButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="gameInstallNowButton">
-							<string key="name">gameInstallNowButton</string>
+						<object class="IBToOneOutletInfo" key="rightButton">
+							<string key="name">rightButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 					</dictionary>

@@ -9,7 +9,8 @@
 #import "LQPageController.h"
 #define PAGE_UNERLINE_HEIGHT 4
 #define PAGE_UNERLINE_OFFSET 15
-
+#define ARROW_HEIGHT 24
+#define ARROW_WIDTH  24
 #define PAGE_UNDERLINE_BEGIN   @"head_animation_1.png"
 #define PAGE_UNDERLINE_MIDDLE  @"head_animation_2.png"
 #define PAGE_UNDERLINE_END     @"head_animation_3.png"
@@ -23,6 +24,14 @@
     if (self) {
         // Initialization code
         pageLables = [NSMutableArray array];
+        UIImageView* imageView = [[UIImageView alloc]initWithFrame:
+                                  CGRectMake(0, 0,frame.size.width, frame.size.height) ];
+        [imageView setContentMode:UIViewContentModeScaleToFill];
+        
+        UIImage* image = [UIImage imageNamed:@"index_nav_bg.png"];
+        imageView.image = image;
+        [self addSubview:imageView];
+        
     }
     return self;
 }
@@ -41,10 +50,35 @@
     pageNames = aPageNames;
     UIButton* button;
     
+    CGRect frame = self.frame;
+    if(leftButton == nil)
+    {
+        int x = 0;
+        int y = (self.frame.size.height - ARROW_HEIGHT)/2;
+        leftButton = [[UIButton alloc]initWithFrame:CGRectMake(x, y, ARROW_WIDTH, ARROW_HEIGHT)];
+        [leftButton setImage:[UIImage imageNamed:@"arrow_01_right_default.png"] forState:UIControlStateNormal] ;
+        [self addSubview:leftButton];
+    }
+    if(rightButton == nil)
+    {
+        int x = (self.frame.size.width - ARROW_WIDTH);
+        int y = (self.frame.size.height - ARROW_HEIGHT)/2;
+        rightButton = [[UIButton alloc]initWithFrame:CGRectMake(x, y, ARROW_WIDTH,ARROW_HEIGHT )];
+        [rightButton setImage:[UIImage imageNamed:@"arrow_01_right_default.png"] forState:UIControlStateNormal] ;
+        [self addSubview:rightButton];
+
+    }
+    
+    int buttonCount = pageNames.count;
+    int buttonWidth = (frame.size.width - 2*ARROW_WIDTH)/buttonCount;
+    
+    
     for(int i=0;i<pageNames.count;i++){
-        CGRect frame = CGRectMake(i*(PAGE_NAME_SPAN+PAGE_NAME_WIDTH), PAGE_NAME_HEIGHT_OFFSET , PAGE_NAME_WIDTH, PAGE_NAME_HEIGHT);
-        button = [[UIButton alloc] initWithFrame:frame];
-        button.titleLabel.font = [UIFont systemFontOfSize:12.0];
+//        CGRect buttonFrame = CGRectMake(i*(PAGE_NAME_SPAN+PAGE_NAME_WIDTH), PAGE_NAME_HEIGHT_OFFSET , PAGE_NAME_WIDTH, PAGE_NAME_HEIGHT);
+        CGRect buttonFrame = CGRectMake(i*buttonWidth+ARROW_WIDTH, 0 , buttonWidth, frame.size.height);
+        button = [[UIButton alloc] initWithFrame:buttonFrame];
+        button.titleLabel.font = [UIFont systemFontOfSize:14.0];
+        button.titleLabel.textAlignment = UITextAlignmentCenter;
         button.backgroundColor = [UIColor clearColor];
         [button setTitle:[pageNames objectAtIndex:i] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -53,17 +87,42 @@
         [pageLables addObject:button];
     }
     
-    UIImage* image = [UIImage imageNamed:PAGE_UNDERLINE_MIDDLE];
-    underLineImageView = [[UIImageView alloc] initWithImage:image];
-    
-    CGRect frame = CGRectMake(0, self.frame.size.height -PAGE_UNERLINE_OFFSET , PAGE_NAME_WIDTH, PAGE_UNERLINE_HEIGHT);
-    underLineImageView.frame = frame;
-    [self addSubview:underLineImageView];
+//    UIImage* image = [UIImage imageNamed:PAGE_UNDERLINE_MIDDLE];
+//    underLineImageView = [[UIImageView alloc] initWithImage:image];
+//    
+//    CGRect frame = CGRectMake(0, self.frame.size.height -PAGE_UNERLINE_OFFSET , PAGE_NAME_WIDTH, PAGE_UNERLINE_HEIGHT);
+//    underLineImageView.frame = frame;
+//    [self addSubview:underLineImageView];
 }
 
 -(void) setCurrentPage:(NSUInteger)aCurrentPage {
     if(aCurrentPage>= pageLables.count)
         return;
+    
+    if(aCurrentPage == 0)
+    {
+       [leftButton setImage:[UIImage imageNamed:@"arrow_01_left_disabled.png"] forState:UIControlStateNormal] ; 
+    }
+    else {
+        [leftButton setImage:[UIImage imageNamed:@"arrow_01_left_default.png"] forState:UIControlStateNormal] ; 
+    }
+    if(aCurrentPage == pageLables.count -1){
+         [rightButton setImage:[UIImage imageNamed:@"arrow_01_right_disabled.png"] forState:UIControlStateNormal] ; 
+    }
+    else {
+         [rightButton setImage:[UIImage imageNamed:@"arrow_01_right_default.png"] forState:UIControlStateNormal] ; 
+    }
+    
+    for(int i=0; i< pageLables.count;i++)
+    {
+        UIButton* button = [pageLables objectAtIndex:i];
+        
+        if(i!=aCurrentPage)
+            [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        else {
+            [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        }
+    }
     
 //    NSString* underlineName;
 //    if(aCurrentPage == 0)
@@ -77,9 +136,9 @@
 //    UIImage* image = [UIImage imageNamed:underlineName];
 //    [underLineImageView setImage:image];
     
-    
-    CGRect frame = CGRectMake(currentPage*(PAGE_NAME_SPAN+PAGE_NAME_WIDTH), self.frame.size.height -PAGE_UNERLINE_OFFSET, PAGE_NAME_WIDTH, PAGE_UNERLINE_HEIGHT);
-    underLineImageView.frame = frame;
+//    
+//    CGRect frame = CGRectMake(currentPage*(PAGE_NAME_SPAN+PAGE_NAME_WIDTH), self.frame.size.height -PAGE_UNERLINE_OFFSET, PAGE_NAME_WIDTH, PAGE_UNERLINE_HEIGHT);
+//    underLineImageView.frame = frame;
 }
 
 - (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents{

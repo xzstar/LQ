@@ -22,7 +22,7 @@
 }
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
-
+@property (nonatomic, strong) IBOutlet UIView* pageView;
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 @property (nonatomic, strong) NSString* nodeId;
 @property (nonatomic, strong) NSString* categoryId;
