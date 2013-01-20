@@ -62,5 +62,5 @@
 
 - (void)loadHotKeywords;
 - (void)loadAppUpdate:(NSString*) appList;
-
+- (void)postComment:(int) gameId rating:(NSString*) rating text:(NSString*) text;
 @end

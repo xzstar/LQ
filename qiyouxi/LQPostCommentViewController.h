@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "LQViewController.h"
 
-@interface LQPostCommentViewController : LQViewController<UITextFieldDelegate>
+@interface LQPostCommentViewController : LQViewController<UITextFieldDelegate,UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, assign) int gameId;
-
+@property (nonatomic, assign) IBOutlet UILabel* gameScore;
 @property (nonatomic, unsafe_unretained) IBOutlet UITextField* contactField;
 @property (nonatomic, unsafe_unretained) IBOutlet UITextView* contentField;
 
+@property (nonatomic,unsafe_unretained) IBOutlet UITableView* commentsTableView;
 - (IBAction)onSubmit:(id)sender;
 @end

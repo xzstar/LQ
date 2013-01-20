@@ -28,6 +28,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    CGRect frame = super.pageView.frame;
+    super.pageView.frame = CGRectZero;
+    CGRect scrollViewFrame = super.scrollView.frame;
+    scrollViewFrame.size.height+=frame.size.height;
+    scrollViewFrame.origin.y=frame.origin.y;
+    super.scrollView.frame = scrollViewFrame; 
 }
 
 - (void)viewDidUnload

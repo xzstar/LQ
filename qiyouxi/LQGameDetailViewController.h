@@ -43,7 +43,7 @@
 @property (unsafe_unretained) IBOutlet UIButton* weiboShareButton;
 @property (unsafe_unretained) IBOutlet UIButton* qqShareButton;
 @property (unsafe_unretained) IBOutlet UILabel* gameScore2;
-
+@property (unsafe_unretained) IBOutlet UITableView *gameInfoCommentTableView;
 
 //
 //@property (unsafe_unretained) IBOutlet LQImageButton* commentGirlView;

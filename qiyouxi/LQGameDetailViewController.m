@@ -18,6 +18,7 @@
 @property (strong) EGORefreshTableHeaderView* commentsHeaderView;
 @property (assign) BOOL refreshing;
 @property (assign) BOOL moreCommentsToLoad;
+@property (strong) NSMutableArray* gameInfoUserComments; //在详情页显示评论
 @property (strong) NSMutableArray* userComments;
 @property (assign) CGFloat commentLabelMaxHeight;
 @property (strong) NSString* moreUrl;
@@ -30,6 +31,7 @@
 @synthesize gameId;
 @synthesize gameInfo;
 @synthesize userComments;
+@synthesize gameInfoUserComments;
 @synthesize commentLabelMaxHeight;
 @synthesize mainScrollView;
 
@@ -38,6 +40,7 @@
 @synthesize weiboShareButton,qqShareButton;
 @synthesize gamePhotoInfoPanel;
 @synthesize gameScore2;
+@synthesize gameInfoCommentTableView;
 
 @synthesize gameInfoPanel;
 @synthesize gameIconView, gameTitleLabel;
@@ -70,7 +73,6 @@
     [self.userCommentsView addSubview:self.commentsHeaderView];
     
     self.userComments = [[NSMutableArray alloc] init];
-    
     self.commentsHeaderView.delegate = self;
     [self.commentsHeaderView refreshLastUpdatedDate];
     
@@ -104,6 +106,9 @@
     
     mainScrollView.contentSize = CGSizeMake(mainScrollView.frame.size.width, height);
     [mainScrollView layoutIfNeeded];
+    
+    self.gameInfoUserComments = [[NSMutableArray alloc]init];
+
 }
 -  (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -141,7 +146,12 @@
     self.gameType.text = [NSString stringWithFormat:@"分类:%@", gameInfo.tags];
     self.gameVender.text = [NSString stringWithFormat:@"开发商:%@",@""];
     self.commentLabel.text = gameInfo.intro;
-    [self.commentLabel autowrap:self.commentLabelMaxHeight];
+    //文字居中显示  
+    commentLabel.textAlignment = UITextAlignmentLeft;  
+    //自动折行设置  
+    commentLabel.lineBreakMode = UILineBreakModeWordWrap;  
+    commentLabel.numberOfLines = 0;  
+    //[self.commentLabel autowrap:self.commentLabelMaxHeight];
 
 }
 
@@ -154,7 +164,7 @@
 }
 - (void)loadGameInfo:(NSDictionary*)result{
     self.gameInfo = [[LQGameInfo alloc] initWithAPIResult:result];
-    
+
 //    self.gameTitleLabel.text = self.gameInfo.name;
 //    int size= [self.gameInfo.size intValue];
 //    float sizeMB= (float)size/(1024*1024);
@@ -188,6 +198,14 @@
     center = self.buttonUnderline.center;
     center.x = self.detailButton.center.x;
     self.buttonUnderline.center = center;
+    
+    [self loadGameInfoComments:[result objectForKey:@"arr_comment"]];
+
+}
+
+- (void)loadGameInfoComments:(NSArray*) result{
+    [self.gameInfoUserComments addObjectsFromArray: result];
+    [self.gameInfoCommentTableView reloadData];
 }
 
 - (void)loadUserComments:(NSDictionary*)result{
@@ -249,6 +267,8 @@
 //
 //    }
     LQPostCommentViewController* controller = [[LQPostCommentViewController alloc] initWithNibName:@"LQPostCommentViewController" bundle:nil];
+    controller.gameId = self.gameId;
+    controller.gameScore.text = self.gameScore.text;
     [self.navigationController pushViewController:controller animated:YES];
     
     
@@ -289,7 +309,10 @@
 #pragma mark - TableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.userComments.count;
+    if(tableView == self.gameInfoCommentTableView)
+        return self.gameInfoUserComments.count;
+    else
+        return self.userComments.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -298,25 +321,35 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"CommentTableViewCell" owner:self options:nil] objectAtIndex:0];
     }
     
-    NSDictionary* item = [self.userComments objectAtIndex:indexPath.row];
-    cell.comment = item;
+    if(tableView == self.gameInfoCommentTableView)
+    {
+        NSDictionary* item = [self.gameInfoUserComments objectAtIndex:indexPath.row];
+        cell.comment = item;
+        
+    }
+    else{
+        NSDictionary* item = [self.userComments objectAtIndex:indexPath.row];
+        cell.comment = item;
+    }
+   
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (self.dummyCell == nil){
-        self.dummyCell = [[[NSBundle mainBundle] loadNibNamed:@"CommentTableViewCell" owner:self options:nil] objectAtIndex:0];
-        
-    }
-    
-    NSDictionary* item = [self.userComments objectAtIndex:indexPath.row];
-    self.dummyCell.comment = item;
-    
-    [self.dummyCell layoutSubviews];
-    
-    CGSize rowSize = [self.dummyCell sizeThatFits:CGSizeZero];
-    return rowSize.height;    
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height;
+//    if (self.dummyCell == nil){
+//        self.dummyCell = [[[NSBundle mainBundle] loadNibNamed:@"CommentTableViewCell" owner:self options:nil] objectAtIndex:0];
+//        
+//    }
+//    
+//    NSDictionary* item = [self.userComments objectAtIndex:indexPath.row];
+//    self.dummyCell.comment = item;
+//    
+//    [self.dummyCell layoutSubviews];
+//    
+//    CGSize rowSize = [self.dummyCell sizeThatFits:CGSizeZero];
+//    return rowSize.height;    
 }
 
 #pragma mark - EGORefreshTableView
