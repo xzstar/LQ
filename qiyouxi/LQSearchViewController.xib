@@ -40,10 +40,9 @@
 					<object class="IBUIScrollView" id="51053159">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 44}, {320, 366}}</string>
+						<string key="NSFrame">{{0, 50}, {320, 360}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
@@ -89,10 +88,9 @@
 					<object class="IBUITableView" id="763539087">
 						<reference key="NSNextResponder" ref="97892940"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{5, 20}, {310, 264}}</string>
+						<string key="NSFrame">{{5, 20}, {310, 310}}</string>
 						<reference key="NSSuperview" ref="97892940"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -109,7 +107,7 @@
 						<float key="IBUISectionFooterHeight">22</float>
 					</object>
 				</array>
-				<string key="NSFrameSize">{320, 300}</string>
+				<string key="NSFrameSize">{320, 350}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="763539087"/>
@@ -127,7 +125,6 @@
 				<string key="NSFrameSize">{320, 300}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -224,8 +221,8 @@
 						<int key="objectID">1</int>
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="562376027"/>
 							<reference ref="51053159"/>
+							<reference ref="562376027"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -297,7 +294,6 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="scrollView">UIScrollView</string>
 						<string key="searchBar">UISearchBar</string>
-						<string key="searchBarController">UISearchDisplayController</string>
 						<string key="searchHistoryTable">UITableView</string>
 						<string key="searchHistoryView">UIView</string>
 						<string key="searchResultTable">UIView</string>
@@ -310,10 +306,6 @@
 						<object class="IBToOneOutletInfo" key="searchBar">
 							<string key="name">searchBar</string>
 							<string key="candidateClassName">UISearchBar</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="searchBarController">
-							<string key="name">searchBarController</string>
-							<string key="candidateClassName">UISearchDisplayController</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="searchHistoryTable">
 							<string key="name">searchHistoryTable</string>

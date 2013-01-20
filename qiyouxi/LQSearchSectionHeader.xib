@@ -39,80 +39,86 @@
 					<object class="IBUIImageView" id="724679651">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrameSize">{310, 40}</string>
+						<string key="NSFrameSize">{300, 29}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="376572063"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">search_bt_bg.png</string>
+							<string key="NSResourceName">search_tab_bg_left.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="376572063">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 5}, {155, 40}}</string>
+						<string key="NSFrameSize">{150, 34}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="9740507"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUINormalTitle">搜索记录</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor" id="377005673">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
 						</object>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+							<bytes key="NSRGB">MCAwIDAAA</bytes>
 						</object>
 						<object class="NSColor" key="IBUINormalTitleShadowColor" id="1068771044">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">search_history_bt.png</string>
-						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="840654905">
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
-							<double key="pointSize">15</double>
+							<double key="pointSize">16</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="784303166">
+						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica-Bold</string>
-							<double key="NSSize">15</double>
+							<double key="NSSize">16</double>
 							<int key="NSfFlags">16</int>
 						</object>
 					</object>
 					<object class="IBUIButton" id="9740507">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{155, 5}, {155, 40}}</string>
+						<string key="NSFrame">{{150, 0}, {150, 34}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="376572063"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
+						<string key="IBUINormalTitle">热门搜索</string>
 						<reference key="IBUIHighlightedTitleColor" ref="377005673"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+							<int key="NSColorSpace">3</int>
+							<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="1068771044"/>
-						<reference key="IBUIFontDescription" ref="840654905"/>
-						<reference key="IBUIFont" ref="784303166"/>
+						<object class="IBUIFontDescription" key="IBUIFontDescription">
+							<int key="type">2</int>
+							<double key="pointSize">14</double>
+						</object>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">14</double>
+							<int key="NSfFlags">16</int>
+						</object>
 					</object>
 				</array>
-				<string key="NSFrameSize">{310, 45}</string>
+				<string key="NSFrameSize">{300, 34}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView"/>
+				<reference key="NSNextKeyView" ref="724679651"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -127,19 +133,27 @@
 			<array class="NSMutableArray" key="connectionRecords">
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">softButton</string>
+						<string key="label">leftButton</string>
 						<reference key="source" ref="191373211"/>
 						<reference key="destination" ref="376572063"/>
 					</object>
-					<int key="connectionID">6</int>
+					<int key="connectionID">8</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">topicButton</string>
+						<string key="label">rightButton</string>
 						<reference key="source" ref="191373211"/>
 						<reference key="destination" ref="9740507"/>
 					</object>
-					<int key="connectionID">7</int>
+					<int key="connectionID">9</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">backgroundImageView</string>
+						<reference key="source" ref="191373211"/>
+						<reference key="destination" ref="724679651"/>
+					</object>
+					<int key="connectionID">10</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -202,35 +216,32 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">7</int>
+			<int key="maxID">10</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
-					<string key="className">LQRecommendSectionHeader</string>
+					<string key="className">LQSearchSectionHeader</string>
 					<string key="superclassName">UIView</string>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="softButton">UIButton</string>
-						<string key="topicButton">UIButton</string>
+						<string key="backgroundImageView">UIImageView</string>
+						<string key="leftButton">UIButton</string>
+						<string key="rightButton">UIButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="softButton">
-							<string key="name">softButton</string>
+						<object class="IBToOneOutletInfo" key="backgroundImageView">
+							<string key="name">backgroundImageView</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="leftButton">
+							<string key="name">leftButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="topicButton">
-							<string key="name">topicButton</string>
+						<object class="IBToOneOutletInfo" key="rightButton">
+							<string key="name">rightButton</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 					</dictionary>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/LQRecommendSectionHeader.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">LQSearchSectionHeader</string>
-					<string key="superclassName">LQRecommendSectionHeader</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/LQSearchSectionHeader.h</string>
@@ -246,10 +257,10 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="search_bt_bg.png">{310, 45}</string>
-			<string key="search_history_bt.png">{155, 40}</string>
-		</dictionary>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">search_tab_bg_left.png</string>
+			<string key="NS.object.0">{300, 34}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>
 </archive>

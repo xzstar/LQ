@@ -69,7 +69,26 @@
     [scrollView addSubview:searchResultTable];
 
     [self.client loadHotKeywords];
+    
+    for (UIView *subview in searchBar.subviews)
+    {
+        if ([subview isKindOfClass:NSClassFromString(@"UISearchBarBackground")])
+        {
+            frame = subview.frame;
+            [subview removeFromSuperview];
 
+            UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"head_bg.png"]];
+            frame.size.height = 50;
+            imageView.frame = frame;
+            imageView.contentMode = UIViewContentModeScaleToFill;
+            [searchBar insertSubview:imageView atIndex:0];
+            break;
+        }
+    }
+
+
+
+   
 }
 
 - (void)viewDidUnload
@@ -163,10 +182,10 @@
         LQSearchSectionHeader *header = [[[NSBundle mainBundle] loadNibNamed:@"LQSearchSectionHeader" owner:self options:nil]objectAtIndex:0];
         [header addInfoButtonsTarget:self action:@selector(onSwitchRecommendSection:) tag:0];
         [header addInfoButtonsTarget:self action:@selector(onSwitchRecommendSection:) tag:1];
-        [header setImageNames:nil
-                 leftSelected:@"search_history_bt.png"
-                  rightNormal:nil 
-                rightSelected:@"search_hotword_bt.png"];
+//        [header setImageNames:nil
+//                 leftSelected:@"search_history_bt.png"
+//                  rightNormal:nil 
+//                rightSelected:@"search_hotword_bt.png"];
         [header setButtonStatus:currentRecommendIndex];
         return header;
         
@@ -188,6 +207,12 @@
 
     
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height;
+}
+
 #pragma mark recommendSetion callback
 - (void)onSwitchRecommendSection:(id)sender{
     UIButton* button = sender;

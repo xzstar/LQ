@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LQRecommendSectionHeader : UIView{
+@interface LQRecommendSectionHeader : UIView{ 
     NSString* leftImageNormal;
     NSString* leftImageSelected;
     NSString* rightImageNormal;

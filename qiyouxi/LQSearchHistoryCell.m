@@ -24,19 +24,19 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
-    [super setSelected:selected animated:animated];
+//    [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
-    UIImage* image;
-    if(selected)
-    {
-        image = [UIImage imageNamed:SELECTEDIMAGE];
-    }
-    else {
-        image = [UIImage imageNamed:UNSELECTEDIMAGE];
-    }
-    
-    [cellBg setImage:image];
+//    UIImage* image;
+//    if(selected)
+//    {
+//        image = [UIImage imageNamed:SELECTEDIMAGE];
+//    }
+//    else {
+//        image = [UIImage imageNamed:UNSELECTEDIMAGE];
+//    }
+//    
+//    [cellBg setImage:image];
 }
 
 - (void) hiddenDelButton:(BOOL)aHiddenDelButton{

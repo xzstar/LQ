@@ -137,11 +137,7 @@
 										</object>
 										<object class="NSCustomResource" key="IBUINormalImage">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">soft_cell_detail_button.png</string>
-										</object>
-										<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
-											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">soft_cell_detail_button_down.png</string>
+											<string key="NSResourceName">arrow_more.png</string>
 										</object>
 										<object class="IBUIFontDescription" key="IBUIFontDescription">
 											<int key="type">1</int>
@@ -350,7 +346,7 @@
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="0.0" key="9.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="9.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
@@ -408,9 +404,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="arrow_more.png">{16, 16}</string>
 			<string key="icon_layout.png">{54, 54}</string>
-			<string key="soft_cell_detail_button.png">{26, 26}</string>
-			<string key="soft_cell_detail_button_down.png">{25, 25}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>

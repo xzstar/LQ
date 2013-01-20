@@ -67,6 +67,7 @@
 										<string key="NSFrame">{{72, 4}, {176, 21}}</string>
 										<reference key="NSSuperview" ref="53024484"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView" ref="225906548"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -98,6 +99,7 @@
 										<string key="NSFrame">{{72, 45}, {176, 21}}</string>
 										<reference key="NSSuperview" ref="53024484"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView" ref="665928220"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -126,6 +128,7 @@
 										<string key="NSFrame">{{280, 22}, {26, 26}}</string>
 										<reference key="NSSuperview" ref="53024484"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -142,11 +145,7 @@
 										</object>
 										<object class="NSCustomResource" key="IBUINormalImage">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">soft_cell_detail_button.png</string>
-										</object>
-										<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
-											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">soft_cell_detail_button_down.png</string>
+											<string key="NSResourceName">arrow_more.png</string>
 										</object>
 										<object class="IBUIFontDescription" key="IBUIFontDescription">
 											<int key="type">1</int>
@@ -164,7 +163,7 @@
 										<string key="NSFrame">{{72, 24}, {60, 21}}</string>
 										<reference key="NSSuperview" ref="53024484"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="907077350"/>
+										<reference key="NSNextKeyView" ref="1061104220"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -185,7 +184,7 @@
 										<string key="NSFrame">{{140, 24}, {60, 21}}</string>
 										<reference key="NSSuperview" ref="53024484"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="665928220"/>
+										<reference key="NSNextKeyView" ref="907077350"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
@@ -340,10 +339,10 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="907077350"/>
 							<reference ref="33148336"/>
-							<reference ref="665928220"/>
 							<reference ref="1061104220"/>
 							<reference ref="113039890"/>
 							<reference ref="225906548"/>
+							<reference ref="665928220"/>
 						</array>
 						<reference key="parent" ref="881973254"/>
 					</object>
@@ -475,9 +474,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="arrow_more.png">{16, 16}</string>
 			<string key="icon_layout.png">{54, 54}</string>
-			<string key="soft_cell_detail_button.png">{26, 26}</string>
-			<string key="soft_cell_detail_button_down.png">{25, 25}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>

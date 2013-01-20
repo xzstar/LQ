@@ -46,13 +46,13 @@
 
 - (void) setButtonsName:(NSString*)left middle:(NSString*)middle right:(NSString*)right{
     [gameInstallNowButton setTitle:left forState:UIControlStateNormal];
-    gameInstallNowButton.hidden = (left!=nil);
+    gameInstallNowButton.hidden = (left==nil);
     
     [gameDownloadButton setTitle:middle forState:UIControlStateNormal];
-    gameDownloadButton.hidden = (middle!=nil);
+    gameDownloadButton.hidden = (middle==nil);
     
     [gameDetailButton setTitle:right forState:UIControlStateNormal];
-    gameDetailButton.hidden = (right!=nil);
+    gameDetailButton.hidden = (right==nil);
     
 }
 - (void) addLeftButtonTarget:(id)target action:(SEL)action tag:(int)tag{

@@ -75,23 +75,33 @@
     self.viewControllers = viewControllerArray;  
 
     NSArray* items = self.tabBar.items;
-        NSMutableArray* newItems = [NSMutableArray array];
+    NSMutableArray* newItems = [NSMutableArray array];
     
-        int index = 0;
-        for (UITabBarItem* item in items){
-            [newItems addObject:[[UITabBarItem alloc] initWithTitle:item.title 
-                                                              image:item.image 
-                                                                tag:index++]];
-        }
+    int index = 0;
+    
+    NSString* title[] = {@"首页",@"搜索",@"下载管理",@"更新",@"更多"};
+    NSString* images[] ={@"menu_home_default.png"
+        ,@"menu_search_default.png",@"menu_download_default.png"
+        ,@"menu_update_default.png",@"menu_about_default.png"};
+    for (UITabBarItem* item in items){
+        
+        UIImage* image = [UIImage imageNamed:images[index]];
+        
+        [newItems addObject:[[UITabBarItem alloc] initWithTitle:title[index] 
+                                                          image:image 
+                                                            tag:index]];
+        index++;
+    }
+    
     UITabBar* myTabBar = [[UITabBar alloc] initWithFrame:self.tabBar.frame];
     myTabBar.items = newItems;
     myTabBar.delegate = self;
     [self.view addSubview:myTabBar];
     myTabBar.selectedItem = [newItems objectAtIndex:0];
     
-    myTabBar.backgroundImage = [UIImage imageNamed:@"tabbar_bg.png"];
+    myTabBar.backgroundImage = [UIImage imageNamed:@"menu_bg.png"];
     
-    //myTabBar.selectionIndicatorImage = [UIImage imageNamed:@"selected.png"];
+    myTabBar.selectionIndicatorImage = [UIImage imageNamed:@"menu_current_bg.png"];
 }
 
 - (void)viewDidUnload
@@ -107,27 +117,35 @@
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
     self.selectedIndex = item.tag;
+    NSString* images[] = {@"menu_home_current.png",
+        @"menu_search_current.png",
+        @"menu_download_current.png",
+        @"menu_update_current.png",
+        @"menu_about_current.png"};
+    item.image = [UIImage imageNamed:images[self.selectedIndex]];
     
-    switch (item.tag) {
-        case 0:
-            tabBar.selectionIndicatorImage = [UIImage imageNamed:@"tabbar_index.png"];
-            break;
-        case 1:
-            tabBar.selectionIndicatorImage = [UIImage imageNamed:@"tabbar_search.png"];
-            break;
-        case 2:
-            tabBar.selectionIndicatorImage = [UIImage imageNamed:@"tabbar_down.png"];
-            break;
-        case 3:
-            tabBar.selectionIndicatorImage = [UIImage imageNamed:@"tabbar_update.png"];
-            break;
-        case 4:
-            tabBar.selectionIndicatorImage = [UIImage imageNamed:@"tabbar_more.png"];
-            break;
 
-        default:
-            break;
-    }
+//    switch (item.tag) {
+//        case 0:
+//            item.image = [UIImage imageNamed:@"menu_home_selected.png"];
+//            tabBar.selectionIndicatorImage = [UIImage imageNamed:@"menu_home_default.png"];
+//            break;
+//        case 1:
+//            tabBar.selectionIndicatorImage = [UIImage imageNamed:@"tabbar_search.png"];
+//            break;
+//        case 2:
+//            tabBar.selectionIndicatorImage = [UIImage imageNamed:@"tabbar_down.png"];
+//            break;
+//        case 3:
+//            tabBar.selectionIndicatorImage = [UIImage imageNamed:@"tabbar_update.png"];
+//            break;
+//        case 4:
+//            tabBar.selectionIndicatorImage = [UIImage imageNamed:@"tabbar_more.png"];
+//            break;
+//
+//        default:
+//            break;
+//    }
 //    if (item.tag == 3){
 //        if (moreBgView == nil){
 //            

@@ -100,7 +100,6 @@
 								<reference key="NSNextKeyView" ref="930275321"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">4</int>
 								<bool key="IBUIMultipleTouchEnabled">YES</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -126,9 +125,13 @@
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
 								<reference key="IBUINormalTitleShadowColor" ref="1062215646"/>
+								<object class="NSCustomResource" key="IBUISelectedImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">freshen_click.png</string>
+								</object>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">arrow.png</string>
+									<string key="NSResourceName">freshen_default.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="663296497"/>
 								<reference key="IBUIFont" ref="516417283"/>
@@ -369,9 +372,9 @@
 						<reference key="object" ref="191373211"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="474668511"/>
-							<reference ref="1007399823"/>
 							<reference ref="425779614"/>
 							<reference ref="621433532"/>
+							<reference ref="1007399823"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -456,7 +459,7 @@
 				<reference key="5.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="5.showNotes"/>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="6.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="6.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<reference key="6.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="6.showNotes"/>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -572,7 +575,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="arrow.png">{9, 14}</string>
+			<string key="freshen_click.png">{24, 24}</string>
+			<string key="freshen_default.png">{24, 24}</string>
 			<string key="navi_bg.png">{320, 45}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>

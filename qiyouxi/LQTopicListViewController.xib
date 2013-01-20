@@ -41,18 +41,17 @@
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">1314</int>
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
-						<string key="NSFrameSize">{320, 44}</string>
+						<string key="NSFrameSize">{320, 50}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="216036489"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">navi_bg.png</string>
+							<string key="NSResourceName">head_bg.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="216036489">
@@ -79,9 +78,13 @@
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
 						</object>
+						<object class="NSCustomResource" key="IBUISelectedImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">freshen_click.png</string>
+						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">arrow.png</string>
+							<string key="NSResourceName">freshen_default.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<int key="type">2</int>
@@ -96,9 +99,10 @@
 					<object class="IBUITableView" id="977903796">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 44}, {320, 366}}</string>
+						<string key="NSFrame">{{0, 50}, {320, 360}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="649435302"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -210,7 +214,7 @@
 				<reference key="3.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="3.showNotes"/>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="4.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="4.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<reference key="4.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="4.showNotes"/>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -224,16 +228,8 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
-					<string key="className">LQCommonTableViewController</string>
-					<string key="superclassName">UITableViewController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/LQCommonTableViewController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">LQTopicListViewController</string>
-					<string key="superclassName">LQCommonTableViewController</string>
+					<string key="className">LQTablesController</string>
+					<string key="superclassName">UIViewController</string>
 					<object class="NSMutableDictionary" key="actions">
 						<string key="NS.key.0">onBack:</string>
 						<string key="NS.object.0">id</string>
@@ -245,6 +241,25 @@
 							<string key="candidateClassName">id</string>
 						</object>
 					</object>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">scrollView</string>
+						<string key="NS.object.0">UIScrollView</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">scrollView</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">scrollView</string>
+							<string key="candidateClassName">UIScrollView</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/LQTablesController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">LQTopicListViewController</string>
+					<string key="superclassName">LQTablesController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/LQTopicListViewController.h</string>
@@ -261,8 +276,9 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="arrow.png">{9, 14}</string>
-			<string key="navi_bg.png">{320, 45}</string>
+			<string key="freshen_click.png">{24, 24}</string>
+			<string key="freshen_default.png">{24, 24}</string>
+			<string key="head_bg.png">{8, 50}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>

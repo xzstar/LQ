@@ -8,6 +8,12 @@
 
 #import "LQRecommendSectionHeader.h"
 
-@interface LQSearchSectionHeader : LQRecommendSectionHeader
+@interface LQSearchSectionHeader : UIView
+
+@property(nonatomic,unsafe_unretained) IBOutlet UIButton* leftButton;
+@property(nonatomic,unsafe_unretained) IBOutlet UIButton* rightButton;
+@property(nonatomic,unsafe_unretained) IBOutlet UIImageView* backgroundImageView;
+- (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
+- (void) setButtonStatus:(int)index;
 
 @end

@@ -59,7 +59,7 @@
     // Do any additional setup after loading the view from its nib.
     selectedRow = -1;
     selectedSection = -1;
-    currentRecommendIndex = 0;
+    currentRecommendIndex = 1;
 }
 
 - (void)viewDidUnload
@@ -297,10 +297,10 @@
 #pragma mark - TableView Data Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if(section == 0){
-        return 44.0;
+        return 0;
     }
     else if(section ==1) {
-        return 34.0;
+        return 50.0;
     }
     else {
         return 0;
@@ -308,7 +308,7 @@
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    if(section == 0)
+    if(section == 1)
     {
         LQCategorySectionHeader *header = [[[NSBundle mainBundle] loadNibNamed:@"LQCategorySectionHeader" owner:self options:nil]objectAtIndex:0];
         
@@ -321,16 +321,16 @@
         
 
     }
-    else if(section == 1)
-    {
-        LQRecommendSectionHeader *header = [[[NSBundle mainBundle] loadNibNamed:@"LQRecommendSectionHeader" owner:self options:nil]objectAtIndex:0];
-        [header addInfoButtonsTarget:self action:@selector(onSwitchRecommendSection:) tag:0];
-        [header addInfoButtonsTarget:self action:@selector(onSwitchRecommendSection:) tag:1];
-        [header setImageNames:@"home_tabbar_soft.png" leftSelected:@"home_tabbar_soft_down.png" rightNormal:@"home_tabbar_special.png" rightSelected:@"home_tabbar_special_down.png"];
-        [header setButtonStatus:currentRecommendIndex];
-        return header;
-        
-    }
+//    else if(section == 1)
+//    {
+//        LQRecommendSectionHeader *header = [[[NSBundle mainBundle] loadNibNamed:@"LQRecommendSectionHeader" owner:self options:nil]objectAtIndex:0];
+//        [header addInfoButtonsTarget:self action:@selector(onSwitchRecommendSection:) tag:0];
+//        [header addInfoButtonsTarget:self action:@selector(onSwitchRecommendSection:) tag:1];
+//        [header setImageNames:@"home_tabbar_soft.png" leftSelected:@"home_tabbar_soft_down.png" rightNormal:@"home_tabbar_special.png" rightSelected:@"home_tabbar_special_down.png"];
+//        [header setButtonStatus:currentRecommendIndex];
+//        return header;
+//        
+//    }
     return nil;
 }
 
