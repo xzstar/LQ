@@ -12,7 +12,7 @@
 #define QYX_API_SERVER @"http://www.7youxi.cn/api"
 #define LQ_API_SERVER  @"http://appserver.liqucn.com"
 #define LQ_API_REQUEST @"/ios/request.php"
-#define LQ_API_POST @"/api/ajax.php"
+#define LQ_API_POST_COMMENT @"/api/ajax.php?action=post&type=add_comment&from_type=liqumarket_ios&os=iOS&IndexID="
 @implementation LQClient
 #pragma mark - Override
 - (NSMutableDictionary*)composeParametersForCommand:(int)command withUrl:(NSString*)url ofFormat:(int)format{
@@ -482,17 +482,12 @@
 
 - (void)postComment:(int) gameId rating:(NSString*) rating text:(NSString*) text{
     NSDictionary* parameters = [NSDictionary dictionaryWithObjectsAndKeys:
-                                HTTP_GET, P_INTERNAL_METHOD,
-                                [NSNumber numberWithInt:gameId], @"IndexID",
+                                HTTP_POST, P_INTERNAL_METHOD,
                                 [UIDevice currentDevice].model, @"UserPhone",
                                 text, @"text",
                                 rating, @"rating",
-                                @"post",@"action",
-                                @"add_comment",@"type",
-                                @"liqumarket_ios",@"from_type",
-                                @"iOS",@"os",
                                 nil];
-    [self processCommand:[NSString stringWithFormat:@"%@%@", LQ_API_SERVER, LQ_API_POST]
+    [self processCommand:[NSString stringWithFormat:@"%@%@%d", LQ_API_SERVER, LQ_API_POST_COMMENT,gameId]
                  command:C_COMMAND_SUBMITCOMMENT
                   format:F_RAWDATA
               parameters:parameters
