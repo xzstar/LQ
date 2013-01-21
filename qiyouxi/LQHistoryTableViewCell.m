@@ -46,7 +46,7 @@
     }
     
     self.gameComments.text = [NSString stringWithFormat:@"共有%d个评论",self.gameInfo.commentCount];
-    self.gameScore.text = [NSString stringWithFormat:@"评分：%@分",self.gameInfo.rating];
+    self.gameScore.text = [NSString stringWithFormat:@"%@分",self.gameInfo.rating];
                            
 
 //    NSString* title = nil;

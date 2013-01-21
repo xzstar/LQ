@@ -54,3 +54,13 @@
 @interface LQAppsListViewController : LQRequestListViewController
 
 @end
+
+@interface LQRingListWithReqUrlViewController : LQAppsListViewController{
+AudioPlayer *_audioPlayer;
+}
+
+@end
+
+@interface LQWallpaperListWithReqUrlViewController : LQAppsListViewController
+
+@end

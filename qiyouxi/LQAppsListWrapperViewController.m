@@ -28,7 +28,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    CGRect frame = super.pageView.frame;
+    super.pageView.frame = CGRectZero;
+    CGRect scrollViewFrame = super.scrollView.frame;
+    scrollViewFrame.size.height+=frame.size.height;
+    scrollViewFrame.origin.y=frame.origin.y;
+    super.scrollView.frame = scrollViewFrame; 
 }
+
 
 - (void)viewDidUnload
 {
@@ -72,11 +79,7 @@
     
 }
 
-- (void)loadScrollViewWithPage:(int)page
-{
-    if (page != 0)
-        return;
-    
+- (LQRequestListViewController*) getController:(int)page{
     // replace the placeholder if necessary
     LQAppsListViewController *controller = [viewControllers objectAtIndex:page];
     if ((NSNull *)controller == [NSNull null])
@@ -84,7 +87,23 @@
         controller = [[LQAppsListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil requestUrl:requestUrl];        
         [viewControllers replaceObjectAtIndex:page withObject:controller];
     }
+    return controller;
+}
+
+- (void)loadScrollViewWithPage:(int)page
+{
+    if (page != 0)
+        return;
     
+    // replace the placeholder if necessary
+    LQAppsListViewController *controller = [self getController:page];
+//    = [viewControllers objectAtIndex:page];
+//    if ((NSNull *)controller == [NSNull null])
+//    {
+//        controller = [[LQAppsListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil requestUrl:requestUrl];        
+//        [viewControllers replaceObjectAtIndex:page withObject:controller];
+//    }
+//    
     // add the controller's view to the scroll view
     if (controller.view.superview == nil)
     {
@@ -98,5 +117,34 @@
          controller.numberImage.image = [UIImage imageNamed:[numberItem valueForKey:ImageKey]];
          controller.numberTitle.text = [numberItem valueForKey:NameKey];*/
     }
+}
+@end
+
+
+@implementation LQRingsListWrapperViewController
+
+- (LQRequestListViewController*) getController:(int)page{
+    // replace the placeholder if necessary
+    LQRingListWithReqUrlViewController *controller = [viewControllers objectAtIndex:page];
+    if ((NSNull *)controller == [NSNull null])
+    {
+        controller = [[LQRingListWithReqUrlViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil requestUrl:self.requestUrl];        
+        [viewControllers replaceObjectAtIndex:page withObject:controller];
+    }
+    return controller;
+}
+@end
+
+@implementation LQWallpaperListWrapperViewController
+
+- (LQRequestListViewController*) getController:(int)page{
+    // replace the placeholder if necessary
+    LQWallpaperListWithReqUrlViewController *controller = [viewControllers objectAtIndex:page];
+    if ((NSNull *)controller == [NSNull null])
+    {
+        controller = [[LQWallpaperListWithReqUrlViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil requestUrl:self.requestUrl];        
+        [viewControllers replaceObjectAtIndex:page withObject:controller];
+    }
+    return controller;
 }
 @end

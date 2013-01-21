@@ -104,8 +104,19 @@
     int tag = button.tag;
     if(tag < self.appsList.count){
         LQGameInfo* info = [self.appsList objectAtIndex:tag];
-        LQAppsListWrapperViewController * controller  = [[LQAppsListWrapperViewController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
+        LQAppsListWrapperViewController * controller;
+        
+        if(category == @"show_software_cat"|| category == @"show_game_cat"){
+            controller= [[LQAppsListWrapperViewController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
+        }
+        else if(category==@"show_ls_cat") {
+            controller= [[LQRingsListWrapperViewController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
+        }
+        else {
+            controller= [[LQWallpaperListWrapperViewController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
+        }
         controller.requestUrl = info.requestUrl;
+
         if(self.parent!=nil)
             [self.parent.navigationController pushViewController:controller animated:YES];
         else {

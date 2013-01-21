@@ -128,7 +128,6 @@
 										<string key="NSFrame">{{280, 22}, {26, 26}}</string>
 										<reference key="NSSuperview" ref="53024484"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -160,7 +159,7 @@
 									<object class="IBUILabel" id="225906548">
 										<reference key="NSNextResponder" ref="53024484"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{72, 24}, {60, 21}}</string>
+										<string key="NSFrame">{{97, 26}, {65, 21}}</string>
 										<reference key="NSSuperview" ref="53024484"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="1061104220"/>
@@ -178,10 +177,25 @@
 										<reference key="IBUIFontDescription" ref="268320547"/>
 										<reference key="IBUIFont" ref="201295953"/>
 									</object>
+									<object class="IBUIImageView" id="184906139">
+										<reference key="NSNextResponder" ref="53024484"/>
+										<int key="NSvFlags">292</int>
+										<string key="NSFrame">{{68, 23}, {24, 24}}</string>
+										<reference key="NSSuperview" ref="53024484"/>
+										<reference key="NSWindow"/>
+										<string key="NSReuseIdentifierKey">_NS:9</string>
+										<int key="IBUIContentMode">4</int>
+										<bool key="IBUIUserInteractionEnabled">NO</bool>
+										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+										<object class="NSCustomResource" key="IBUIImage">
+											<string key="NSClassName">NSImage</string>
+											<string key="NSResourceName">ico_heart_24.png</string>
+										</object>
+									</object>
 									<object class="IBUILabel" id="1061104220">
 										<reference key="NSNextResponder" ref="53024484"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{140, 24}, {60, 21}}</string>
+										<string key="NSFrame">{{170, 26}, {108, 21}}</string>
 										<reference key="NSSuperview" ref="53024484"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="907077350"/>
@@ -339,10 +353,11 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="907077350"/>
 							<reference ref="33148336"/>
-							<reference ref="1061104220"/>
 							<reference ref="113039890"/>
 							<reference ref="225906548"/>
 							<reference ref="665928220"/>
+							<reference ref="1061104220"/>
+							<reference ref="184906139"/>
 						</array>
 						<reference key="parent" ref="881973254"/>
 					</object>
@@ -376,6 +391,11 @@
 						<reference key="object" ref="1061104220"/>
 						<reference key="parent" ref="53024484"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">69</int>
+						<reference key="object" ref="184906139"/>
+						<reference key="parent" ref="53024484"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -392,12 +412,13 @@
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="0.0" key="6.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<string key="69.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">68</int>
+			<int key="maxID">69</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -475,6 +496,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="arrow_more.png">{16, 16}</string>
+			<string key="ico_heart_24.png">{12, 12}</string>
 			<string key="icon_layout.png">{54, 54}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>

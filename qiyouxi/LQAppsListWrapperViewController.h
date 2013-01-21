@@ -7,11 +7,21 @@
 //
 
 #import "LQTablesController.h"
-
+@class LQRequestListViewController;
 @interface LQAppsListWrapperViewController : LQTablesController{
 NSString* requstUrl;
 }
 
 @property (nonatomic, strong) NSString* requestUrl;
+
+- (LQRequestListViewController*) getController:(int)page;
+
+@end
+
+@interface LQRingsListWrapperViewController : LQAppsListWrapperViewController
+
+@end
+
+@interface LQWallpaperListWrapperViewController : LQAppsListWrapperViewController
 
 @end
