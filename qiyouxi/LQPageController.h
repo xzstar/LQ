@@ -11,6 +11,10 @@
 #define PAGE_NAME_WIDTH 25
 #define PAGE_NAME_HEIGHT 30
 #define PAGE_NAME_HEIGHT_OFFSET 5
+
+#define LEFTBUTTON_TAG -1
+#define RIGHTBUTTON_TAG 1
+
 @interface LQPageController : UIView {
     NSArray* pageNames;
     //UIImageView* underLineImageView;
@@ -24,5 +28,6 @@
 @property (nonatomic,assign) NSUInteger currentPage;
 
 - (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents;
+- (void)addLeftRightTarget:(id)target action:(SEL)action tag:(int)tag;
 
 @end

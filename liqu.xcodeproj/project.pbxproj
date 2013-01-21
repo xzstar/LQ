@@ -187,6 +187,7 @@
 		F226513616AD0EAA001A6846 /* LQTopicSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F226513516AD0EAA001A6846 /* LQTopicSectionHeader.xib */; };
 		F230807C16A1B6990052F0C9 /* LQWallpaperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F230807B16A1B6960052F0C9 /* LQWallpaperCell.m */; };
 		F230807E16A1B6B90052F0C9 /* LQWallpaperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F230807D16A1B6B80052F0C9 /* LQWallpaperCell.xib */; };
+		F23AA8B316AD2B45008845C1 /* LQRingTablesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23AA8B216AD2B45008845C1 /* LQRingTablesController.m */; };
 		F23D3B8F169AD70700B7DD46 /* LQSearchHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23D3B8E169AD70700B7DD46 /* LQSearchHistoryCell.m */; };
 		F23D3B92169B02D300B7DD46 /* LQSearchHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */; };
 		F23D3B95169B0C7D00B7DD46 /* SearchHistoryItem.h in Sources */ = {isa = PBXBuildFile; fileRef = F23D3B93169B0C1100B7DD46 /* SearchHistoryItem.h */; };
@@ -1273,6 +1274,8 @@
 		F230807A16A1B6920052F0C9 /* LQWallpaperCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQWallpaperCell.h; sourceTree = "<group>"; };
 		F230807B16A1B6960052F0C9 /* LQWallpaperCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQWallpaperCell.m; sourceTree = "<group>"; };
 		F230807D16A1B6B80052F0C9 /* LQWallpaperCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQWallpaperCell.xib; sourceTree = "<group>"; };
+		F23AA8B116AD2B44008845C1 /* LQRingTablesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQRingTablesController.h; sourceTree = "<group>"; };
+		F23AA8B216AD2B45008845C1 /* LQRingTablesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQRingTablesController.m; sourceTree = "<group>"; };
 		F23D3B8D169AD70700B7DD46 /* LQSearchHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQSearchHistoryCell.h; sourceTree = "<group>"; };
 		F23D3B8E169AD70700B7DD46 /* LQSearchHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQSearchHistoryCell.m; sourceTree = "<group>"; };
 		F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQSearchHistoryCell.xib; sourceTree = "<group>"; };
@@ -2430,6 +2433,8 @@
 				F2BAD5D8169D53CF00893F4C /* LQTablesController.h */,
 				F2BAD5D9169D53CF00893F4C /* LQTablesController.m */,
 				F2BAD5DA169D53CF00893F4C /* LQTablesController.xib */,
+				F23AA8B116AD2B44008845C1 /* LQRingTablesController.h */,
+				F23AA8B216AD2B45008845C1 /* LQRingTablesController.m */,
 				F21A2DD016A5A27F001427A8 /* LQTopicListViewController.h */,
 				F21A2DD116A5A280001427A8 /* LQTopicListViewController.m */,
 				F21D4AB016A6B46D00D7CC53 /* LQAppsListWrapperViewController.h */,
@@ -4523,6 +4528,7 @@
 				F2EF705016A7C7740075F182 /* LQWallpaperViewController.m in Sources */,
 				F27CACF116A8FB8700451B86 /* LQIgnoreAppCell.m in Sources */,
 				F226513316AD0E1A001A6846 /* LQTopicSectionHeader.m in Sources */,
+				F23AA8B316AD2B45008845C1 /* LQRingTablesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

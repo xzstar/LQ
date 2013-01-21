@@ -18,4 +18,5 @@
 - (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
 
 - (void) setButtonStatus:(int) index;
+
 @end

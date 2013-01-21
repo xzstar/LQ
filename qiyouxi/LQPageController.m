@@ -142,9 +142,19 @@
 }
 
 - (void)addTarget:(id)target action:(SEL)action forControlEvents:(UIControlEvents)controlEvents{
+    int i=0;
     for (UIButton* button in pageLables) {
         [button addTarget:target action:action forControlEvents:controlEvents];
+        button.tag = i;
+        i++;
     }
 }
-
+- (void)addLeftRightTarget:(id)target action:(SEL)action tag:(int)tag{
+    [leftButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    leftButton.tag = LEFTBUTTON_TAG;
+    
+    [rightButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    rightButton.tag = RIGHTBUTTON_TAG;
+        
+}
 @end

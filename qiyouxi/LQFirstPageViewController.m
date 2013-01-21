@@ -21,6 +21,7 @@
 #import "LQDownloadManager.h"
 #import "LQTopicListViewController.h"
 #import "SVPullToRefresh.h" 
+#import "LQRingTablesController.h"
 @interface LQFirstPageViewController ()
 @property (nonatomic, strong) NSDictionary* announcement;
 @property (nonatomic, strong) NSArray* advertisements;
@@ -511,7 +512,7 @@
 //    AudioListViewController * controller  = [[AudioListViewController alloc] init ];
 //    [self.navigationController pushViewController:controller animated:YES];
     
-    LQTablesController * controller  = [[LQTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
+    LQRingTablesController * controller  = [[LQRingTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
     controller.listOperator=@"ls_list";
     controller.nodeId = @"ls";
     controller.categoryId = @"show_ls_cat";

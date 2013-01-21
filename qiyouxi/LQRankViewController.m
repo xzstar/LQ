@@ -202,6 +202,47 @@
     
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    
+    LQRankSectionHeader *header = [[[NSBundle mainBundle] loadNibNamed:@"LQRankSectionHeader" owner:self options:nil]objectAtIndex:0];
+    
+    [header addInfoButtonsTarget:self action:@selector(onChangeRank:) tag:0];
+    [header addInfoButtonsTarget:self action:@selector(onChangeRank:) tag:1];
+    [header addInfoButtonsTarget:self action:@selector(onChangeRank:) tag:2];
+    
+    int selectedIndex = 0;
+    if(self.orderBy == ORDER_BY_NEWEST)
+        selectedIndex = 0;
+    else if (self.orderBy == ORDER_BY_TUIJIAN)
+        selectedIndex = 1;
+    else 
+        selectedIndex = 2;
+    
+    [header.leftButton setTitle:@"最新" forState:UIControlStateNormal];
+    [header.middleButton setTitle:@"推荐" forState:UIControlStateNormal];
+    [header.rightButton setTitle:@"排行" forState:UIControlStateNormal];
+
+    [header setButtonStatus:selectedIndex];
+    return header;
+    
+}
+
+-(void) onChangeRank:(id)sender{
+    UIButton* button = (UIButton*) sender;
+    int tag = button.tag;
+    
+    if(tag == 0){
+        self.orderBy = ORDER_BY_NEWEST;
+    }
+    else if(tag == 1){
+        self.orderBy = ORDER_BY_TUIJIAN;
+    }
+    else {
+        self.orderBy = ORDER_BY_TOTAL;
+    }
+    [self loadData];
+}
+
 @end
 
 @implementation LQWallpaperRankViewController

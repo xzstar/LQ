@@ -15,6 +15,7 @@
 #define kNumberOfPages 4
 @interface LQTablesController ()
 
+-(void) onPageUpDown:(id)sender;
 @end
 
 @implementation LQTablesController
@@ -96,6 +97,7 @@
     pageController.currentPage = 0;
     
     [pageController addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventTouchUpInside];
+    [pageController addLeftRightTarget:self action:@selector(onPageUpDown:) tag:0];
     [self.pageView addSubview:pageController];
 }
 - (void)loadScrollViewWithPage:(int)page
@@ -215,8 +217,9 @@
 
 - (IBAction)changePage:(id)sender
 {
-    int page = pageController.currentPage;
+    UIButton* button = sender;
     
+    int page = button.tag;//pageController.currentPage;
     // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
     // [self loadScrollViewWithPage:page - 1];
     [self loadScrollViewWithPage:page];
@@ -230,7 +233,8 @@
     
     // Set the boolean used when scrolls originate from the UIPageControl. See scrollViewDidScroll: above.
     pageControlUsed = YES;
-    
+    pageController.currentPage = page;
+
     
 }
 
@@ -244,4 +248,13 @@
     self.titleLabel.text = aTitleString;
 }
 
+-(void) onPageUpDown:(id)sender{
+    UIButton* button = sender;
+    int tag = button.tag;
+    int newPage = pageController.currentPage+tag;
+    if(newPage<0 || newPage>viewControllers.count)
+        return;
+    pageController.currentPage = newPage;
+    [self changePage:sender];
+}
 @end
