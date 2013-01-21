@@ -10,7 +10,10 @@
 #import "LQCommentTableViewCell.h"
 
 @interface LQPostCommentViewController ()
-
+{
+    NSArray* starButtons;
+    int score;
+}
 @property (strong) NSMutableArray* userComments;
 
 @end
@@ -23,6 +26,8 @@
 @synthesize commentsTableView;
 @synthesize userComments;
 @synthesize gameScore;
+@synthesize scoreString;
+@synthesize starButton1,starButton2,starButton3,starButton4,starButton5;
 - (void)loadViews{
     NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
     NSString* contact = [defaults valueForKey:@"qiyouxi.savedcontact"];
@@ -36,6 +41,16 @@
     if(self.userComments == nil)
         self.userComments = [NSMutableArray array];
     [self.client loadUserComments:gameId];
+    gameScore.text = scoreString;
+    
+    if(starButtons == nil)
+        starButtons = [NSArray arrayWithObjects:starButton1,starButton2,starButton3,starButton4,starButton5,nil];
+    
+    starButton1.tag = 1;
+    starButton2.tag = 2;
+    starButton3.tag = 3;
+    starButton4.tag = 4;
+    starButton5.tag = 5;
 }
 
 - (IBAction)onSubmit:(id)sender{
@@ -52,6 +67,24 @@
     [self.client postComment:self.gameId rating:@"5" text:content];
 }
 
+- (IBAction)onStarButtonClicked:(id)sender{
+    UIButton* button = sender;
+    score = button.tag;
+    
+    for(int i=0;i<score;i++)
+    {
+        UIButton* tempButton = [starButtons objectAtIndex:i];
+        [tempButton setImage:[UIImage imageNamed:@"ico_heart_24.png"] forState:UIControlStateNormal];
+        
+    }
+    
+    for(int i=score;i<starButtons.count;i++)
+    {
+        UIButton* tempButton = [starButtons objectAtIndex:i];
+        [tempButton setImage:[UIImage imageNamed:@"ico_heart2_24.png.png"] forState:UIControlStateNormal];
+        
+    }
+}
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
     if (textField == self.contactField){
         [self.contentField becomeFirstResponder];

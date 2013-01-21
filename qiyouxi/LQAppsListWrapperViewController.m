@@ -96,14 +96,8 @@
         return;
     
     // replace the placeholder if necessary
-    LQAppsListViewController *controller = [self getController:page];
-//    = [viewControllers objectAtIndex:page];
-//    if ((NSNull *)controller == [NSNull null])
-//    {
-//        controller = [[LQAppsListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil requestUrl:requestUrl];        
-//        [viewControllers replaceObjectAtIndex:page withObject:controller];
-//    }
-//    
+    LQRequestListViewController *controller = [self getController:page];
+
     // add the controller's view to the scroll view
     if (controller.view.superview == nil)
     {

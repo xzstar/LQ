@@ -10,7 +10,7 @@
 #import "LQConfig.h"
 #import "LQGameInfoListViewController.h"
 #import "LQGameMoreItemTableViewCell.h"
-#import "LQGameDetailViewController.h"
+#import "LQDetailTablesController.h"
 #import "LQIgnoreAppCell.h"
 @implementation InstalledAppReader
 
@@ -297,7 +297,7 @@
     UIButton *button = sender;
     int row = button.tag;
     LQGameInfo* gameInfo = [updateAppsList objectAtIndex:row];
-    LQGameDetailViewController *controller = [[LQGameDetailViewController alloc] init];
+    LQDetailTablesController *controller = [[LQDetailTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil];
     controller.gameId = gameInfo.gameId;
     
     [self.navigationController pushViewController:controller animated:YES];    

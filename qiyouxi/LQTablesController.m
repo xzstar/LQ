@@ -37,6 +37,7 @@
     // Do any additional setup after loading the view from its nib.
     [self initTables];
     [self initPageController];
+    self.titleLabel.text = titleString;
 }
 
 - (void)viewDidUnload
@@ -243,10 +244,10 @@
 }
 
 
-- (void) setTitleString:(NSString *)aTitleString{
-    self.titleString = aTitleString;
-    self.titleLabel.text = aTitleString;
-}
+//- (void) setTitleString:(NSString *)aTitleString{
+//    titleString = aTitleString;
+//    self.titleLabel.text = aTitleString;
+//}
 
 -(void) onPageUpDown:(id)sender{
     UIButton* button = sender;

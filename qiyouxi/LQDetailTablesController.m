@@ -8,6 +8,7 @@
 
 #import "LQDetailTablesController.h"
 #import "LQPostCommentViewController.h"
+#import "LQGameDetailViewController.h"
 #define kDetailTables 2
 
 @interface LQDetailTablesController ()
@@ -29,6 +30,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.titleLabel.text = @"软件详情";
 }
 
 - (void)viewDidUnload
@@ -95,13 +97,16 @@
     if ((NSNull *)controller == [NSNull null])
     {
         if(page == 0) {
-          
+            LQGameDetailViewController *  detailController = [[LQGameDetailViewController alloc] initWithNibName:@"LQGameDetailViewController" bundle:nil];
+            detailController.gameId = self.gameId;
+            [viewControllers replaceObjectAtIndex:page withObject:detailController];
+            controller = detailController;     
         }
         else{
-            LQPostCommentViewController*  postcontroller = [[LQPostCommentViewController alloc] initWithNibName:@"LQPostCommentViewController" bundle:nil];
-            postcontroller.gameId = self.gameId;
-            [viewControllers replaceObjectAtIndex:page withObject:controller];
-            controller = postcontroller;
+            LQPostCommentViewController*  postController = [[LQPostCommentViewController alloc] initWithNibName:@"LQPostCommentViewController" bundle:nil];
+            postController.gameId = self.gameId;
+            [viewControllers replaceObjectAtIndex:page withObject:postController];
+            controller = postController;
         }
         
     }

@@ -8,7 +8,7 @@
 
 #import "LQCommonTableViewController.h"
 #import "LQHistoryTableViewCell.h"
-#import "LQGameDetailViewController.h"
+#import "LQDetailTablesController.h"
 #import "LQGameMoreItemTableViewCell.h"
 #import "SVPullToRefresh.h"
 #define NAVIGATIONBAR_HEIGHT 44.0
@@ -439,7 +439,7 @@
     int row = button.tag;
     LQGameInfo* gameInfo = [appsList objectAtIndex:row];
 
-    LQGameDetailViewController *controller = [[LQGameDetailViewController alloc] init];
+   LQDetailTablesController *controller = [[LQDetailTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil];
     controller.gameId = gameInfo.gameId;
     
     if(parent!=nil){

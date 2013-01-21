@@ -9,7 +9,6 @@
 #import "LQFirstPageViewController.h"
 #import "LQHistoryTableViewCell.h"
 #import "LQHistoryTableSectionHeader.h"
-#import "LQGameDetailViewController.h"
 #import "LQGameInfoListViewController.h"
 #import "LQGameMoreItemTableViewCell.h"
 #import "LQCategorySectionHeader.h"
@@ -22,6 +21,7 @@
 #import "LQTopicListViewController.h"
 #import "SVPullToRefresh.h" 
 #import "LQRingTablesController.h"
+#import "LQDetailTablesController.h"
 @interface LQFirstPageViewController ()
 @property (nonatomic, strong) NSDictionary* announcement;
 @property (nonatomic, strong) NSArray* advertisements;
@@ -496,6 +496,7 @@
     controller.listOperator=@"app_list";
     controller.nodeId = @"rj";
     controller.categoryId = @"show_software_cat";
+    controller.titleString= @"软件";
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -504,7 +505,7 @@
     controller.listOperator=@"app_list";
     controller.nodeId = @"yx";
     controller.categoryId = @"show_game_cat";
-
+    controller.titleString= @"游戏";
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -516,7 +517,7 @@
     controller.listOperator=@"ls_list";
     controller.nodeId = @"ls";
     controller.categoryId = @"show_ls_cat";
-    
+    controller.titleString= @"铃声";
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -525,7 +526,7 @@
     controller.listOperator=@"wallpaper_list";
     controller.nodeId = @"bz";
     controller.categoryId = @"show_wallpaper_cat";
-    
+    controller.titleString= @"壁纸";
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -538,7 +539,7 @@
     UIButton *button = sender;
     int row = button.tag;
     LQGameInfo* gameInfo = [recommendApps objectAtIndex:row];
-    LQGameDetailViewController *controller = [[LQGameDetailViewController alloc] init];
+    LQDetailTablesController *controller = [[LQDetailTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil];
     controller.gameId = gameInfo.gameId;
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -606,7 +607,7 @@
     if(advertisements.count>page){
         NSDictionary* adv = [advertisements objectAtIndex:page];
         int gameId = [[adv objectForKey:@"id"] intValue];
-        LQGameDetailViewController *controller = [[LQGameDetailViewController alloc] init];
+        LQDetailTablesController *controller = [[LQDetailTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil];
         controller.gameId = gameId;
         [self.navigationController pushViewController:controller animated:YES];
 

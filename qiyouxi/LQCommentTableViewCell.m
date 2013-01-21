@@ -10,8 +10,7 @@
 #import "UIImage+Scale.h"
 @implementation LQCommentTableViewCell
 @synthesize comment;
-@synthesize commentLabel,nickLabel,deviceLabel,dateLabel;
-@synthesize bottomView;
+@synthesize commentLabel,nickLabel,dateLabel;
 @synthesize avatar;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -55,23 +54,15 @@
     self.commentLabel.text = [aComment objectForKey:@"data"];
     [self.commentLabel autowrap:INT_MAX];
     
-    self.deviceLabel.text = [aComment objectForKey:@"device"];
     self.dateLabel.text = [aComment objectForKey:@"date"];
 }
 
 - (void)layoutSubviews{
     [super layoutSubviews];
-    
-    CGFloat bottom = self.commentLabel.frame.origin.y + self.commentLabel.frame.size.height;
-    
-    CGRect frame = self.bottomView.frame;
-    frame.origin.y = bottom;
-    self.bottomView.frame = frame;
 }
 
 - (CGSize)sizeThatFits:(CGSize)size{
     CGSize calSize = [super sizeThatFits:size];
-    calSize.height = self.bottomView.frame.origin.y + self.bottomView.frame.size.height + 2.0;
     return calSize;
 }
 

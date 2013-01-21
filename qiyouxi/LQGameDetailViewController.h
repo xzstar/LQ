@@ -53,11 +53,12 @@
 @property (strong) IBOutlet UIView* commentsPanel;
 @property (unsafe_unretained) IBOutlet UITableView* userCommentsView;
 
-@property (unsafe_unretained) IBOutlet UIButton* detailButton;
-@property (unsafe_unretained) IBOutlet UIButton* commentsButton;
-@property (unsafe_unretained) IBOutlet UIView* buttonUnderline;
+//@property (unsafe_unretained) IBOutlet UIButton* detailButton;
+//@property (unsafe_unretained) IBOutlet UIButton* commentsButton;
+//@property (unsafe_unretained) IBOutlet UIView* buttonUnderline;
 
 @property (strong) LQCommentTableViewCell* dummyCell;
 
-- (IBAction)onShowDetail:(id)sender;
-- (IBAction)onShowComments:(id)sender;@end
+//- (IBAction)onShowDetail:(id)sender;
+//- (IBAction)onShowComments:(id)sender;
+@end

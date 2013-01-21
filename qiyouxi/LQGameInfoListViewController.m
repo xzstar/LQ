@@ -7,7 +7,7 @@
 //
 
 #import "LQGameInfoListViewController.h"
-#import "LQGameDetailViewController.h"
+#import "LQDetailTablesController.h"
 #import "LQWallpaperCell.h"
 #import "SVPullToRefresh.h"
 #import "LQWallpaperViewController.h"

@@ -51,9 +51,9 @@
 @synthesize commentsPanel;
 @synthesize userCommentsView;
 
-@synthesize detailButton;
-@synthesize commentsButton;
-@synthesize buttonUnderline;
+//@synthesize detailButton;
+//@synthesize commentsButton;
+//@synthesize buttonUnderline;
 
 @synthesize dummyCell;
 
@@ -108,7 +108,7 @@
     [mainScrollView layoutIfNeeded];
     
     self.gameInfoUserComments = [[NSMutableArray alloc]init];
-
+    [self loadData];
 }
 -  (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -164,41 +164,9 @@
 }
 - (void)loadGameInfo:(NSDictionary*)result{
     self.gameInfo = [[LQGameInfo alloc] initWithAPIResult:result];
-
-//    self.gameTitleLabel.text = self.gameInfo.name;
-//    int size= [self.gameInfo.size intValue];
-//    float sizeMB= (float)size/(1024*1024);
-//    
-//    self.gameDetailLabel.text = [NSString stringWithFormat:@"%@ | %.2fMB",
-//                                 self.gameInfo.tags, sizeMB];
-//    
-//    [self.gameIconView loadImageUrl:self.gameInfo.icon defaultImage:DEFAULT_GAME_ICON];
-//    
-//    self.commentLabel.text = self.gameInfo.intro; //self.gameInfo.evaluatorComment;
-//    [self.commentLabel autowrap:self.commentLabelMaxHeight];
-//    
-//    self.commentGirlNameLabel.text = [NSString stringWithFormat:LocalString(@"evaluator.nicklabel"), self.gameInfo.evaluatorNickName];
-//    [self.commentGirlView loadImageUrl:self.gameInfo.evaluatorAvatar defaultImage:nil];
-//    
-//    self.screenShotsView.delegate = self;
-//    self.screenShotsView.needRotate = YES;
-//    self.screenShotsView.imageUrls = self.gameInfo.screenShotsSmall;
     
     [self loadGameBaseInfo];
-    [self loadGamePhotoInfo];
-    
-    NSString* title = [NSString stringWithFormat:LocalString(@"tab.comments"), self.gameInfo.commentCount];
-    [self.commentsButton setTitle:title forState:UIControlStateNormal];
-    [self.commentsButton setTitle:title forState:UIControlStateHighlighted];
-    
-    CGPoint center = self.commentsButton.center;
-    [self.commentsButton sizeToFit];
-    self.commentsButton.center = center;
-    
-    center = self.buttonUnderline.center;
-    center.x = self.detailButton.center.x;
-    self.buttonUnderline.center = center;
-    
+    [self loadGamePhotoInfo];   
     [self loadGameInfoComments:[result objectForKey:@"arr_comment"]];
 
 }
@@ -238,19 +206,19 @@
 }
 
 #pragma mark - Actions
-- (IBAction)onShowDetail:(id)sender{
-    [self.commentsPanel removeFromSuperview];
-    [self.contentView addSubview:self.gameInfoPanel];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:0.5];
-    CGPoint center = self.buttonUnderline.center;
-    center.x = self.detailButton.center.x;
-    self.buttonUnderline.center = center;
-    [UIView commitAnimations];
-}
+//- (IBAction)onShowDetail:(id)sender{
+//    [self.commentsPanel removeFromSuperview];
+//    [self.contentView addSubview:self.gameInfoPanel];
+//    
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationDuration:0.5];
+//    CGPoint center = self.buttonUnderline.center;
+//    center.x = self.detailButton.center.x;
+//    self.buttonUnderline.center = center;
+//    [UIView commitAnimations];
+//}
 
-- (IBAction)onShowComments:(id)sender{
+//- (IBAction)onShowComments:(id)sender{
 //    [self.gameInfoPanel removeFromSuperview];
 //    [self.contentView addSubview:self.commentsPanel];
 //    
@@ -266,14 +234,14 @@
 //        [self.client loadUserComments:self.gameId];
 //
 //    }
-    LQPostCommentViewController* controller = [[LQPostCommentViewController alloc] initWithNibName:@"LQPostCommentViewController" bundle:nil];
-    controller.gameId = self.gameId;
-    controller.gameScore.text = self.gameScore.text;
-    [self.navigationController pushViewController:controller animated:YES];
-    
-    
-    
-}
+//    LQPostCommentViewController* controller = [[LQPostCommentViewController alloc] initWithNibName:@"LQPostCommentViewController" bundle:nil];
+//    controller.gameId = self.gameId;
+//    controller.gameScore.text = self.gameScore.text;
+//    [self.navigationController pushViewController:controller animated:YES];
+//    
+//    
+//    
+//}
 
 #pragma mark - Network Callback
 - (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{

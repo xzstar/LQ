@@ -86,12 +86,25 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQGameDetailViewController.m"
-         timestampString = "380383343.376465"
+         timestampString = "380469104.060709"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "283"
-         endingLineNumber = "283"
-         landmarkName = "-client:didGetCommandResult:forCommand:format:tagObject:"
+         startingLineNumber = "246"
+         endingLineNumber = "246"
+         landmarkName = "@implementation LQGameDetailViewController"
+         landmarkType = "3">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "qiyouxi/LQGameDetailViewController.m"
+         timestampString = "380469104.060709"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "275"
+         endingLineNumber = "275"
+         landmarkName = "-handleNetworkError:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -99,24 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQGameDetailViewController.m"
-         timestampString = "380381609.383891"
+         timestampString = "380469104.060709"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "202"
-         endingLineNumber = "202"
-         landmarkName = "-loadGameInfo:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "qiyouxi/LQGameDetailViewController.m"
-         timestampString = "380383343.376465"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "312"
-         endingLineNumber = "312"
+         startingLineNumber = "282"
+         endingLineNumber = "282"
          landmarkName = "-tableView:numberOfRowsInSection:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -124,25 +124,12 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "qiyouxi/LQGameDetailViewController.m"
-         timestampString = "380383343.376465"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "319"
-         endingLineNumber = "319"
-         landmarkName = "-tableView:cellForRowAtIndexPath:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQPostCommentViewController.m"
-         timestampString = "380384044.968553"
+         timestampString = "380471944.576185"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "38"
-         endingLineNumber = "38"
+         startingLineNumber = "44"
+         endingLineNumber = "44"
          landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
@@ -164,11 +151,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQPostCommentViewController.m"
-         timestampString = "380385005.429629"
+         timestampString = "380471944.576185"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "78"
-         endingLineNumber = "78"
+         startingLineNumber = "111"
+         endingLineNumber = "111"
          landmarkName = "-client:didGetCommandResult:forCommand:format:tagObject:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -177,11 +164,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQPostCommentViewController.m"
-         timestampString = "380385005.429629"
+         timestampString = "380471944.576185"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "66"
-         endingLineNumber = "66"
+         startingLineNumber = "99"
+         endingLineNumber = "99"
          landmarkName = "-loadUserComments:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -190,11 +177,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQPostCommentViewController.m"
-         timestampString = "380385005.429629"
+         timestampString = "380471944.576185"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "110"
-         endingLineNumber = "110"
+         startingLineNumber = "143"
+         endingLineNumber = "143"
          landmarkName = "-tableView:numberOfRowsInSection:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -203,11 +190,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQPostCommentViewController.m"
-         timestampString = "380385005.429629"
+         timestampString = "380471944.576185"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "114"
-         endingLineNumber = "114"
+         startingLineNumber = "147"
+         endingLineNumber = "147"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -216,11 +203,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQPostCommentViewController.m"
-         timestampString = "380384974.829691"
+         timestampString = "380471944.576185"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "87"
-         endingLineNumber = "87"
+         startingLineNumber = "120"
+         endingLineNumber = "120"
          landmarkName = "-client:didGetCommandResult:forCommand:format:tagObject:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -229,11 +216,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQPostCommentViewController.m"
-         timestampString = "380385127.340478"
+         timestampString = "380471944.576185"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "52"
-         endingLineNumber = "52"
+         startingLineNumber = "67"
+         endingLineNumber = "67"
          landmarkName = "-onSubmit:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -268,7 +255,7 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQFirstPageViewController.m"
-         timestampString = "380448792.221641"
+         timestampString = "380469692.845077"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "481"
@@ -307,11 +294,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQTablesController.m"
-         timestampString = "380445899.377342"
+         timestampString = "380470095.104105"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "252"
-         endingLineNumber = "252"
+         startingLineNumber = "253"
+         endingLineNumber = "253"
          landmarkName = "-onPageUpDown:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -359,12 +346,116 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQAppsListWrapperViewController.m"
-         timestampString = "380454989.093236"
+         timestampString = "380470095.104105"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "128"
-         endingLineNumber = "128"
+         startingLineNumber = "122"
+         endingLineNumber = "122"
          landmarkName = "-getController:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "qiyouxi/LQPostCommentViewController.m"
+         timestampString = "380471944.576185"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "41"
+         endingLineNumber = "41"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "qiyouxi/LQGameDetailViewController.m"
+         timestampString = "380467714.242447"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "83"
+         endingLineNumber = "83"
+         landmarkName = "-loadViews"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "qiyouxi/LQGameDetailViewController.m"
+         timestampString = "380468023.613311"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "88"
+         endingLineNumber = "88"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "qiyouxi/LQGameDetailViewController.m"
+         timestampString = "380468046.779606"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "96"
+         endingLineNumber = "96"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "qiyouxi/LQDetailTablesController.m"
+         timestampString = "380470594.658876"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "96"
+         endingLineNumber = "96"
+         landmarkName = "-loadScrollViewWithPage:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "qiyouxi/LQDetailTablesController.m"
+         timestampString = "380468148.290122"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "31"
+         endingLineNumber = "31"
+         landmarkName = "-viewDidLoad"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "qiyouxi/LQGameDetailViewController.m"
+         timestampString = "380468240.982471"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "132"
+         endingLineNumber = "132"
+         landmarkName = "-loadData"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "qiyouxi/LQGameDetailViewController.m"
+         timestampString = "380468299.034956"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "114"
+         endingLineNumber = "114"
+         landmarkName = "-viewWillAppear:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
