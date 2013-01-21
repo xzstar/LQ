@@ -20,6 +20,7 @@
 #import "LQTablesController.h"
 #import "LQDownloadManager.h"
 #import "LQTopicListViewController.h"
+#import "SVPullToRefresh.h" 
 @interface LQFirstPageViewController ()
 @property (nonatomic, strong) NSDictionary* announcement;
 @property (nonatomic, strong) NSArray* advertisements;
@@ -28,8 +29,11 @@
 //推荐应用
 @property (nonatomic, strong) NSArray* recommendApps;
 //推荐专题
-@property (nonatomic, strong) NSArray* recommendTopics;
+@property (nonatomic, strong) NSMutableArray* recommendTopics;
+
+@property (nonatomic,strong) NSString* moreUrl;
 - (void)loadData;
+- (void)loadMoreData;
 @end
 
 @implementation LQFirstPageViewController
@@ -41,6 +45,7 @@
 //@synthesize advView;
 @synthesize histories;
 @synthesize historyView;
+@synthesize moreUrl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -60,6 +65,26 @@
     selectedRow = -1;
     selectedSection = -1;
     currentRecommendIndex = 1;
+    
+    
+    __unsafe_unretained LQFirstPageViewController* weakSelf = self;
+    // setup pull-to-refresh
+    [self.historyView addPullToRefreshWithActionHandler:^{
+        
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [weakSelf loadData];
+        });
+    }];
+    
+    [self.historyView addInfiniteScrollingWithActionHandler:^{
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+            [weakSelf loadMoreData];
+        });
+    }];
+
+    if(recommendTopics==nil)
+        recommendTopics = [NSMutableArray array];
+    
 }
 
 - (void)viewDidUnload
@@ -116,40 +141,27 @@
 
 - (void)loadData{
     [super loadData];
-    
-
- //   [self.client loadTodayAdvs];
-    
+        
     [self loadRecommends];
     
     self.histories = [NSMutableArray array];
     
     [self startLoading];
-    //NSDate* today = [[NSDate date] dateByAddingTimeInterval:-3600*24];
-    
-//    [self.client loadHistory:today days:7];
     
 }
 
-//- (void)loadTodayGames:(NSArray*)games{
-//    int index = 0;
-//    for (NSDictionary * game in games){
-//        LQRecommendButton* button = [sortedButtons objectAtIndex:index];
-//        [button setTitle:[game objectForKey:@"name"] forState:UIControlStateNormal];
-//        NSDictionary* images = [game objectForKey:@"pic"];
-//        NSString* largeImage = [images objectForKey:@"big"];
-//        NSString* smallImage = [images objectForKey:@"small"];
-//        if (button == self.gameButton1 ||
-//            button == self.gameButton5){
-//            [button loadImageUrl:largeImage defaultImage:nil];
-//        }else{
-//            [button loadImageUrl:smallImage defaultImage:nil];
-//        }
-//        button.tag = [[game objectForKey:@"id"] intValue];
-//        index++;
-//    }
-//}
-
+- (void)loadMoreData{
+    if(self.moreUrl != nil){
+        [self.client loadAppMoreListCommon:self.moreUrl];
+    }
+    else {
+        //[self endLoading];
+        [self.historyView.infiniteScrollingView stopAnimating];
+        return;
+    }
+    
+    
+}
 - (void)loadTodayAdvs:(NSArray*)advs{
     self.advertisements = advs;
     
@@ -180,10 +192,44 @@
     for (NSDictionary* game in topics){
         [items addObject:[[LQGameInfo alloc] initWithAPIResult:game]];
     }
-
-    self.recommendTopics = items;
+    [self.recommendTopics removeAllObjects];
+    [self.recommendTopics addObjectsFromArray:items];
     //[self.historyView reloadData];
+    
+    [self.historyView.pullToRefreshView stopAnimating];
 
+}
+
+- (void) loadMoreTopics:(NSArray*) topics{
+    NSMutableArray* items = [NSMutableArray array];
+    
+    for (NSDictionary* game in topics){
+        [items addObject:[[LQGameInfo alloc] initWithAPIResult:game]];
+    }
+    
+    int oldAppsCount = recommendTopics.count;
+    int addAppsCount = topics.count;
+    [self.recommendTopics addObjectsFromArray:items];
+   
+    __unsafe_unretained LQFirstPageViewController* weakSelf = self;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        
+        NSMutableArray *indexPaths = [NSMutableArray array];
+        for(int i=oldAppsCount;i<(oldAppsCount+addAppsCount);i++)
+        {
+            [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:1]];
+        }
+        if(indexPaths.count>0){
+            [weakSelf.historyView beginUpdates];
+            
+            [weakSelf.historyView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+            [weakSelf.historyView endUpdates];
+        }
+        [weakSelf.historyView.infiniteScrollingView stopAnimating];
+    });
+    
 }
 
 - (void)loadHistoryGames:(NSDictionary*)result{
@@ -386,24 +432,31 @@
             [self endLoading];
             if ([result isKindOfClass:[NSDictionary class]]){
                // [self loadTodayGames:result];
+                self.moreUrl = [result objectForKey:@"more_url"];
                 [self loadTodayAdvs:[result objectForKey:@"nominates"]];
                 [self loadApps:[result objectForKey:@"apps"]];
                 [self loadTopics:[result objectForKey:@"zhuantis"]];
                 [self.historyView reloadData];
             }
             break;
-    
-        case C_COMMAND_GETTODAYADVS:
-            if ([result isKindOfClass:[NSArray class]]){
-                [self loadTodayAdvs:result];
-            }
-            break;
-        case C_COMMAND_GETHISTORY:
-            [self endLoading];
+        case C_COMMAND_GETAPPLISTSOFTGAME_MORE:
             if ([result isKindOfClass:[NSDictionary class]]){
-                [self loadHistoryGames:result];
+                self.moreUrl = [result objectForKey:@"more_url"];
+                [self loadMoreTopics:[result objectForKey:@"zhuantis"]];
             }
+
             break;
+//        case C_COMMAND_GETTODAYADVS:
+//            if ([result isKindOfClass:[NSArray class]]){
+//                [self loadTodayAdvs:result];
+//            }
+//            break;
+//        case C_COMMAND_GETHISTORY:
+//            [self endLoading];
+//            if ([result isKindOfClass:[NSDictionary class]]){
+//                [self loadHistoryGames:result];
+//            }
+//            break;
         default:
             break;
     }
@@ -430,6 +483,9 @@
     }else{
         [super handleNetworkError:error];
     }
+    
+    [self.historyView.pullToRefreshView stopAnimating];
+    [self.historyView.infiniteScrollingView stopAnimating];
 }
 
 #pragma mark - Actions

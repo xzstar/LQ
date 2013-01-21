@@ -293,7 +293,11 @@
 }
 
 - (void)loadData{
-    appsList = [NSMutableArray array];
+    if(appsList==nil)
+        appsList = [NSMutableArray array];
+    else {
+        [appsList removeAllObjects];
+    }
     [self startLoading];
     selectedRow = -1;
     selectedSection = -1;

@@ -34,6 +34,8 @@
     scrollViewFrame.size.height+=frame.size.height;
     scrollViewFrame.origin.y=frame.origin.y;
     super.scrollView.frame = scrollViewFrame; 
+    
+    self.titleLabel.text = @"专题";
 }
 
 - (void)viewDidUnload

@@ -11,7 +11,7 @@
 #import "LQWallpaperCell.h"
 #import "SVPullToRefresh.h"
 #import "LQWallpaperViewController.h"
-
+#import "LQTopicSectionHeader.h"
 #pragma mark -- LQGameInfoListViewController --
 
 @interface LQGameInfoListViewController ()
@@ -423,9 +423,29 @@
 
 
 @implementation LQTopicDetailViewController
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (section == 0) {
+        return 100.0f;
+    }
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if(section == 0)
+    {
+        LQTopicSectionHeader *header = [[[NSBundle mainBundle] loadNibNamed:@"LQTopicSectionHeader" owner:self options:nil]objectAtIndex:0];
+        [header setTopicHeaderInfo:iconUrl name:name desc:desc];
+        return header;
+    }
+   
+    return nil;
+}
 
 - (void) loadTopic:(NSDictionary*) topicInfo{
     [self loadApps:[topicInfo objectForKey:@"relate_apps"]];
+    iconUrl = [topicInfo objectForKey:@"icon"];
+    name = [topicInfo objectForKey:@"name"];
+    desc = [topicInfo objectForKey:@"Intro"];
     
 }
 #pragma mark - Network Callback

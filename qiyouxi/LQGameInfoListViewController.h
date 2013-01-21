@@ -44,8 +44,11 @@
 @end
 
 
-@interface LQTopicDetailViewController : LQRequestListViewController
-
+@interface LQTopicDetailViewController : LQRequestListViewController{
+    NSString* iconUrl;
+    NSString* name;
+    NSString* desc;
+}
 @end
 
 @interface LQAppsListViewController : LQRequestListViewController

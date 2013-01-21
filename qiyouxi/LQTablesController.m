@@ -18,7 +18,7 @@
 @end
 
 @implementation LQTablesController
-@synthesize scrollView, viewControllers,pageView;
+@synthesize scrollView, viewControllers,pageView,titleLabel,titleString;
 @synthesize nodeId,categoryId,listOperator;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -236,6 +236,12 @@
 
 - (IBAction)onBack:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+- (void) setTitleString:(NSString *)aTitleString{
+    self.titleString = aTitleString;
+    self.titleLabel.text = aTitleString;
 }
 
 @end

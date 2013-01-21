@@ -183,6 +183,8 @@
 		F21A2DCE16A59AB5001427A8 /* LQTopicListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F21A2DCD16A59AB4001427A8 /* LQTopicListViewController.xib */; };
 		F21A2DD216A5A281001427A8 /* LQTopicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F21A2DD116A5A280001427A8 /* LQTopicListViewController.m */; };
 		F21D4AB216A6B46E00D7CC53 /* LQAppsListWrapperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F21D4AB116A6B46D00D7CC53 /* LQAppsListWrapperViewController.m */; };
+		F226513316AD0E1A001A6846 /* LQTopicSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F226513216AD0E1A001A6846 /* LQTopicSectionHeader.m */; };
+		F226513616AD0EAA001A6846 /* LQTopicSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F226513516AD0EAA001A6846 /* LQTopicSectionHeader.xib */; };
 		F230807C16A1B6990052F0C9 /* LQWallpaperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F230807B16A1B6960052F0C9 /* LQWallpaperCell.m */; };
 		F230807E16A1B6B90052F0C9 /* LQWallpaperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F230807D16A1B6B80052F0C9 /* LQWallpaperCell.xib */; };
 		F23D3B8F169AD70700B7DD46 /* LQSearchHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23D3B8E169AD70700B7DD46 /* LQSearchHistoryCell.m */; };
@@ -1265,6 +1267,9 @@
 		F21A2DD116A5A280001427A8 /* LQTopicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTopicListViewController.m; sourceTree = "<group>"; };
 		F21D4AB016A6B46D00D7CC53 /* LQAppsListWrapperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQAppsListWrapperViewController.h; sourceTree = "<group>"; };
 		F21D4AB116A6B46D00D7CC53 /* LQAppsListWrapperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQAppsListWrapperViewController.m; sourceTree = "<group>"; };
+		F226513116AD0E1A001A6846 /* LQTopicSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTopicSectionHeader.h; sourceTree = "<group>"; };
+		F226513216AD0E1A001A6846 /* LQTopicSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTopicSectionHeader.m; sourceTree = "<group>"; };
+		F226513516AD0EAA001A6846 /* LQTopicSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQTopicSectionHeader.xib; sourceTree = "<group>"; };
 		F230807A16A1B6920052F0C9 /* LQWallpaperCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQWallpaperCell.h; sourceTree = "<group>"; };
 		F230807B16A1B6960052F0C9 /* LQWallpaperCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQWallpaperCell.m; sourceTree = "<group>"; };
 		F230807D16A1B6B80052F0C9 /* LQWallpaperCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQWallpaperCell.xib; sourceTree = "<group>"; };
@@ -2273,6 +2278,9 @@
 				F27CACEF16A8FB8400451B86 /* LQIgnoreAppCell.h */,
 				F27CACF016A8FB8500451B86 /* LQIgnoreAppCell.m */,
 				F27CACF316A8FBC300451B86 /* LQIgnoreAppCell.xib */,
+				F226513116AD0E1A001A6846 /* LQTopicSectionHeader.h */,
+				F226513216AD0E1A001A6846 /* LQTopicSectionHeader.m */,
+				F226513516AD0EAA001A6846 /* LQTopicSectionHeader.xib */,
 			);
 			name = CustomCells;
 			sourceTree = "<group>";
@@ -4412,6 +4420,7 @@
 				F2BAA6A416A97F590090AB70 /* search_tab_bg_left@2x.png in Resources */,
 				F2BAA6A516A97F590090AB70 /* search_tab_bg_right@2x.png in Resources */,
 				F2BAA6A616A97F590090AB70 /* share_gap@2x.png in Resources */,
+				F226513616AD0EAA001A6846 /* LQTopicSectionHeader.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4513,6 +4522,7 @@
 				F2EF704B16A78CF90075F182 /* LQConfig.m in Sources */,
 				F2EF705016A7C7740075F182 /* LQWallpaperViewController.m in Sources */,
 				F27CACF116A8FB8700451B86 /* LQIgnoreAppCell.m in Sources */,
+				F226513316AD0E1A001A6846 /* LQTopicSectionHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

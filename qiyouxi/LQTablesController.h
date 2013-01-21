@@ -19,14 +19,16 @@
     NSString* listOperator;
     NSString* nodeId;
     NSString* categoryId;
+    NSString* titleString;
 }
 
 @property (nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, strong) IBOutlet UIView* pageView;
+@property (nonatomic, strong) IBOutlet UILabel* titleLabel;
 @property (nonatomic, strong) NSMutableArray *viewControllers;
 @property (nonatomic, strong) NSString* nodeId;
 @property (nonatomic, strong) NSString* categoryId;
 @property (nonatomic, strong) NSString* listOperator;
-
+@property (nonatomic, strong) NSString* titleString;
 - (IBAction)onBack:(id)sender;
 @end
