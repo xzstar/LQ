@@ -225,6 +225,7 @@
 		F27CACF116A8FB8700451B86 /* LQIgnoreAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F27CACF016A8FB8500451B86 /* LQIgnoreAppCell.m */; };
 		F27CACF416A8FBC500451B86 /* LQIgnoreAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F27CACF316A8FBC300451B86 /* LQIgnoreAppCell.xib */; };
 		F2842791169FE08E00997FC0 /* LQCategoryListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2842790169FE08E00997FC0 /* LQCategoryListViewController.m */; };
+		F28F56FE16AD4EC2004E1A9E /* LQDetailTablesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F28F56FD16AD4EC1004E1A9E /* LQDetailTablesController.m */; };
 		F290F84B16A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = F290F84816A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.m */; };
 		F290F84C16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = F290F84A16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m */; };
 		F2B7A657168FDE5A00679C6E /* LQFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */; };
@@ -1330,6 +1331,8 @@
 		F27CACF316A8FBC300451B86 /* LQIgnoreAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQIgnoreAppCell.xib; sourceTree = "<group>"; };
 		F284278F169FE08E00997FC0 /* LQCategoryListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQCategoryListViewController.h; sourceTree = "<group>"; };
 		F2842790169FE08E00997FC0 /* LQCategoryListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQCategoryListViewController.m; sourceTree = "<group>"; };
+		F28F56FC16AD4EC0004E1A9E /* LQDetailTablesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDetailTablesController.h; sourceTree = "<group>"; };
+		F28F56FD16AD4EC1004E1A9E /* LQDetailTablesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDetailTablesController.m; sourceTree = "<group>"; };
 		F290F84616A4561D00EC712A /* SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVPullToRefresh.h; sourceTree = "<group>"; };
 		F290F84716A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVInfiniteScrolling.h"; sourceTree = "<group>"; };
 		F290F84816A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
@@ -2435,6 +2438,8 @@
 				F2BAD5DA169D53CF00893F4C /* LQTablesController.xib */,
 				F23AA8B116AD2B44008845C1 /* LQRingTablesController.h */,
 				F23AA8B216AD2B45008845C1 /* LQRingTablesController.m */,
+				F28F56FC16AD4EC0004E1A9E /* LQDetailTablesController.h */,
+				F28F56FD16AD4EC1004E1A9E /* LQDetailTablesController.m */,
 				F21A2DD016A5A27F001427A8 /* LQTopicListViewController.h */,
 				F21A2DD116A5A280001427A8 /* LQTopicListViewController.m */,
 				F21D4AB016A6B46D00D7CC53 /* LQAppsListWrapperViewController.h */,
@@ -4529,6 +4534,7 @@
 				F27CACF116A8FB8700451B86 /* LQIgnoreAppCell.m in Sources */,
 				F226513316AD0E1A001A6846 /* LQTopicSectionHeader.m in Sources */,
 				F23AA8B316AD2B45008845C1 /* LQRingTablesController.m in Sources */,
+				F28F56FE16AD4EC2004E1A9E /* LQDetailTablesController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

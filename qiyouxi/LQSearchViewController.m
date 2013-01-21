@@ -266,7 +266,7 @@
             [self endLoading];
             if ([result isKindOfClass:[NSDictionary class]]){
                 // [self loadTodayGames:result];
-                [self loadHotkeyword:[result objectForKey:@"$keywords"]];
+                [self loadHotkeyword:[result objectForKey:@"keywords"]];
             }
             break;
             
