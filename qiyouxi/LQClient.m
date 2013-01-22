@@ -16,21 +16,18 @@
 @implementation LQClient
 #pragma mark - Override
 - (NSMutableDictionary*)composeParametersForCommand:(int)command withUrl:(NSString*)url ofFormat:(int)format{
-    NSString* countryCode = [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
-    NSString* locale = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
-    
+    CGRect frame = [UIScreen mainScreen].bounds;
+    NSString* width = [NSString stringWithFormat:@"%.0f",frame.size.width];
+    NSString* height = [NSString stringWithFormat:@"%.0f",frame.size.height];
+
     return 	[NSMutableDictionary dictionaryWithObjectsAndKeys:
              [NSNumber numberWithInt:command], P_INTERNAL_COMMAND,
              [NSNumber numberWithInt:30.0f], P_INTERNAL_TIMEOUT,
              [NSNumber numberWithInt:format], P_FORMAT,
              url, P_INTERNAL_URL,
-             @"iphone", @"platform",
-//             [self version], @"sdkv",
-//             WIGAME_API_VERSION, @"apiv",
-//             [WiGameSession currentSession].platform, @"platform",
-//             [WiGameSession currentSession].appVersion, @"appv",
-             countryCode, @"country",
-             locale, @"language",
+             [UIDevice currentDevice].model,@"model",
+             width,@"w",
+             height,@"h",
              nil];    
 }
 

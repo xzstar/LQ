@@ -115,6 +115,8 @@
     
     int size= [self.gameInfo.size intValue];
     float sizeMB= (float)size/(1024*1024);
+    [self.gameIconView loadImageUrl:self.gameInfo.icon defaultImage:DEFAULT_GAME_ICON];
+
     self.gameSize.text =  [NSString stringWithFormat:@"大小:%.2fMB",sizeMB];
  
     self.gameVersion.text = [NSString stringWithFormat:@"版本:%@",gameInfo.versionCode];
