@@ -20,7 +20,7 @@
 
 @implementation LQTablesController
 @synthesize scrollView, viewControllers,pageView,titleLabel,titleString;
-@synthesize nodeId,categoryId,listOperator;
+@synthesize nodeId,categoryId,listOperator,pageController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -216,15 +216,8 @@
     pageControlUsed = NO;
 }
 
-- (IBAction)changePage:(id)sender
-{
-    UIButton* button = sender;
-    
-    int page = button.tag;//pageController.currentPage;
-    // load the visible page and the page on either side of it (to avoid flashes when the user starts scrolling)
-    // [self loadScrollViewWithPage:page - 1];
+- (void) switchToPage:(int)page{
     [self loadScrollViewWithPage:page];
-    // [self loadScrollViewWithPage:page + 1];
     
     // update the scroll view to the appropriate page
     CGRect frame = scrollView.frame;
@@ -236,8 +229,13 @@
     pageControlUsed = YES;
     pageController.currentPage = page;
 
-    
 }
+- (IBAction)changePage:(id)sender
+{
+    UIButton* button = sender;
+    [self switchToPage:button.tag];
+}
+
 
 - (IBAction)onBack:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];

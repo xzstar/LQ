@@ -12,27 +12,22 @@
 #import "EGORefreshTableHeaderView.h"
 #import "EGORefreshTableFooterView.h"
 #import "LQPostCommentViewController.h"
+#import "SVPullToRefresh.h"
+
 @interface LQGameDetailViewController (){
     NSString* moreUrl;
 }
-@property (strong) EGORefreshTableHeaderView* commentsHeaderView;
-@property (assign) BOOL refreshing;
-@property (assign) BOOL moreCommentsToLoad;
 @property (strong) NSMutableArray* gameInfoUserComments; //在详情页显示评论
-@property (strong) NSMutableArray* userComments;
-@property (assign) CGFloat commentLabelMaxHeight;
 @property (strong) NSString* moreUrl;
-
+@property (nonatomic, copy) void (^switchPageActionHandler)(int);
 
 @end
 
 @implementation LQGameDetailViewController
-
+@synthesize delegate;
 @synthesize gameId;
 @synthesize gameInfo;
-@synthesize userComments;
 @synthesize gameInfoUserComments;
-@synthesize commentLabelMaxHeight;
 @synthesize mainScrollView;
 
 @synthesize gameVender,gameVersion,gameType,gameScore,gameDownloadCount,gameBaseInfoPanel,gameSize;
@@ -42,44 +37,16 @@
 @synthesize gameScore2;
 @synthesize gameInfoCommentTableView;
 
-@synthesize gameInfoPanel;
 @synthesize gameIconView, gameTitleLabel;
 @synthesize commentLabel;
 @synthesize screenShotsView;
 
-@synthesize contentView;
-@synthesize commentsPanel;
-@synthesize userCommentsView;
-
-//@synthesize detailButton;
-//@synthesize commentsButton;
-//@synthesize buttonUnderline;
-
 @synthesize dummyCell;
-
-@synthesize commentsHeaderView;
-@synthesize moreCommentsToLoad;
-@synthesize refreshing;
 @synthesize moreUrl;
+@synthesize switchPageActionHandler;
 
 #pragma mark - View Init
 - (void)loadViews{
-    self.commentLabelMaxHeight = self.commentLabel.bounds.size.height;
-    
-    CGRect frame = self.userCommentsView.frame;
-    frame.origin.x = 0;
-    frame.origin.y = frame.size.height;
-    self.commentsHeaderView = [[EGORefreshTableFooterView alloc] initWithFrame:frame];
-    [self.userCommentsView addSubview:self.commentsHeaderView];
-    
-    self.userComments = [[NSMutableArray alloc] init];
-    self.commentsHeaderView.delegate = self;
-    [self.commentsHeaderView refreshLastUpdatedDate];
-    
-    self.userCommentsView.hidden = YES;
-    
-    
-    
     
 }
 
@@ -109,22 +76,17 @@
     
     self.gameInfoUserComments = [[NSMutableArray alloc]init];
     [self loadData];
+
 }
 -  (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
-    
-    if ([self.commentsPanel superview] != nil){
-        [self startLoading];
-        [self loadMoreComments];
-    }
 }
+
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     
-    [self.userComments removeAllObjects];
-    [self.userCommentsView reloadData];
+    //[self.userCommentsView reloadData];
 }
 
 #pragma mark - Data Init
@@ -134,6 +96,20 @@
     [self.client loadGameInfo:self.gameId];
 }
 
+
+- (void)loadMoreData{
+    
+    if(self.moreUrl != nil){
+        [self.client loadAppMoreListCommon:self.moreUrl];
+    }
+    else {
+        //[self endLoading];
+        [self.gameInfoCommentTableView.infiniteScrollingView stopAnimating];
+        return;
+    }
+    
+
+}
 - (void)loadGameBaseInfo{
     self.gameTitleLabel.text = self.gameInfo.name;
     
@@ -168,44 +144,21 @@
     [self loadGameBaseInfo];
     [self loadGamePhotoInfo];   
     [self loadGameInfoComments:[result objectForKey:@"arr_comment"]];
-
+    moreUrl = [result objectForKey:@"more_comment"];  
 }
 
 - (void)loadGameInfoComments:(NSArray*) result{
+    [self.gameInfoUserComments removeAllObjects];
     [self.gameInfoUserComments addObjectsFromArray: result];
     [self.gameInfoCommentTableView reloadData];
-}
 
-- (void)loadUserComments:(NSDictionary*)result{
-//    NSArray* items = [[result objectForKey:@"context"] objectForKey:@"items"];
-//    int total_count = [[[result objectForKey:@"context"] objectForKey:@"total_count"] intValue];
-    
-    NSArray* items = [result objectForKey:@"arr_comment"];
-    moreUrl = [result objectForKey:@"more_url"];  
-
-    
-    [self.userComments addObjectsFromArray:items];
-    [self.userCommentsView reloadData];    
-    
-    self.refreshing = NO;
-    self.moreCommentsToLoad = (moreUrl!=nil);//total_count > self.userComments.count;    
-    [self.commentsHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.userCommentsView];
-    
-    if (self.userComments.count > 0){
-        self.userCommentsView.hidden = NO;
-    }else{
-        self.userCommentsView.hidden = YES;
-    }
-}
-
-- (void)loadMoreComments{
-    [self startLoading];
-    [self.client loadUserMoreComments:moreUrl];
-
-    //[self.client loadUserComments:self.gameId /*start:self.userComments.count count:50*/];
 }
 
 #pragma mark - Actions
+
+- (void) addSwitchPageWithActionHandler:(void (^)(int))actionHandler{
+    self.switchPageActionHandler = actionHandler;
+}
 //- (IBAction)onShowDetail:(id)sender{
 //    [self.commentsPanel removeFromSuperview];
 //    [self.contentView addSubview:self.gameInfoPanel];
@@ -218,30 +171,17 @@
 //    [UIView commitAnimations];
 //}
 
-//- (IBAction)onShowComments:(id)sender{
-//    [self.gameInfoPanel removeFromSuperview];
-//    [self.contentView addSubview:self.commentsPanel];
-//    
-//    [UIView beginAnimations:nil context:nil];
-//    [UIView setAnimationDuration:0.5];
-//    CGPoint center = self.buttonUnderline.center;
-//    center.x = self.commentsButton.center.x;
-//    self.buttonUnderline.center = center;
-//    [UIView commitAnimations];
-//    
-//    if (self.userComments.count == 0){
-//        [self startLoading];
-//        [self.client loadUserComments:self.gameId];
-//
+- (IBAction)onShowComments:(id)sender{
+//    if (self.switchPageActionHandler) {
+//        self.switchPageActionHandler(1);
 //    }
-//    LQPostCommentViewController* controller = [[LQPostCommentViewController alloc] initWithNibName:@"LQPostCommentViewController" bundle:nil];
-//    controller.gameId = self.gameId;
-//    controller.gameScore.text = self.gameScore.text;
-//    [self.navigationController pushViewController:controller animated:YES];
-//    
-//    
-//    
-//}
+    if(delegate)
+    if([delegate respondsToSelector:@selector(switchToCommentPage)]){
+        [delegate performSelectorOnMainThread:@selector(switchToCommentPage) 
+                                withObject:nil
+                                waitUntilDone:NO];
+    }
+}
 
 #pragma mark - Network Callback
 - (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{
@@ -250,11 +190,6 @@
             [self endLoading];
             [self loadGameInfo:[result objectForKey:@"appinfo"]];
             break;
-        case C_COMMAND_GETUSERCOMMENTS:
-            [self endLoading];
-            if ([result isKindOfClass:[NSDictionary class]]){
-                [self loadUserComments:result];
-            }
         default:
             break;
     }
@@ -277,10 +212,8 @@
 #pragma mark - TableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if(tableView == self.gameInfoCommentTableView)
-        return self.gameInfoUserComments.count;
-    else
-        return self.userComments.count;
+    return self.gameInfoUserComments.count;
+
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -289,17 +222,11 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"CommentTableViewCell" owner:self options:nil] objectAtIndex:0];
     }
     
-    if(tableView == self.gameInfoCommentTableView)
-    {
-        NSDictionary* item = [self.gameInfoUserComments objectAtIndex:indexPath.row];
-        cell.comment = item;
-        
-    }
-    else{
-        NSDictionary* item = [self.userComments objectAtIndex:indexPath.row];
-        cell.comment = item;
-    }
-   
+    
+    NSDictionary* item = [self.gameInfoUserComments objectAtIndex:indexPath.row];
+    cell.comment = item;
+    
+       
     return cell;
 }
 
@@ -320,41 +247,6 @@
 //    return rowSize.height;    
 }
 
-#pragma mark - EGORefreshTableView
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
-    if (self.moreCommentsToLoad){
-        [self.commentsHeaderView egoRefreshScrollViewDidScroll:scrollView];
-    }
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-    if (self.moreCommentsToLoad){
-        [self.commentsHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-    }
-}
-
-
-#pragma mark -
-#pragma mark EGORefreshTableHeaderDelegate Methods
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
-    //    [self loadCurrentCategory];
-}
-
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
-	return self.refreshing; // should return if data source model is reloading
-}
-
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
-	return [NSDate date]; // should return date data source was last changed
-}
-
-- (float)egoRefreshTableHeaderTableViewHeight:(EGORefreshTableHeaderView*)view{
-    return self.userCommentsView.contentSize.height;
-}
-
-- (BOOL)egoRefreshTableHeaderDataSourceNeedLoading:(EGORefreshTableHeaderView*)view{
-    return self.moreCommentsToLoad;
-}
 
 
 #pragma mark - 

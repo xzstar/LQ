@@ -12,7 +12,7 @@
 #define kDetailTables 2
 
 @interface LQDetailTablesController ()
-
+- (void) switchToCommentPage;
 @end
 
 @implementation LQDetailTablesController
@@ -99,6 +99,18 @@
         if(page == 0) {
             LQGameDetailViewController *  detailController = [[LQGameDetailViewController alloc] initWithNibName:@"LQGameDetailViewController" bundle:nil];
             detailController.gameId = self.gameId;
+            detailController.delegate = self;
+//            __unsafe_unretained LQDetailTablesController* weakSelf = self;
+//            [detailController addSwitchPageWithActionHandler:^(int page){
+//                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^(void){
+//                        if(page>=0 && page<2){
+//                            [weakSelf switchToPage:page];
+//
+//                        }
+//                    });
+//
+//            }];
+//            
             [viewControllers replaceObjectAtIndex:page withObject:detailController];
             controller = detailController;     
         }
@@ -123,4 +135,7 @@
     }
 }
 
+- (void) switchToCommentPage{
+    [self switchToPage:1];
+}
 @end

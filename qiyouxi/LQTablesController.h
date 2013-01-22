@@ -30,5 +30,9 @@
 @property (nonatomic, strong) NSString* categoryId;
 @property (nonatomic, strong) NSString* listOperator;
 @property (nonatomic, strong) NSString* titleString;
+@property (nonatomic, strong) LQPageController* pageController;
 - (IBAction)onBack:(id)sender;
+- (IBAction)changePage:(id)sender;
+- (void) switchToPage:(int)page;
+
 @end
