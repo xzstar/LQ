@@ -12,6 +12,7 @@
 #import "SVPullToRefresh.h"
 #import "LQWallpaperViewController.h"
 #import "LQTopicSectionHeader.h"
+#import "AudioMoreItemCell.h"
 #pragma mark -- LQGameInfoListViewController --
 
 @interface LQGameInfoListViewController ()
@@ -191,13 +192,17 @@
     AudioCell *cell;
     
     if(indexPath.row == self.selectedRow){
-        cell = [tableView dequeueReusableCellWithIdentifier:@"AudioMoreItemCell"];
-        if (cell == nil){
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"AudioMoreItemCell" owner:self options:nil] objectAtIndex:0];
-            [cell configurePlayerButton];
+        AudioMoreItemCell* morecell = [tableView dequeueReusableCellWithIdentifier:@"AudioMoreItemCell"];
+        if (morecell == nil){
+            morecell = [[[NSBundle mainBundle] loadNibNamed:@"AudioMoreItemCell" owner:self options:nil] objectAtIndex:0];
+            [morecell configurePlayerButton];
             
+            [morecell setButtonsName:@"立刻安装" middle:@"下载" right:nil];
+            
+            [morecell addLeftButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
+            [morecell addMiddleButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
         }
-        
+        cell = morecell;
     }
     else{
         cell = [tableView dequeueReusableCellWithIdentifier:@"AudioCell"];
@@ -296,7 +301,7 @@
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return (self.appsList.count%WALLPAPER_COUNT_PERLINE)==0?
-    self.appsList.count/WALLPAPER_COUNT_PERLINE:((self.appsList.count/4)+WALLPAPER_COUNT_PERLINE);
+    self.appsList.count/WALLPAPER_COUNT_PERLINE:((self.appsList.count/WALLPAPER_COUNT_PERLINE)+1);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -344,6 +349,7 @@
 
     controller.imageUrl = item.downloadUrl;
     controller.titleString = item.name;
+    controller.gameInfo = item;
     [self.parent.parentViewController.navigationController pushViewController:controller animated:YES];
 }
 @end
@@ -551,12 +557,17 @@
     AudioCell *cell;
     
     if(indexPath.row == self.selectedRow){
-        cell = [tableView dequeueReusableCellWithIdentifier:@"AudioMoreItemCell"];
-        if (cell == nil){
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"AudioMoreItemCell" owner:self options:nil] objectAtIndex:0];
-            [cell configurePlayerButton];
+        AudioMoreItemCell* morecell = [tableView dequeueReusableCellWithIdentifier:@"AudioMoreItemCell"];
+        if (morecell == nil){
+            morecell = [[[NSBundle mainBundle] loadNibNamed:@"AudioMoreItemCell" owner:self options:nil] objectAtIndex:0];
+            [morecell configurePlayerButton];
             
+            [morecell setButtonsName:@"立刻安装" middle:@"下载" right:nil];
+            
+            [morecell addLeftButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
+            [morecell addMiddleButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
         }
+        cell = morecell;
         
     }
     else{
@@ -702,6 +713,7 @@
     
     controller.imageUrl = item.downloadUrl;
     controller.titleString = item.name;
+    controller.gameInfo = item;
     [self.parent.parentViewController.navigationController pushViewController:controller animated:YES];
 }
 

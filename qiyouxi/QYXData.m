@@ -27,6 +27,7 @@
 @synthesize intro,date;
 
 @synthesize requestUrl;
+@synthesize fileType;
 
 - (id)initWithAPIResult:(NSDictionary*)result{
     self = [super init];
@@ -86,6 +87,23 @@
         self.intro = [result objectForKey:@"Intro"];
         self.date = [result objectForKey:@"date"];
         self.requestUrl = [result objectForKey:@"request_url"];
+        
+        
+        //for test
+        NSRange range = [downloadUrl rangeOfString:@".jpg"];
+        if([result objectForKey:@"ring_type"]){
+            self.fileType = [result objectForKey:@"ring_type"];
+            self.package = self.name ;
+
+        }
+        else if(range.location == (downloadUrl.length-4) && range.length>0){
+             self.fileType = @"wallpaper";
+            self.package = self.name
+            ;
+        }
+        else{
+            self.fileType = @"soft";
+        }
     }
     return self;
 }

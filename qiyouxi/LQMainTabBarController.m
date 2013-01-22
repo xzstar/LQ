@@ -10,7 +10,8 @@
 
 #import "LQFirstPageViewController.h"
 #import "LQSearchViewController.h"
-#import "LQDownloadViewController.h"
+//#import "LQDownloadViewController.h"
+#import "LQDownloadTablesController.h"
 #import "LQUpdateViewController.h"
 #import "LQMoreViewController.h"
 
@@ -64,8 +65,9 @@
 
     LQSearchViewController * search = [[LQSearchViewController alloc] initWithNibName:@"LQSearchViewController"
                                                                                     bundle:nil];  
-    LQDownloadViewController * download = [[LQDownloadViewController alloc] initWithNibName:@"LQDownloadViewController"
-                                                                                    bundle:nil];  
+//    LQDownloadViewController * download = [[LQDownloadViewController alloc] initWithNibName:@"LQDownloadViewController"
+//                                                                                    bundle:nil];  
+    LQDownloadTablesController* download = [[LQDownloadTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil];
     LQUpdateViewController * update = [[LQUpdateViewController alloc] initWithNibName:@"LQUpdateViewController"
                                                                                     bundle:nil];  
     LQMoreViewController * more = [[LQMoreViewController alloc] initWithNibName:@"LQMoreViewController"

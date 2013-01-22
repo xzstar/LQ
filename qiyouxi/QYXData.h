@@ -38,6 +38,9 @@
 @property (nonatomic, strong) NSString* intro;
 @property (nonatomic, strong) NSString* date;
 
+//类型:soft,game,ring,wallpaper
+@property (nonatomic, strong) NSString* fileType;
+
 - (id)initWithAPIResult:(NSDictionary*)result;
 
 @end

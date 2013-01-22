@@ -13,7 +13,7 @@
 @end
 
 @implementation LQWallpaperViewController
-@synthesize imageUrl,imageView,fullScreenButton,setWallpaperButton,downloadButton,topView,bottomView,title,titleString;
+@synthesize imageUrl,imageView,fullScreenButton,setWallpaperButton,downloadButton,topView,bottomView,title,titleString,gameInfo;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -59,7 +59,34 @@
     
 }
 -(IBAction) onDownloadClick:(id) sender{
-    
+    //LQGameInfo* info = [appsList objectAtIndex:row];
+    int gameId = gameInfo.gameId;
+    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameId];
+    switch (status) {
+        case kQYXDSFailed:
+            [[LQDownloadManager sharedInstance] resumeDownloadById:gameId];
+            break;
+            //        case kQYXDSCompleted:
+            //        case kQYXDSInstalling:
+            //            [[LQDownloadManager sharedInstance] installGameBy:self.gameInfo.gameId];
+            //            break;
+            //        case kQYXDSPaused:
+            //            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
+            //            break;
+            //        case kQYXDSRunning:
+            //            [[LQDownloadManager sharedInstance] pauseDownloadById:self.gameInfo.gameId];
+            //            break;
+        case kQYXDSNotFound:
+            if(gameInfo!=nil)
+                [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo suspended:NO];
+            
+            break;
+            //        case kQYXDSInstalled:
+            //            [[LQDownloadManager sharedInstance] startGame:self.gameInfo.package];
+            //            break;
+        default:
+            break;
+    }
 }
 
 -(IBAction) onHideToolbarClick:(id) sender{

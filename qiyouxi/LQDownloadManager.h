@@ -57,7 +57,6 @@ typedef enum _DOWNLOAD_STATUS{
 @property (nonatomic, assign) int totalLength;
 @property (nonatomic, strong) NSFileHandle* fileHandle;
 @property (nonatomic, strong) NSString* filePath;
-
 - (void)pause;
 - (void)resume;
 

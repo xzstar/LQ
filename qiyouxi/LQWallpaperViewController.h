@@ -14,6 +14,7 @@
     NSString* titleString;
 }
 
+@property(nonatomic,strong) LQGameInfo *gameInfo;
 @property(nonatomic,strong) NSString* imageUrl;
 @property(nonatomic,strong) NSString* titleString;
 

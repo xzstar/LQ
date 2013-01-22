@@ -171,6 +171,14 @@
 		43F5EDFF15C658B0001A0F8D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43F5EDFE15C658B0001A0F8D /* Icon@2x.png */; };
 		43F5EE0715C65988001A0F8D /* LQCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F5EE0615C65988001A0F8D /* LQCategoryViewController.m */; };
 		43F5EE0A15C65AC9001A0F8D /* LQDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F5EE0915C65AC9001A0F8D /* LQDetailViewController.m */; };
+		F20D0B1E16AE6002005C5FB0 /* LQDownloadTablesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D0B1D16AE6002005C5FB0 /* LQDownloadTablesController.m */; };
+		F20D0B2316AE6517005C5FB0 /* LQDownloadedCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D0B2116AE6517005C5FB0 /* LQDownloadedCategoryController.m */; };
+		F20D0B2416AE6517005C5FB0 /* LQDownloadedCategoryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F20D0B2216AE6517005C5FB0 /* LQDownloadedCategoryController.xib */; };
+		F20D0B2816AE804C005C5FB0 /* LQDownloadingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D0B2616AE804B005C5FB0 /* LQDownloadingViewController.m */; };
+		F20D0B2916AE804C005C5FB0 /* LQDownloadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F20D0B2716AE804C005C5FB0 /* LQDownloadingViewController.xib */; };
+		F20D0B2D16AE8838005C5FB0 /* LQDownloadedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D0B2B16AE8838005C5FB0 /* LQDownloadedViewController.m */; };
+		F20D0B2E16AE8838005C5FB0 /* LQDownloadedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F20D0B2C16AE8838005C5FB0 /* LQDownloadedViewController.xib */; };
+		F20D0B3116AE976C005C5FB0 /* LQDownloadedRingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D0B3016AE976B005C5FB0 /* LQDownloadedRingsViewController.m */; };
 		F219D4D5168C942500F8CA45 /* LQMainTabBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4D4168C942500F8CA45 /* LQMainTabBar.xib */; };
 		F219D4D7168C95DA00F8CA45 /* LQTodayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4D6168C95DA00F8CA45 /* LQTodayView.xib */; };
 		F219D4D9168C964600F8CA45 /* LQHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4D8168C964600F8CA45 /* LQHistoryView.xib */; };
@@ -401,6 +409,7 @@
 		F2C2667F169DB9B600382479 /* LQCommonTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2C2667D169DB9B600382479 /* LQCommonTableViewController.xib */; };
 		F2E1655A169071300049BD05 /* LQGameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E165581690712F0049BD05 /* LQGameDetailViewController.m */; };
 		F2E1655B169071300049BD05 /* LQGameDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E165591690712F0049BD05 /* LQGameDetailViewController.xib */; };
+		F2E29D3716AEE2000084A7F0 /* LQDownloadedWallpaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E29D3616AEE2000084A7F0 /* LQDownloadedWallpaperViewController.m */; };
 		F2E8A368169C458F00B6DC2D /* LQTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E8A367169C458F00B6DC2D /* LQTopicCell.m */; };
 		F2E8A37F169C60FC00B6DC2D /* LQTopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E8A37E169C60FB00B6DC2D /* LQTopicCell.xib */; };
 		F2ED592E168FCC2B00E12C5F /* about_logo-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ED56AE168FCC2900E12C5F /* about_logo-ipad.png */; };
@@ -1255,6 +1264,19 @@
 		43F5EE0615C65988001A0F8D /* LQCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LQCategoryViewController.m; path = ../LQCategoryViewController.m; sourceTree = "<group>"; };
 		43F5EE0815C65AC9001A0F8D /* LQDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDetailViewController.h; sourceTree = "<group>"; };
 		43F5EE0915C65AC9001A0F8D /* LQDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDetailViewController.m; sourceTree = "<group>"; };
+		F20D0B1C16AE6002005C5FB0 /* LQDownloadTablesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDownloadTablesController.h; sourceTree = "<group>"; };
+		F20D0B1D16AE6002005C5FB0 /* LQDownloadTablesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDownloadTablesController.m; sourceTree = "<group>"; };
+		F20D0B2016AE6517005C5FB0 /* LQDownloadedCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDownloadedCategoryController.h; sourceTree = "<group>"; };
+		F20D0B2116AE6517005C5FB0 /* LQDownloadedCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDownloadedCategoryController.m; sourceTree = "<group>"; };
+		F20D0B2216AE6517005C5FB0 /* LQDownloadedCategoryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQDownloadedCategoryController.xib; sourceTree = "<group>"; };
+		F20D0B2516AE804B005C5FB0 /* LQDownloadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDownloadingViewController.h; sourceTree = "<group>"; };
+		F20D0B2616AE804B005C5FB0 /* LQDownloadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDownloadingViewController.m; sourceTree = "<group>"; };
+		F20D0B2716AE804C005C5FB0 /* LQDownloadingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQDownloadingViewController.xib; sourceTree = "<group>"; };
+		F20D0B2A16AE8837005C5FB0 /* LQDownloadedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDownloadedViewController.h; sourceTree = "<group>"; };
+		F20D0B2B16AE8838005C5FB0 /* LQDownloadedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDownloadedViewController.m; sourceTree = "<group>"; };
+		F20D0B2C16AE8838005C5FB0 /* LQDownloadedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQDownloadedViewController.xib; sourceTree = "<group>"; };
+		F20D0B2F16AE976A005C5FB0 /* LQDownloadedRingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDownloadedRingsViewController.h; sourceTree = "<group>"; };
+		F20D0B3016AE976B005C5FB0 /* LQDownloadedRingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDownloadedRingsViewController.m; sourceTree = "<group>"; };
 		F219D4D4168C942500F8CA45 /* LQMainTabBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQMainTabBar.xib; sourceTree = "<group>"; };
 		F219D4D6168C95DA00F8CA45 /* LQTodayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQTodayView.xib; sourceTree = "<group>"; };
 		F219D4D8168C964600F8CA45 /* LQHistoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQHistoryView.xib; sourceTree = "<group>"; };
@@ -1520,6 +1542,8 @@
 		F2E165571690712E0049BD05 /* LQGameDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQGameDetailViewController.h; sourceTree = "<group>"; };
 		F2E165581690712F0049BD05 /* LQGameDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQGameDetailViewController.m; sourceTree = "<group>"; };
 		F2E165591690712F0049BD05 /* LQGameDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQGameDetailViewController.xib; sourceTree = "<group>"; };
+		F2E29D3516AEE2000084A7F0 /* LQDownloadedWallpaperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDownloadedWallpaperViewController.h; sourceTree = "<group>"; };
+		F2E29D3616AEE2000084A7F0 /* LQDownloadedWallpaperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDownloadedWallpaperViewController.m; sourceTree = "<group>"; };
 		F2E8A366169C458F00B6DC2D /* LQTopicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTopicCell.h; sourceTree = "<group>"; };
 		F2E8A367169C458F00B6DC2D /* LQTopicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTopicCell.m; sourceTree = "<group>"; };
 		F2E8A37E169C60FB00B6DC2D /* LQTopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQTopicCell.xib; sourceTree = "<group>"; };
@@ -2440,6 +2464,8 @@
 				F23AA8B216AD2B45008845C1 /* LQRingTablesController.m */,
 				F28F56FC16AD4EC0004E1A9E /* LQDetailTablesController.h */,
 				F28F56FD16AD4EC1004E1A9E /* LQDetailTablesController.m */,
+				F20D0B1C16AE6002005C5FB0 /* LQDownloadTablesController.h */,
+				F20D0B1D16AE6002005C5FB0 /* LQDownloadTablesController.m */,
 				F21A2DD016A5A27F001427A8 /* LQTopicListViewController.h */,
 				F21A2DD116A5A280001427A8 /* LQTopicListViewController.m */,
 				F21D4AB016A6B46D00D7CC53 /* LQAppsListWrapperViewController.h */,
@@ -2457,6 +2483,19 @@
 				F2EF704D16A7C7720075F182 /* LQWallpaperViewController.h */,
 				F2EF704E16A7C7720075F182 /* LQWallpaperViewController.m */,
 				F2EF704F16A7C7730075F182 /* LQWallpaperViewController.xib */,
+				F20D0B2016AE6517005C5FB0 /* LQDownloadedCategoryController.h */,
+				F20D0B2116AE6517005C5FB0 /* LQDownloadedCategoryController.m */,
+				F20D0B2216AE6517005C5FB0 /* LQDownloadedCategoryController.xib */,
+				F20D0B2516AE804B005C5FB0 /* LQDownloadingViewController.h */,
+				F20D0B2616AE804B005C5FB0 /* LQDownloadingViewController.m */,
+				F20D0B2716AE804C005C5FB0 /* LQDownloadingViewController.xib */,
+				F20D0B2A16AE8837005C5FB0 /* LQDownloadedViewController.h */,
+				F20D0B2B16AE8838005C5FB0 /* LQDownloadedViewController.m */,
+				F20D0B2C16AE8838005C5FB0 /* LQDownloadedViewController.xib */,
+				F20D0B2F16AE976A005C5FB0 /* LQDownloadedRingsViewController.h */,
+				F20D0B3016AE976B005C5FB0 /* LQDownloadedRingsViewController.m */,
+				F2E29D3516AEE2000084A7F0 /* LQDownloadedWallpaperViewController.h */,
+				F2E29D3616AEE2000084A7F0 /* LQDownloadedWallpaperViewController.m */,
 			);
 			path = qiyouxi;
 			sourceTree = "<group>";
@@ -4431,6 +4470,9 @@
 				F2BAA6A516A97F590090AB70 /* search_tab_bg_right@2x.png in Resources */,
 				F2BAA6A616A97F590090AB70 /* share_gap@2x.png in Resources */,
 				F226513616AD0EAA001A6846 /* LQTopicSectionHeader.xib in Resources */,
+				F20D0B2416AE6517005C5FB0 /* LQDownloadedCategoryController.xib in Resources */,
+				F20D0B2916AE804C005C5FB0 /* LQDownloadingViewController.xib in Resources */,
+				F20D0B2E16AE8838005C5FB0 /* LQDownloadedViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4535,6 +4577,12 @@
 				F226513316AD0E1A001A6846 /* LQTopicSectionHeader.m in Sources */,
 				F23AA8B316AD2B45008845C1 /* LQRingTablesController.m in Sources */,
 				F28F56FE16AD4EC2004E1A9E /* LQDetailTablesController.m in Sources */,
+				F20D0B1E16AE6002005C5FB0 /* LQDownloadTablesController.m in Sources */,
+				F20D0B2316AE6517005C5FB0 /* LQDownloadedCategoryController.m in Sources */,
+				F20D0B2816AE804C005C5FB0 /* LQDownloadingViewController.m in Sources */,
+				F20D0B2D16AE8838005C5FB0 /* LQDownloadedViewController.m in Sources */,
+				F20D0B3116AE976C005C5FB0 /* LQDownloadedRingsViewController.m in Sources */,
+				F2E29D3716AEE2000084A7F0 /* LQDownloadedWallpaperViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

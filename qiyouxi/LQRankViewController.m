@@ -11,6 +11,7 @@
 #import "LQWallpaperCell.h"
 #import "AudioCell.h"
 #import "AudioPlayer.h"
+#import "AudioMoreItemCell.h"
 @interface LQRankViewController ()
 
 @end
@@ -157,12 +158,17 @@
     AudioCell *cell;
     
     if(indexPath.row == self.selectedRow){
-        cell = [tableView dequeueReusableCellWithIdentifier:@"AudioMoreItemCell"];
-        if (cell == nil){
-            cell = [[[NSBundle mainBundle] loadNibNamed:@"AudioMoreItemCell" owner:self options:nil] objectAtIndex:0];
-            [cell configurePlayerButton];
+        AudioMoreItemCell* morecell = [tableView dequeueReusableCellWithIdentifier:@"AudioMoreItemCell"];
+        if (morecell == nil){
+            morecell = [[[NSBundle mainBundle] loadNibNamed:@"AudioMoreItemCell" owner:self options:nil] objectAtIndex:0];
+            [morecell configurePlayerButton];
             
+            [morecell setButtonsName:@"立刻安装" middle:@"下载" right:nil];
+            
+            [morecell addLeftButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
+            [morecell addMiddleButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
         }
+        cell = morecell;
         
     }
     else{

@@ -11,6 +11,8 @@
 
 static LQDownloadManager* _intance = nil;
 
+NSString* const kNotificationDownloadComplete    = @"NotificationDownloadComplete";
+
 @interface LQDownloadManager()
 @property (nonatomic, strong) NSDictionary* ipaInstalled;
 @property (nonatomic, strong) NSMutableDictionary* gameMap;
@@ -65,10 +67,10 @@ static LQDownloadManager* _intance = nil;
                 gameInfo.gameId = [[dict objectForKey:@"id"] intValue];
                 gameInfo.icon = [dict objectForKey:@"icon"];
                 gameInfo.name = [dict objectForKey:@"name"];
-                gameInfo.category = [dict objectForKey:@"category"];
+                gameInfo.tags = [dict objectForKey:@"category"];
                 gameInfo.downloadUrl = [dict objectForKey:@"downloadUri"];
                 gameInfo.package = [dict objectForKey:@"package"];
-                
+                gameInfo.fileType = [dict objectForKey:@"fileType"]; 
                 obj.gameInfo = gameInfo;
                 
                 switch (status) {
@@ -112,14 +114,18 @@ static LQDownloadManager* _intance = nil;
             [dict setObject:[NSNumber numberWithInt:obj.status] forKey:@"status"];
             [dict setObject:[NSNumber numberWithInt:obj.totalLength] forKey:@"size"];
             NSMutableDictionary* game = [NSMutableDictionary dictionary];
-            //LQGameInfo* gameInfo = obj.gameInfo;
+            LQGameInfo* gameInfo = obj.gameInfo;
             [game setObject:[NSNumber numberWithInt:obj.gameInfo.gameId] forKey:@"id"];
             [game setObject:obj.gameInfo.name forKey:@"name"];
             [game setObject:obj.gameInfo.icon forKey:@"icon"];
             [game setObject:obj.gameInfo.downloadUrl forKey:@"downloadUri"];
             [game setObject:obj.gameInfo.package forKey:@"package"];
             [game setObject:obj.gameInfo.tags forKey:@"category"];
-            
+            if(obj.gameInfo.fileType!=nil)
+            [game setObject:obj.gameInfo.fileType forKey:@"fileType"];
+            else {
+                [game setObject:@"soft" forKey:@"fileType"];
+            }
             [dict setObject:game forKey:@"game"];
             
             [items addObject:dict];
@@ -427,6 +433,9 @@ static LQDownloadManager* _intance = nil;
     
     [[LQDownloadManager sharedInstance] updateDownloadObject:self];
     [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDownloadComplete object:self];
+
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
