@@ -412,6 +412,8 @@
 		F2E29D3716AEE2000084A7F0 /* LQDownloadedWallpaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E29D3616AEE2000084A7F0 /* LQDownloadedWallpaperViewController.m */; };
 		F2E29D3C16AFA5030084A7F0 /* LQAboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E29D3A16AFA5000084A7F0 /* LQAboutViewController.m */; };
 		F2E29D3D16AFA5030084A7F0 /* LQAboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E29D3B16AFA5010084A7F0 /* LQAboutViewController.xib */; };
+		F2E29D4D16AFE0630084A7F0 /* LQSMSRingReplaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E29D4B16AFE0620084A7F0 /* LQSMSRingReplaceViewController.m */; };
+		F2E29D4E16AFE0630084A7F0 /* LQSMSRingReplaceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E29D4C16AFE0630084A7F0 /* LQSMSRingReplaceViewController.xib */; };
 		F2E8A368169C458F00B6DC2D /* LQTopicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E8A367169C458F00B6DC2D /* LQTopicCell.m */; };
 		F2E8A37F169C60FC00B6DC2D /* LQTopicCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E8A37E169C60FB00B6DC2D /* LQTopicCell.xib */; };
 		F2ED592E168FCC2B00E12C5F /* about_logo-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = F2ED56AE168FCC2900E12C5F /* about_logo-ipad.png */; };
@@ -1549,6 +1551,9 @@
 		F2E29D3916AFA4FD0084A7F0 /* LQAboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQAboutViewController.h; sourceTree = "<group>"; };
 		F2E29D3A16AFA5000084A7F0 /* LQAboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQAboutViewController.m; sourceTree = "<group>"; };
 		F2E29D3B16AFA5010084A7F0 /* LQAboutViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQAboutViewController.xib; sourceTree = "<group>"; };
+		F2E29D4A16AFE0620084A7F0 /* LQSMSRingReplaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQSMSRingReplaceViewController.h; sourceTree = "<group>"; };
+		F2E29D4B16AFE0620084A7F0 /* LQSMSRingReplaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQSMSRingReplaceViewController.m; sourceTree = "<group>"; };
+		F2E29D4C16AFE0630084A7F0 /* LQSMSRingReplaceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQSMSRingReplaceViewController.xib; sourceTree = "<group>"; };
 		F2E8A366169C458F00B6DC2D /* LQTopicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTopicCell.h; sourceTree = "<group>"; };
 		F2E8A367169C458F00B6DC2D /* LQTopicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTopicCell.m; sourceTree = "<group>"; };
 		F2E8A37E169C60FB00B6DC2D /* LQTopicCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQTopicCell.xib; sourceTree = "<group>"; };
@@ -2504,6 +2509,9 @@
 				F2E29D3916AFA4FD0084A7F0 /* LQAboutViewController.h */,
 				F2E29D3A16AFA5000084A7F0 /* LQAboutViewController.m */,
 				F2E29D3B16AFA5010084A7F0 /* LQAboutViewController.xib */,
+				F2E29D4A16AFE0620084A7F0 /* LQSMSRingReplaceViewController.h */,
+				F2E29D4B16AFE0620084A7F0 /* LQSMSRingReplaceViewController.m */,
+				F2E29D4C16AFE0630084A7F0 /* LQSMSRingReplaceViewController.xib */,
 			);
 			path = qiyouxi;
 			sourceTree = "<group>";
@@ -4482,6 +4490,7 @@
 				F20D0B2916AE804C005C5FB0 /* LQDownloadingViewController.xib in Resources */,
 				F20D0B2E16AE8838005C5FB0 /* LQDownloadedViewController.xib in Resources */,
 				F2E29D3D16AFA5030084A7F0 /* LQAboutViewController.xib in Resources */,
+				F2E29D4E16AFE0630084A7F0 /* LQSMSRingReplaceViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4593,6 +4602,7 @@
 				F20D0B3116AE976C005C5FB0 /* LQDownloadedRingsViewController.m in Sources */,
 				F2E29D3716AEE2000084A7F0 /* LQDownloadedWallpaperViewController.m in Sources */,
 				F2E29D3C16AFA5030084A7F0 /* LQAboutViewController.m in Sources */,
+				F2E29D4D16AFE0630084A7F0 /* LQSMSRingReplaceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

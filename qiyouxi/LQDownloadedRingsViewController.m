@@ -14,6 +14,7 @@
 #import "AudioCell.h"
 #import "AudioPlayer.h"
 #import "AudioMoreItemCell.h"
+#import "LQSMSRingReplaceViewController.h"
 
 extern NSString* const kNotificationDownloadComplete;
 @interface LQDownloadedRingsViewController ()
@@ -116,7 +117,7 @@ extern NSString* const kNotificationDownloadComplete;
          
             [morecell setButtonsName:@"立刻安装" middle:nil right:nil];
             
-//            [morecell addLeftButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
+            [morecell addLeftButtonTarget:self action:@selector(onInstallRing) tag:indexPath.row];
           
         }
         cell = morecell;
@@ -163,5 +164,11 @@ extern NSString* const kNotificationDownloadComplete;
 
 -(IBAction)onBack:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+- (void) onInstallRing{
+    LQSMSRingReplaceViewController* controller = [[LQSMSRingReplaceViewController alloc] initWithNibName:@"LQSMSRingReplaceViewController" bundle:nil];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 @end

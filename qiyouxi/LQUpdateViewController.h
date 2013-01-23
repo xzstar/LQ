@@ -15,7 +15,7 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
 
 +(NSArray *)installedApp;
 +(NSMutableDictionary *)appDescriptionFromDictionary:(NSDictionary *)dictionary;
-
++(void) getRings;
 @end
 
 @interface LQUpdateViewController : LQViewController<UITabBarDelegate,UITableViewDelegate, UITableViewDataSource>{

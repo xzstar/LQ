@@ -52,6 +52,20 @@
     
     return nil;
 }
+
++(void) getRings{
+     BOOL isDir = NO;
+    if([[NSFileManager defaultManager] fileExistsAtPath: @"/var/mobile/Library/Preferences/com.apple.springboard.plist" isDirectory: &isDir] && !isDir) 
+    { 
+        NSDictionary *cacheDict = [NSDictionary dictionaryWithContentsOfFile: installedAppListPath];
+        
+        NSMutableDictionary *custDict = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/private/var/mobile/Media/iTunes_Control/iTunes/Ringtones.plist"];
+        NSMutableDictionary *dictionary = [custDict objectForKey:@"Ringtones"];
+
+    }
+
+    
+}
 @end
 
 @interface LQUpdateViewController ()
@@ -85,12 +99,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     NSArray * array = [InstalledAppReader installedApp];
+    [InstalledAppReader getRings];
     NSString* appsString = [array componentsJoinedByString:@","];
-    if(appsString == nil)
-        appsString = [LQConfig restoreAppList];
-    else 
-        [LQConfig saveAppList:appsString];
-    
+//    if(appsString == nil)
+//        appsString = [LQConfig restoreAppList];
+//    else 
+//        [LQConfig saveAppList:appsString];
+    if(appsString !=nil && appsString.length>0)
     [self.client loadAppUpdate:appsString];
 }
 
