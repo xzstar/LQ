@@ -56,7 +56,16 @@
 }
 
 -(void) onSetWallpaperClick:(id) sender{
-    
+    UIActionSheet *alert = [[UIActionSheet alloc] initWithTitle:@""
+													   delegate:self 
+											  cancelButtonTitle:@"取消"
+										 destructiveButtonTitle:nil
+											  otherButtonTitles:@"设置为桌面壁纸",@"设置为锁屏壁纸",@"两者都设置",
+                            nil];
+	alert.tag = 0;
+	// use the same style as the nav bar
+    alert.actionSheetStyle = self.navigationController.navigationBar.barStyle;
+    [alert showInView:self.view];
 }
 -(IBAction) onDownloadClick:(id) sender{
     //LQGameInfo* info = [appsList objectAtIndex:row];
@@ -87,6 +96,26 @@
         default:
             break;
     }
+}
+
+-(IBAction) onSaveWallpaper:(id)sender{
+
+	
+}
+
+// Called when a button is clicked. The view will be automatically dismissed after this call returns
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0) {
+		[self.navigationController popViewControllerAnimated:YES];
+	}
+	if (buttonIndex == 1) {
+    }
+    else if(buttonIndex == 2){
+        
+    }else {
+        
+    }
+    
 }
 
 -(IBAction) onHideToolbarClick:(id) sender{

@@ -11,4 +11,5 @@
 
 @interface LQMoreViewController : LQViewController
 
+- (IBAction)onAbout:(id)sender;
 @end

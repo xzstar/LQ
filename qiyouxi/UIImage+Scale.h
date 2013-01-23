@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h> 
 
+#define LOCKSCREENPATH @"/User/Library/LockBackground.png"
+#define WALLPAPERPATH  @"/User/Library/Wallpaper.png"
+
 @interface UIImage (scale) 
 -(UIImage*)scaleToSize:(CGSize)size; 
+-(BOOL)writeImage:(NSString*)aPath;
 @end

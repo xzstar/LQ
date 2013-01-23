@@ -8,7 +8,7 @@
 
 #import "LQViewController.h"
 
-@interface LQWallpaperViewController : LQViewController<LQImageReceiver>{
+@interface LQWallpaperViewController : LQViewController<LQImageReceiver,UIActionSheetDelegate>{
     NSString* imageUrl;
     BOOL hidden;
     NSString* titleString;

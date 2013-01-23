@@ -10,6 +10,9 @@
 #import "LQDownloadedViewController.h"
 #import "LQDownloadedRingsViewController.h"
 #import "LQDownloadedWallpaperViewController.h"
+
+extern NSString* const kNotificationDownloadComplete;
+
 @interface LQDownloadedCategoryController ()
 
 @end
@@ -31,6 +34,49 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    [[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(updateStatus:)
+												 name:kNotificationDownloadComplete
+											   object:nil];
+    
+    [self updateStatus:nil];
+
+}
+
+- (void)updateStatus:(NSNotification*)notification{
+    int softCompleted=0;
+    int softInstalled=0;
+    int gameCompleted=0;
+    int gameInstalled=0;
+    int ringCompleted=0;
+    int wallpaperCompleted=0;
+    
+    for (QYXDownloadObject* obj in [LQDownloadManager sharedInstance].completedGames){
+        if ([obj.gameInfo.fileType isEqualToString: @"soft"]) {
+            softCompleted++;
+        }else if([obj.gameInfo.fileType isEqualToString: @"game"]){
+            gameCompleted++;
+        }else if([obj.gameInfo.fileType isEqualToString: @"wallpaper"]){
+            wallpaperCompleted++;
+        }else{
+            ringCompleted++;
+        }
+        
+    }
+    
+    for (QYXDownloadObject* obj in [LQDownloadManager sharedInstance].installedGames){
+        if ([obj.gameInfo.fileType isEqualToString: @"soft"]) {
+            softInstalled++;
+        }else if([obj.gameInfo.fileType isEqualToString: @"game"]){
+            gameInstalled++;
+        }
+        
+    }
+    
+    softLabel.text = [NSString stringWithFormat:@"未安装%d个,已安装%d个",softCompleted,softInstalled];
+    gameLabel.text = [NSString stringWithFormat:@"未安装%d个,已安装%d个",gameCompleted,gameInstalled];
+    ringLabel.text = [NSString stringWithFormat:@"已下载%d个",ringCompleted];
+    wallpaperLabel.text = [NSString stringWithFormat:@"已下载%d个",wallpaperCompleted];
 }
 
 - (void)viewDidUnload
@@ -38,6 +84,8 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

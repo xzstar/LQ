@@ -106,7 +106,7 @@
         return;
     }
     
-    [self startLoading];
+    //[self startLoading];
 //    [self.client submitComment:self.gameId comment:content nick:contact];
     [self.client postComment:self.gameId rating:[[NSNumber numberWithInt:score]stringValue]  text:content];
 }
@@ -203,6 +203,7 @@
             }
         }
             [self endLoading];
+            
             [self.navigationController popViewControllerAnimated:YES];
             break;
         default:

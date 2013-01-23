@@ -22,4 +22,36 @@
     // 返回新的改变大小后的图片 
     return scaledImage; 
 } 
+-(BOOL)writeImage:(NSString*)aPath{
+    if ((aPath == nil) || ([aPath isEqualToString:@""]))
+        return NO;
+    @try    
+    {
+        NSData *imageData = nil;
+        NSString *ext = [aPath pathExtension];
+        if ([ext isEqualToString:@"png"])
+        {
+            imageData = UIImagePNGRepresentation(self);            
+        }
+        
+        else
+        {
+            // the rest, we write to jpeg
+            // 0. best, 1. lost. about compress.
+            imageData = UIImageJPEGRepresentation(self, 0);    
+        }
+        
+        if ((imageData == nil) || ([imageData length] <= 0))
+            return NO;
+        
+        [imageData writeToFile:aPath atomically:YES];      
+        return YES;
+    }    
+    @catch (NSException *e)
+    {
+        NSLog(@"create thumbnail exception.");
+    }
+    return NO;
+
+}
 @end

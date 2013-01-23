@@ -147,11 +147,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQPostCommentViewController.m"
-         timestampString = "380510429.954055"
+         timestampString = "380609900.315786"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "220"
-         endingLineNumber = "220"
+         startingLineNumber = "221"
+         endingLineNumber = "221"
          landmarkName = "@implementation LQPostCommentViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -160,11 +160,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQPostCommentViewController.m"
-         timestampString = "380510429.954055"
+         timestampString = "380609900.315786"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "224"
-         endingLineNumber = "224"
+         startingLineNumber = "225"
+         endingLineNumber = "225"
          landmarkName = "@implementation LQPostCommentViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -485,11 +485,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQDownloadedCategoryController.m"
-         timestampString = "380561723.426331"
+         timestampString = "380601057.591351"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "50"
-         endingLineNumber = "50"
+         startingLineNumber = "98"
+         endingLineNumber = "98"
          landmarkName = "-onSoftClick:"
          landmarkType = "5">
       </FileBreakpoint>

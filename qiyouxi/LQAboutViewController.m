@@ -1,18 +1,18 @@
 //
-//  LQMoreViewController.m
-//  qiyouxi
+//  LQAboutViewController.m
+//  liqu
 //
-//  Created by Xie Zhe on 12-12-30.
-//  Copyright (c) 2012年 LQ有限公司. All rights reserved.
+//  Created by Xie Zhe on 13-1-23.
+//  Copyright (c) 2013年 科技有限公司. All rights reserved.
 //
 
-#import "LQMoreViewController.h"
 #import "LQAboutViewController.h"
-@interface LQMoreViewController ()
+
+@interface LQAboutViewController ()
 
 @end
 
-@implementation LQMoreViewController
+@implementation LQAboutViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,9 +40,8 @@
 {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-- (IBAction)onAbout:(id)sender{
-    LQAboutViewController* controller = [[LQAboutViewController alloc] initWithNibName:@"LQAboutViewController" bundle:nil];
-    [self.navigationController pushViewController:controller animated:YES];
-}
 
+- (IBAction)onBack:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end
