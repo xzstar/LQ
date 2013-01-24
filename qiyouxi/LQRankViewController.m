@@ -136,12 +136,12 @@
         [_audioPlayer play];
     } else {
         [_audioPlayer stop];
-        
-        self.curUrl = [NSString stringWithFormat:@"%@.%@",[item.downloadUrl stringByDeletingPathExtension],@"mp3"];
-        
+        NSURL* url=[NSURL URLWithString:item.downloadUrl];
+        url = [[url URLByDeletingPathExtension] URLByAppendingPathExtension:@"mp3"];;
+                
 //        NSString* mp3path = @"http://y1.eoews.com/assets/ringtones/2012/5/18/34049/oiuxsvnbtxks7a0tg6xpdo66exdhi8h0bplp7twp.mp3";
         _audioPlayer.button = button; 
-        _audioPlayer.url = [NSURL URLWithString:@"http://y1.eoews.com/assets/ringtones/2012/5/18/34045/hi4dwfmrxm2citwjcc5841z3tiqaeeoczhbtfoex.mp3"];
+        _audioPlayer.url = [NSURL URLWithString:url.absoluteString];
         
         [_audioPlayer play];
     }   
