@@ -88,21 +88,38 @@
         self.date = [result objectForKey:@"date"];
         self.requestUrl = [result objectForKey:@"request_url"];
         
+        NSString* rootCat = [result objectForKey:@"RootCat"];
         
-        //for test
-        NSRange range = [downloadUrl rangeOfString:@".jpg"];
-        if([result objectForKey:@"ring_type"]){
+        if([rootCat isEqualToString:@"手机软件"]){
+            self.fileType = @"soft";
+        }
+        else if([rootCat isEqualToString:@"手机游戏"]){
+            self.fileType = @"game";
+        }
+        else if([rootCat isEqualToString:@"手机壁纸"]){
+            self.fileType = @"wallpaper";
+            self.package = self.name ;
+        }
+        else if([rootCat isEqualToString:@"手机铃声"]){
             self.fileType = [result objectForKey:@"ring_type"];
             self.package = self.name ;
-
         }
-        else if(range.location == (downloadUrl.length-4) && range.length>0){
-             self.fileType = @"wallpaper";
-            self.package = self.name
-            ;
-        }
-        else{
-            self.fileType = @"soft";
+        else {
+            //如果都没有找到就用后缀方式设置
+            NSRange range = [downloadUrl rangeOfString:@".jpg"];
+            if([result objectForKey:@"ring_type"]){
+                self.fileType = [result objectForKey:@"ring_type"];
+                self.package = self.name ;
+                
+            }
+            else if(range.location == (downloadUrl.length-4) && range.length>0){
+                self.fileType = @"wallpaper";
+                self.package = self.name
+                ;
+            }
+            else{
+                self.fileType = @"soft";
+            }
         }
     }
     return self;

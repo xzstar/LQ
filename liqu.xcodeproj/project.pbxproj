@@ -200,6 +200,7 @@
 		F23D3B92169B02D300B7DD46 /* LQSearchHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */; };
 		F23D3B95169B0C7D00B7DD46 /* SearchHistoryItem.h in Sources */ = {isa = PBXBuildFile; fileRef = F23D3B93169B0C1100B7DD46 /* SearchHistoryItem.h */; };
 		F23D3B96169B0C7D00B7DD46 /* SearchHistoryItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F23D3B94169B0C1200B7DD46 /* SearchHistoryItem.m */; };
+		F24E027B16B01DF5007C7217 /* LQUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F24E027A16B01DF5007C7217 /* LQUtilities.m */; };
 		F25BB3D716A24BF900E8F7EE /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = F25BB3D616A24BF900E8F7EE /* UIImage+Scale.m */; };
 		F266A9DB169F9B7C0014FE75 /* LQRankSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F266A9DA169F9B7B0014FE75 /* LQRankSectionHeader.m */; };
 		F266A9DE169F9B9E0014FE75 /* LQRankSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F266A9DD169F9B9E0014FE75 /* LQRankSectionHeader.xib */; };
@@ -236,6 +237,11 @@
 		F28F56FE16AD4EC2004E1A9E /* LQDetailTablesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F28F56FD16AD4EC1004E1A9E /* LQDetailTablesController.m */; };
 		F290F84B16A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.m in Sources */ = {isa = PBXBuildFile; fileRef = F290F84816A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.m */; };
 		F290F84C16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = F290F84A16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m */; };
+		F298A82916B1749400CC464D /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = F298A82016B1749400CC464D /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F298A82A16B1749400CC464D /* KRShare.m in Sources */ = {isa = PBXBuildFile; fileRef = F298A82316B1749400CC464D /* KRShare.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F298A82B16B1749400CC464D /* KRShareAuthorizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F298A82516B1749400CC464D /* KRShareAuthorizeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F298A82C16B1749400CC464D /* KRShareRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F298A82816B1749400CC464D /* KRShareRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		F298A83C16B17B0E00CC464D /* SinaWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F298A83B16B17B0E00CC464D /* SinaWeibo.bundle */; };
 		F2B7A657168FDE5A00679C6E /* LQFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */; };
 		F2B7A658168FDE5A00679C6E /* LQFirstPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */; };
 		F2B7A65D168FE10500679C6E /* LQSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A65B168FE10400679C6E /* LQSearchViewController.m */; };
@@ -1308,6 +1314,8 @@
 		F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQSearchHistoryCell.xib; sourceTree = "<group>"; };
 		F23D3B93169B0C1100B7DD46 /* SearchHistoryItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchHistoryItem.h; sourceTree = "<group>"; };
 		F23D3B94169B0C1200B7DD46 /* SearchHistoryItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchHistoryItem.m; sourceTree = "<group>"; };
+		F24E027916B01DF5007C7217 /* LQUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQUtilities.h; sourceTree = "<group>"; };
+		F24E027A16B01DF5007C7217 /* LQUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQUtilities.m; sourceTree = "<group>"; };
 		F25BB3D516A24BF900E8F7EE /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
 		F25BB3D616A24BF900E8F7EE /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
 		F266A9D9169F9B7B0014FE75 /* LQRankSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQRankSectionHeader.h; sourceTree = "<group>"; };
@@ -1364,6 +1372,16 @@
 		F290F84816A4561D00EC712A /* UIScrollView+SVInfiniteScrolling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVInfiniteScrolling.m"; sourceTree = "<group>"; };
 		F290F84916A4561D00EC712A /* UIScrollView+SVPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+SVPullToRefresh.h"; sourceTree = "<group>"; };
 		F290F84A16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+SVPullToRefresh.m"; sourceTree = "<group>"; };
+		F298A81F16B1749400CC464D /* JSONKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONKit.h; sourceTree = "<group>"; };
+		F298A82016B1749400CC464D /* JSONKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONKit.m; sourceTree = "<group>"; };
+		F298A82216B1749400CC464D /* KRShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRShare.h; sourceTree = "<group>"; };
+		F298A82316B1749400CC464D /* KRShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRShare.m; sourceTree = "<group>"; };
+		F298A82416B1749400CC464D /* KRShareAuthorizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRShareAuthorizeView.h; sourceTree = "<group>"; };
+		F298A82516B1749400CC464D /* KRShareAuthorizeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRShareAuthorizeView.m; sourceTree = "<group>"; };
+		F298A82616B1749400CC464D /* KRShareConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRShareConstants.h; sourceTree = "<group>"; };
+		F298A82716B1749400CC464D /* KRShareRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRShareRequest.h; sourceTree = "<group>"; };
+		F298A82816B1749400CC464D /* KRShareRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRShareRequest.m; sourceTree = "<group>"; };
+		F298A83B16B17B0E00CC464D /* SinaWeibo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SinaWeibo.bundle; sourceTree = "<group>"; };
 		F2B7A654168FDE5800679C6E /* LQFirstPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQFirstPageViewController.h; sourceTree = "<group>"; };
 		F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQFirstPageViewController.m; sourceTree = "<group>"; };
 		F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQFirstPageViewController.xib; sourceTree = "<group>"; };
@@ -2343,6 +2361,8 @@
 				43D2AFE215CF63DD0045EFF5 /* QYXObjectExtension.m */,
 				F25BB3D516A24BF900E8F7EE /* UIImage+Scale.h */,
 				F25BB3D616A24BF900E8F7EE /* UIImage+Scale.m */,
+				F24E027916B01DF5007C7217 /* LQUtilities.h */,
+				F24E027A16B01DF5007C7217 /* LQUtilities.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -2399,6 +2419,8 @@
 		43F5ED3515C65424001A0F8D /* qiyouxi */ = {
 			isa = PBXGroup;
 			children = (
+				F298A81E16B1749300CC464D /* JSONKit */,
+				F298A82116B1749400CC464D /* KrShareKit */,
 				F2BAA56A16A97F590090AB70 /* LiQu */,
 				F290F84516A4561C00EC712A /* SVPullToRefresh */,
 				F26CD27D1693063E00E1E30B /* Audio */,
@@ -2689,6 +2711,30 @@
 				F290F84A16A4561D00EC712A /* UIScrollView+SVPullToRefresh.m */,
 			);
 			path = SVPullToRefresh;
+			sourceTree = "<group>";
+		};
+		F298A81E16B1749300CC464D /* JSONKit */ = {
+			isa = PBXGroup;
+			children = (
+				F298A81F16B1749400CC464D /* JSONKit.h */,
+				F298A82016B1749400CC464D /* JSONKit.m */,
+			);
+			path = JSONKit;
+			sourceTree = "<group>";
+		};
+		F298A82116B1749400CC464D /* KrShareKit */ = {
+			isa = PBXGroup;
+			children = (
+				F298A83B16B17B0E00CC464D /* SinaWeibo.bundle */,
+				F298A82216B1749400CC464D /* KRShare.h */,
+				F298A82316B1749400CC464D /* KRShare.m */,
+				F298A82416B1749400CC464D /* KRShareAuthorizeView.h */,
+				F298A82516B1749400CC464D /* KRShareAuthorizeView.m */,
+				F298A82616B1749400CC464D /* KRShareConstants.h */,
+				F298A82716B1749400CC464D /* KRShareRequest.h */,
+				F298A82816B1749400CC464D /* KRShareRequest.m */,
+			);
+			path = KrShareKit;
 			sourceTree = "<group>";
 		};
 		F2BAA56A16A97F590090AB70 /* LiQu */ = {
@@ -4491,6 +4537,7 @@
 				F20D0B2E16AE8838005C5FB0 /* LQDownloadedViewController.xib in Resources */,
 				F2E29D3D16AFA5030084A7F0 /* LQAboutViewController.xib in Resources */,
 				F2E29D4E16AFE0630084A7F0 /* LQSMSRingReplaceViewController.xib in Resources */,
+				F298A83C16B17B0E00CC464D /* SinaWeibo.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4603,6 +4650,11 @@
 				F2E29D3716AEE2000084A7F0 /* LQDownloadedWallpaperViewController.m in Sources */,
 				F2E29D3C16AFA5030084A7F0 /* LQAboutViewController.m in Sources */,
 				F2E29D4D16AFE0630084A7F0 /* LQSMSRingReplaceViewController.m in Sources */,
+				F24E027B16B01DF5007C7217 /* LQUtilities.m in Sources */,
+				F298A82916B1749400CC464D /* JSONKit.m in Sources */,
+				F298A82A16B1749400CC464D /* KRShare.m in Sources */,
+				F298A82B16B1749400CC464D /* KRShareAuthorizeView.m in Sources */,
+				F298A82C16B1749400CC464D /* KRShareRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

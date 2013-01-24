@@ -346,7 +346,7 @@
             //            break;
         case kQYXDSNotFound:
             if(gameInfo!=nil)
-                [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo suspended:NO];
+                [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo installAfterDownloaded:NO];
             
             break;
             //        case kQYXDSInstalled:

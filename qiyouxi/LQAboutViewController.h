@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "KRShare.h"
 
-@interface LQAboutViewController : UIViewController
+@interface LQAboutViewController : UIViewController<KRShareDelegate,KRShareRequestDelegate>{
+    KRShare *_krShare;
+
+}
 
 - (IBAction)onBack:(id)sender;
-
+- (IBAction)onQQWeibo:(id)sender;
+- (IBAction)onSinaWeibo:(id)sender;
 @end

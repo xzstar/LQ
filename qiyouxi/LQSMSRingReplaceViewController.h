@@ -12,7 +12,7 @@
     NSDictionary* toneDictory;
     int selectedRow;
 }
-
+@property(nonatomic,strong) QYXDownloadObject* ringObject;
 -(IBAction)onReplaceRing:(id)sender;
 
 -(IBAction)onBack:(id) sender;

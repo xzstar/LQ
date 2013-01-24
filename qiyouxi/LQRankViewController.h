@@ -18,6 +18,7 @@
 @interface LQRingRankViewController : LQRankViewController{
     AudioPlayer *_audioPlayer;
 }
+@property(nonatomic,strong)NSString* curUrl;
 @end
 
 @interface LQWallpaperRankViewController : LQRankViewController

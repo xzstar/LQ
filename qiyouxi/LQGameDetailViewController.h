@@ -12,8 +12,11 @@
 #import "LQAdvertiseView.h"
 #import "QYXData.h"
 #import "LQCommentTableViewCell.h"
+#import "KRShare.h"
+
 @interface LQGameDetailViewController : LQViewController<UITableViewDataSource, UITableViewDelegate>{
     id delegate;
+    KRShare* _krShare;
 }
 @property (assign) int gameId;
 @property (strong) LQGameInfo* gameInfo;
@@ -43,4 +46,7 @@
 @property (strong) LQCommentTableViewCell* dummyCell;
 - (void) addSwitchPageWithActionHandler:(void (^)(int))actionHandler;
 - (IBAction)onShowComments:(id)sender;
+- (IBAction)onQQWeibo:(id)sender;
+- (IBAction)onSinaWeibo:(id)sender;
+
 @end

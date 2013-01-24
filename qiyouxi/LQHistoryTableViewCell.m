@@ -122,7 +122,7 @@
             if ([[LQDownloadManager sharedInstance] isGameInstalled:self.gameInfo.package]){
                 [[LQDownloadManager sharedInstance] startGame:self.gameInfo.package];
             }else{
-                [[LQDownloadManager sharedInstance] addToDownloadQueue:self.gameInfo suspended:NO];
+                [[LQDownloadManager sharedInstance] addToDownloadQueue:self.gameInfo installAfterDownloaded:NO];
             }
             break;
         case kQYXDSInstalled:

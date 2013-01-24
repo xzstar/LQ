@@ -8,6 +8,18 @@
 
 #import "LQInstaller.h"
 #include <dlfcn.h>
+#import "LQUtilities.h"
+//#define RINGPATH @"/System/Library/Audio/UISounds/"
+#define SPRINGBOARDPLIST @"/var/mobile/Library/Preferences/com.apple.springboard.plist"
+
+#define HOME_0 @"/private/var/mobile/Library/SpringBoard/HomeBackground.jpg"
+#define HOME_1 @"/private/var/mobile/Library/SpringBoard/HomeBackground.cpbitmap"
+#define HOME_2 @"/private/var/mobile/Library/SpringBoard/HomeBackgroundThumbnail.jpg"
+
+
+#define LOCK_0 @"/private/var/mobile/Library/SpringBoard/LockBackground.jpg"
+#define LOCK_1 @"/private/var/mobile/Library/SpringBoard/LockBackground.cpbitmap"
+#define LOCK_2 @"/private/var/mobile/Library/SpringBoard/HomeBackgroundThumbnail.jpg"
 
 static LQInstaller* _instance = nil;
 
@@ -79,6 +91,46 @@ static int callback(NSDictionary *dict, id result) {
 - (BOOL)launchApp:(NSString *)identifier{
     [[UIApplication sharedApplication] launchApplicationWithIdentifier:identifier suspended:NO];
     return YES;
+}
+
+- (BOOL)smsToneInstall:(NSString*)src dest:(NSString*)dest{
+    BOOL result = [LQUtilities copyFile:src destPath:dest];
+    if (result == NO) {
+        return result;
+    }
+    NSMutableDictionary *custDict = [[NSMutableDictionary alloc] initWithContentsOfFile:SPRINGBOARDPLIST];
+    NSString* filename = [[dest lastPathComponent] stringByDeletingPathExtension];
+    NSString* ringtone = [NSString stringWithFormat:@"texttone:%@",filename];
+    [custDict setObject:ringtone forKey:@"sms-sound-identifier"];
+    result = [custDict writeToFile:SPRINGBOARDPLIST atomically:YES];
+    return result;
+}
+- (BOOL)ringToneInstall:(NSString*)displayName src:(NSString*)src dest:(NSString*)dest{
+    BOOL result =  [LQUtilities copyFile:src destPath:dest];
+    
+    if (result == NO) {
+        return result;
+    }
+    NSMutableDictionary *custDict = [[NSMutableDictionary alloc] initWithContentsOfFile:SPRINGBOARDPLIST];
+   // NSString* filename = [[dest lastPathComponent] stringByDeletingPathExtension];
+    NSString* ringtone = [NSString stringWithFormat:@"system:%@",displayName];
+    [custDict setObject:ringtone forKey:@"ringtone"];
+    result = [custDict writeToFile:SPRINGBOARDPLIST atomically:YES];
+    return result;
+}
+- (BOOL)wallPaperInstall:(NSString*)src dest:(NSString*)dest{
+    NSString* filename = [dest stringByDeletingPathExtension];
+    if([filename isEqualToString:@"HomeBackground"]){
+        [LQUtilities removeFile:HOME_0];
+        [LQUtilities removeFile:HOME_1];
+        [LQUtilities removeFile:HOME_2];
+    }
+    else{
+        [LQUtilities removeFile:LOCK_0];
+        [LQUtilities removeFile:LOCK_1];
+        [LQUtilities removeFile:LOCK_2];
+    }  
+    return  [LQUtilities copyFile:src destPath:dest];
 }
 
 @end

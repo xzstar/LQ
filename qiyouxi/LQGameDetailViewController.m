@@ -13,7 +13,7 @@
 #import "EGORefreshTableFooterView.h"
 #import "LQPostCommentViewController.h"
 #import "SVPullToRefresh.h"
-
+#import "LQUtilities.h"
 @interface LQGameDetailViewController (){
     NSString* moreUrl;
 }
@@ -256,4 +256,233 @@
 //    [self performSegueWithIdentifier:@"gotoBrowse" sender:[NSNumber numberWithInt:page]];
 }
 
+#pragma mark - SinaWeibo Delegate
+- (void)removeAuthData
+{
+    if(_krShare.shareTarget == KRShareTargetSinablog)
+    {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KRShareAuthData-Sina"];
+    }
+    else if(_krShare.shareTarget == KRShareTargetTencentblog)
+    {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KRShareAuthData-Tencent"];
+    }
+    else if(_krShare.shareTarget == KRShareTargetDoubanblog)
+    {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KRShareAuthData-Douban"];
+    }
+    else if(_krShare.shareTarget == KRShareTargetRenrenblog)
+    {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KRShareAuthData-Renren"];
+    }
+}
+
+- (void)storeAuthData
+{
+    NSDictionary *authData = [NSDictionary dictionaryWithObjectsAndKeys:
+                              _krShare.accessToken, @"AccessTokenKey",
+                              _krShare.expirationDate, @"ExpirationDateKey",
+                              _krShare.userID, @"UserIDKey",
+                              _krShare.refreshToken, @"refresh_token", nil];
+    
+    if(_krShare.shareTarget == KRShareTargetSinablog)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:authData forKey:@"KRShareAuthData-Sina"];
+    }
+    else if(_krShare.shareTarget == KRShareTargetTencentblog)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:authData forKey:@"KRShareAuthData-Tencent"];
+    }
+    else if(_krShare.shareTarget == KRShareTargetDoubanblog)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:authData forKey:@"KRShareAuthData-Douban"];
+    }
+    else if(_krShare.shareTarget == KRShareTargetRenrenblog)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:authData forKey:@"KRShareAuthData-Renren"];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)KRShareDidLogIn:(KRShare *)krShare
+{
+    [self storeAuthData];
+    if(krShare.shareTarget == KRShareTargetSinablog)
+    {
+        //        [_krShare requestWithURL:@"statuses/upload.json"
+        //                          params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+        //                                  @"这是我分享的图片", @"status",
+        //                                  [UIImage imageNamed:@"Default.png"], @"pic", nil]
+        //                      httpMethod:@"POST"
+        //                        delegate:self];
+        
+        [_krShare requestWithURL:@"statuses/update.json"
+                          params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                  @"test 这是我分享", @"status",
+                                  nil]
+                      httpMethod:@"POST"
+                        delegate:self];
+    }
+    
+    if(krShare.shareTarget == KRShareTargetTencentblog)
+    {
+        //        [krShare requestWithURL:@"t/add_pic"
+        //                         params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+        //                                 @"这是我分享的图片", @"content",
+        //                                 @"json",@"format",
+        //                                 @"221.232.172.30",@"clientip",
+        //                                 @"all",@"scope",
+        //                                 krShare.userID,@"openid",
+        //                                 @"ios-sdk-2.0-publish",@"appfrom",
+        //                                 @"0",@"compatibleflag",
+        //                                 @"2.a",@"oauth_version",
+        //                                 kTencentWeiboAppKey,@"oauth_consumer_key",
+        //                                 [UIImage imageNamed:@"Default.png"], @"pic", nil]
+        //                     httpMethod:@"POST"
+        //                       delegate:self];
+        [krShare requestWithURL:@"t/add"
+                         params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                 @"这是我的分享", @"content",
+                                 @"json",@"format",
+                                 @"",@"clientip",
+                                 @"all",@"scope",
+                                 krShare.userID,@"openid",
+                                 @"ios-sdk-2.0-publish",@"appfrom",
+                                 @"0",@"compatibleflag",
+                                 @"2.a",@"oauth_version",
+                                 kTencentWeiboAppKey,@"oauth_consumer_key",
+                                 nil]
+                     httpMethod:@"POST"
+                       delegate:self];    
+    }
+    if(krShare.shareTarget == KRShareTargetDoubanblog)
+    {
+        [krShare requestWithURL:@"shuo/v2/statuses"
+                         params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                 @"这是我分享的图片", @"text",
+                                 kDoubanBroadAppKey,@"source",
+                                 [UIImage imageNamed:@"Default.png"], @"image", nil]
+                     httpMethod:@"POST"
+                       delegate:self];
+    }
+    if(krShare.shareTarget == KRShareTargetRenrenblog)
+    {
+        [krShare requestWithURL:@"restserver.do"
+                         params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                 @"1.0",@"v",
+                                 @"这是我分享的图片", @"caption",
+                                 @"json",@"format",
+                                 @"method",@"photos.upload",
+                                 @"file",@"upload",
+                                 kRenrenBroadAppKey,@"api_key",
+                                 [UIImage imageNamed:@"Default.png"], @"image", nil]
+                     httpMethod:@"POST"
+                       delegate:self];
+    }
+    
+}
+
+- (void)KRShareDidLogOut:(KRShare *)sinaweibo
+{
+    [self removeAuthData];
+}
+
+- (void)KRShareLogInDidCancel:(KRShare *)sinaweibo
+{
+}
+
+- (void)krShare:(KRShare *)krShare logInDidFailWithError:(NSError *)error
+{
+}
+
+- (void)krShare:(KRShare *)krShare accessTokenInvalidOrExpired:(NSError *)error
+{
+    [self removeAuthData];
+}
+
+- (void)KRShareWillBeginRequest:(KRShareRequest *)request
+{
+    //_loadingView.hidden = NO;
+}
+
+-(void)request:(KRShareRequest *)request didFailWithError:(NSError *)error
+{
+    //_loadingView.hidden = YES;
+    
+    if ([request.url hasSuffix:@"statuses/upload.json"])
+    {
+        [LQUtilities AlertWithMessage:@"发表微博失败"];
+        
+        NSLog(@"Post image status failed with error : %@", error);
+    }
+    else if ([request.url hasSuffix:@"api/t/add_pic"])
+    {
+        [LQUtilities AlertWithMessage:@"发表微博失败"];
+        
+        NSLog(@"Post image status failed with error : %@", error);
+    }
+    //发表人人网相片回调
+    else if ([request.url hasSuffix:@"restserver.do"])
+    {
+        [LQUtilities AlertWithMessage:@"发表人人网相片失败"];
+        
+        NSLog(@"Post image status failed with error : %@", error);
+    }
+}
+
+
+- (void)request:(KRShareRequest *)request didFinishLoadingWithResult:(id)result
+{
+    //_loadingView.hidden = YES;
+    
+    //新浪微博响应
+    if ([request.url hasSuffix:@"statuses/update.json"])
+    {
+        if([[result objectForKey:@"error_code"] intValue]==20019)
+        {
+            [LQUtilities AlertWithMessage:@"发送频率过高，请您过会再发"];
+        }
+        else if([[result objectForKey:@"error_code"] intValue]==0)
+        {
+            [LQUtilities AlertWithMessage:@"发送微博成功"];
+        }
+    }
+    //腾讯微博响应
+    else if ([request.url hasSuffix:@"api/t/add"])
+    {
+        if([[result objectForKey:@"errcode"] intValue]==0)
+        {
+            [LQUtilities AlertWithMessage:@"发表微博成功"];
+        }
+        else{
+            NSLog(@"%@",result);
+            [LQUtilities AlertWithMessage:@"发表微博失败"];
+        }
+    }
+    //豆瓣说响应
+    else if ([request.url hasSuffix:@"shuo/v2/statuses"])
+    {
+        if([[result objectForKey:@"code"] intValue]==0)
+        {
+            [LQUtilities AlertWithMessage:@"发表豆瓣说成功"];
+        }
+        else{
+            NSLog(@"%@",result);
+            [LQUtilities AlertWithMessage:@"发表豆瓣说失败"];
+        }
+    }
+    //发表人人网相片回调
+    else if ([request.url hasSuffix:@"restserver.do"])
+    {
+        if([[result objectForKey:@"error_code"] intValue]==0)
+        {
+            [LQUtilities AlertWithMessage:@"发表人人网相片成功"];
+        }
+        else{
+            NSLog(@"%@",result);
+            [LQUtilities AlertWithMessage:@"发表人人网相片失败"];
+        }
+    }
+}
 @end

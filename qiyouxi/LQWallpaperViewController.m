@@ -7,7 +7,9 @@
 //
 
 #import "LQWallpaperViewController.h"
-
+#import "LQUtilities.h"
+#define WALLPAPER @"/private/var/mobile/Library/SpringBoard/HomeBackgroundThumbnail.jpg"
+#define LOCKBACKGROUND @"/private/var/mobile/Library/SpringBoard/LockBackgroundThumbnail.jpg"
 @interface LQWallpaperViewController ()
 
 @end
@@ -87,7 +89,7 @@
             //            break;
         case kQYXDSNotFound:
             if(gameInfo!=nil)
-                [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo suspended:NO];
+                [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo installAfterDownloaded:NO];
             
             break;
             //        case kQYXDSInstalled:
@@ -105,15 +107,26 @@
 
 // Called when a button is clicked. The view will be automatically dismissed after this call returns
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if (buttonIndex == 0) {
-		[self.navigationController popViewControllerAnimated:YES];
-	}
-	if (buttonIndex == 1) {
+	if (buttonIndex == 0) {
+        NSArray* destPaths = [NSArray arrayWithObject:WALLPAPER];
+        [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo
+                                        installAfterDownloaded:YES
+                                                  installPaths:destPaths];
+        
     }
-    else if(buttonIndex == 2){
+    else if(buttonIndex == 1){
         
+        NSArray* destPaths = [NSArray arrayWithObject:LOCKBACKGROUND];
+        [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo
+                                        installAfterDownloaded:YES
+                                                  installPaths:destPaths];
+
     }else {
-        
+        NSArray* destPaths = [NSArray arrayWithObjects:WALLPAPER,LOCKBACKGROUND,nil];
+        [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo
+                                        installAfterDownloaded:YES
+                                                  installPaths:destPaths];
+
     }
     
 }

@@ -471,7 +471,7 @@
             //            break;
         case kQYXDSNotFound:
             if(info!=nil)
-                [[LQDownloadManager sharedInstance] addToDownloadQueue:info suspended:NO];
+                [[LQDownloadManager sharedInstance] addToDownloadQueue:info installAfterDownloaded:NO];
             
             break;
             //        case kQYXDSInstalled:

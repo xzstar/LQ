@@ -16,6 +16,7 @@
 #import "AudioMoreItemCell.h"
 #import "LQSMSRingReplaceViewController.h"
 
+#define RINGTONEPATH @"/Library/Ringtones"
 extern NSString* const kNotificationDownloadComplete;
 @interface LQDownloadedRingsViewController ()
 
@@ -53,7 +54,7 @@ extern NSString* const kNotificationDownloadComplete;
         LQGameInfo* info = obj.gameInfo;
         if ([obj.gameInfo.fileType isEqualToString: @"sms_ring"] ||
             [obj.gameInfo.fileType isEqualToString: @"tel_ring"]) {
-            [appsList addObject:obj.gameInfo];
+            [appsList addObject:obj];
         }
         
     }
@@ -117,7 +118,7 @@ extern NSString* const kNotificationDownloadComplete;
          
             [morecell setButtonsName:@"立刻安装" middle:nil right:nil];
             
-            [morecell addLeftButtonTarget:self action:@selector(onInstallRing) tag:indexPath.row];
+            [morecell addLeftButtonTarget:self action:@selector(onInstallRing:) tag:indexPath.row];
           
         }
         cell = morecell;
@@ -132,7 +133,8 @@ extern NSString* const kNotificationDownloadComplete;
     }
     
     // Configure the cell..
-    LQGameInfo *item = [appsList objectAtIndex:indexPath.row];
+    QYXDownloadObject *obj = [appsList objectAtIndex:indexPath.row];
+    LQGameInfo *item = obj.gameInfo;
     
     cell.titleLabel.text = item.name;
     cell.artistLabel.text = item.tags;
@@ -145,9 +147,7 @@ extern NSString* const kNotificationDownloadComplete;
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
-    int height = cell.frame.size.height;
     return cell.frame.size.height;
 }
 
@@ -167,8 +167,25 @@ extern NSString* const kNotificationDownloadComplete;
 }
 
 
-- (void) onInstallRing{
+- (void) onInstallRing:(id) sender{
+    UIButton* button = sender;
+    int row = button.tag;
+    QYXDownloadObject *obj = [appsList objectAtIndex:row];
+
+    if([obj.gameInfo.fileType isEqualToString:@"sms_ring"]){
     LQSMSRingReplaceViewController* controller = [[LQSMSRingReplaceViewController alloc] initWithNibName:@"LQSMSRingReplaceViewController" bundle:nil];
+    controller.ringObject = obj;
     [self.navigationController pushViewController:controller animated:YES];
+    }
+    else{
+        NSString* fileName= [obj.filePath lastPathComponent];
+        
+        NSString* destPath=[RINGTONEPATH stringByAppendingPathComponent:fileName];//这里要特别主意，目标文件路径一定要以文件名结尾，而不要以文件夹结尾
+        
+        NSArray* destPaths = [NSArray arrayWithObjects:destPath,nil];
+        obj.finalFilePaths = destPaths;
+        obj.installAfterDownloaded = YES;
+        [[LQDownloadManager sharedInstance] installGameBy:obj.gameInfo.gameId];
+    }
 }
 @end

@@ -12,6 +12,7 @@
 static LQDownloadManager* _intance = nil;
 
 NSString* const kNotificationDownloadComplete    = @"NotificationDownloadComplete";
+NSString* const kNotificationInstalledComplete    = @"NotificationInstalledComplete";
 
 @interface LQDownloadManager()
 @property (nonatomic, strong) NSDictionary* ipaInstalled;
@@ -72,7 +73,7 @@ NSString* const kNotificationDownloadComplete    = @"NotificationDownloadComplet
                 gameInfo.package = [dict objectForKey:@"package"];
                 gameInfo.fileType = [dict objectForKey:@"fileType"]; 
                 obj.gameInfo = gameInfo;
-                
+                obj.finalFilePaths = [dict objectForKey:@"finalFilePaths"];
                 switch (status) {
                     case kQYXDSNotFound:
                         break;
@@ -127,6 +128,8 @@ NSString* const kNotificationDownloadComplete    = @"NotificationDownloadComplet
                 [game setObject:@"soft" forKey:@"fileType"];
             }
             [dict setObject:game forKey:@"game"];
+            if(obj.finalFilePaths!=nil)
+                [dict setObject:obj.finalFilePaths forKey:@"finalFilePaths"];
             
             [items addObject:dict];
         }
@@ -189,20 +192,22 @@ NSString* const kNotificationDownloadComplete    = @"NotificationDownloadComplet
     return [self.gameMap objectForKey:[NSNumber numberWithInt:gameId]];
 }
 
-- (BOOL)addToDownloadQueue:(LQGameInfo*)gameInfo suspended:(BOOL)suspended{
+- (BOOL)addToDownloadQueue:(LQGameInfo*)gameInfo installAfterDownloaded:(BOOL)installAfterDownloaded installPaths:(NSArray*) installPaths{
     QYXDownloadObject* object = [self objectWithGameId:gameInfo.gameId];
     
     if (object == nil){
         object = [[QYXDownloadObject alloc] init];
         object.gameInfo = gameInfo;
         object.status = kQYXDSPaused;
+        object.installAfterDownloaded = installAfterDownloaded;
+        object.finalFilePaths = installPaths;
         [self.downloadGames addObject:object];
         
         [self.gameMap setObject:object forKey:[NSNumber numberWithInt:gameInfo.gameId]];
-        
-        if (!suspended){
-            [self resumeDownload:object];
-        }
+        [self resumeDownload:object];
+        //        if (!suspended){
+        //            [self resumeDownload:object];
+        //        }
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
         [self synchronize];
@@ -213,6 +218,36 @@ NSString* const kNotificationDownloadComplete    = @"NotificationDownloadComplet
     }
     
     return NO;
+}
+
+- (BOOL)addToDownloadQueue:(LQGameInfo*)gameInfo installAfterDownloaded:(BOOL)installAfterDownloaded{
+    return [self addToDownloadQueue:gameInfo
+             installAfterDownloaded:installAfterDownloaded 
+                       installPaths:nil];
+//    QYXDownloadObject* object = [self objectWithGameId:gameInfo.gameId];
+//    
+//    if (object == nil){
+//        object = [[QYXDownloadObject alloc] init];
+//        object.gameInfo = gameInfo;
+//        object.status = kQYXDSPaused;
+//        object.installAfterDownloaded = installAfterDownloaded;
+//        [self.downloadGames addObject:object];
+//        
+//        [self.gameMap setObject:object forKey:[NSNumber numberWithInt:gameInfo.gameId]];
+//        
+////        if (!suspended){
+////            [self resumeDownload:object];
+////        }
+//        
+//        [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+//        [self synchronize];
+//        
+//        [[NSString stringWithFormat:LocalString(@"info.download.add"), gameInfo.name] showToastAsInfo];
+//        
+//        return YES;
+//    }
+//    
+//    return NO;
 }
 
 - (void)pauseDownload:(QYXDownloadObject*)object{
@@ -249,8 +284,13 @@ NSString* const kNotificationDownloadComplete    = @"NotificationDownloadComplet
 
 - (void)installGameBy:(int)gameId{
     QYXDownloadObject* obj = [self objectWithGameId:gameId];
-    if (obj.status == kQYXDSCompleted){
-        obj.status = kQYXDSInstalling;
+    if (obj.status == kQYXDSCompleted && obj.installAfterDownloaded == YES){
+        
+        //软件和游戏变更状态，铃声壁纸保持completed
+        if([obj.gameInfo.fileType isEqualToString:@"soft"] ||
+           [obj.gameInfo.fileType isEqualToString:@"game"] )
+            obj.status = kQYXDSInstalling;
+        
         [self performSelectorInBackground:@selector(installGame:) withObject:obj];
     }
 }
@@ -289,14 +329,35 @@ NSString* const kNotificationDownloadComplete    = @"NotificationDownloadComplet
     @autoreleasepool {
         [[NSString stringWithFormat:LocalString(@"info.download.install"), obj.gameInfo.name] performSelectorOnMainThread:@selector(showToastAsInfo) withObject:nil waitUntilDone:NO];
 
-        BOOL success = IPAResultSuccess == [[LQInstaller defaultInstaller] IPAInstall:obj.filePath];
-        
-        if (success){
-            [self performSelectorOnMainThread:@selector(doneInstallGame:) withObject:obj waitUntilDone:NO];
-        }else{
-            [self performSelectorOnMainThread:@selector(failInstallGame:) withObject:obj waitUntilDone:NO];
+        if([obj.gameInfo.fileType isEqualToString:@"soft"] ||
+           [obj.gameInfo.fileType isEqualToString:@"game"] ){
+            BOOL success = IPAResultSuccess == [[LQInstaller defaultInstaller] IPAInstall:obj.filePath];
+            
+            if (success){
+                [self performSelectorOnMainThread:@selector(doneInstallGame:) withObject:obj waitUntilDone:NO];
+            }else{
+                [self performSelectorOnMainThread:@selector(failInstallGame:) withObject:obj waitUntilDone:NO];
+            }
         }
-    }
+        else if([obj.gameInfo.fileType isEqualToString:@"wallpaper"]){
+            for(NSString* finalPath in obj.finalFilePaths){
+                [[LQInstaller defaultInstaller] wallPaperInstall:obj.filePath dest:finalPath];
+            }
+        }
+        else if([obj.gameInfo.fileType isEqualToString:@"tel_ring"]){
+            for(NSString* finalPath in obj.finalFilePaths){
+                [[LQInstaller defaultInstaller] ringToneInstall:obj.gameInfo.name
+                                                            src:obj.filePath 
+                                                           dest:finalPath];
+            }
+        }
+        else {
+            for(NSString* finalPath in obj.finalFilePaths){
+                [[LQInstaller defaultInstaller] smsToneInstall:obj.filePath dest:finalPath];
+            }
+
+        }
+    }                      
     
 }
 
@@ -306,6 +367,7 @@ NSString* const kNotificationDownloadComplete    = @"NotificationDownloadComplet
     [self.completedGames removeObject:obj];
     [self.installedGames addObject:tmp];
     [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationInstalledComplete object:self];
     [[NSString stringWithFormat:LocalString(@"info.download.install.success"), obj.gameInfo.name] showToastAsInfo];
     [self synchronize];
 }
@@ -332,11 +394,20 @@ NSString* const kNotificationDownloadComplete    = @"NotificationDownloadComplet
 
 @synthesize fileHandle;
 @synthesize filePath;
+@synthesize finalFilePaths; 
+@synthesize installAfterDownloaded;
 
 - (void)setGameInfo:(LQGameInfo *)aGameInfo{
     gameInfo = aGameInfo;
     
     NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    
+    if([aGameInfo.fileType isEqualToString:@"soft"] ||
+       [aGameInfo.fileType isEqualToString:@"game"])
+        self.filePath =  [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@",aGameInfo.package,@"ipa"]];
+
+        else
     self.filePath =  [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:[self.gameInfo.downloadUrl lastPathComponent]];
 
     if (![[NSFileManager defaultManager] fileExistsAtPath:self.filePath]){

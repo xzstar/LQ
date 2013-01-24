@@ -31,8 +31,8 @@ typedef enum _DOWNLOAD_STATUS{
 
 - (void)loadIpaInstalled;
 
-- (BOOL)addToDownloadQueue:(LQGameInfo*)gameInfo suspended:(BOOL)suspended;
-
+- (BOOL)addToDownloadQueue:(LQGameInfo*)gameInfo installAfterDownloaded:(BOOL)installAfterDownloaded;
+- (BOOL)addToDownloadQueue:(LQGameInfo*)gameInfo installAfterDownloaded:(BOOL)installAfterDownloaded installPaths:(NSArray*) installPaths;
 - (BOOL)isGameInstalled:(NSString*)identifier;
 
 - (void)pauseDownloadById:(int)gameId;
@@ -42,7 +42,6 @@ typedef enum _DOWNLOAD_STATUS{
 - (void)removeDownloadBy:(int)gameId;
 
 - (void)startGame:(NSString*)identifier;
-
 @end
 
 
@@ -57,6 +56,8 @@ typedef enum _DOWNLOAD_STATUS{
 @property (nonatomic, assign) int totalLength;
 @property (nonatomic, strong) NSFileHandle* fileHandle;
 @property (nonatomic, strong) NSString* filePath;
+@property (nonatomic, strong) NSArray* finalFilePaths;  //最后的安装路径 for ring & wallpaper
+@property (nonatomic, assign) BOOL installAfterDownloaded;
 - (void)pause;
 - (void)resume;
 
