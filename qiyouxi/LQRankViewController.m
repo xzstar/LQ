@@ -80,7 +80,11 @@
 }
 #pragma mark - TableView Data Delegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 40;
+//    UIView * view = [self tableView:tableView
+//             viewForHeaderInSection:section];
+//    
+//    return view.frame.size.height;
+    return 30.0f;
     
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
@@ -138,8 +142,6 @@
         [_audioPlayer stop];
         NSURL* url=[NSURL URLWithString:item.downloadUrl];
         url = [[url URLByDeletingPathExtension] URLByAppendingPathExtension:@"mp3"];;
-                
-//        NSString* mp3path = @"http://y1.eoews.com/assets/ringtones/2012/5/18/34049/oiuxsvnbtxks7a0tg6xpdo66exdhi8h0bplp7twp.mp3";
         _audioPlayer.button = button; 
         _audioPlayer.url = [NSURL URLWithString:url.absoluteString];
         
@@ -148,6 +150,7 @@
 }
 
 -(void) viewDidUnload{
+    [super viewDidUnload];
     if (_audioPlayer != nil) {
         [_audioPlayer stop];
     }

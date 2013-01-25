@@ -156,7 +156,12 @@
     self.selectedRow = -1;
 }
 
-
+-(void) viewDidUnload{
+    [super viewDidUnload];
+    if (_audioPlayer != nil) {
+        [_audioPlayer stop];
+    }
+}
 - (void)playAudio:(AudioButton *)button
 {    
     NSInteger index = button.tag;
@@ -170,9 +175,11 @@
         [_audioPlayer play];
     } else {
         [_audioPlayer stop];
-        
+        NSURL* url=[NSURL URLWithString:item.downloadUrl];
+        url = [[url URLByDeletingPathExtension] URLByAppendingPathExtension:@"mp3"];;
+
         _audioPlayer.button = button; 
-        _audioPlayer.url = [NSURL URLWithString:item.downloadUrl];
+        _audioPlayer.url = [NSURL URLWithString:url.absoluteString];
         
         [_audioPlayer play];
     }   
@@ -521,6 +528,12 @@
     self.selectedRow = -1;
 }
 
+-(void) viewDidUnload{
+    [super viewDidUnload];
+    if (_audioPlayer != nil) {
+        [_audioPlayer stop];
+    }
+}
 
 - (void)playAudio:(AudioButton *)button
 {    
@@ -535,9 +548,11 @@
         [_audioPlayer play];
     } else {
         [_audioPlayer stop];
-        
+        NSURL* url=[NSURL URLWithString:item.downloadUrl];
+        url = [[url URLByDeletingPathExtension] URLByAppendingPathExtension:@"mp3"];;
+
         _audioPlayer.button = button; 
-        _audioPlayer.url = [NSURL URLWithString:item.downloadUrl];
+        _audioPlayer.url = [NSURL URLWithString:url.absoluteString];
         
         [_audioPlayer play];
     }   

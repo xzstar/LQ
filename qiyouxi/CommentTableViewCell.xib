@@ -111,6 +111,7 @@
 								<reference key="NSSuperview" ref="550603999"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="572705807"/>
+								<reference key="IBUIBackgroundColor" ref="847769826"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">4</int>

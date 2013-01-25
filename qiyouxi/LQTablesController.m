@@ -253,7 +253,7 @@
     int newPage = pageController.currentPage+tag;
     if(newPage<0 || newPage>viewControllers.count)
         return;
-    pageController.currentPage = newPage;
-    [self changePage:sender];
+    //pageController.currentPage = newPage;
+    [self switchToPage:newPage];
 }
 @end

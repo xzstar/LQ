@@ -10,13 +10,13 @@
 #import "KRShareAuthorizeView.h"
 #import "KRShareRequest.h"
 
-#define kSinaWeiboAppKey             @"2330639301"//@"1806671160" //
-#define kSinaWeiboAppSecret          @"b40da38bc76d70a2ffcd1f4f7a754390" //@"bfe68d7af6dbf5b67a11c9c7a6849395" //
-#define kSinaWeiboAppRedirectURI     @"http://weibo.com/u/3195606297"
+#define kSinaWeiboAppKey             @"1806671160" //@"2330639301"//
+#define kSinaWeiboAppSecret          @"bfe68d7af6dbf5b67a11c9c7a6849395" //@"b40da38bc76d70a2ffcd1f4f7a754390" //
+#define kSinaWeiboAppRedirectURI     @"http://www.apodang.com" //@"http://weibo.com/u/3195606297"
 
-#define kTencentWeiboAppKey             @"801291903" //@"100363913" //
-#define kTencentWeiboAppSecret          @"0cba6f47ac642efc970877d03b2b1891" //@"835add44c1ca78e530036cda20684241"//
-#define kTencentWeiboAppRedirectURI     @"https://itunes.apple.com/cn/app/zhong-guo-ying-lou/id541608192?mt=8"
+#define kTencentWeiboAppKey             @"100363913" // @"801291903" //@"100363913" //
+#define kTencentWeiboAppSecret          @"835add44c1ca78e530036cda20684241"//@"0cba6f47ac642efc970877d03b2b1891" //@"835add44c1ca78e530036cda20684241"//
+#define kTencentWeiboAppRedirectURI     @"http://www.apodang.com" //@"https://itunes.apple.com/cn/app/zhong-guo-ying-lou/id541608192?mt=8"
 
 #define kDoubanBroadAppKey             @"0077a5c719af2a470166f1554d0d7ed5"
 #define kDoubanBroadAppSecret          @"e624d4fab3356f0a"
