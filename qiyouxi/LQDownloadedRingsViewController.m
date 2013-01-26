@@ -51,7 +51,7 @@ extern NSString* const kNotificationDownloadComplete;
         appsList = [NSMutableArray array];
     [appsList removeAllObjects];
     for (QYXDownloadObject* obj in [LQDownloadManager sharedInstance].completedGames){
-        LQGameInfo* info = obj.gameInfo;
+        //LQGameInfo* info = obj.gameInfo;
         if ([obj.gameInfo.fileType isEqualToString: @"sms_ring"] ||
             [obj.gameInfo.fileType isEqualToString: @"tel_ring"]) {
             [appsList addObject:obj];

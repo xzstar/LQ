@@ -49,6 +49,7 @@
     NSString* name;
     NSString* desc;
 }
+@property (nonatomic,strong)NSString* iconUrl;
 @end
 
 @interface LQAppsListViewController : LQRequestListViewController

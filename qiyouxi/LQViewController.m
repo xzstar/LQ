@@ -112,29 +112,29 @@
 }
 
 - (void)handleNetworkError:(LQClientError*)error{
-    [self.errorView removeFromSuperview];
-    CGRect frame = self.view.bounds;
-    frame.origin.y += NAVIGATIONBAR_HEIGHT;
-    frame.size.height -= NAVIGATIONBAR_HEIGHT;
-    self.errorView = [[UIView alloc] initWithFrame:frame];
-    self.errorView.backgroundColor = [UIColor whiteColor];
-    UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"err_network.png"]];
-    imageView.center = CGPointMake(errorView.bounds.size.width/2, errorView.bounds.size.height/2);
-    [self.errorView addSubview:imageView];
-    [self.view addSubview:self.errorView];
+//    [self.errorView removeFromSuperview];
+//    CGRect frame = self.view.bounds;
+//    frame.origin.y += NAVIGATIONBAR_HEIGHT;
+//    frame.size.height -= NAVIGATIONBAR_HEIGHT;
+//    self.errorView = [[UIView alloc] initWithFrame:frame];
+//    self.errorView.backgroundColor = [UIColor whiteColor];
+//    UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"err_network.png"]];
+//    imageView.center = CGPointMake(errorView.bounds.size.width/2, errorView.bounds.size.height/2);
+//    [self.errorView addSubview:imageView];
+//    [self.view addSubview:self.errorView];
 }
 
 - (void)handleNoNetwork{
-    [self.errorView removeFromSuperview];
-    CGRect frame = self.view.bounds;
-    frame.origin.y += NAVIGATIONBAR_HEIGHT;
-    frame.size.height -= NAVIGATIONBAR_HEIGHT;
-    self.errorView = [[UIView alloc] initWithFrame:frame];
-    self.errorView.backgroundColor = [UIColor whiteColor];
-    UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"no_network.png"]];
-    imageView.center = CGPointMake(errorView.bounds.size.width/2, errorView.bounds.size.height/2);
-    [self.errorView addSubview:imageView];
-    [self.view addSubview:self.errorView];
+//    [self.errorView removeFromSuperview];
+//    CGRect frame = self.view.bounds;
+//    frame.origin.y += NAVIGATIONBAR_HEIGHT;
+//    frame.size.height -= NAVIGATIONBAR_HEIGHT;
+//    self.errorView = [[UIView alloc] initWithFrame:frame];
+//    self.errorView.backgroundColor = [UIColor whiteColor];
+//    UIImageView* imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"no_network.png"]];
+//    imageView.center = CGPointMake(errorView.bounds.size.width/2, errorView.bounds.size.height/2);
+//    [self.errorView addSubview:imageView];
+//    [self.view addSubview:self.errorView];
 }
 
 - (void)client:(LQClientBase*)client didFailExecution:(LQClientError*)error{

@@ -336,7 +336,7 @@
         [itemList addObject:item];
     }
     [cell setButtonInfo:itemList];
-    [cell addInfoButtonsTarget:self action:@selector(onWallpaperClicked:) tag:indexPath.row];
+    [cell addInfoButtonsTarget:self action:@selector(onWallpaperClicked:) tag:indexPath.row*WALLPAPER_COUNT_PERLINE];
     return cell;
 }
 
@@ -420,7 +420,7 @@
     }
     else {
         //[self endLoading];
-        [self.tableView.pullToRefreshView stopAnimating];
+        [self.tableView.infiniteScrollingView stopAnimating];
         return;
     }
     
@@ -436,6 +436,7 @@
 
 
 @implementation LQTopicDetailViewController
+@synthesize iconUrl;
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
     if (section == 0) {
         return 100.0f;
@@ -456,7 +457,10 @@
 
 - (void) loadTopic:(NSDictionary*) topicInfo{
     [self loadApps:[topicInfo objectForKey:@"relate_apps"]];
-    iconUrl = [topicInfo objectForKey:@"icon"];
+    NSString* tempIcon = [topicInfo objectForKey:@"icon"];
+    
+    if(tempIcon != nil && tempIcon.length >0)
+        iconUrl = tempIcon;
     name = [topicInfo objectForKey:@"name"];
     desc = [topicInfo objectForKey:@"Intro"];
     

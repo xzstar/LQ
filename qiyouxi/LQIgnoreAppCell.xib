@@ -49,7 +49,7 @@
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="956408065"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<object class="NSColor" key="IBUIBackgroundColor" id="940673166">
+								<object class="NSColor" key="IBUIBackgroundColor" id="318657866">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
 								</object>
@@ -57,7 +57,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">icon_layout.png</string>
+									<string key="NSResourceName">icon_small.png</string>
 								</object>
 							</object>
 							<object class="IBUILabel" id="956408065">
@@ -68,7 +68,7 @@
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="914125825"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<reference key="IBUIBackgroundColor" ref="940673166"/>
+								<reference key="IBUIBackgroundColor" ref="318657866"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -135,7 +135,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="750752028"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
-						<reference key="IBUIBackgroundColor" ref="940673166"/>
+						<reference key="IBUIBackgroundColor" ref="318657866"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">4</int>
@@ -283,7 +283,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="cell_del.png">{25, 25}</string>
-			<string key="icon_layout.png">{54, 54}</string>
+			<string key="icon_small.png">{48, 48}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>

@@ -402,6 +402,7 @@
              LQGameInfo* info = [recommendTopics objectAtIndex:tag];
              LQTopicListViewController * controller  = [[LQTopicListViewController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
              controller.requestUrl = info.requestUrl;
+             controller.iconUrl = info.icon;
              [self.navigationController pushViewController:controller animated:YES];
              
              
@@ -597,6 +598,7 @@
         LQGameInfo* info = [recommendTopics objectAtIndex:tag];
         LQTopicListViewController * controller  = [[LQTopicListViewController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
         controller.requestUrl = info.requestUrl;
+        controller.iconUrl = info.icon;
         [self.navigationController pushViewController:controller animated:YES];
         
         

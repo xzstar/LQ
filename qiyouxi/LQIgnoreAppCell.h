@@ -17,5 +17,5 @@
 @property (nonatomic, unsafe_unretained) IBOutlet UIButton* deleteButton;
 @property (nonatomic,strong) LQGameInfo* gameInfo;
 - (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
-- (void)setGameInfo:(id)aGameInfo;
+- (void)setGameInfo:(LQGameInfo*)aGameInfo;
 @end

@@ -25,7 +25,7 @@
 
     // Configure the view for the selected state
 }
-- (void)setGameInfo:(id)aGameInfo{
+- (void)setGameInfo:(LQGameInfo*)aGameInfo{
     gameInfo = aGameInfo;
     
     self.title.text = self.gameInfo.name;

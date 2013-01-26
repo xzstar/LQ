@@ -98,7 +98,7 @@
 }
 
 - (IBAction)onSubmit:(id)sender{
-    NSString* contact = self.contactField.text;
+    //NSString* contact = self.contactField.text;
     NSString* content = self.contentField.text;
     
     if (content.length == 0){

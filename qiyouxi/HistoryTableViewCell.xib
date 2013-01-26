@@ -58,7 +58,7 @@
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<object class="NSCustomResource" key="IBUIImage">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">icon_layout.png</string>
+											<string key="NSResourceName">icon_small.png</string>
 										</object>
 									</object>
 									<object class="IBUILabel" id="33148336">
@@ -488,7 +488,7 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="arrow_more.png">{16, 16}</string>
 			<string key="ico_heart_24.png">{12, 12}</string>
-			<string key="icon_layout.png">{54, 54}</string>
+			<string key="icon_small.png">{48, 48}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>

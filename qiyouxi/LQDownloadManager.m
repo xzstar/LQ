@@ -115,7 +115,6 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
             [dict setObject:[NSNumber numberWithInt:obj.status] forKey:@"status"];
             [dict setObject:[NSNumber numberWithInt:obj.totalLength] forKey:@"size"];
             NSMutableDictionary* game = [NSMutableDictionary dictionary];
-            LQGameInfo* gameInfo = obj.gameInfo;
             [game setObject:[NSNumber numberWithInt:obj.gameInfo.gameId] forKey:@"id"];
             [game setObject:obj.gameInfo.name forKey:@"name"];
             [game setObject:obj.gameInfo.icon forKey:@"icon"];
@@ -340,27 +339,60 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
             }
         }
         else if([obj.gameInfo.fileType isEqualToString:@"wallpaper"]){
+            BOOL success;
             for(NSString* finalPath in obj.finalFilePaths){
-                [[LQInstaller defaultInstaller] wallPaperInstall:obj.filePath dest:finalPath];
+                success =[[LQInstaller defaultInstaller] wallPaperInstall:obj.filePath dest:finalPath];
+                if(success == NO)
+                    break;
             }
+            
+            if (success){
+                [self performSelectorOnMainThread:@selector(doneInstallWallpaperOrRing:) withObject:obj waitUntilDone:NO];
+            }else{
+                [self performSelectorOnMainThread:@selector(failInstallWallpaperOrRing:) withObject:obj waitUntilDone:NO];
+            }
+
         }
         else if([obj.gameInfo.fileType isEqualToString:@"tel_ring"]){
+            BOOL success;
+
             for(NSString* finalPath in obj.finalFilePaths){
-                [[LQInstaller defaultInstaller] ringToneInstall:obj.gameInfo.name
+                success =[[LQInstaller defaultInstaller] ringToneInstall:obj.gameInfo.name
                                                             src:obj.filePath 
                                                            dest:finalPath];
             }
+            
+            if (success){
+                [self performSelectorOnMainThread:@selector(doneInstallWallpaperOrRing:) withObject:obj waitUntilDone:NO];
+            }else{
+                [self performSelectorOnMainThread:@selector(failInstallWallpaperOrRing:) withObject:obj waitUntilDone:NO];
+            }
+
         }
         else {
+            BOOL success ;
             for(NSString* finalPath in obj.finalFilePaths){
-                [[LQInstaller defaultInstaller] smsToneInstall:obj.filePath dest:finalPath];
+                success =[[LQInstaller defaultInstaller] smsToneInstall:obj.filePath dest:finalPath];
             }
+            
+            if (success){
+                [self performSelectorOnMainThread:@selector(doneInstallWallpaperOrRing:) withObject:obj waitUntilDone:NO];
+            }else{
+                [self performSelectorOnMainThread:@selector(failInstallWallpaperOrRing:) withObject:obj waitUntilDone:NO];
+            }
+
 
         }
     }                      
     
 }
 
+- (void)doneInstallWallpaperOrRing:(QYXDownloadObject*)obj{
+    [[NSString stringWithFormat:LocalString(@"info.download.install.success"), obj.gameInfo.name] showToastAsInfo];
+}
+- (void)failInstallWallpaperOrRing:(QYXDownloadObject*)obj{
+    [[NSString stringWithFormat:LocalString(@"info.download.install.fail"), obj.gameInfo.name] showToastAsInfo];
+}
 - (void)doneInstallGame:(QYXDownloadObject*)obj{
     obj.status = kQYXDSInstalled;
     id tmp = obj;

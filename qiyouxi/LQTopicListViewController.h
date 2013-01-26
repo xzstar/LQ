@@ -10,8 +10,9 @@
 
 @interface LQTopicListViewController : LQTablesController{
     NSString* requstUrl;
+    NSString* iconUrl;
 }
 
 @property (nonatomic, strong) NSString* requestUrl;
-
+@property (nonatomic, strong) NSString* iconUrl;
 @end

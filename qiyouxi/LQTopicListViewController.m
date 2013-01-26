@@ -13,7 +13,7 @@
 @end
 
 @implementation LQTopicListViewController
-@synthesize requestUrl;
+@synthesize requestUrl,iconUrl;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
@@ -89,7 +89,8 @@
     LQTopicDetailViewController *controller = [viewControllers objectAtIndex:page];
     if ((NSNull *)controller == [NSNull null])
     {
-        controller = [[LQTopicDetailViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil requestUrl:requestUrl];        
+        controller = [[LQTopicDetailViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil requestUrl:requestUrl]; 
+        controller.iconUrl = self.iconUrl;
         [viewControllers replaceObjectAtIndex:page withObject:controller];
     }
     

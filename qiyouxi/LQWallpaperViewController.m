@@ -107,27 +107,64 @@
 
 // Called when a button is clicked. The view will be automatically dismissed after this call returns
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameInfo.gameId];
+    QYXDownloadObject* obj = [[LQDownloadManager sharedInstance] objectWithGameId:gameInfo.gameId];
+    
+    NSArray* destPaths;
 	if (buttonIndex == 0) {
-        NSArray* destPaths = [NSArray arrayWithObject:WALLPAPER];
-        [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo
-                                        installAfterDownloaded:YES
-                                                  installPaths:destPaths];
-        
+        destPaths = [NSArray arrayWithObject:WALLPAPER];
     }
     else if(buttonIndex == 1){
-        
-        NSArray* destPaths = [NSArray arrayWithObject:LOCKBACKGROUND];
-        [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo
-                                        installAfterDownloaded:YES
-                                                  installPaths:destPaths];
-
+         destPaths = [NSArray arrayWithObject:LOCKBACKGROUND];        
     }else {
-        NSArray* destPaths = [NSArray arrayWithObjects:WALLPAPER,LOCKBACKGROUND,nil];
-        [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo
-                                        installAfterDownloaded:YES
-                                                  installPaths:destPaths];
-
+        destPaths = [NSArray arrayWithObjects:WALLPAPER,LOCKBACKGROUND,nil];
     }
+    
+    if(obj!=nil){
+        obj.installAfterDownloaded = YES;
+        obj.finalFilePaths = destPaths;
+    }
+    
+    switch (status) {
+        case kQYXDSFailed:
+        case kQYXDSPaused:
+            [[LQDownloadManager sharedInstance] resumeDownloadById:gameInfo.gameId];
+            break;
+        case kQYXDSCompleted:
+            //        case kQYXDSInstalling:
+            [[LQDownloadManager sharedInstance] installGameBy:self.gameInfo.gameId];
+            break;
+            
+            //            break;
+            //        case kQYXDSPaused:
+            //            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
+            //            break;
+            //        case kQYXDSRunning:
+            //            [[LQDownloadManager sharedInstance] pauseDownloadById:self.gameInfo.gameId];
+            //            break;
+            
+        case kQYXDSNotFound:
+            if(gameInfo!=nil)
+                [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo installAfterDownloaded:YES installPaths:destPaths];
+            
+            break;
+            //        case kQYXDSInstalled:
+            //            [[LQDownloadManager sharedInstance] startGame:self.gameInfo.package];
+            //            break;
+        default:
+            break;
+    }
+
+    
+    
+    if (status == kQYXDSCompleted){
+        obj.finalFilePaths = destPaths;
+        [[LQDownloadManager sharedInstance] installGameBy:
+         gameInfo.gameId];
+    }
+        
+   
     
 }
 
@@ -148,8 +185,8 @@
     else {
         [UIView beginAnimations:nil context:nil];
         [UIView setAnimationDuration:animationSec];
-        self.topView.alpha = 1.0;
-        self.bottomView.alpha =0.2;
+        self.topView.alpha = 0.6;
+        self.bottomView.alpha =0.6;
         [UIView commitAnimations];
         
         
