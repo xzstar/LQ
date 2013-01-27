@@ -8,17 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "LQViewController.h"
-
-static NSString* const installedAppListPath = @"/private/var/mobile/Library/Caches/com.apple.mobile.installation.plist";
+#import "LQUtilities.h"
 
 @interface InstalledAppReader:NSObject
 
 +(NSArray *)installedApp;
-+(NSMutableDictionary *)appDescriptionFromDictionary:(NSDictionary *)dictionary;
 +(void) getRings;
 @end
 
-@interface LQUpdateViewController : LQViewController<UITabBarDelegate,UITableViewDelegate, UITableViewDataSource>{
+@interface LQUpdateViewController : LQViewController<UITabBarDelegate,UITableViewDelegate, UITableViewDataSource,AppUpdateReaderDelegate>{
     int selectedSection;
     int selectedRow;
     NSMutableArray* appsList;
@@ -29,7 +27,7 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
 
 @property (nonatomic,unsafe_unretained) IBOutlet UITableView *tableView;
 @property (nonatomic,unsafe_unretained) IBOutlet UIButton* openIgnoreView;
-
+@property (nonatomic,unsafe_unretained) IBOutlet UIButton* updateAllButton;
 @property (nonatomic,strong) IBOutlet UIView* ignoreView;
 @property (nonatomic,unsafe_unretained) IBOutlet UITableView *ignoreTableView;
 @property (nonatomic,unsafe_unretained) IBOutlet UIButton *closeIgnoreView;
@@ -37,4 +35,5 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
 @property (nonatomic,strong) NSMutableArray *appsList;
 - (void) saveAppsList;
 - (void)loadApps:(NSArray*) apps;
+- (IBAction) onUpdateAll:(id)sender;
 @end

@@ -12,6 +12,9 @@
 #import "LQGameMoreItemTableViewCell.h"
 #import "LQDetailTablesController.h"
 #import "LQIgnoreAppCell.h"
+
+static NSString* const installedAppListPath = @"/private/var/mobile/Library/Caches/com.apple.mobile.installation.plist";
+
 @implementation InstalledAppReader
 
 #pragma mark - Init
@@ -80,7 +83,7 @@
 @implementation LQUpdateViewController
 @synthesize appsList,tableView,openIgnoreView;
 @synthesize ignoreView,ignoreTableView,closeIgnoreView;
-
+@synthesize updateAllButton;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -98,20 +101,25 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    NSArray * array = [InstalledAppReader installedApp];
-    [InstalledAppReader getRings];
-    NSString* appsString = [array componentsJoinedByString:@","];
-//    if(appsString == nil)
-//        appsString = [LQConfig restoreAppList];
-//    else 
-//        [LQConfig saveAppList:appsString];
-    if(appsString !=nil && appsString.length>0)
-    [self.client loadAppUpdate:appsString];
+//    NSArray * array = [InstalledAppReader installedApp];
+//    //[InstalledAppReader getRings];
+//    NSString* appsString = [array componentsJoinedByString:@","];
+////    if(appsString == nil)
+////        appsString = [LQConfig restoreAppList];
+////    else 
+////        [LQConfig saveAppList:appsString];
+//    if(appsString !=nil && appsString.length>0)
+//    [self.client loadAppUpdate:appsString];
+    
+    [[AppUpdateReader sharedInstance] addListener:self];
+    [[AppUpdateReader sharedInstance] loadNeedUpdateApps];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
+    [[AppUpdateReader sharedInstance] removeListener:self];
+
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
@@ -132,9 +140,9 @@
     NSArray* savedIgnoreList = [LQConfig restoreIgnoreAppList];
     
     
-    for (NSDictionary* game in apps){
+    for (LQGameInfo* gameInfo in apps){
         
-        LQGameInfo* gameInfo = [[LQGameInfo alloc] initWithAPIResult:game];
+        //LQGameInfo* gameInfo = [[LQGameInfo alloc] initWithAPIResult:game];
         [items addObject:gameInfo];
         
         BOOL found = NO;
@@ -159,7 +167,7 @@
     
     
     [self.tableView reloadData];
-    
+    [self updateIgoreButton];
 }
 
 - (void) saveAppsList{
@@ -181,27 +189,27 @@
 
 }
 
-#pragma mark - Network Callback
-- (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{
-    [super handleNetworkOK];
-    switch (command) {
-        case C_COMMAND_GETAPPUPDATE:
-            [self endLoading];
-            if ([result isKindOfClass:[NSDictionary class]]){
-                [self loadApps:[result objectForKey:@"apps"]];
+//#pragma mark - Network Callback
+//- (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{
+//    [super handleNetworkOK];
+//    switch (command) {
+//        case C_COMMAND_GETAPPUPDATE:
+//            [self endLoading];
+//            if ([result isKindOfClass:[NSDictionary class]]){
+//                [self loadApps:[result objectForKey:@"apps"]];
+//
+//            }
+//            break;
+//        default:
+//            break;
+//    }
+//}
 
-            }
-            break;
-        default:
-            break;
-    }
-}
-
-- (void)handleNetworkError:(LQClientError*)error{
-    [self endLoading];
-    //[super handleNetworkErrorHint];
-    
-}
+//- (void)handleNetworkError:(LQClientError*)error{
+//    [self endLoading];
+//    //[super handleNetworkErrorHint];
+//    
+//}
 
 
 #pragma mark - Table view data source
@@ -357,13 +365,23 @@
     }
 }
 
+- (void)updateIgoreButton{
+    NSString* title;
+    if (ignoreAppsList==nil) {
+        title = [NSString stringWithFormat:@"忽略(0)",ignoreAppsList.count];
+    }
+    else
+        title = [NSString stringWithFormat:@"忽略(%d)",ignoreAppsList.count];
+    [openIgnoreView setTitle:title forState:UIControlStateNormal];
+}
+
 - (void)onAppIgnore:(id)sender{
     UIButton* button = (UIButton*)sender;
     int row = button.tag;
     LQGameInfo* gameInfo = [updateAppsList objectAtIndex:row];   
     [ignoreAppsList addObject:gameInfo];
     [updateAppsList removeObject:gameInfo];
-    
+    [self updateIgoreButton];
     LQUpdateViewController* __unsafe_unretained weakSelf = self;
     selectedRow = -1;
     selectedSection = -1;
@@ -387,11 +405,9 @@
     [updateAppsList removeAllObjects];
     for(LQGameInfo* gameInfo in appsList){
         if([ignoreAppsList containsObject:gameInfo]==NO)
-            [updateAppsList addObject:gameInfo];
-        
+            [updateAppsList addObject:gameInfo];        
     }
-    
-    
+  
 }
 
 
@@ -402,7 +418,8 @@
     [ignoreAppsList removeObject:gameInfo];
     
     [self updateList];
-    
+    [self updateIgoreButton];
+
     //[updateAppsList addObject:gameInfo];
 
     
@@ -455,6 +472,51 @@
         [UIView commitAnimations];
 
     }
+}
+- (IBAction) onUpdateAll:(id)sender{
+  
+    for(LQGameInfo* info in appsList){
+        int gameId = info.gameId;
+        QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameId];
+        QYXDownloadObject* obj = [[LQDownloadManager sharedInstance] objectWithGameId:info.gameId];
+        if(obj!=nil)
+            obj.installAfterDownloaded = YES;
+        switch (status) {
+            case kQYXDSFailed:
+            case kQYXDSPaused:
+                [[LQDownloadManager sharedInstance] resumeDownloadById:gameId];
+                break;
+                //        case kQYXDSCompleted:
+                //        case kQYXDSInstalling:
+                //            [[LQDownloadManager sharedInstance] installGameBy:self.gameInfo.gameId];
+                //            break;
+                //        case kQYXDSPaused:
+                //            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
+                //            break;
+                //        case kQYXDSRunning:
+                //            [[LQDownloadManager sharedInstance] pauseDownloadById:self.gameInfo.gameId];
+                //            break;
+            case kQYXDSNotFound:
+                if(info!=nil)
+                    [[LQDownloadManager sharedInstance] addToDownloadQueue:info installAfterDownloaded:YES];
+                
+                break;
+                //        case kQYXDSInstalled:
+                //            [[LQDownloadManager sharedInstance] startGame:self.gameInfo.package];
+                //            break;
+            default:
+                break;
+        }
+    }
+}
+
+//成功获得appList
+-(void) didAppUpdateListSuccess:(NSArray*) appsArray{
+    [self loadApps:appsArray];  
+}
+//获得appList失败
+-(void) didAppUpdateListFailed:(LQClientError*)error{
+    [self endLoading];
 }
 
 @end

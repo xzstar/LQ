@@ -14,7 +14,7 @@
 #import "LQCommentTableViewCell.h"
 #import "KRShare.h"
 
-@interface LQGameDetailViewController : LQViewController<UITableViewDataSource, UITableViewDelegate>{
+@interface LQGameDetailViewController : LQViewController<UITableViewDataSource, UITableViewDelegate,KRShareDelegate,KRShareRequestDelegate>{
     id delegate;
     KRShare* _krShare;
 }
@@ -49,4 +49,6 @@
 - (IBAction)onQQWeibo:(id)sender;
 - (IBAction)onSinaWeibo:(id)sender;
 
+- (IBAction)onGameDownload:(id)sender;
+- (IBAction)onGameDownloadAndInstall:(id)sender;
 @end

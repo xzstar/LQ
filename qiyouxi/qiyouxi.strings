@@ -56,6 +56,8 @@ info.download.install = "%@正在安装中...";
 info.download.install.success = "%@安装成功";
 info.download.install.fail = "%@安装失败";
 info.download.fail = "%@下载失败";
+info.download.running = "%@正在下载中...";
+info.download.downloaded = "%@已完成下载";
 
 network.error = "网络不给力，请稍后刷新";
 

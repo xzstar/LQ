@@ -11,11 +11,14 @@
 #define WALLPAPER @"/private/var/mobile/Library/SpringBoard/HomeBackgroundThumbnail.jpg"
 #define LOCKBACKGROUND @"/private/var/mobile/Library/SpringBoard/LockBackgroundThumbnail.jpg"
 @interface LQWallpaperViewController ()
+@property (nonatomic, strong) UIWindow* shadowView;
+@property (nonatomic, strong) NSTimer* animationTimer;
 
 @end
 
 @implementation LQWallpaperViewController
 @synthesize imageUrl,imageView,fullScreenButton,setWallpaperButton,downloadButton,topView,bottomView,title,titleString,gameInfo;
+@synthesize shadowView,animationTimer;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -33,7 +36,7 @@
     if (image != nil){
         [imageView setImage:image];
     }else {
-        
+        [self startLoading];
     }
     self.title.text = titleString;
     [self hideToolBar:3.0f];
@@ -54,6 +57,7 @@
 - (void)updateImage:(UIImage*)image forUrl:(NSString*)imageUrl{
     if (image != nil) {
         [imageView setImage:image];
+        [self endLoading];
     }
 }
 
@@ -195,4 +199,36 @@
 -(IBAction) onBack:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+- (void)startLoading{
+    self.shadowView = [[UIWindow alloc] initWithFrame:CGRectMake(0, 20, 320, 460)];
+    self.shadowView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+    self.shadowView.hidden = NO;
+    self.shadowView.windowLevel = UIWindowLevelAlert;
+    
+    UIImageView* animationView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"progress_loading.png"]];
+    animationView.center = CGPointMake(self.shadowView.bounds.size.width/2, self.shadowView.bounds.size.height/2);
+    [self.shadowView addSubview:animationView];
+    
+    //    UIImageView* centerView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"progress_center.png"]];
+    //    centerView.center = animationView.center;
+    //    [self.shadowView addSubview:centerView];
+    
+    [self.animationTimer invalidate];
+    self.animationTimer = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(onLoading:) userInfo:animationView repeats:YES];
+}
+
+- (void)onLoading:(NSTimer*)timer{
+    UIView* view = timer.userInfo;
+    view.transform = CGAffineTransformMakeRotation(view.tag * 2 * 3.1415926535/20);
+    view.tag ++;
+}
+
+- (void)endLoading{
+    [self.animationTimer invalidate];
+    self.shadowView.hidden = YES;
+    self.shadowView = nil;
+    self.animationTimer = nil;
+}
+
 @end

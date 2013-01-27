@@ -319,9 +319,10 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
     [self.downloadGames removeObject:obj];
     [self.completedGames addObject:temp];
     [self synchronize];
-    obj.status = kQYXDSInstalling;
-    [self performSelectorInBackground:@selector(installGame:) withObject:obj];
+//    obj.status = kQYXDSInstalling;
+//    [self performSelectorInBackground:@selector(installGame:) withObject:obj];
     [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+    [self installGameBy:obj.gameInfo.gameId];
 }
 
 - (void)installGame:(QYXDownloadObject*)obj{

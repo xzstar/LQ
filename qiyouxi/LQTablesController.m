@@ -21,7 +21,7 @@
 @implementation LQTablesController
 @synthesize scrollView, viewControllers,pageView,titleLabel,titleString;
 @synthesize nodeId,categoryId,listOperator,pageController;
-
+@synthesize backButton;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

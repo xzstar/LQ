@@ -846,6 +846,24 @@ AAgACAAIAAEAAQABAAE</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">onGameDownload:</string>
+						<reference key="source" ref="1011856298"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">136</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">onGameDownloadAndInstall:</string>
+						<reference key="source" ref="774959003"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">137</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">onQQWeibo:</string>
 						<reference key="source" ref="270493779"/>
 						<reference key="destination" ref="372490531"/>
@@ -926,12 +944,12 @@ AAgACAAIAAEAAQABAAE</bytes>
 							<reference ref="861212466"/>
 							<reference ref="774959003"/>
 							<reference ref="736638264"/>
-							<reference ref="1011856298"/>
 							<reference ref="502741558"/>
 							<reference ref="388558961"/>
 							<reference ref="31373749"/>
 							<reference ref="31523750"/>
 							<reference ref="147336244"/>
+							<reference ref="1011856298"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1154,7 +1172,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">135</int>
+			<int key="maxID">137</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1170,11 +1188,21 @@ AAgACAAIAAEAAQABAAE</bytes>
 					<string key="className">LQGameDetailViewController</string>
 					<string key="superclassName">LQViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="onGameDownload:">id</string>
+						<string key="onGameDownloadAndInstall:">id</string>
 						<string key="onQQWeibo:">id</string>
 						<string key="onShowComments:">id</string>
 						<string key="onSinaWeibo:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="onGameDownload:">
+							<string key="name">onGameDownload:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="onGameDownloadAndInstall:">
+							<string key="name">onGameDownloadAndInstall:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="onQQWeibo:">
 							<string key="name">onQQWeibo:</string>
 							<string key="candidateClassName">id</string>

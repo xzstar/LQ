@@ -30,7 +30,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.titleLabel.text = @"下载详情";
-
+    self.backButton.hidden = YES;
 }
 
 - (void)viewDidUnload

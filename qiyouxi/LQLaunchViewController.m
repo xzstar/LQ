@@ -52,14 +52,14 @@
 }
 
 - (void)loadData{
-    [self.client loadLaunchImage];
+    //[self.client loadLaunchImage];
 }
 
 - (void)onDone:(NSTimer*)timer{
     //[self performSegueWithIdentifier:@"gotoMain" sender:nil];
-    LQMainTabBarController *controller = [[LQMainTabBarController alloc] init];
-
-    [self.navigationController pushViewController:controller animated:YES];
+//    LQMainTabBarController *controller = [[LQMainTabBarController alloc] init];
+//
+//    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{

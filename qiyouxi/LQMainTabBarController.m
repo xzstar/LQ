@@ -20,7 +20,7 @@
 @end
 
 @implementation LQMainTabBarController
-
+@synthesize tabItems;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -77,8 +77,11 @@
     self.viewControllers = viewControllerArray;  
 
     NSArray* items = self.tabBar.items;
-    NSMutableArray* newItems = [NSMutableArray array];
-    
+    //NSMutableArray* newItems = [NSMutableArray array];
+    if(tabItems == nil)
+        tabItems = [NSMutableArray array];
+    else
+        [tabItems removeAllObjects];
     int index = 0;
     
     NSString* title[] = {@"首页",@"搜索",@"下载管理",@"更新",@"更多"};
@@ -88,28 +91,40 @@
     for (UITabBarItem* item in items){
         
         UIImage* image = [UIImage imageNamed:images[index]];
+        UITabBarItem *tabItem = [[UITabBarItem alloc] initWithTitle:title[index] 
+                                                               image:image 
+                                                                 tag:index];
+        [tabItems addObject:tabItem];
         
-        [newItems addObject:[[UITabBarItem alloc] initWithTitle:title[index] 
-                                                          image:image 
-                                                            tag:index]];
+//        [newItems addObject:[[UITabBarItem alloc] initWithTitle:title[index] 
+//                                                          image:image 
+//                                                            tag:index]];
         index++;
+        
     }
     
     UITabBar* myTabBar = [[UITabBar alloc] initWithFrame:self.tabBar.frame];
-    myTabBar.items = newItems;
+    myTabBar.items = tabItems;
     myTabBar.delegate = self;
     [self.view addSubview:myTabBar];
-    myTabBar.selectedItem = [newItems objectAtIndex:0];
+    myTabBar.selectedItem = [tabItems objectAtIndex:0];
     
     myTabBar.backgroundImage = [UIImage imageNamed:@"menu_bg.png"];
     
     myTabBar.selectionIndicatorImage = [UIImage imageNamed:@"menu_current_bg.png"];
+    
+    [[AppUpdateReader sharedInstance] addListener: self];
+    [[AppUpdateReader sharedInstance] loadNeedUpdateApps];
+    
+    
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+    [[AppUpdateReader sharedInstance] removeListener:self];
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -175,6 +190,21 @@
 - (IBAction)onFeedback:(id)sender{
     moreBgView.hidden = YES;
     //[self performSegueWithIdentifier:@"gotoFeedback" sender:sender];
+}
+
+//成功获得appList
+-(void) didAppUpdateListSuccess:(NSArray*) appsList{
+    UITabBarItem *tabItem = [tabItems objectAtIndex:3];
+    if(appsList!=nil && appsList.count>0){
+        tabItem.badgeValue = [NSString stringWithFormat:@"%d",appsList.count];
+    }
+    else
+        tabItem.badgeValue = nil;    
+}
+//获得appList失败
+-(void) didAppUpdateListFailed:(LQClientError*)error{
+    UITabBarItem *tabItem = [tabItems objectAtIndex:3];
+    tabItem.badgeValue = nil; 
 }
 
 
