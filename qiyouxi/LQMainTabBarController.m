@@ -14,7 +14,7 @@
 #import "LQDownloadTablesController.h"
 #import "LQUpdateViewController.h"
 #import "LQMoreViewController.h"
-
+#import "LQConfig.h"
 @interface LQMainTabBarController ()
 
 @end
@@ -116,9 +116,24 @@
     [[AppUpdateReader sharedInstance] addListener: self];
     [[AppUpdateReader sharedInstance] loadNeedUpdateApps];
     
+    if (client == nil){
+        client = [[LQClient alloc] initWithDelegate:self];
+    }
     
+    
+       
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    if([LQConfig isFirstBoot] == YES){
+        [client bootRecord:YES];
+        [LQConfig setFirstBoot:NO];
+    }
+    [client bootRecord:NO];
+    
+
+}
 - (void)viewDidUnload
 {
     [super viewDidUnload];

@@ -19,7 +19,7 @@
 
 #define LOCK_0 @"/private/var/mobile/Library/SpringBoard/LockBackground.jpg"
 #define LOCK_1 @"/private/var/mobile/Library/SpringBoard/LockBackground.cpbitmap"
-#define LOCK_2 @"/private/var/mobile/Library/SpringBoard/HomeBackgroundThumbnail.jpg"
+#define LOCK_2 @"/private/var/mobile/Library/SpringBoard/LockBackgroundThumbnail.jpg"
 
 static LQInstaller* _instance = nil;
 
@@ -119,8 +119,11 @@ static int callback(NSDictionary *dict, id result) {
     return result;
 }
 - (BOOL)wallPaperInstall:(NSString*)src dest:(NSString*)dest{
-    NSString* filename = [dest stringByDeletingPathExtension];
-    if([filename isEqualToString:@"HomeBackground"]){
+    NSString* filename = [[dest lastPathComponent] stringByDeletingPathExtension];
+    
+    NSLog(@"install src %@",src);
+    
+    if([filename hasPrefix:@"HomeBackground"]){
         [LQUtilities removeFile:HOME_0];
         [LQUtilities removeFile:HOME_1];
         [LQUtilities removeFile:HOME_2];
@@ -130,6 +133,9 @@ static int callback(NSDictionary *dict, id result) {
         [LQUtilities removeFile:LOCK_1];
         [LQUtilities removeFile:LOCK_2];
     }  
+    
+    NSLog(@"remove finish");
+
     return  [LQUtilities copyFile:src destPath:dest];
 }
 

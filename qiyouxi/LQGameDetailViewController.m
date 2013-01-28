@@ -135,7 +135,7 @@
 
 - (void)loadGamePhotoInfo{
     self.screenShotsView.delegate = self;
-    self.screenShotsView.needRotate = YES;
+    self.screenShotsView.needRotate = NO;
     self.screenShotsView.imageUrls = self.gameInfo.screenShotsSmall;
     self.gameScore2.text = [NSString stringWithFormat:@"%@分",gameInfo.rating];
     

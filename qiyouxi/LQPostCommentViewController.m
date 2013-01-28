@@ -216,6 +216,11 @@
     [super handleNetworkErrorHint];
 }
 
+- (void) endLoading{
+    [super endLoading];
+    [self.commentsTableView.pullToRefreshView stopAnimating];
+    [self.commentsTableView.infiniteScrollingView stopAnimating];
+}
 
 #pragma mark - TableViewDataSource
 

@@ -29,6 +29,8 @@
 #define C_COMMAND_GETTOPICLIST_MORE C_USER_COMMAND + 18 
 #define C_COMMAND_GETHOTKEYWORDS C_USER_COMMAND + 19
 #define C_COMMAND_GETAPPUPDATE C_USER_COMMAND + 20
+#define C_COMMAND_BOOT C_USER_COMMAND + 21
+
 @interface LQClient : LQClientBase
 - (void)loadLaunchImage;
 
@@ -63,4 +65,6 @@
 - (void)loadHotKeywords;
 - (void)loadAppUpdate:(NSString*) appList;
 - (void)postComment:(int) gameId rating:(NSString*) rating text:(NSString*) text;
+
+- (void)bootRecord:(BOOL) isFirst;
 @end

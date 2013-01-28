@@ -8,8 +8,8 @@
 
 #import "LQWallpaperViewController.h"
 #import "LQUtilities.h"
-#define WALLPAPER @"/private/var/mobile/Library/SpringBoard/HomeBackgroundThumbnail.jpg"
-#define LOCKBACKGROUND @"/private/var/mobile/Library/SpringBoard/LockBackgroundThumbnail.jpg"
+#define WALLPAPER @"/private/var/mobile/Library/SpringBoard/HomeBackground.jpg"
+#define LOCKBACKGROUND @"/private/var/mobile/Library/SpringBoard/LockBackground.jpg"
 @interface LQWallpaperViewController ()
 @property (nonatomic, strong) UIWindow* shadowView;
 @property (nonatomic, strong) NSTimer* animationTimer;

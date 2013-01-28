@@ -16,6 +16,8 @@
 + (NSString*) restoreString:(NSString*) filename;
 + (void) saveString:(NSString*) filename savedValue:(NSString*) savedValue;
 
++ (BOOL) isFirstBoot;
++ (void) setFirstBoot:(BOOL) firstBoot;
 
 #pragma mark - for test
 + (NSString*) restoreAppList;

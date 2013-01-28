@@ -8,6 +8,7 @@
 
 #import "LQDownloadManager.h"
 #import "LQInstaller.h"
+#import "LQUtilities.h"
 
 static LQDownloadManager* _intance = nil;
 
@@ -45,9 +46,9 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
 - (id)init{
     self = [super init];
     if (self != nil){
-        NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        self.infoFilePath =  [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:@"downloads.plist"];
-
+//        NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//        self.infoFilePath =  [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:@"downloads.plist"];
+        self.infoFilePath =  [[LQUtilities documentsDirectoryPath]stringByAppendingPathComponent:@"downloads.plist"];
         self.downloadGames = [[NSMutableArray alloc] init];
         self.installedGames = [[NSMutableArray alloc] init];
         self.completedGames = [[NSMutableArray alloc] init];
@@ -319,6 +320,9 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
     [self.downloadGames removeObject:obj];
     [self.completedGames addObject:temp];
     [self synchronize];
+    
+    NSLog(@"donwload completed src %@:%@",obj.filePath,obj.gameInfo.name);
+
 //    obj.status = kQYXDSInstalling;
 //    [self performSelectorInBackground:@selector(installGame:) withObject:obj];
     [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
@@ -433,16 +437,19 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
 - (void)setGameInfo:(LQGameInfo *)aGameInfo{
     gameInfo = aGameInfo;
     
-    NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
     
     if([aGameInfo.fileType isEqualToString:@"soft"] ||
        [aGameInfo.fileType isEqualToString:@"game"])
-        self.filePath =  [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@",aGameInfo.package,@"ipa"]];
-
-        else
-    self.filePath =  [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:[self.gameInfo.downloadUrl lastPathComponent]];
-
+        //        self.filePath =  [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@",aGameInfo.package,@"ipa"]];
+        self.filePath =  [[LQUtilities documentsDirectoryPath]
+                          stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@",aGameInfo.package,@"ipa"]];
+    
+    else
+        //    self.filePath =  [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:[self.gameInfo.downloadUrl lastPathComponent]];
+        self.filePath =  [[LQUtilities documentsDirectoryPath]
+                          stringByAppendingPathComponent:[self.gameInfo.downloadUrl lastPathComponent]];
     if (![[NSFileManager defaultManager] fileExistsAtPath:self.filePath]){
         [[NSFileManager defaultManager] createFileAtPath:self.filePath 
                                                 contents:[NSData data]

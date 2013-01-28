@@ -34,9 +34,9 @@ static LQAPICache* _instance = nil;
         NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
         [formatter setDateFormat:@"yyyy-MM-dd"];
 
-        NSArray* cacheDirectories = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-        self.cacheDir =  [[cacheDirectories objectAtIndex:0] stringByAppendingPathComponent:[formatter stringFromDate:[NSDate date]]];
-        
+//        NSArray* cacheDirectories = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+//        self.cacheDir =  [[cacheDirectories objectAtIndex:0] stringByAppendingPathComponent:[formatter stringFromDate:[NSDate date]]];
+        self.cacheDir =  [[LQUtilities cacheDirectoryPath] stringByAppendingPathComponent:[formatter stringFromDate:[NSDate date]]];
         if (![[NSFileManager defaultManager] fileExistsAtPath:self.cacheDir]){
             [[NSFileManager defaultManager] createDirectoryAtPath:self.cacheDir withIntermediateDirectories:YES attributes:nil error:NULL];
         }

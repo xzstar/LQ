@@ -22,9 +22,9 @@
     
     launchImageView.contentMode = UIViewContentModeScaleToFill;
     
-    NSArray* cacheDirectoires = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+//    NSArray* cacheDirectoires = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     
-    LQURLCache* urlCache = [[LQURLCache alloc] initWithMemoryCapacity:1024000 diskCapacity:1024000*10 diskPath:[cacheDirectoires objectAtIndex:0]];
+    LQURLCache* urlCache = [[LQURLCache alloc] initWithMemoryCapacity:1024000 diskCapacity:1024000*10 diskPath:[LQUtilities cacheDirectoryPath]];
     
     [NSURLCache setSharedURLCache:urlCache];
     

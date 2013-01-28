@@ -19,7 +19,7 @@
 {
     srand(time(NULL));
     // Override point for customization after application launch.
-   	
+   	mkdir(@"/var/mobile/Library/liqu", 0755);
     [navigationController pushViewController:main animated:NO];
     [navigationController setNavigationBarHidden:YES];
     [window addSubview:[navigationController view]];

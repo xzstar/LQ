@@ -14,19 +14,22 @@
     NSError* error=nil;
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:destPath]) {
-        NSLog(@"文件存在");
+        NSLog(@"%@文件存在",destPath);
         [[NSFileManager defaultManager] removeItemAtPath:destPath error:&error];//删除不了哦
         if (error!=nil) {
-            NSLog(@"error=%@",error);
+            NSLog(@"%@ error=%@",destPath,[error userInfo]);
             return NO;
         }
+        NSLog(@"%@文件删除成功",destPath);
+
     }
     
     [[NSFileManager defaultManager]copyItemAtPath:srcPath toPath:destPath error:&error ];
     if (error!=nil) {
+        //NSLog(@"%@", error);
+        NSLog(@"%@ to %@ -- err:%@",srcPath,destPath, [error userInfo]);
         return NO;
-        NSLog(@"%@", error);
-        NSLog(@"%@", [error userInfo]);
+
     }
     return YES;
 
@@ -35,12 +38,14 @@
 +(BOOL) removeFile:(NSString*) destPath {
      NSError* error=nil;
     if ([[NSFileManager defaultManager] fileExistsAtPath:destPath]) {
-        NSLog(@"文件存在");
+        NSLog(@"%@文件存在",destPath);
         [[NSFileManager defaultManager] removeItemAtPath:destPath error:&error];//删除不了哦
         if (error!=nil) {
-            NSLog(@"error=%@",error);
+            NSLog(@"%@ error=%@",destPath,[error userInfo]);
             return NO;
         }
+        NSLog(@"%@文件删除成功",destPath);
+
     }
     return YES;
 }
@@ -51,6 +56,53 @@
     [alert show];
 }
 
++(NSString *)documentsDirectoryPath
+{
+#ifdef JAILBREAK
+    
+    NSString *documentPath =@"/var/mobile/Library/liqu/Documents";
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
+    {
+        [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
+                                  withIntermediateDirectories:NO
+                                                   attributes:nil
+                                                        error:NULL];
+    }
+    
+    return documentPath;
+    
+#else
+    
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    return [documentPaths objectAtIndex:0];
+    
+#endif
+}
+
++(NSString *)cacheDirectoryPath
+{
+#ifdef JAILBREAK
+    
+    NSString *documentPath =@"/var/mobile/Library/liqu/Cache";
+    
+    if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
+    {
+        [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
+                                  withIntermediateDirectories:NO
+                                                   attributes:nil
+                                                        error:NULL];
+    }
+    
+    return documentPath;
+    
+#else
+    
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    return [documentPaths objectAtIndex:0];
+    
+#endif
+}
 @end
 
 static AppUpdateReader* _intance = nil;

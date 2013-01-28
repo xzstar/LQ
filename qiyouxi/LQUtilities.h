@@ -13,6 +13,8 @@
 +(BOOL) copyFile:(NSString*) srcPath destPath:(NSString*) destPath;
 +(BOOL) removeFile:(NSString*) destPath ;
 +(void) AlertWithMessage:(NSString *)message;
++(NSString *)documentsDirectoryPath;
++(NSString *)cacheDirectoryPath;
 
 @end
 

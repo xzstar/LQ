@@ -13,6 +13,9 @@
 #define LQ_API_SERVER  @"http://appserver.liqucn.com"
 #define LQ_API_REQUEST @"/ios/request.php"
 #define LQ_API_POST_COMMENT @"/api/ajax.php?action=post&type=add_comment&from_type=liqumarket_ios&os=iOS&IndexID="
+
+#define LQ_FIRSTBOOT_URL @"http://appserver.liqucn.com/ios/request.php?op=first_boot"
+#define LQ_BOOT_URL @"http://appserver.liqucn.com/ios/request.php?op=boot"
 @implementation LQClient
 #pragma mark - Override
 - (NSMutableDictionary*)composeParametersForCommand:(int)command withUrl:(NSString*)url ofFormat:(int)format{
@@ -487,6 +490,17 @@
     [self processCommand:[NSString stringWithFormat:@"%@%@%d", LQ_API_SERVER, LQ_API_POST_COMMENT,gameId]
                  command:C_COMMAND_SUBMITCOMMENT
                   format:F_RAWDATA
+              parameters:parameters
+                encoding:NO];
+}
+
+- (void)bootRecord:(BOOL) isFirst{
+    NSString* requestUrl = isFirst?LQ_FIRSTBOOT_URL:LQ_BOOT_URL;
+    NSDictionary* parameters = [self getParameter:requestUrl];
+    
+    [self processCommand:[NSString stringWithFormat:@"%@%@", LQ_API_SERVER, LQ_API_REQUEST]
+                 command:C_COMMAND_BOOT
+                  format:F_JSON
               parameters:parameters
                 encoding:NO];
 }

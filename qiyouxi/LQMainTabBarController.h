@@ -12,6 +12,8 @@
 @interface LQMainTabBarController : UITabBarController<AppUpdateReaderDelegate>{
     UIView* moreBgView;
     NSMutableArray* tabItems;
+    LQClient* client;
+
 }
 
 @property (nonatomic,strong) NSMutableArray* tabItems;

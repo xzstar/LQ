@@ -8,14 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-#define HOME_0 @"/private/var/mobile/Library/SpringBoard/HomeBackground.jpg"
-#define HOME_1 @"/private/var/mobile/Library/SpringBoard/HomeBackground.cpbitmap"
-#define HOME_2 @"/private/var/mobile/Library/SpringBoard/HomeBackgroundThumbnail.jpg"
-
-
-#define LOCK_0 @"/private/var/mobile/Library/SpringBoard/LockBackground.jpg"
-#define LOCK_1 @"/private/var/mobile/Library/SpringBoard/LockBackground.cpbitmap"
-#define LOCK_2 @"/private/var/mobile/Library/SpringBoard/HomeBackgroundThumbnail.jpg"
+//#define HOME_0 @"/private/var/mobile/Library/SpringBoard/HomeBackground.jpg"
+//#define HOME_1 @"/private/var/mobile/Library/SpringBoard/HomeBackground.cpbitmap"
+//#define HOME_2 @"/private/var/mobile/Library/SpringBoard/HomeBackgroundThumbnail.jpg"
+//
+//
+//#define LOCK_0 @"/private/var/mobile/Library/SpringBoard/LockBackground.jpg"
+//#define LOCK_1 @"/private/var/mobile/Library/SpringBoard/LockBackground.cpbitmap"
+//#define LOCK_2 @"/private/var/mobile/Library/SpringBoard/HomeBackgroundThumbnail.jpg"
 
 typedef enum _IPAResult {
     IPAResultSuccess,
