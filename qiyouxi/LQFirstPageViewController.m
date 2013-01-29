@@ -127,15 +127,11 @@
 - (void)loadViews{
     [super loadViews];
     
-    //self.advView.delegate = self;
-    
-    
 }
 
 #pragma mark - Data Init
 - (void)loadRecommends{
     [self startLoading];
-    //[self.client loadTodayRecommendation:[NSDate date]];
     [self.client loadRecommendation];
 
 }
@@ -156,7 +152,6 @@
         [self.client loadAppMoreListCommon:self.moreUrl];
     }
     else {
-        //[self endLoading];
         [self.historyView.infiniteScrollingView stopAnimating];
         return;
     }
@@ -165,15 +160,6 @@
 }
 - (void)loadTodayAdvs:(NSArray*)advs{
     self.advertisements = advs;
-    
-//    NSMutableArray* imageUrls = [NSMutableArray arrayWithCapacity:advs.count];
-//    for (NSDictionary* adv in advs){
-//        [imageUrls addObject:[adv objectForKey:@"adv_icon"]];
-//    }
-    
-    //self.advView.imageUrls = imageUrls;
-    //[self.historyView reloadData];
-
 }
 
 - (void)loadApps:(NSArray*) apps{
@@ -183,7 +169,6 @@
         [items addObject:[[LQGameInfo alloc] initWithAPIResult:game]];
     }
     self.recommendApps = items;
-   // [self.historyView reloadData];
 
 }
 
@@ -195,7 +180,6 @@
     }
     [self.recommendTopics removeAllObjects];
     [self.recommendTopics addObjectsFromArray:items];
-    //[self.historyView reloadData];
     
     [self.historyView.pullToRefreshView stopAnimating];
 
@@ -368,16 +352,6 @@
         
 
     }
-//    else if(section == 1)
-//    {
-//        LQRecommendSectionHeader *header = [[[NSBundle mainBundle] loadNibNamed:@"LQRecommendSectionHeader" owner:self options:nil]objectAtIndex:0];
-//        [header addInfoButtonsTarget:self action:@selector(onSwitchRecommendSection:) tag:0];
-//        [header addInfoButtonsTarget:self action:@selector(onSwitchRecommendSection:) tag:1];
-//        [header setImageNames:@"home_tabbar_soft.png" leftSelected:@"home_tabbar_soft_down.png" rightNormal:@"home_tabbar_special.png" rightSelected:@"home_tabbar_special_down.png"];
-//        [header setButtonStatus:currentRecommendIndex];
-//        return header;
-//        
-//    }
     return nil;
 }
 
@@ -420,12 +394,6 @@
 }
 
 
-//#pragma mark - ScrollView Delegate
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//}
-//
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-//}
 #pragma mark - Network Callback
 - (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tagObject:(id)tagObject{
     [super handleNetworkOK];
@@ -448,37 +416,12 @@
             }
 
             break;
-//        case C_COMMAND_GETTODAYADVS:
-//            if ([result isKindOfClass:[NSArray class]]){
-//                [self loadTodayAdvs:result];
-//            }
-//            break;
-//        case C_COMMAND_GETHISTORY:
-//            [self endLoading];
-//            if ([result isKindOfClass:[NSDictionary class]]){
-//                [self loadHistoryGames:result];
-//            }
-//            break;
         default:
             break;
     }
 }
 
 - (void)handleNetworkError:(LQClientError*)error{
-//    switch (error.command) {
-//        case C_COMMAND_GETRECOMMENDATION:
-//            [self endLoading];
-//            if (self.advertisements.count > 0){
-//                [super handleNetworkErrorHint];
-//            }else{
-//                [super handleNetworkError:error];
-//            }
-//            break;
-//        case C_COMMAND_GETTODAYADVS:
-//        case C_COMMAND_GETANNOUNCEMENT:
-//        default:
-//            break;
-//    }
     [self endLoading];
     if (self.histories.count > 0){
         [super handleNetworkErrorHint];

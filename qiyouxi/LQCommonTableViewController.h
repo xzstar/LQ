@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "LQClientBase.h"
 #import "LQClient.h"
-#import "EGORefreshTableHeaderView.h"
 #define NODE_ID_SOFT     @"rj"
 #define NODE_ID_GAEM     @"yx"
 

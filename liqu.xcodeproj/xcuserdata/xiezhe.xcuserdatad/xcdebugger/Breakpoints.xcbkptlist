@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQWallpaperViewController.m"
-         timestampString = "380969815.993445"
+         timestampString = "381141359.731994"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "115"
-         endingLineNumber = "115"
+         startingLineNumber = "117"
+         endingLineNumber = "117"
          landmarkName = "-actionSheet:clickedButtonAtIndex:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -138,11 +138,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQUtilities.m"
-         timestampString = "381070166.532304"
+         timestampString = "381167014.893"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "209"
-         endingLineNumber = "209"
+         startingLineNumber = "241"
+         endingLineNumber = "241"
          landmarkName = "-loadNeedUpdateApps"
          landmarkType = "5">
       </FileBreakpoint>
@@ -151,11 +151,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQUtilities.m"
-         timestampString = "381070166.532304"
+         timestampString = "381167014.893"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "208"
-         endingLineNumber = "208"
+         startingLineNumber = "240"
+         endingLineNumber = "240"
          landmarkName = "-loadNeedUpdateApps"
          landmarkType = "5">
       </FileBreakpoint>
@@ -287,6 +287,19 @@
          startingLineNumber = "48"
          endingLineNumber = "48"
          landmarkName = "-setImageUrls:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "qiyouxi/LQDownloadedRingsViewController.m"
+         timestampString = "381167239.622125"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "154"
+         endingLineNumber = "154"
+         landmarkName = "-playAudio:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

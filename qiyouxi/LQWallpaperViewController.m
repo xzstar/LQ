@@ -8,6 +8,7 @@
 
 #import "LQWallpaperViewController.h"
 #import "LQUtilities.h"
+#import "UIImage+Scale.h"
 #define WALLPAPER @"/private/var/mobile/Library/SpringBoard/HomeBackground.jpg"
 #define LOCKBACKGROUND @"/private/var/mobile/Library/SpringBoard/LockBackground.jpg"
 @interface LQWallpaperViewController ()
@@ -39,6 +40,7 @@
         [self startLoading];
     }
     self.title.text = titleString;
+    hidden = YES;
     //[self hideToolBar:3.0f];
 }
 
@@ -114,6 +116,29 @@
     
     QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameInfo.gameId];
     QYXDownloadObject* obj = [[LQDownloadManager sharedInstance] objectWithGameId:gameInfo.gameId];
+    
+    
+//    UIImage* sourceImage = imageView.image;
+//    CGSize size = [UIScreen mainScreen].bounds.size; 
+//    UIImage* sizedSourceImage =[sourceImage scaleToSize:size];
+//    
+//    void* data = [LQUtilities getImageData:sizedSourceImage];
+//    
+//    NSMutableData* imageData = [[NSMutableData alloc] initWithBytes:data length:size.width*size.height*4];
+//    
+//    static unsigned char tailData[] = {
+//        0x62, 0x70, 0x6c, 0x69, 0x73, 0x74, 0x30, 0x30, 0x22, 0x40, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 
+//        0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 
+//        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0d, 0x2e, 0x00, 
+//        0x00, 0x00, 0x80, 0x02, 0x00, 0x00, 0xc0, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
+//        0x00, 0x00, 0x91, 0x32, 0xa4, 0xcb, 0x0a,   
+//    };
+//    
+//    NSString  *infoPath =[[LQUtilities documentsDirectoryPath] stringByAppendingPathComponent:@"LockBackground.cpbitmap"];
+//
+//    [imageData appendBytes:tailData length:71];
+//    
+//    [imageData writeToFile:infoPath atomically:YES];
     
     NSArray* destPaths;
 	if (buttonIndex == 0) {

@@ -159,6 +159,7 @@
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<string key="IBUINormalTitle">替换</string>
 								<reference key="IBUIHighlightedTitleColor" ref="1063012728"/>
+								<reference key="IBUINormalTitleColor" ref="1063012728"/>
 								<reference key="IBUINormalTitleShadowColor" ref="268158624"/>
 								<object class="NSCustomResource" key="IBUISelectedBackgroundImage">
 									<string key="NSClassName">NSImage</string>

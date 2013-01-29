@@ -45,6 +45,9 @@ extern NSString* const kNotificationDownloadComplete;
 - (void) viewDidUnload{
     [super viewDidUnload];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+    if (_audioPlayer != nil) {
+        [_audioPlayer stop];
+    }
 }
 - (void)updateStatus:(NSNotification*)notification{
     if(appsList ==nil)
@@ -145,6 +148,28 @@ extern NSString* const kNotificationDownloadComplete;
     
 }
 
+- (void)playAudio:(AudioButton *)button
+{    
+    NSInteger index = button.tag;
+    QYXDownloadObject *item = [appsList objectAtIndex:index];
+    
+    if (_audioPlayer == nil) {
+        _audioPlayer = [[AudioPlayer alloc] init];
+    }
+    
+    if ([_audioPlayer.button isEqual:button]) {
+        [_audioPlayer play];
+    } else {
+        [_audioPlayer stop];
+        NSURL* url=[NSURL URLWithString:item.gameInfo.downloadUrl];
+        url = [[url URLByDeletingPathExtension] URLByAppendingPathExtension:@"mp3"];;
+        
+        _audioPlayer.button = button; 
+        _audioPlayer.url = [NSURL URLWithString:url.absoluteString];
+        
+        [_audioPlayer play];
+    }   
+}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
@@ -178,8 +203,9 @@ extern NSString* const kNotificationDownloadComplete;
     [self.navigationController pushViewController:controller animated:YES];
     }
     else{
-        NSString* fileName= [obj.filePath lastPathComponent];
-        
+        //NSString* fileName= [obj.filePath lastPathComponent];
+        NSString* fileName= [NSString stringWithFormat:@"%@.m4r",obj.gameInfo.name];
+
         NSString* destPath=[RINGTONEPATH stringByAppendingPathComponent:fileName];//这里要特别主意，目标文件路径一定要以文件名结尾，而不要以文件夹结尾
        
         NSArray* destPaths = [NSArray arrayWithObjects:destPath,nil];

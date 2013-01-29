@@ -58,50 +58,82 @@
 
 +(NSString *)documentsDirectoryPath
 {
-#ifdef JAILBREAK
-    
-    NSString *documentPath =@"/var/mobile/Library/liqu/Documents";
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
-    {
-        [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
-                                  withIntermediateDirectories:NO
-                                                   attributes:nil
-                                                        error:NULL];
-    }
-    
-    return documentPath;
-    
-#else
-    
+
     NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    return [documentPaths objectAtIndex:0];
+    NSString* path = [documentPaths objectAtIndex:0];    
     
-#endif
+    if([path isEqualToString:@"/var/mobile/Library"]){
+        //Application is installed in /Applications
+        NSString *documentPath =@"/var/mobile/Library/liqu/Documents";
+        if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
+        {
+            [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
+                                      withIntermediateDirectories:NO
+                                                       attributes:nil
+                                                            error:NULL];
+        }
+        return documentPath;
+    }
+    else
+        return path;
 }
 
 +(NSString *)cacheDirectoryPath
 {
-#ifdef JAILBREAK
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString* path = [documentPaths objectAtIndex:0];    
     
-    NSString *documentPath =@"/var/mobile/Library/liqu/Cache";
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
-    {
-        [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
-                                  withIntermediateDirectories:NO
-                                                   attributes:nil
-                                                        error:NULL];
+    if([path isEqualToString:@"/var/mobile/Library"]){
+        //Application is installed in /Applications
+        NSString *documentPath =@"/var/mobile/Library/liqu/Cache";
+        
+        if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
+        {
+            [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
+                                      withIntermediateDirectories:NO
+                                                       attributes:nil
+                                                            error:NULL];
+        }
+        
+        return documentPath;
+        
     }
+    return path;
+}
+
+
++(unsigned char *)getImageData:(UIImage*)image
+{//此函数是将UIImage的像素点保存在 unsigned char * 里面，不能直观的用.x或者.y读取，可以转换下
+    CGImageRef imageref = [image CGImage];
+    CGColorSpaceRef colorspace=CGColorSpaceCreateDeviceRGB();
     
-    return documentPath;
+    int width=CGImageGetWidth(imageref);
+    int height=CGImageGetHeight(imageref);
+    int bytesPerPixel=4;
+    int bytesPerRow=bytesPerPixel*width;
+    int bitsPerComponent = 8;
     
-#else
+    unsigned char * imagedata=malloc(width*height*bytesPerPixel);
     
-    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    return [documentPaths objectAtIndex:0];
+    CGContextRef cgcnt = CGBitmapContextCreate(imagedata,
+                                               width,
+                                               height,
+                                               bitsPerComponent,
+                                               bytesPerRow,
+                                               colorspace,
+                                               kCGImageAlphaPremultipliedFirst);
+    //将图像写入一个矩形
+    CGRect therect = CGRectMake(0, 0, width, height);
+    CGContextDrawImage(cgcnt, therect, imageref);
     
-#endif
+    //  imagedata = CGBitmapContextGetData(cgcnt);//这句不知道要不要，求高手指点
+    
+    //    释放资源
+    CGColorSpaceRelease(colorspace);
+    CGContextRelease(cgcnt);    
+    
+    return imagedata;
+    
 }
 @end
 

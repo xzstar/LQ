@@ -9,8 +9,6 @@
 #import "LQGameDetailViewController.h"
 #import "LQCommentTableViewCell.h"
 #import "LQImageBrowseViewController.h"
-#import "EGORefreshTableHeaderView.h"
-#import "EGORefreshTableFooterView.h"
 #import "LQPostCommentViewController.h"
 #import "SVPullToRefresh.h"
 #import "LQUtilities.h"

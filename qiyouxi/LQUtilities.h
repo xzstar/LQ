@@ -15,7 +15,7 @@
 +(void) AlertWithMessage:(NSString *)message;
 +(NSString *)documentsDirectoryPath;
 +(NSString *)cacheDirectoryPath;
-
++(unsigned char *)getImageData:(UIImage*)image;
 @end
 
 @interface AppUpdateReader:NSObject <LQClientDelegate>{

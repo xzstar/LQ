@@ -54,11 +54,7 @@
 		4355484315C8CA090030B21B /* LQClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4355484215C8CA090030B21B /* LQClient.m */; };
 		4355485815C8CE010030B21B /* LQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4355485715C8CE010030B21B /* LQViewController.m */; };
 		437E341815CA482200F4183A /* MoreTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 437E341715CA482200F4183A /* MoreTabView.xib */; };
-		437E341C15CA525100F4183A /* LQPostFeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437E341B15CA525100F4183A /* LQPostFeedbackViewController.m */; };
-		437E341F15CA526000F4183A /* LQDownloadManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 437E341E15CA526000F4183A /* LQDownloadManageViewController.m */; };
 		437E342215CA5C6700F4183A /* LQInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 437E342115CA5C6700F4183A /* LQInstaller.m */; };
-		438E82BB15CF8D5A003BD09E /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 438E82BA15CF8D5A003BD09E /* EGORefreshTableHeaderView.m */; };
-		438E82CF15CF99A7003BD09E /* EGORefreshTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 438E82CE15CF99A7003BD09E /* EGORefreshTableFooterView.m */; };
 		43C2467515C666EE00EAE2C2 /* foot_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C2467215C666EE00EAE2C2 /* foot_bg.png */; };
 		43C2467615C666EE00EAE2C2 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C2467315C666EE00EAE2C2 /* Icon@2x.png */; };
 		43C2467715C666EE00EAE2C2 /* top_bg@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43C2467415C666EE00EAE2C2 /* top_bg@2x.jpg */; };
@@ -81,8 +77,6 @@
 		43F5ED3A15C65424001A0F8D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 43F5ED3815C65424001A0F8D /* InfoPlist.strings */; };
 		43F5ED3C15C65424001A0F8D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F5ED3B15C65424001A0F8D /* main.m */; };
 		43F5ED4015C65424001A0F8D /* QYXAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F5ED3F15C65424001A0F8D /* QYXAppDelegate.m */; };
-		43F5ED4615C65424001A0F8D /* LQTodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F5ED4515C65424001A0F8D /* LQTodayViewController.m */; };
-		43F5ED4D15C65424001A0F8D /* LQHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F5ED4C15C65424001A0F8D /* LQHistoryViewController.m */; };
 		43F5EDAB15C6556A001A0F8D /* btn_action_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 43F5ED5815C6556A001A0F8D /* btn_action_left.png */; };
 		43F5EDAC15C6556A001A0F8D /* btn_action_right.png in Resources */ = {isa = PBXBuildFile; fileRef = 43F5ED5915C6556A001A0F8D /* btn_action_right.png */; };
 		43F5EDAD15C6556A001A0F8D /* btn_back_active.png in Resources */ = {isa = PBXBuildFile; fileRef = 43F5ED5A15C6556A001A0F8D /* btn_back_active.png */; };
@@ -161,8 +155,6 @@
 		43F5EDFC15C6556A001A0F8D /* today_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43F5EDA915C6556A001A0F8D /* today_pressed@2x.png */; };
 		43F5EDFD15C6556A001A0F8D /* top_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 43F5EDAA15C6556A001A0F8D /* top_bg.jpg */; };
 		43F5EDFF15C658B0001A0F8D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43F5EDFE15C658B0001A0F8D /* Icon@2x.png */; };
-		43F5EE0715C65988001A0F8D /* LQCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F5EE0615C65988001A0F8D /* LQCategoryViewController.m */; };
-		43F5EE0A15C65AC9001A0F8D /* LQDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 43F5EE0915C65AC9001A0F8D /* LQDetailViewController.m */; };
 		F20D0B1E16AE6002005C5FB0 /* LQDownloadTablesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D0B1D16AE6002005C5FB0 /* LQDownloadTablesController.m */; };
 		F20D0B2316AE6517005C5FB0 /* LQDownloadedCategoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D0B2116AE6517005C5FB0 /* LQDownloadedCategoryController.m */; };
 		F20D0B2416AE6517005C5FB0 /* LQDownloadedCategoryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F20D0B2216AE6517005C5FB0 /* LQDownloadedCategoryController.xib */; };
@@ -178,14 +170,7 @@
 		F20F992516B3BAE0005AD279 /* icon_small.png in Resources */ = {isa = PBXBuildFile; fileRef = F20F992416B3BAE0005AD279 /* icon_small.png */; };
 		F20F992716B3BAF3005AD279 /* icon_small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20F992616B3BAF3005AD279 /* icon_small@2x.png */; };
 		F219D4D5168C942500F8CA45 /* LQMainTabBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4D4168C942500F8CA45 /* LQMainTabBar.xib */; };
-		F219D4D7168C95DA00F8CA45 /* LQTodayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4D6168C95DA00F8CA45 /* LQTodayView.xib */; };
-		F219D4D9168C964600F8CA45 /* LQHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4D8168C964600F8CA45 /* LQHistoryView.xib */; };
-		F219D4DB168C968300F8CA45 /* LQPostFeedbackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4DA168C968300F8CA45 /* LQPostFeedbackView.xib */; };
-		F219D4DD168C972300F8CA45 /* LQCategoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4DC168C972300F8CA45 /* LQCategoryView.xib */; };
 		F219D4E1168C979F00F8CA45 /* LQImageBrowseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4E0168C979F00F8CA45 /* LQImageBrowseView.xib */; };
-		F219D4E3168C97E100F8CA45 /* LQDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4E2168C97E100F8CA45 /* LQDetailView.xib */; };
-		F219D4E5168C980100F8CA45 /* LQPostCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4E4168C980100F8CA45 /* LQPostCommentView.xib */; };
-		F219D4E7168C982E00F8CA45 /* LQDownloadManageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F219D4E6168C982E00F8CA45 /* LQDownloadManageView.xib */; };
 		F21A2DCE16A59AB5001427A8 /* LQTopicListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F21A2DCD16A59AB4001427A8 /* LQTopicListViewController.xib */; };
 		F21A2DD216A5A281001427A8 /* LQTopicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F21A2DD116A5A280001427A8 /* LQTopicListViewController.m */; };
 		F21D4AB216A6B46E00D7CC53 /* LQAppsListWrapperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F21D4AB116A6B46D00D7CC53 /* LQAppsListWrapperViewController.m */; };
@@ -599,16 +584,8 @@
 		4355485615C8CE000030B21B /* LQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQViewController.h; sourceTree = "<group>"; };
 		4355485715C8CE010030B21B /* LQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQViewController.m; sourceTree = "<group>"; };
 		437E341715CA482200F4183A /* MoreTabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreTabView.xib; sourceTree = "<group>"; };
-		437E341A15CA525100F4183A /* LQPostFeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQPostFeedbackViewController.h; sourceTree = "<group>"; };
-		437E341B15CA525100F4183A /* LQPostFeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQPostFeedbackViewController.m; sourceTree = "<group>"; };
-		437E341D15CA526000F4183A /* LQDownloadManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = LQDownloadManageViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		437E341E15CA526000F4183A /* LQDownloadManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDownloadManageViewController.m; sourceTree = "<group>"; };
 		437E342015CA5C6600F4183A /* LQInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQInstaller.h; sourceTree = "<group>"; };
 		437E342115CA5C6700F4183A /* LQInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQInstaller.m; sourceTree = "<group>"; };
-		438E82B915CF8D5A003BD09E /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		438E82BA15CF8D5A003BD09E /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
-		438E82CD15CF99A7003BD09E /* EGORefreshTableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableFooterView.h; sourceTree = "<group>"; };
-		438E82CE15CF99A7003BD09E /* EGORefreshTableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableFooterView.m; sourceTree = "<group>"; };
 		43C2467215C666EE00EAE2C2 /* foot_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foot_bg.png; sourceTree = "<group>"; };
 		43C2467315C666EE00EAE2C2 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		43C2467415C666EE00EAE2C2 /* top_bg@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "top_bg@2x.jpg"; sourceTree = "<group>"; };
@@ -645,10 +622,6 @@
 		43F5ED3D15C65424001A0F8D /* liqu-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "liqu-Prefix.pch"; sourceTree = "<group>"; };
 		43F5ED3E15C65424001A0F8D /* QYXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYXAppDelegate.h; sourceTree = "<group>"; };
 		43F5ED3F15C65424001A0F8D /* QYXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QYXAppDelegate.m; sourceTree = "<group>"; };
-		43F5ED4415C65424001A0F8D /* LQTodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LQTodayViewController.h; sourceTree = "<group>"; };
-		43F5ED4515C65424001A0F8D /* LQTodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LQTodayViewController.m; sourceTree = "<group>"; };
-		43F5ED4B15C65424001A0F8D /* LQHistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LQHistoryViewController.h; sourceTree = "<group>"; };
-		43F5ED4C15C65424001A0F8D /* LQHistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LQHistoryViewController.m; sourceTree = "<group>"; };
 		43F5ED5815C6556A001A0F8D /* btn_action_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_action_left.png; sourceTree = "<group>"; };
 		43F5ED5915C6556A001A0F8D /* btn_action_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_action_right.png; sourceTree = "<group>"; };
 		43F5ED5A15C6556A001A0F8D /* btn_back_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_back_active.png; sourceTree = "<group>"; };
@@ -727,10 +700,6 @@
 		43F5EDA915C6556A001A0F8D /* today_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "today_pressed@2x.png"; sourceTree = "<group>"; };
 		43F5EDAA15C6556A001A0F8D /* top_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = top_bg.jpg; sourceTree = "<group>"; };
 		43F5EDFE15C658B0001A0F8D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		43F5EE0515C65988001A0F8D /* LQCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LQCategoryViewController.h; path = ../LQCategoryViewController.h; sourceTree = "<group>"; };
-		43F5EE0615C65988001A0F8D /* LQCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LQCategoryViewController.m; path = ../LQCategoryViewController.m; sourceTree = "<group>"; };
-		43F5EE0815C65AC9001A0F8D /* LQDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDetailViewController.h; sourceTree = "<group>"; };
-		43F5EE0915C65AC9001A0F8D /* LQDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDetailViewController.m; sourceTree = "<group>"; };
 		F20D0B1C16AE6002005C5FB0 /* LQDownloadTablesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDownloadTablesController.h; sourceTree = "<group>"; };
 		F20D0B1D16AE6002005C5FB0 /* LQDownloadTablesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDownloadTablesController.m; sourceTree = "<group>"; };
 		F20D0B2016AE6517005C5FB0 /* LQDownloadedCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDownloadedCategoryController.h; sourceTree = "<group>"; };
@@ -751,14 +720,7 @@
 		F20F992416B3BAE0005AD279 /* icon_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_small.png; sourceTree = "<group>"; };
 		F20F992616B3BAF3005AD279 /* icon_small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_small@2x.png"; sourceTree = "<group>"; };
 		F219D4D4168C942500F8CA45 /* LQMainTabBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQMainTabBar.xib; sourceTree = "<group>"; };
-		F219D4D6168C95DA00F8CA45 /* LQTodayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQTodayView.xib; sourceTree = "<group>"; };
-		F219D4D8168C964600F8CA45 /* LQHistoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQHistoryView.xib; sourceTree = "<group>"; };
-		F219D4DA168C968300F8CA45 /* LQPostFeedbackView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQPostFeedbackView.xib; sourceTree = "<group>"; };
-		F219D4DC168C972300F8CA45 /* LQCategoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQCategoryView.xib; sourceTree = "<group>"; };
 		F219D4E0168C979F00F8CA45 /* LQImageBrowseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LQImageBrowseView.xib; path = ../LQImageBrowseView.xib; sourceTree = "<group>"; };
-		F219D4E2168C97E100F8CA45 /* LQDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQDetailView.xib; sourceTree = "<group>"; };
-		F219D4E4168C980100F8CA45 /* LQPostCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQPostCommentView.xib; sourceTree = "<group>"; };
-		F219D4E6168C982E00F8CA45 /* LQDownloadManageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQDownloadManageView.xib; sourceTree = "<group>"; };
 		F21A2DCD16A59AB4001427A8 /* LQTopicListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQTopicListViewController.xib; sourceTree = "<group>"; };
 		F21A2DD016A5A27F001427A8 /* LQTopicListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTopicListViewController.h; sourceTree = "<group>"; };
 		F21A2DD116A5A280001427A8 /* LQTopicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTopicListViewController.m; sourceTree = "<group>"; };
@@ -1193,17 +1155,6 @@
 			path = json;
 			sourceTree = SOURCE_ROOT;
 		};
-		438E82B815CF8D5A003BD09E /* egorefreshtable */ = {
-			isa = PBXGroup;
-			children = (
-				438E82CD15CF99A7003BD09E /* EGORefreshTableFooterView.h */,
-				438E82CE15CF99A7003BD09E /* EGORefreshTableFooterView.m */,
-				438E82B915CF8D5A003BD09E /* EGORefreshTableHeaderView.h */,
-				438E82BA15CF8D5A003BD09E /* EGORefreshTableHeaderView.m */,
-			);
-			path = egorefreshtable;
-			sourceTree = SOURCE_ROOT;
-		};
 		43D54E1215CB7A31007D83AE /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1347,121 +1298,21 @@
 		43F5ED3515C65424001A0F8D /* qiyouxi */ = {
 			isa = PBXGroup;
 			children = (
+				43F5ED3E15C65424001A0F8D /* QYXAppDelegate.h */,
+				43F5ED3F15C65424001A0F8D /* QYXAppDelegate.m */,
+				F2C96FCD16B7F35D0098EE92 /* Controller */,
 				F298A81E16B1749300CC464D /* JSONKit */,
 				F298A82116B1749400CC464D /* KrShareKit */,
 				F2BAA56A16A97F590090AB70 /* LiQu */,
 				F290F84516A4561C00EC712A /* SVPullToRefresh */,
 				F26CD27D1693063E00E1E30B /* Audio */,
 				F2ED56AD168FCC2900E12C5F /* imageResource */,
-				438E82B815CF8D5A003BD09E /* egorefreshtable */,
 				43D54E1A15CB7AD0007D83AE /* API */,
 				43D54E1315CB7A5D007D83AE /* Common */,
-				43F5ED3E15C65424001A0F8D /* QYXAppDelegate.h */,
-				43F5ED3F15C65424001A0F8D /* QYXAppDelegate.m */,
-				F219D4E6168C982E00F8CA45 /* LQDownloadManageView.xib */,
-				F219D4E4168C980100F8CA45 /* LQPostCommentView.xib */,
-				F27CACE816A8319B00451B86 /* LQPostCommentViewController.xib */,
-				F219D4E2168C97E100F8CA45 /* LQDetailView.xib */,
-				F219D4D4168C942500F8CA45 /* LQMainTabBar.xib */,
-				F2F4C456168B44FC00538800 /* MainWindow.xib */,
-				F219D4E0168C979F00F8CA45 /* LQImageBrowseView.xib */,
-				F219D4DC168C972300F8CA45 /* LQCategoryView.xib */,
-				F219D4DA168C968300F8CA45 /* LQPostFeedbackView.xib */,
-				F219D4D8168C964600F8CA45 /* LQHistoryView.xib */,
-				F2F4C454168B3E2600538800 /* LQLoading.xib */,
-				F219D4D6168C95DA00F8CA45 /* LQTodayView.xib */,
-				4336572A15CA1FAA00E34D4C /* LQLaunchViewController.h */,
-				4336572B15CA1FAA00E34D4C /* LQLaunchViewController.m */,
-				433CBDE115CA31A0001D56F9 /* LQMainTabBarController.h */,
-				433CBDE215CA31A0001D56F9 /* LQMainTabBarController.m */,
-				43F5ED4415C65424001A0F8D /* LQTodayViewController.h */,
-				43F5ED4515C65424001A0F8D /* LQTodayViewController.m */,
-				43F5ED4B15C65424001A0F8D /* LQHistoryViewController.h */,
-				43F5ED4C15C65424001A0F8D /* LQHistoryViewController.m */,
-				43F5EE0815C65AC9001A0F8D /* LQDetailViewController.h */,
-				43F5EE0915C65AC9001A0F8D /* LQDetailViewController.m */,
-				43F5EE0515C65988001A0F8D /* LQCategoryViewController.h */,
-				43F5EE0615C65988001A0F8D /* LQCategoryViewController.m */,
-				4336572615CA1DAB00E34D4C /* LQPostCommentViewController.h */,
-				4336572715CA1DAB00E34D4C /* LQPostCommentViewController.m */,
-				433CBDDD15CA2F40001D56F9 /* LQImageBrowseViewController.h */,
-				433CBDDE15CA2F40001D56F9 /* LQImageBrowseViewController.m */,
-				437E341A15CA525100F4183A /* LQPostFeedbackViewController.h */,
-				437E341B15CA525100F4183A /* LQPostFeedbackViewController.m */,
-				437E341D15CA526000F4183A /* LQDownloadManageViewController.h */,
-				437E341E15CA526000F4183A /* LQDownloadManageViewController.m */,
-				4355485615C8CE000030B21B /* LQViewController.h */,
-				4355485715C8CE010030B21B /* LQViewController.m */,
 				43D54E1215CB7A31007D83AE /* CustomCells */,
 				4355481B15C8BEAB0030B21B /* json */,
 				43F5ED5715C6556A001A0F8D /* images */,
 				43F5ED3615C65424001A0F8D /* Supporting Files */,
-				F2B7A654168FDE5800679C6E /* LQFirstPageViewController.h */,
-				F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */,
-				F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */,
-				F2B7A65A168FE10300679C6E /* LQSearchViewController.h */,
-				F2B7A65B168FE10400679C6E /* LQSearchViewController.m */,
-				F2B7A65C168FE10400679C6E /* LQSearchViewController.xib */,
-				F2B7A65F168FE16300679C6E /* LQDownloadViewController.h */,
-				F2B7A660168FE16300679C6E /* LQDownloadViewController.m */,
-				F2B7A661168FE16300679C6E /* LQDownloadViewController.xib */,
-				F2B7A664168FE1A500679C6E /* LQUpdateViewController.h */,
-				F2B7A665168FE1A500679C6E /* LQUpdateViewController.m */,
-				F2B7A666168FE1A600679C6E /* LQUpdateViewController.xib */,
-				F2B7A669168FE1C100679C6E /* LQMoreViewController.h */,
-				F2B7A66A168FE1C100679C6E /* LQMoreViewController.m */,
-				F2B7A66B168FE1C200679C6E /* LQMoreViewController.xib */,
-				F2E165571690712E0049BD05 /* LQGameDetailViewController.h */,
-				F2E165581690712F0049BD05 /* LQGameDetailViewController.m */,
-				F2E165591690712F0049BD05 /* LQGameDetailViewController.xib */,
-				F26CD20116911E7600E1E30B /* LQGameInfoListViewController.h */,
-				F26CD20216911E7600E1E30B /* LQGameInfoListViewController.m */,
-				F26CD20316911E7600E1E30B /* LQGameInfoListViewController.xib */,
-				F2BAD5D8169D53CF00893F4C /* LQTablesController.h */,
-				F2BAD5D9169D53CF00893F4C /* LQTablesController.m */,
-				F2BAD5DA169D53CF00893F4C /* LQTablesController.xib */,
-				F23AA8B116AD2B44008845C1 /* LQRingTablesController.h */,
-				F23AA8B216AD2B45008845C1 /* LQRingTablesController.m */,
-				F28F56FC16AD4EC0004E1A9E /* LQDetailTablesController.h */,
-				F28F56FD16AD4EC1004E1A9E /* LQDetailTablesController.m */,
-				F20D0B1C16AE6002005C5FB0 /* LQDownloadTablesController.h */,
-				F20D0B1D16AE6002005C5FB0 /* LQDownloadTablesController.m */,
-				F21A2DD016A5A27F001427A8 /* LQTopicListViewController.h */,
-				F21A2DD116A5A280001427A8 /* LQTopicListViewController.m */,
-				F21D4AB016A6B46D00D7CC53 /* LQAppsListWrapperViewController.h */,
-				F21D4AB116A6B46D00D7CC53 /* LQAppsListWrapperViewController.m */,
-				F2BAD5DE169D6AE800893F4C /* LQPageController.h */,
-				F2BAD5DF169D6AE800893F4C /* LQPageController.m */,
-				F2C2667B169DB9B600382479 /* LQCommonTableViewController.h */,
-				F2C2667C169DB9B600382479 /* LQCommonTableViewController.m */,
-				F2C2667D169DB9B600382479 /* LQCommonTableViewController.xib */,
-				F21A2DCD16A59AB4001427A8 /* LQTopicListViewController.xib */,
-				F266A9DF169F9EBA0014FE75 /* LQRankViewController.h */,
-				F266A9E0169F9EBA0014FE75 /* LQRankViewController.m */,
-				F284278F169FE08E00997FC0 /* LQCategoryListViewController.h */,
-				F2842790169FE08E00997FC0 /* LQCategoryListViewController.m */,
-				F2EF704D16A7C7720075F182 /* LQWallpaperViewController.h */,
-				F2EF704E16A7C7720075F182 /* LQWallpaperViewController.m */,
-				F2EF704F16A7C7730075F182 /* LQWallpaperViewController.xib */,
-				F20D0B2016AE6517005C5FB0 /* LQDownloadedCategoryController.h */,
-				F20D0B2116AE6517005C5FB0 /* LQDownloadedCategoryController.m */,
-				F20D0B2216AE6517005C5FB0 /* LQDownloadedCategoryController.xib */,
-				F20D0B2516AE804B005C5FB0 /* LQDownloadingViewController.h */,
-				F20D0B2616AE804B005C5FB0 /* LQDownloadingViewController.m */,
-				F20D0B2716AE804C005C5FB0 /* LQDownloadingViewController.xib */,
-				F20D0B2A16AE8837005C5FB0 /* LQDownloadedViewController.h */,
-				F20D0B2B16AE8838005C5FB0 /* LQDownloadedViewController.m */,
-				F20D0B2C16AE8838005C5FB0 /* LQDownloadedViewController.xib */,
-				F20D0B2F16AE976A005C5FB0 /* LQDownloadedRingsViewController.h */,
-				F20D0B3016AE976B005C5FB0 /* LQDownloadedRingsViewController.m */,
-				F2E29D3516AEE2000084A7F0 /* LQDownloadedWallpaperViewController.h */,
-				F2E29D3616AEE2000084A7F0 /* LQDownloadedWallpaperViewController.m */,
-				F2E29D3916AFA4FD0084A7F0 /* LQAboutViewController.h */,
-				F2E29D3A16AFA5000084A7F0 /* LQAboutViewController.m */,
-				F2E29D3B16AFA5010084A7F0 /* LQAboutViewController.xib */,
-				F2E29D4A16AFE0620084A7F0 /* LQSMSRingReplaceViewController.h */,
-				F2E29D4B16AFE0620084A7F0 /* LQSMSRingReplaceViewController.m */,
-				F2E29D4C16AFE0630084A7F0 /* LQSMSRingReplaceViewController.xib */,
 			);
 			path = qiyouxi;
 			sourceTree = "<group>";
@@ -1842,6 +1693,94 @@
 			path = 2x;
 			sourceTree = "<group>";
 		};
+		F2C96FCD16B7F35D0098EE92 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F27CACE816A8319B00451B86 /* LQPostCommentViewController.xib */,
+				F219D4D4168C942500F8CA45 /* LQMainTabBar.xib */,
+				F2F4C456168B44FC00538800 /* MainWindow.xib */,
+				F219D4E0168C979F00F8CA45 /* LQImageBrowseView.xib */,
+				F2F4C454168B3E2600538800 /* LQLoading.xib */,
+				4336572A15CA1FAA00E34D4C /* LQLaunchViewController.h */,
+				4336572B15CA1FAA00E34D4C /* LQLaunchViewController.m */,
+				433CBDE115CA31A0001D56F9 /* LQMainTabBarController.h */,
+				433CBDE215CA31A0001D56F9 /* LQMainTabBarController.m */,
+				4336572615CA1DAB00E34D4C /* LQPostCommentViewController.h */,
+				4336572715CA1DAB00E34D4C /* LQPostCommentViewController.m */,
+				433CBDDD15CA2F40001D56F9 /* LQImageBrowseViewController.h */,
+				433CBDDE15CA2F40001D56F9 /* LQImageBrowseViewController.m */,
+				4355485615C8CE000030B21B /* LQViewController.h */,
+				4355485715C8CE010030B21B /* LQViewController.m */,
+				F2B7A654168FDE5800679C6E /* LQFirstPageViewController.h */,
+				F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */,
+				F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */,
+				F2B7A65A168FE10300679C6E /* LQSearchViewController.h */,
+				F2B7A65B168FE10400679C6E /* LQSearchViewController.m */,
+				F2B7A65C168FE10400679C6E /* LQSearchViewController.xib */,
+				F2B7A65F168FE16300679C6E /* LQDownloadViewController.h */,
+				F2B7A660168FE16300679C6E /* LQDownloadViewController.m */,
+				F2B7A661168FE16300679C6E /* LQDownloadViewController.xib */,
+				F2B7A664168FE1A500679C6E /* LQUpdateViewController.h */,
+				F2B7A665168FE1A500679C6E /* LQUpdateViewController.m */,
+				F2B7A666168FE1A600679C6E /* LQUpdateViewController.xib */,
+				F2B7A669168FE1C100679C6E /* LQMoreViewController.h */,
+				F2B7A66A168FE1C100679C6E /* LQMoreViewController.m */,
+				F2B7A66B168FE1C200679C6E /* LQMoreViewController.xib */,
+				F2E165571690712E0049BD05 /* LQGameDetailViewController.h */,
+				F2E165581690712F0049BD05 /* LQGameDetailViewController.m */,
+				F2E165591690712F0049BD05 /* LQGameDetailViewController.xib */,
+				F26CD20116911E7600E1E30B /* LQGameInfoListViewController.h */,
+				F26CD20216911E7600E1E30B /* LQGameInfoListViewController.m */,
+				F26CD20316911E7600E1E30B /* LQGameInfoListViewController.xib */,
+				F2BAD5D8169D53CF00893F4C /* LQTablesController.h */,
+				F2BAD5D9169D53CF00893F4C /* LQTablesController.m */,
+				F2BAD5DA169D53CF00893F4C /* LQTablesController.xib */,
+				F23AA8B116AD2B44008845C1 /* LQRingTablesController.h */,
+				F23AA8B216AD2B45008845C1 /* LQRingTablesController.m */,
+				F28F56FC16AD4EC0004E1A9E /* LQDetailTablesController.h */,
+				F28F56FD16AD4EC1004E1A9E /* LQDetailTablesController.m */,
+				F20D0B1C16AE6002005C5FB0 /* LQDownloadTablesController.h */,
+				F20D0B1D16AE6002005C5FB0 /* LQDownloadTablesController.m */,
+				F21A2DD016A5A27F001427A8 /* LQTopicListViewController.h */,
+				F21A2DD116A5A280001427A8 /* LQTopicListViewController.m */,
+				F21D4AB016A6B46D00D7CC53 /* LQAppsListWrapperViewController.h */,
+				F21D4AB116A6B46D00D7CC53 /* LQAppsListWrapperViewController.m */,
+				F2BAD5DE169D6AE800893F4C /* LQPageController.h */,
+				F2BAD5DF169D6AE800893F4C /* LQPageController.m */,
+				F2C2667B169DB9B600382479 /* LQCommonTableViewController.h */,
+				F2C2667C169DB9B600382479 /* LQCommonTableViewController.m */,
+				F2C2667D169DB9B600382479 /* LQCommonTableViewController.xib */,
+				F21A2DCD16A59AB4001427A8 /* LQTopicListViewController.xib */,
+				F266A9DF169F9EBA0014FE75 /* LQRankViewController.h */,
+				F266A9E0169F9EBA0014FE75 /* LQRankViewController.m */,
+				F284278F169FE08E00997FC0 /* LQCategoryListViewController.h */,
+				F2842790169FE08E00997FC0 /* LQCategoryListViewController.m */,
+				F2EF704D16A7C7720075F182 /* LQWallpaperViewController.h */,
+				F2EF704E16A7C7720075F182 /* LQWallpaperViewController.m */,
+				F2EF704F16A7C7730075F182 /* LQWallpaperViewController.xib */,
+				F20D0B2016AE6517005C5FB0 /* LQDownloadedCategoryController.h */,
+				F20D0B2116AE6517005C5FB0 /* LQDownloadedCategoryController.m */,
+				F20D0B2216AE6517005C5FB0 /* LQDownloadedCategoryController.xib */,
+				F20D0B2516AE804B005C5FB0 /* LQDownloadingViewController.h */,
+				F20D0B2616AE804B005C5FB0 /* LQDownloadingViewController.m */,
+				F20D0B2716AE804C005C5FB0 /* LQDownloadingViewController.xib */,
+				F20D0B2A16AE8837005C5FB0 /* LQDownloadedViewController.h */,
+				F20D0B2B16AE8838005C5FB0 /* LQDownloadedViewController.m */,
+				F20D0B2C16AE8838005C5FB0 /* LQDownloadedViewController.xib */,
+				F20D0B2F16AE976A005C5FB0 /* LQDownloadedRingsViewController.h */,
+				F20D0B3016AE976B005C5FB0 /* LQDownloadedRingsViewController.m */,
+				F2E29D3516AEE2000084A7F0 /* LQDownloadedWallpaperViewController.h */,
+				F2E29D3616AEE2000084A7F0 /* LQDownloadedWallpaperViewController.m */,
+				F2E29D3916AFA4FD0084A7F0 /* LQAboutViewController.h */,
+				F2E29D3A16AFA5000084A7F0 /* LQAboutViewController.m */,
+				F2E29D3B16AFA5010084A7F0 /* LQAboutViewController.xib */,
+				F2E29D4A16AFE0620084A7F0 /* LQSMSRingReplaceViewController.h */,
+				F2E29D4B16AFE0620084A7F0 /* LQSMSRingReplaceViewController.m */,
+				F2E29D4C16AFE0630084A7F0 /* LQSMSRingReplaceViewController.xib */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		F2ED56AD168FCC2900E12C5F /* imageResource */ = {
 			isa = PBXGroup;
 			children = (
@@ -2105,14 +2044,7 @@
 				F2F4C455168B3E2700538800 /* LQLoading.xib in Resources */,
 				F2F4C457168B44FD00538800 /* MainWindow.xib in Resources */,
 				F219D4D5168C942500F8CA45 /* LQMainTabBar.xib in Resources */,
-				F219D4D7168C95DA00F8CA45 /* LQTodayView.xib in Resources */,
-				F219D4D9168C964600F8CA45 /* LQHistoryView.xib in Resources */,
-				F219D4DB168C968300F8CA45 /* LQPostFeedbackView.xib in Resources */,
-				F219D4DD168C972300F8CA45 /* LQCategoryView.xib in Resources */,
 				F219D4E1168C979F00F8CA45 /* LQImageBrowseView.xib in Resources */,
-				F219D4E3168C97E100F8CA45 /* LQDetailView.xib in Resources */,
-				F219D4E5168C980100F8CA45 /* LQPostCommentView.xib in Resources */,
-				F219D4E7168C982E00F8CA45 /* LQDownloadManageView.xib in Resources */,
 				F2ED5962168FCC2B00E12C5F /* button1.png in Resources */,
 				F2ED5963168FCC2B00E12C5F /* button1@2x.png in Resources */,
 				F2ED5964168FCC2B00E12C5F /* button1_down.png in Resources */,
@@ -2414,10 +2346,6 @@
 				F2B7A65D168FE10500679C6E /* LQSearchViewController.m in Sources */,
 				43F5ED3C15C65424001A0F8D /* main.m in Sources */,
 				43F5ED4015C65424001A0F8D /* QYXAppDelegate.m in Sources */,
-				43F5ED4615C65424001A0F8D /* LQTodayViewController.m in Sources */,
-				43F5ED4D15C65424001A0F8D /* LQHistoryViewController.m in Sources */,
-				43F5EE0715C65988001A0F8D /* LQCategoryViewController.m in Sources */,
-				43F5EE0A15C65AC9001A0F8D /* LQDetailViewController.m in Sources */,
 				434BF5E315C7812A00CCE2CC /* LQHistoryTableViewCell.m in Sources */,
 				434BF5F215C788B200CCE2CC /* LQHistoryTableSectionHeader.m in Sources */,
 				434BF5F515C78E3100CCE2CC /* LQCategoryTableViewCell.m in Sources */,
@@ -2447,16 +2375,12 @@
 				4336572F15CA254D00E34D4C /* LQURLCache.m in Sources */,
 				433CBDDF15CA2F40001D56F9 /* LQImageBrowseViewController.m in Sources */,
 				433CBDE315CA31A0001D56F9 /* LQMainTabBarController.m in Sources */,
-				437E341C15CA525100F4183A /* LQPostFeedbackViewController.m in Sources */,
-				437E341F15CA526000F4183A /* LQDownloadManageViewController.m in Sources */,
 				437E342215CA5C6700F4183A /* LQInstaller.m in Sources */,
 				43D54E1615CB7A9A007D83AE /* LQDownloadManager.m in Sources */,
 				43D54E1915CB7AC5007D83AE /* QYXData.m in Sources */,
 				43D54E1F15CBBC8E007D83AE /* LQDownloadTableViewCell.m in Sources */,
 				4348B7CD15CBC14B0086DE04 /* LQInstallTableViewCell.m in Sources */,
 				43D2AFE315CF63DD0045EFF5 /* QYXObjectExtension.m in Sources */,
-				438E82BB15CF8D5A003BD09E /* EGORefreshTableHeaderView.m in Sources */,
-				438E82CF15CF99A7003BD09E /* EGORefreshTableFooterView.m in Sources */,
 				43F3743415D1168C000F475B /* LQToast.m in Sources */,
 				4312ED6915D2137D00D0A0FD /* LQAPICache.m in Sources */,
 				F2ED59A7168FCC2B00E12C5F /* express.js in Sources */,

@@ -7,10 +7,13 @@
 //
 
 #import "LQViewController.h"
+@class AudioPlayer;
 
 @interface LQDownloadedRingsViewController : LQViewController<UITableViewDelegate, UITableViewDataSource>{
     int selectedRow;
     NSMutableArray* appsList;
+    AudioPlayer *_audioPlayer;
+
 }
 @property (unsafe_unretained) int selectedRow;
 @property (unsafe_unretained) IBOutlet UITableView* applicaitonView;
