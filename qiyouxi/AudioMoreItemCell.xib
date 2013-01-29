@@ -111,7 +111,7 @@
 									<object class="IBUIImageView" id="35960951">
 										<reference key="NSNextResponder" ref="122223325"/>
 										<int key="NSvFlags">266</int>
-										<string key="NSFrameSize">{320, 40}</string>
+										<string key="NSFrameSize">{320, 50}</string>
 										<reference key="NSSuperview" ref="122223325"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="134791290"/>
@@ -120,13 +120,13 @@
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										<object class="NSCustomResource" key="IBUIImage">
 											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">soft_detail_bg.png</string>
+											<string key="NSResourceName">click_drop_bg.png</string>
 										</object>
 									</object>
 									<object class="IBUIButton" id="308671833">
 										<reference key="NSNextResponder" ref="122223325"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{125, 6}, {70, 29}}</string>
+										<string key="NSFrame">{{125, 14}, {70, 29}}</string>
 										<reference key="NSSuperview" ref="122223325"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="399059507"/>
@@ -162,10 +162,9 @@
 									<object class="IBUIButton" id="399059507">
 										<reference key="NSNextResponder" ref="122223325"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{245, 6}, {70, 29}}</string>
+										<string key="NSFrame">{{245, 14}, {70, 29}}</string>
 										<reference key="NSSuperview" ref="122223325"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
 										<bool key="IBUIOpaque">NO</bool>
 										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -186,7 +185,7 @@
 									<object class="IBUIButton" id="134791290">
 										<reference key="NSNextResponder" ref="122223325"/>
 										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{10, 6}, {70, 29}}</string>
+										<string key="NSFrame">{{10, 14}, {70, 29}}</string>
 										<reference key="NSSuperview" ref="122223325"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="308671833"/>
@@ -196,7 +195,7 @@
 										<int key="IBUIContentHorizontalAlignment">0</int>
 										<int key="IBUIContentVerticalAlignment">0</int>
 										<int key="IBUIButtonType">1</int>
-										<string key="IBUINormalTitle">立即安装</string>
+										<string key="IBUINormalTitle">设置</string>
 										<reference key="IBUIHighlightedTitleColor" ref="298229611"/>
 										<object class="NSColor" key="IBUINormalTitleColor">
 											<int key="NSColorSpace">1</int>
@@ -208,17 +207,14 @@
 										<reference key="IBUIFont" ref="505108738"/>
 									</object>
 								</array>
-								<string key="NSFrame">{{0, 70}, {320, 40}}</string>
+								<string key="NSFrame">{{0, 61}, {320, 50}}</string>
 								<reference key="NSSuperview" ref="304115595"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="35960951"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
-								<object class="NSColor" key="IBUIBackgroundColor">
+								<object class="NSColor" key="IBUIBackgroundColor" id="317019986">
 									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MQA</bytes>
-									<object class="NSColorSpace" key="NSCustomColorSpace">
-										<int key="NSID">2</int>
-									</object>
+									<bytes key="NSWhite">MCAwAA</bytes>
 								</object>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
@@ -228,10 +224,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="828371569"/>
 						<string key="NSReuseIdentifierKey">_NS:11</string>
-						<object class="NSColor" key="IBUIBackgroundColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MCAwAA</bytes>
-						</object>
+						<reference key="IBUIBackgroundColor" ref="317019986"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">4</int>
@@ -248,7 +241,7 @@
 				<int key="IBUISelectionStyle">0</int>
 				<reference key="IBUIContentView" ref="304115595"/>
 				<string key="IBUIReuseIdentifier">AudioMoreItemCell</string>
-				<real value="113" key="IBUIRowHeight"/>
+				<real value="114" key="IBUIRowHeight"/>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -340,8 +333,8 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="399059507"/>
 							<reference ref="308671833"/>
-							<reference ref="35960951"/>
 							<reference ref="134791290"/>
+							<reference ref="35960951"/>
 						</array>
 						<reference key="parent" ref="439878776"/>
 					</object>
@@ -463,7 +456,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="btn_download.png">{56, 29}</string>
-			<string key="soft_detail_bg.png">{512, 412}</string>
+			<string key="click_drop_bg.png">{320, 52}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>

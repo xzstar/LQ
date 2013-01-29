@@ -27,6 +27,7 @@
 
 @property (nonatomic, strong) NSString* downloadUrl;
 @property (nonatomic, strong) NSString* package;
+@property (nonatomic, strong) NSString* shareUri;
 
 @property (nonatomic, strong) NSString* imageUrl;
 @property (nonatomic, strong) NSString* versionCode;

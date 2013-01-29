@@ -88,7 +88,7 @@
 					</object>
 					<object class="IBUIView" id="621433532">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUIButton" id="930275321">
 								<reference key="NSNextResponder" ref="621433532"/>
@@ -163,7 +163,7 @@
 					</object>
 					<object class="IBUIView" id="425779614">
 						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
+						<int key="NSvFlags">-2147483356</int>
 						<array class="NSMutableArray" key="NSSubviews">
 							<object class="IBUIButton" id="43431365">
 								<reference key="NSNextResponder" ref="425779614"/>

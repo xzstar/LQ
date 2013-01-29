@@ -204,7 +204,7 @@
             morecell = [[[NSBundle mainBundle] loadNibNamed:@"AudioMoreItemCell" owner:self options:nil] objectAtIndex:0];
             [morecell configurePlayerButton];
             
-            [morecell setButtonsName:@"立刻安装" middle:@"下载" right:nil];
+            [morecell setButtonsName:@"设置" middle:@"下载" right:nil];
             
             [morecell addLeftButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
             [morecell addMiddleButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
@@ -581,7 +581,7 @@
             morecell = [[[NSBundle mainBundle] loadNibNamed:@"AudioMoreItemCell" owner:self options:nil] objectAtIndex:0];
             [morecell configurePlayerButton];
             
-            [morecell setButtonsName:@"立刻安装" middle:@"下载" right:nil];
+            [morecell setButtonsName:@"设置" middle:@"下载" right:nil];
             
             [morecell addLeftButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
             [morecell addMiddleButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];

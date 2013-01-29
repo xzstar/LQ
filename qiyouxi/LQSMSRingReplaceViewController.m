@@ -98,7 +98,6 @@
 - (void)getRingTone{
     toneDictory = [[NSDictionary alloc] initWithContentsOfFile:@"/private/var/mobile/Media/iTunes_Control/iTunes/Ringtones.plist"];
 
-    
 }
 
 -(IBAction)onBack:(id)sender{

@@ -28,6 +28,7 @@
 
 @synthesize requestUrl;
 @synthesize fileType;
+@synthesize shareUri;
 
 - (id)initWithAPIResult:(NSDictionary*)result{
     self = [super init];
@@ -74,7 +75,7 @@
         
         self.downloadUrl = [result objectForKey:@"downloadUri"];
         self.package = [result objectForKey:@"package"];
-        
+        self.shareUri = [result objectForKey:@"shareUri"];
 //        self.downloadUrl = @"http://172.16.96.53/~wangqing/ukongarith.ipa";
 //        self.package = @"com.ukongame.UKongArithZh";// [result objectForKey:@"package"];
         

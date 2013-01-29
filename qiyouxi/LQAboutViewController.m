@@ -112,15 +112,16 @@
 
 - (void)KRShareDidLogIn:(KRShare *)krShare
 {
+    NSString* shareText = @"我在使用#历趣助手#,你也可以试试哦";
     [self storeAuthData];
     if(krShare.shareTarget == KRShareTargetSinablog)
     {
-//        [_krShare requestWithURL:@"statuses/upload.json"
-//                          params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-//                                  @"这是我分享的图片", @"status",
-//                                  [UIImage imageNamed:@"Default.png"], @"pic", nil]
-//                      httpMethod:@"POST"
-//                        delegate:self];
+        [_krShare requestWithURL:@"statuses/upload.json"
+                          params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                  shareText, @"status",
+                                  [UIImage imageNamed:@"icon.png"], @"pic", nil]
+                      httpMethod:@"POST"
+                        delegate:self];
         
         [_krShare requestWithURL:@"statuses/update.json"
                           params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -134,7 +135,7 @@
     {
         [krShare requestWithURL:@"t/add_pic"
                          params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                 @"这是我分享的图片", @"content",
+                                 shareText, @"content",
                                  @"json",@"format",
                                  @"221.232.172.30",@"clientip",
                                  @"all",@"scope",

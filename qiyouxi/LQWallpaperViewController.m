@@ -39,7 +39,7 @@
         [self startLoading];
     }
     self.title.text = titleString;
-    [self hideToolBar:3.0f];
+    //[self hideToolBar:3.0f];
 }
 
 - (void)viewDidUnload

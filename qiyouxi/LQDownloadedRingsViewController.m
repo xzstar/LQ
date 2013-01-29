@@ -116,7 +116,7 @@ extern NSString* const kNotificationDownloadComplete;
             morecell = [[[NSBundle mainBundle] loadNibNamed:@"AudioMoreItemCell" owner:self options:nil] objectAtIndex:0];
             [morecell configurePlayerButton];
          
-            [morecell setButtonsName:@"立刻安装" middle:nil right:nil];
+            [morecell setButtonsName:@"设置" middle:nil right:nil];
             
             [morecell addLeftButtonTarget:self action:@selector(onInstallRing:) tag:indexPath.row];
           
@@ -181,7 +181,7 @@ extern NSString* const kNotificationDownloadComplete;
         NSString* fileName= [obj.filePath lastPathComponent];
         
         NSString* destPath=[RINGTONEPATH stringByAppendingPathComponent:fileName];//这里要特别主意，目标文件路径一定要以文件名结尾，而不要以文件夹结尾
-        
+       
         NSArray* destPaths = [NSArray arrayWithObjects:destPath,nil];
         obj.finalFilePaths = destPaths;
         obj.installAfterDownloaded = YES;

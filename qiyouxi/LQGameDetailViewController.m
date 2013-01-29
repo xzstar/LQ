@@ -372,53 +372,56 @@
 - (void)KRShareDidLogIn:(KRShare *)krShare
 {
     [self storeAuthData];
+    
+    NSString* shareText = [NSString stringWithFormat:@"%@可以从%@下载，点开链接后再点下载按钮就可以啦", gameInfo.name, gameInfo.shareUri];
+    
     if(krShare.shareTarget == KRShareTargetSinablog)
     {
-        //        [_krShare requestWithURL:@"statuses/upload.json"
-        //                          params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-        //                                  @"这是我分享的图片", @"status",
-        //                                  [UIImage imageNamed:@"Default.png"], @"pic", nil]
-        //                      httpMethod:@"POST"
-        //                        delegate:self];
+                [_krShare requestWithURL:@"statuses/upload.json"
+                                  params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                          shareText, @"status",
+                                          gameIconView.imageView.image, @"pic", nil]
+                              httpMethod:@"POST"
+                                delegate:self];
         
-        [_krShare requestWithURL:@"statuses/update.json"
-                          params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                  @"test 这是我分享", @"status",
-                                  nil]
-                      httpMethod:@"POST"
-                        delegate:self];
+//        [_krShare requestWithURL:@"statuses/update.json"
+//                          params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                                  @"test 这是我分享", @"status",
+//                                  nil]
+//                      httpMethod:@"POST"
+//                        delegate:self];
     }
     
     if(krShare.shareTarget == KRShareTargetTencentblog)
     {
-        //        [krShare requestWithURL:@"t/add_pic"
-        //                         params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-        //                                 @"这是我分享的图片", @"content",
-        //                                 @"json",@"format",
-        //                                 @"221.232.172.30",@"clientip",
-        //                                 @"all",@"scope",
-        //                                 krShare.userID,@"openid",
-        //                                 @"ios-sdk-2.0-publish",@"appfrom",
-        //                                 @"0",@"compatibleflag",
-        //                                 @"2.a",@"oauth_version",
-        //                                 kTencentWeiboAppKey,@"oauth_consumer_key",
-        //                                 [UIImage imageNamed:@"Default.png"], @"pic", nil]
-        //                     httpMethod:@"POST"
-        //                       delegate:self];
-        [krShare requestWithURL:@"t/add"
-                         params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                 @"这是我的分享", @"content",
-                                 @"json",@"format",
-                                 @"",@"clientip",
-                                 @"all",@"scope",
-                                 krShare.userID,@"openid",
-                                 @"ios-sdk-2.0-publish",@"appfrom",
-                                 @"0",@"compatibleflag",
-                                 @"2.a",@"oauth_version",
-                                 kTencentWeiboAppKey,@"oauth_consumer_key",
-                                 nil]
-                     httpMethod:@"POST"
-                       delegate:self];    
+                [krShare requestWithURL:@"t/add_pic"
+                                 params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+                                         shareText, @"content",
+                                         @"json",@"format",
+                                         @"221.232.172.30",@"clientip",
+                                         @"all",@"scope",
+                                         krShare.userID,@"openid",
+                                         @"ios-sdk-2.0-publish",@"appfrom",
+                                         @"0",@"compatibleflag",
+                                         @"2.a",@"oauth_version",
+                                         kTencentWeiboAppKey,@"oauth_consumer_key",
+                                         gameIconView.imageView.image, @"pic", nil]
+                             httpMethod:@"POST"
+                               delegate:self];
+//        [krShare requestWithURL:@"t/add"
+//                         params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                                 @"这是我的分享", @"content",
+//                                 @"json",@"format",
+//                                 @"",@"clientip",
+//                                 @"all",@"scope",
+//                                 krShare.userID,@"openid",
+//                                 @"ios-sdk-2.0-publish",@"appfrom",
+//                                 @"0",@"compatibleflag",
+//                                 @"2.a",@"oauth_version",
+//                                 kTencentWeiboAppKey,@"oauth_consumer_key",
+//                                 nil]
+//                     httpMethod:@"POST"
+//                       delegate:self];    
     }
     if(krShare.shareTarget == KRShareTargetDoubanblog)
     {
