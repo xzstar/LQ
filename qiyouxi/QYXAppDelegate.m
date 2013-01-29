@@ -8,6 +8,7 @@
 
 #import "QYXAppDelegate.h"
 #import "LQLaunchViewController.h"
+#import "LQConfig.h"
 @implementation QYXAppDelegate
 
 @synthesize window;
@@ -19,12 +20,22 @@
 {
     srand(time(NULL));
     // Override point for customization after application launch.
-   	mkdir(@"/var/mobile/Library/liqu", 0755);
+   	// mkdir(@"/var/mobile/Library/liqu", 0755);
     [navigationController pushViewController:main animated:NO];
     [navigationController setNavigationBarHidden:YES];
     [window addSubview:[navigationController view]];
 	[self.window makeKeyAndVisible];
     
+    if (client == nil){
+        client = [[LQClient alloc] initWithDelegate:self];
+    }
+    
+    if([LQConfig isFirstBoot] == YES){
+        [client bootRecord:YES];
+        [LQConfig setFirstBoot:NO];
+    }
+    
+
     return YES;
 }
 							
@@ -48,6 +59,8 @@
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [client bootRecord:NO];
+
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

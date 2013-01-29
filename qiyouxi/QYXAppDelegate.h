@@ -15,6 +15,8 @@
     UIWindow *window;
     LQLaunchViewController *launchViewController;
     LQMainTabBarController* main;
+    LQClient* client;
+
 }
 
 @property (strong, nonatomic) IBOutlet UIWindow *window;

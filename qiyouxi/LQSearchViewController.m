@@ -8,15 +8,10 @@
 
 #import "LQSearchViewController.h"
 #import "LQSearchSectionHeader.h"
-#import "SearchHistoryItem.h"
 #import "LQSearchHistoryCell.h"
 #import "LQGameInfoListViewController.h"
 #import "LQConfig.h"
 #define LQAPPSEARCH @"app_search"
-
-//#define LQAPPSEARCH_HINT @"软件游戏"
-//#define LQLSSEARCH_HINT @"铃声"
-//#define LQBZSEARCH_HINT @"壁纸"
 
 @interface LQSearchViewController ()
 

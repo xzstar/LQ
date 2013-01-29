@@ -116,23 +116,12 @@
     [[AppUpdateReader sharedInstance] addListener: self];
     [[AppUpdateReader sharedInstance] loadNeedUpdateApps];
     
-    if (client == nil){
-        client = [[LQClient alloc] initWithDelegate:self];
-    }
-    
-    
+  
        
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    if([LQConfig isFirstBoot] == YES){
-        [client bootRecord:YES];
-        [LQConfig setFirstBoot:NO];
-    }
-    [client bootRecord:NO];
-    
-
 }
 - (void)viewDidUnload
 {
