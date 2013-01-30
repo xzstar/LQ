@@ -8,7 +8,7 @@
 
 #import "LQUtilities.h"
 #import "LQConfig.h"
-
+#import "UIImage+Scale.h"
 @implementation LQUtilities
 +(BOOL) copyFile:(NSString*) srcPath destPath:(NSString*) destPath{
     NSError* error=nil;
@@ -134,6 +134,69 @@
     
     return imagedata;
     
+}
+
++(NSString*)createcpBitmap:(NSString*)imagePath savedcpbitmapName:(NSString*)savedcpbitmapName{
+    //UIImage* sourceImage = image;
+    
+    UIImage* sourceImage = [UIImage imageWithContentsOfFile:imagePath];
+    if(sourceImage == nil)
+        return nil;
+
+
+    CGSize size = [UIScreen mainScreen].bounds.size; 
+    UIImage* sizedSourceImage =[sourceImage scaleToSize:size];
+    
+    void* data = [self getImageData:sizedSourceImage];
+    
+    for (int i=0; i<size.width*size.height; i++) {
+        char* ch1 = &((char*)data)[i*4];
+        char* ch2 = &((char*)data)[i*4+1];
+        char* ch3 = &((char*)data)[i*4+2];
+        char* ch4 = &((char*)data)[i*4+3];
+        
+        char temp = *ch1;
+        *ch1 = *ch4;
+        *ch4 = temp;
+        
+        temp = *ch2;
+        *ch2 = *ch3;
+        *ch3 = temp;
+        
+    }
+    
+    
+    NSMutableData* imageData = [[NSMutableData alloc] initWithBytes:data length:size.width*size.height*4];
+    
+    
+    
+    static unsigned char tailData[] = {
+        0x00, 0x00, 0x00, 0x00, 
+        0x80, 0x02, 0x00, 0x00, 0xc0, 0x03, 0x00, 0x00,  //0x280 0x3c0
+        0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
+        0x00, 0x00, 0x91, 0x32, 0xa4, 0xcb,   
+    };
+    
+    // update new width & height
+    int* tempTail = (int*) tailData;
+    tempTail[1] = size.width;
+    tempTail[2] = size.height;
+    
+    
+    //        static unsigned char tailData[] = {
+    //            0x62, 0x70, 0x6c, 0x69, 0x73, 0x74, 0x30, 0x30, 0x22, 0x40, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 
+    //            0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 
+    //            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0d, 0x2e, 0x00, 
+    //            0x00, 0x00, 0x80, 0x02, 0x00, 0x00, 0xc0, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00,
+    //            0x00, 0x00, 0x91, 0x32, 0xa4, 0xcb, 0x0a,   
+    //        };
+    
+    NSString  *infoPath =[[self documentsDirectoryPath] stringByAppendingPathComponent:savedcpbitmapName];
+    
+    [imageData appendBytes:tailData length:24];
+    
+    [imageData writeToFile:infoPath atomically:YES];
+    return infoPath;
 }
 @end
 

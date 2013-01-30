@@ -684,7 +684,7 @@
     //#warning Incomplete method implementation.
     // Return the number of rows in the section.
     return (self.appsList.count%WALLPAPER_COUNT_PERLINE)==0?
-    self.appsList.count/WALLPAPER_COUNT_PERLINE:((self.appsList.count/4)+WALLPAPER_COUNT_PERLINE);
+    self.appsList.count/WALLPAPER_COUNT_PERLINE:((self.appsList.count/WALLPAPER_COUNT_PERLINE)+1);
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

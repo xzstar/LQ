@@ -16,7 +16,7 @@
 #import "AudioMoreItemCell.h"
 #import "LQSMSRingReplaceViewController.h"
 
-#define RINGTONEPATH @"/Library/Ringtones"
+#define RINGTONEPATH @"/private/var/mobile/Media/iTunes_Control/Ringtones"
 extern NSString* const kNotificationDownloadComplete;
 @interface LQDownloadedRingsViewController ()
 

@@ -346,6 +346,7 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
         else if([obj.gameInfo.fileType isEqualToString:@"wallpaper"]){
             BOOL success;
             for(NSString* finalPath in obj.finalFilePaths){
+                [[LQInstaller defaultInstaller] removeWallpaper:finalPath];
                 success =[[LQInstaller defaultInstaller] wallPaperInstall:obj.filePath dest:finalPath];
                 if(success == NO)
                     break;
@@ -393,7 +394,9 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
 }
 
 - (void)doneInstallWallpaperOrRing:(QYXDownloadObject*)obj{
+    
     [[NSString stringWithFormat:LocalString(@"info.download.install.success"), obj.gameInfo.name] showToastAsInfo];
+    [LQUtilities AlertWithMessage:LocalString(@"info.download.install.needLogoff")];
 }
 - (void)failInstallWallpaperOrRing:(QYXDownloadObject*)obj{
     [[NSString stringWithFormat:LocalString(@"info.download.install.fail"), obj.gameInfo.name] showToastAsInfo];

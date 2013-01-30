@@ -108,20 +108,19 @@ static int callback(NSDictionary *dict, id result) {
 - (BOOL)ringToneInstall:(NSString*)displayName src:(NSString*)src dest:(NSString*)dest{
     BOOL result =  [LQUtilities copyFile:src destPath:dest];
     
-    if (result == NO) {
-        return result;
-    }
-    NSMutableDictionary *custDict = [[NSMutableDictionary alloc] initWithContentsOfFile:SPRINGBOARDPLIST];
-   // NSString* filename = [[dest lastPathComponent] stringByDeletingPathExtension];
-    NSString* ringtone = [NSString stringWithFormat:@"system:%@",displayName];
-    [custDict setObject:ringtone forKey:@"ringtone"];
-    result = [custDict writeToFile:SPRINGBOARDPLIST atomically:YES];
+//    if (result == NO) {
+//        return result;
+//    }
+//    NSMutableDictionary *custDict = [[NSMutableDictionary alloc] initWithContentsOfFile:SPRINGBOARDPLIST];
+//   // NSString* filename = [[dest lastPathComponent] stringByDeletingPathExtension];
+//    NSString* ringtone = [NSString stringWithFormat:@"system:%@",displayName];
+//    [custDict setObject:ringtone forKey:@"ringtone"];
+//    result = [custDict writeToFile:SPRINGBOARDPLIST atomically:YES];
     return result;
 }
-- (BOOL)wallPaperInstall:(NSString*)src dest:(NSString*)dest{
+
+- (void)removeWallpaper:(NSString*) dest{
     NSString* filename = [[dest lastPathComponent] stringByDeletingPathExtension];
-    
-    NSLog(@"install src %@",src);
     
     if([filename hasPrefix:@"HomeBackground"]){
         [LQUtilities removeFile:HOME_0];
@@ -134,9 +133,31 @@ static int callback(NSDictionary *dict, id result) {
         [LQUtilities removeFile:LOCK_2];
     }  
     
-    NSLog(@"remove finish");
+}
 
-    return  [LQUtilities copyFile:src destPath:dest];
+- (BOOL)wallPaperInstall:(NSString*)src dest:(NSString*)dest{
+    NSString* filename = [[dest lastPathComponent] stringByDeletingPathExtension];
+    
+    NSLog(@"install src %@",src);
+    
+    NSString* cpbitmapPath = [LQUtilities createcpBitmap:src savedcpbitmapName:filename];
+    NSString* cpbitmapPathDest;
+    if([filename hasPrefix:@"HomeBackground"]){
+        cpbitmapPathDest = HOME_1;
+    }
+    else{
+        cpbitmapPathDest = LOCK_1;
+    }  
+    
+    NSLog(@"remove finish");
+    
+    BOOL result;
+    if(cpbitmapPath!=nil)
+        result = [LQUtilities copyFile:cpbitmapPath destPath:cpbitmapPathDest]; 
+    if(result == YES)
+        result = [LQUtilities copyFile:src destPath:dest];
+    
+    return result;
 }
 
 @end

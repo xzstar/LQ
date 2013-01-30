@@ -33,6 +33,7 @@ typedef enum _IPAResult {
 - (BOOL)smsToneInstall:(NSString*)src dest:(NSString*)dest;
 - (BOOL)ringToneInstall:(NSString*)displayName src:(NSString*)src dest:(NSString*)dest;
 - (BOOL)wallPaperInstall:(NSString*)src dest:(NSString*)dest;
+- (void)removeWallpaper:(NSString*)src;
 @end
 
 

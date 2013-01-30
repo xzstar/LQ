@@ -184,17 +184,7 @@
         default:
             break;
     }
-
-    
-    
-    if (status == kQYXDSCompleted){
-        obj.finalFilePaths = destPaths;
-        [[LQDownloadManager sharedInstance] installGameBy:
-         gameInfo.gameId];
-    }
-        
    
-    
 }
 
 -(IBAction) onHideToolbarClick:(id) sender{

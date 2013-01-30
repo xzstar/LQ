@@ -11,18 +11,7 @@ label.week = "星期日,星期一,星期二,星期三,星期四,星期五,星期
 label.month = "%.4d年%.2d月";
 
 
-default.announce = "七游戏，天天都精彩";
-
 tab.comments = "评论(%d)";
-
-nick.default = "七友";
-
-tabbar.tab1 = "首页";
-tabbar.tab2 = "tab2";
-tabbar.tab3 = "tab3";
-tabbar.tab4 = "tab4";
-tabbar.more = "更多";
-
 
 download.section.downloading = "下载中";
 download.section.downloaded = "未安装";
@@ -58,7 +47,7 @@ info.download.install.fail = "%@安装失败";
 info.download.fail = "%@下载失败";
 info.download.running = "%@正在下载中...";
 info.download.downloaded = "%@已完成下载";
-
+info.download.install.needLogoff ="已安装，可能需要您注销后才能显示";
 network.error = "网络不给力，请稍后刷新";
 
 

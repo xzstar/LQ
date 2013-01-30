@@ -94,7 +94,7 @@ extern NSString* const kNotificationDownloadComplete;
         [itemList addObject:item];
     }
     [cell setButtonInfo:itemList];
-    [cell addInfoButtonsTarget:self action:@selector(onWallpaperClicked:) tag:indexPath.row];
+    [cell addInfoButtonsTarget:self action:@selector(onWallpaperClicked:) tag:indexPath.row* WALLPAPER_COUNT_PERLINE];
     return cell;
 }
 
