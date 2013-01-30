@@ -154,6 +154,21 @@
 
 }
 
+
+- (IBAction)onQQWeibo:(id)sender{
+    _krShare  = [KRShare sharedInstanceWithTarget:KRShareTargetTencentblog];
+    _krShare.delegate = self;
+    [_krShare logIn];
+    
+}
+
+- (IBAction)onSinaWeibo:(id)sender{
+    _krShare  = [KRShare sharedInstanceWithTarget:KRShareTargetSinablog];
+    _krShare.delegate = self;
+    [_krShare logIn];
+    
+}
+
 #pragma mark - Actions
 
 - (void) addSwitchPageWithActionHandler:(void (^)(int))actionHandler{

@@ -45,4 +45,8 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+- (IBAction)onLogoff:(id)sender{
+    system("killall SpringBoard");
+}
+
 @end

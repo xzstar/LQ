@@ -78,6 +78,7 @@ static KRShare *instance;
         }
     }
     else{
+        instance.shareTarget = target;
         if(target == KRShareTargetSinablog)
         {
             instance.appKey = kSinaWeiboAppKey;

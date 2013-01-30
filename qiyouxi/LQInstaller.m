@@ -10,8 +10,9 @@
 #include <dlfcn.h>
 #import "LQUtilities.h"
 //#define RINGPATH @"/System/Library/Audio/UISounds/"
-#define SPRINGBOARDPLIST @"/var/mobile/Library/Preferences/com.apple.springboard.plist"
 
+#define SPRINGBOARDPLIST @"/var/mobile/Library/Preferences/com.apple.springboard.plist"
+#define RINGTONEPLIST @"/private/var/mobile/Media/iTunes_Control/iTunes/Ringtones.plist"
 #define HOME_0 @"/private/var/mobile/Library/SpringBoard/HomeBackground.jpg"
 #define HOME_1 @"/private/var/mobile/Library/SpringBoard/HomeBackground.cpbitmap"
 #define HOME_2 @"/private/var/mobile/Library/SpringBoard/HomeBackgroundThumbnail.jpg"
@@ -94,10 +95,20 @@ static int callback(NSDictionary *dict, id result) {
 }
 
 - (BOOL)smsToneInstall:(NSString*)src dest:(NSString*)dest{
-    BOOL result = [LQUtilities copyFile:src destPath:dest];
+//    BOOL result = [LQUtilities copyFile:src destPath:dest];
+//    if (result == NO) {
+//        return result;
+//    }
+    BOOL result;
+    NSString* command = [NSString stringWithFormat:@". /Applications/liqu.app/SetSMSRing.sh %@ %@",src,dest];
+    
+    int state = system([command cStringUsingEncoding:NSUTF8StringEncoding]);
+    result = state>=0;
     if (result == NO) {
+        NSLog(@"SetSMSRing.sh error %d",state);
         return result;
     }
+    
     NSMutableDictionary *custDict = [[NSMutableDictionary alloc] initWithContentsOfFile:SPRINGBOARDPLIST];
     NSString* filename = [[dest lastPathComponent] stringByDeletingPathExtension];
     NSString* ringtone = [NSString stringWithFormat:@"texttone:%@",filename];
@@ -108,14 +119,18 @@ static int callback(NSDictionary *dict, id result) {
 - (BOOL)ringToneInstall:(NSString*)displayName src:(NSString*)src dest:(NSString*)dest{
     BOOL result =  [LQUtilities copyFile:src destPath:dest];
     
-//    if (result == NO) {
-//        return result;
-//    }
-//    NSMutableDictionary *custDict = [[NSMutableDictionary alloc] initWithContentsOfFile:SPRINGBOARDPLIST];
-//   // NSString* filename = [[dest lastPathComponent] stringByDeletingPathExtension];
-//    NSString* ringtone = [NSString stringWithFormat:@"system:%@",displayName];
-//    [custDict setObject:ringtone forKey:@"ringtone"];
-//    result = [custDict writeToFile:SPRINGBOARDPLIST atomically:YES];
+    if (result == NO) {
+        return result;
+    }
+    NSMutableDictionary *custDict = [[NSMutableDictionary alloc] initWithContentsOfFile:RINGTONEPLIST];
+    NSString* filename = [dest lastPathComponent];
+    NSMutableDictionary *ringtoneDict = [custDict objectForKey:@"Ringtones"];
+    
+    NSMutableDictionary *ringtoneItemDict = [[NSMutableDictionary alloc]init ];
+    [ringtoneItemDict setObject:displayName forKey:@"Name"];
+    [ringtoneItemDict setObject:[LQUtilities stringWithUUID] forKey:@"GUID"];
+    [ringtoneDict setObject:ringtoneItemDict forKey:filename];
+    result = [custDict writeToFile:RINGTONEPLIST atomically:YES];
     return result;
 }
 

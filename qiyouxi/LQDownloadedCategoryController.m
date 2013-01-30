@@ -10,6 +10,7 @@
 #import "LQDownloadedViewController.h"
 #import "LQDownloadedRingsViewController.h"
 #import "LQDownloadedWallpaperViewController.h"
+#import "LQDownloadManager.h"
 
 extern NSString* const kNotificationDownloadComplete;
 extern NSString* const kNotificationInstalledComplete;
@@ -99,10 +100,14 @@ extern NSString* const kNotificationInstalledComplete;
 
 -(IBAction)onSoftClick:(id)sender{
     LQDownloadedViewController *controller = [[LQDownloadedViewController alloc] initWithNibName:@"LQDownloadedViewController" bundle:nil];
+    controller.type = @"soft";
     [self.parent.navigationController pushViewController:controller animated:YES];
 }
 -(IBAction)onGameClick:(id)sender{
-    
+    LQDownloadedViewController *controller = [[LQDownloadedViewController alloc] initWithNibName:@"LQDownloadedViewController" bundle:nil];
+    controller.type = @"game";
+    [self.parent.navigationController pushViewController:controller animated:YES];
+ 
 }
 -(IBAction)onRingClick:(id)sender{
     LQDownloadedRingsViewController *controller = [[LQDownloadedRingsViewController alloc] initWithNibName:@"LQDownloadedViewController" bundle:nil];

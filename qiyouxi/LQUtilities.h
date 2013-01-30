@@ -17,6 +17,7 @@
 +(NSString *)cacheDirectoryPath;
 +(unsigned char *)getImageData:(UIImage*)image;
 +(NSString*)createcpBitmap:(NSString*)imagePath savedcpbitmapName:(NSString*)savedcpbitmapName;
++(NSString*) stringWithUUID;
 @end
 
 @interface AppUpdateReader:NSObject <LQClientDelegate>{

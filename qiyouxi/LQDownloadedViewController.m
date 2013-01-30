@@ -19,7 +19,7 @@ extern NSString* const kNotificationDownloadComplete;
 @implementation LQDownloadedViewController
 
 
-@synthesize applicaitonView;
+@synthesize applicaitonView,type;
 
 - (void)loadViews{
 //    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updateStatus:) userInfo:nil repeats:YES];
@@ -52,14 +52,17 @@ extern NSString* const kNotificationDownloadComplete;
     [installedList removeAllObjects];
     
     for (QYXDownloadObject* obj in [LQDownloadManager sharedInstance].completedGames){
-        if ([obj.gameInfo.fileType isEqualToString: @"soft"]) {
+        if (type == nil) {
+            type = @"soft";
+        }
+        if ([obj.gameInfo.fileType isEqualToString: type]) {
             [completedList addObject:obj];
         }
         
     }
     
     for (QYXDownloadObject* obj in [LQDownloadManager sharedInstance].installedGames){
-        if ([obj.gameInfo.fileType isEqualToString: @"soft"]) {
+        if ([obj.gameInfo.fileType isEqualToString: type]) {
             [installedList addObject:obj];
         }
         
@@ -125,7 +128,7 @@ extern NSString* const kNotificationDownloadComplete;
             
             QYXDownloadObject* obj  = [installedList objectAtIndex:indexPath.row];
             cell.downloadObject = obj;
-            
+            cell.actionButton.hidden = YES;
             return cell;
         }
         default:

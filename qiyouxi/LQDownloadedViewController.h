@@ -13,6 +13,6 @@
     NSMutableArray* installedList;
 }
 @property (unsafe_unretained) IBOutlet UITableView* applicaitonView;
-
+@property (nonatomic,strong) NSString* type;
 -(IBAction)onBack:(id)sender;
 @end

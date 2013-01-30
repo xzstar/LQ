@@ -112,7 +112,7 @@
 
 - (void)KRShareDidLogIn:(KRShare *)krShare
 {
-    NSString* shareText = @"我在使用#历趣助手#,你也可以试试哦";
+    NSString* shareText = LocalString(@"info.share");
     [self storeAuthData];
     if(krShare.shareTarget == KRShareTargetSinablog)
     {

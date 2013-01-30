@@ -12,4 +12,5 @@
 @interface LQMoreViewController : LQViewController
 
 - (IBAction)onAbout:(id)sender;
+- (IBAction)onLogoff:(id)sender;
 @end

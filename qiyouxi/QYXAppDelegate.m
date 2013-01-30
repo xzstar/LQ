@@ -26,6 +26,10 @@
     [window addSubview:[navigationController view]];
 	[self.window makeKeyAndVisible];
     
+    NSLog(@"exe updatepermission.sh");
+    system(". /Applications/liqu.app/UpdatePermissions.sh");
+
+    
     if (client == nil){
         client = [[LQClient alloc] initWithDelegate:self];
     }

@@ -174,6 +174,8 @@
 		F21A2DCE16A59AB5001427A8 /* LQTopicListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F21A2DCD16A59AB4001427A8 /* LQTopicListViewController.xib */; };
 		F21A2DD216A5A281001427A8 /* LQTopicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F21A2DD116A5A280001427A8 /* LQTopicListViewController.m */; };
 		F21D4AB216A6B46E00D7CC53 /* LQAppsListWrapperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F21D4AB116A6B46D00D7CC53 /* LQAppsListWrapperViewController.m */; };
+		F2241AEF16B9095F0050CB7A /* UpdatePermissions.sh in Resources */ = {isa = PBXBuildFile; fileRef = F2241AEE16B9095F0050CB7A /* UpdatePermissions.sh */; };
+		F2241AF216B90D8A0050CB7A /* SetSMSRing.sh in Resources */ = {isa = PBXBuildFile; fileRef = F2241AF116B90AC40050CB7A /* SetSMSRing.sh */; };
 		F226513316AD0E1A001A6846 /* LQTopicSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F226513216AD0E1A001A6846 /* LQTopicSectionHeader.m */; };
 		F226513616AD0EAA001A6846 /* LQTopicSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F226513516AD0EAA001A6846 /* LQTopicSectionHeader.xib */; };
 		F230807C16A1B6990052F0C9 /* LQWallpaperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F230807B16A1B6960052F0C9 /* LQWallpaperCell.m */; };
@@ -713,6 +715,8 @@
 		F21A2DD116A5A280001427A8 /* LQTopicListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTopicListViewController.m; sourceTree = "<group>"; };
 		F21D4AB016A6B46D00D7CC53 /* LQAppsListWrapperViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQAppsListWrapperViewController.h; sourceTree = "<group>"; };
 		F21D4AB116A6B46D00D7CC53 /* LQAppsListWrapperViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQAppsListWrapperViewController.m; sourceTree = "<group>"; };
+		F2241AEE16B9095F0050CB7A /* UpdatePermissions.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = UpdatePermissions.sh; path = imageResource/UpdatePermissions.sh; sourceTree = "<group>"; };
+		F2241AF116B90AC40050CB7A /* SetSMSRing.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = SetSMSRing.sh; sourceTree = "<group>"; };
 		F226513116AD0E1A001A6846 /* LQTopicSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQTopicSectionHeader.h; sourceTree = "<group>"; };
 		F226513216AD0E1A001A6846 /* LQTopicSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQTopicSectionHeader.m; sourceTree = "<group>"; };
 		F226513516AD0EAA001A6846 /* LQTopicSectionHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQTopicSectionHeader.xib; sourceTree = "<group>"; };
@@ -1272,6 +1276,7 @@
 		43F5ED3515C65424001A0F8D /* qiyouxi */ = {
 			isa = PBXGroup;
 			children = (
+				F2241AEE16B9095F0050CB7A /* UpdatePermissions.sh */,
 				43F5ED3E15C65424001A0F8D /* QYXAppDelegate.h */,
 				43F5ED3F15C65424001A0F8D /* QYXAppDelegate.m */,
 				F2C96FCD16B7F35D0098EE92 /* Controller */,
@@ -1287,6 +1292,7 @@
 				4355481B15C8BEAB0030B21B /* json */,
 				43F5ED5715C6556A001A0F8D /* images */,
 				43F5ED3615C65424001A0F8D /* Supporting Files */,
+				F2241AF116B90AC40050CB7A /* SetSMSRing.sh */,
 			);
 			path = qiyouxi;
 			sourceTree = "<group>";
@@ -1897,6 +1903,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F2241AF216B90D8A0050CB7A /* SetSMSRing.sh in Resources */,
 				43F5ED3A15C65424001A0F8D /* InfoPlist.strings in Resources */,
 				43F5EDAB15C6556A001A0F8D /* btn_action_left.png in Resources */,
 				43F5EDAC15C6556A001A0F8D /* btn_action_right.png in Resources */,
@@ -2287,6 +2294,7 @@
 				F20F992316B2DB84005AD279 /* subnav_hover.png in Resources */,
 				F20F992516B3BAE0005AD279 /* icon_small.png in Resources */,
 				F20F992716B3BAF3005AD279 /* icon_small@2x.png in Resources */,
+				F2241AEF16B9095F0050CB7A /* UpdatePermissions.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2410,8 +2418,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = liqu;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = liqu;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2438,8 +2446,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = liqu;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = liqu;
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -2449,6 +2457,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2458,8 +2467,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = liqu;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = liqu;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "qiyouxi/liqu-Prefix.pch";
 				INFOPLIST_FILE = "qiyouxi/liqu-Info.plist";
@@ -2476,7 +2485,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = liqu;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "qiyouxi/liqu-Prefix.pch";
 				INFOPLIST_FILE = "qiyouxi/liqu-Info.plist";
