@@ -12,8 +12,8 @@
 
 static LQDownloadManager* _intance = nil;
 
-NSString* const kNotificationDownloadComplete    = @"NotificationDownloadComplete";
-NSString* const kNotificationInstalledComplete    = @"NotificationInstalledComplete";
+NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
+//NSString* const kNotificationInstalledComplete    = @"NotificationInstalledComplete";
 
 @interface LQDownloadManager()
 @property (nonatomic, strong) NSDictionary* ipaInstalled;
@@ -83,8 +83,8 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
                         break;
                     case kQYXDSCompleted:
                     case kQYXDSInstalling:
-                        obj.status = kQYXDSCompleted;
                         [self.completedGames addObject:obj];
+                        obj.status = kQYXDSCompleted;
                         break;
                     case kQYXDSPaused:
                         [self.downloadGames addObject:obj];
@@ -161,9 +161,9 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
     NSMutableArray* removed = [NSMutableArray array];
     for (QYXDownloadObject* obj in self.completedGames){
         if ([installed objectForKey:obj.gameInfo.package]!=nil){
-            obj.status = kQYXDSInstalled;
             [self.installedGames addObject:obj];
             [removed addObject:obj];
+            obj.status = kQYXDSInstalled;
         }
     }
     
@@ -174,9 +174,10 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
     removed = [NSMutableArray array];
     for (QYXDownloadObject* obj in self.installedGames){
         if ([installed objectForKey:obj.gameInfo.package]==nil){
-            obj.status = kQYXDSCompleted;
             [self.completedGames addObject:obj];
             [removed addObject:obj];
+            obj.status = kQYXDSCompleted;
+
         }
     }
     
@@ -184,7 +185,7 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
         [self.installedGames removeObject:obj];
     }
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
 }
 
 
@@ -209,7 +210,7 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
         //            [self resumeDownload:object];
         //        }
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+//        [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
         [self synchronize];
         
         [[NSString stringWithFormat:LocalString(@"info.download.add"), gameInfo.name] showToastAsInfo];
@@ -281,6 +282,11 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
     return obj.status;
 }
 
+- (void)installGameBy:(int)gameId force:(BOOL)force{
+    QYXDownloadObject* obj = [self objectWithGameId:gameId];
+    obj.installAfterDownloaded = force;
+    [self installGameBy:gameId];
+}
 
 - (void)installGameBy:(int)gameId{
     QYXDownloadObject* obj = [self objectWithGameId:gameId];
@@ -306,13 +312,22 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
     [self.installedGames removeObject:obj];
     
     [self.gameMap removeObjectForKey:[NSNumber numberWithInt:gameId]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:self];
+    
     [[NSString stringWithFormat:LocalString(@"info.download.remove"), obj.gameInfo.name] showToastAsInfo];
     [self synchronize];
 }
 
 - (BOOL)isGameInstalled:(NSString*)identifier{
-    return [self.ipaInstalled objectForKey:identifier] != nil;
+    NSDictionary* dict = [self.ipaInstalled objectForKey:identifier];
+    NSString* version = [dict objectForKey:@"CFBundleShortVersionString"];
+    if(dict!=nil)
+        NSLog(@"identifier %@ %@",identifier,version);
+    BOOL rtn = dict!=nil;
+    return rtn;
+    //return [self.ipaInstalled objectForKey:identifier] != nil;
 }
 
 - (void)updateDownloadObject:(QYXDownloadObject*)obj{
@@ -325,9 +340,10 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
 
 //    obj.status = kQYXDSInstalling;
 //    [self performSelectorInBackground:@selector(installGame:) withObject:obj];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
     [self installGameBy:obj.gameInfo.gameId];
 }
+
 
 - (void)installGame:(QYXDownloadObject*)obj{
     @autoreleasepool {
@@ -402,20 +418,19 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
     [[NSString stringWithFormat:LocalString(@"info.download.install.fail"), obj.gameInfo.name] showToastAsInfo];
 }
 - (void)doneInstallGame:(QYXDownloadObject*)obj{
-    obj.status = kQYXDSInstalled;
     id tmp = obj;
     [self.completedGames removeObject:obj];
     [self.installedGames addObject:tmp];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationInstalledComplete object:self];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
     [[NSString stringWithFormat:LocalString(@"info.download.install.success"), obj.gameInfo.name] showToastAsInfo];
+    obj.status = kQYXDSInstalled;
     [self synchronize];
 }
 
 - (void)failInstallGame:(QYXDownloadObject*)obj{
-    obj.status = kQYXDSCompleted;
-    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
     [[NSString stringWithFormat:LocalString(@"info.download.install.fail"), obj.gameInfo.name] showToastAsInfo];
+    obj.status = kQYXDSCompleted;
     [self synchronize];
 }
 
@@ -463,6 +478,13 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
     self.dataLength = [self.fileHandle seekToEndOfFile];
 }
 
+- (void)setStatus:(QYXDownloadStatus) aStatus{
+    if(aStatus != status)
+    {
+        status =aStatus;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:self];
+    }
+}
 - (void)pause{
     @synchronized(self){
         [self.fileHandle closeFile];
@@ -473,7 +495,7 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
     self.connection = nil;
     self.status = kQYXDSPaused;
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
 }
 
 - (void)resume{
@@ -497,7 +519,7 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
     
     self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
 }
 
 - (NSString*)totalSizeDesc{
@@ -540,24 +562,25 @@ NSString* const kNotificationInstalledComplete    = @"NotificationInstalledCompl
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection{
-    self.status = kQYXDSCompleted;
     self.connection = nil;
     [self.fileHandle closeFile];
     self.fileHandle = nil;
     
     [[LQDownloadManager sharedInstance] updateDownloadObject:self];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationDownloadComplete object:self];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+    self.status = kQYXDSCompleted;
+
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:self];
 
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-    self.status = kQYXDSFailed;
     self.connection = nil;
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
     [[NSString stringWithFormat:LocalString(@"info.download.fail"), self.gameInfo.name] performSelectorOnMainThread:@selector(showToastAsInfo) withObject:nil waitUntilDone:NO];
+    self.status = kQYXDSFailed;
+
 }
 
 @end

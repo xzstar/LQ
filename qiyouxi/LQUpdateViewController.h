@@ -22,7 +22,6 @@
     NSMutableArray* appsList;
     NSMutableArray* updateAppsList;
     NSMutableArray* ignoreAppsList;
-
 }
 
 @property (nonatomic,unsafe_unretained) IBOutlet UITableView *tableView;

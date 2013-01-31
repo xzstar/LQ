@@ -56,6 +56,13 @@
     return cell;   
     
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    LQTopicCell* cell = (LQTopicCell*) [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    if (cell!=nil) {
+        UIButton* button = cell.topicListButton;
+        [self onTopicList:button];
+    }
+}
 
 #pragma mark - Data Init
 
@@ -116,7 +123,7 @@
             controller= [[LQWallpaperListWrapperViewController alloc] initWithNibName:@"LQTablesController" bundle:nil ];
         }
         controller.requestUrl = info.requestUrl;
-
+        controller.titleString = info.name;
         if(self.parent!=nil)
             [self.parent.navigationController pushViewController:controller animated:YES];
         else {

@@ -12,8 +12,7 @@
 #import "LQDownloadedWallpaperViewController.h"
 #import "LQDownloadManager.h"
 
-extern NSString* const kNotificationDownloadComplete;
-extern NSString* const kNotificationInstalledComplete;
+extern NSString* const kNotificationStatusChanged;
 @interface LQDownloadedCategoryController ()
 
 @end
@@ -37,11 +36,7 @@ extern NSString* const kNotificationInstalledComplete;
     // Do any additional setup after loading the view from its nib.
     [[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(updateStatus:)
-												 name:kNotificationDownloadComplete
-											   object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(updateStatus:)
-												 name:kNotificationInstalledComplete
+												 name:kNotificationStatusChanged
 											   object:nil];
     [self updateStatus:nil];
 

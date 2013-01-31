@@ -75,5 +75,6 @@
 //- (IBAction)onBack:(id)sender;
 - (void) onGameDetail:(id)sender;
 - (void) onGameDownload:(id)sender;
+- (void) onGameDownloadAndInstall:(id)sender;
 
 @end

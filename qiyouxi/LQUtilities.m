@@ -281,6 +281,28 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
     return nil;
 }
 
+- (NSString*)currentVersion:(NSString*)package{
+    BOOL isDir = NO;
+    if([[NSFileManager defaultManager] fileExistsAtPath: installedAppListPath isDirectory: &isDir] && !isDir) 
+    {
+        NSDictionary *cacheDict = [NSDictionary dictionaryWithContentsOfFile: installedAppListPath];
+        NSDictionary *system = [cacheDict objectForKey: @"System"];
+        
+        NSDictionary* appDict = [system objectForKey:package];
+        if(appDict!=nil && appDict.count>0)
+            return [appDict objectForKey:@"CFBundleVersion"];
+        
+        
+        NSDictionary *user = [cacheDict objectForKey: @"User"]; 
+        appDict = [user objectForKey:package];
+        if(appDict!=nil && appDict.count>0)
+            return [appDict objectForKey:@"CFBundleVersion"];        
+    }
+    
+    return nil;
+}
+
+
 - (void)loadApps:(NSArray*) apps{
     NSMutableArray* items = [NSMutableArray array];
     for (NSDictionary* game in apps){
@@ -308,12 +330,12 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
     //读取已经安装的apps 提交后台判断
     NSArray * array = [self installedApp];
     NSString* appsString = [array componentsJoinedByString:@","];
-//    if(appsString == nil)
-//        appsString = [LQConfig restoreAppList];
-//    else 
-//        [LQConfig saveAppList:appsString];
-//
-    
+////    if(appsString == nil)
+////        appsString = [LQConfig restoreAppList];
+////    else 
+////        [LQConfig saveAppList:appsString];
+////
+   
     if(appsString !=nil && appsString.length>0)
         [self.client loadAppUpdate:appsString];
 

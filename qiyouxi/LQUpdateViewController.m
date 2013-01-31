@@ -12,6 +12,7 @@
 #import "LQGameMoreItemTableViewCell.h"
 #import "LQDetailTablesController.h"
 #import "LQIgnoreAppCell.h"
+#import "LQUtilities.h"
 
 static NSString* const installedAppListPath = @"/private/var/mobile/Library/Caches/com.apple.mobile.installation.plist";
 
@@ -249,11 +250,16 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
             }
             
             cell.gameInfo = [updateAppsList objectAtIndex:indexPath.row];
-            [cell setButtonsName:@"立刻安装" middle:@"下载" right:@"暂不更新"];
+            [cell setButtonsName:@"立刻更新" middle:@"下载" right:@"暂不更新"];
             [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:indexPath.row];
             [cell addLeftButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
             [cell addMiddleButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
             [cell addRightButtonTarget:self action:@selector(onAppIgnore:) tag:indexPath.row];
+            
+            NSString* currentVersion = [[AppUpdateReader sharedInstance] currentVersion:cell.gameInfo.package];
+            
+            [cell setDetailInfo:[NSString stringWithFormat:@"当前版本%@ 最新版本%@", currentVersion,cell.gameInfo.versionCode]];
+            
             return cell;
             
         }
@@ -266,6 +272,10 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
             cell.gameInfo = [updateAppsList objectAtIndex:indexPath.row];
             
             [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:indexPath.row];
+            NSString* currentVersion = [[AppUpdateReader sharedInstance] currentVersion:cell.gameInfo.package];
+            
+            [cell setDetailInfo:[NSString stringWithFormat:@"当前版本%@ 最新版本%@", currentVersion,cell.gameInfo.versionCode]];
+             
             return cell;
             
         }
@@ -518,5 +528,6 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
 -(void) didAppUpdateListFailed:(LQClientError*)error{
     [self endLoading];
 }
+
 
 @end

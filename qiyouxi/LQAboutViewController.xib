@@ -521,7 +521,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">All Right Reserved.</string>
+						<string key="IBUIText">All Rights Reserved.</string>
 						<reference key="IBUITextColor" ref="1070694170"/>
 						<nil key="IBUIHighlightedColor"/>
 						<int key="IBUIBaselineAdjustment">0</int>

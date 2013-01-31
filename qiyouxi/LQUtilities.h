@@ -36,6 +36,7 @@
 - (void)reloadNeedUpdateApps;
 - (void)addListener:(id) listener;
 - (void)removeListener:(id) listener;
+- (NSString*)currentVersion:(NSString*)package;
 @end
 
 @protocol AppUpdateReaderDelegate

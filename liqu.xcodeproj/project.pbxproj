@@ -592,7 +592,7 @@
 		43D2AFE215CF63DD0045EFF5 /* QYXObjectExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYXObjectExtension.m; sourceTree = "<group>"; };
 		43D54E0B15CB7448007D83AE /* qiyouxi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = qiyouxi.entitlements; path = qiyouxi/qiyouxi.entitlements; sourceTree = "<group>"; };
 		43D54E1415CB7A9A007D83AE /* LQDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDownloadManager.h; sourceTree = "<group>"; };
-		43D54E1515CB7A9A007D83AE /* LQDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDownloadManager.m; sourceTree = "<group>"; };
+		43D54E1515CB7A9A007D83AE /* LQDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LQDownloadManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		43D54E1715CB7AC5007D83AE /* QYXData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYXData.h; sourceTree = "<group>"; };
 		43D54E1815CB7AC5007D83AE /* QYXData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYXData.m; sourceTree = "<group>"; };
 		43D54E1B15CBBBC5007D83AE /* DownloadTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DownloadTableViewCell.xib; sourceTree = "<group>"; };
@@ -692,7 +692,7 @@
 		F20D0B1C16AE6002005C5FB0 /* LQDownloadTablesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDownloadTablesController.h; sourceTree = "<group>"; };
 		F20D0B1D16AE6002005C5FB0 /* LQDownloadTablesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDownloadTablesController.m; sourceTree = "<group>"; };
 		F20D0B2016AE6517005C5FB0 /* LQDownloadedCategoryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDownloadedCategoryController.h; sourceTree = "<group>"; };
-		F20D0B2116AE6517005C5FB0 /* LQDownloadedCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDownloadedCategoryController.m; sourceTree = "<group>"; };
+		F20D0B2116AE6517005C5FB0 /* LQDownloadedCategoryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LQDownloadedCategoryController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		F20D0B2216AE6517005C5FB0 /* LQDownloadedCategoryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQDownloadedCategoryController.xib; sourceTree = "<group>"; };
 		F20D0B2516AE804B005C5FB0 /* LQDownloadingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDownloadingViewController.h; sourceTree = "<group>"; };
 		F20D0B2616AE804B005C5FB0 /* LQDownloadingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDownloadingViewController.m; sourceTree = "<group>"; };

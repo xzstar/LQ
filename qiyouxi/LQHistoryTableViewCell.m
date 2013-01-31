@@ -36,7 +36,7 @@
     int size= [self.gameInfo.size intValue];
     float sizeMB= (float)size/(1024*1024);
     
-    self.gameDetailLabel.text = [NSString stringWithFormat:@"版本%@|大小%.2fMB|更新时间%@", self.gameInfo.versionCode, sizeMB,self.gameInfo.date];
+    self.gameDetailLabel.text = [NSString stringWithFormat:@"版本%@|大小%.2fMB", self.gameInfo.versionCode, sizeMB,self.gameInfo.date];
 
     UIImage* image = [[LQImageLoader sharedInstance] loadImage:self.gameInfo.icon context:self];
     if (image != nil){
@@ -96,6 +96,9 @@
 //    [self.actionButton setBackgroundImage:bgImage forState:UIControlStateNormal];
 }
 
+- (void) setDetailInfo:(NSString*) detailInfo{
+    self.gameDetailLabel.text = detailInfo;
+}
 - (void)updateImage:(UIImage*)image forUrl:(NSString*)imageUrl{
     if ([self.gameInfo.icon isEqualToString:imageUrl]){
         self.gameIconView.image = image;

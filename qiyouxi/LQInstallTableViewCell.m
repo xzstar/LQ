@@ -34,11 +34,15 @@
 
 
 - (IBAction)onActionButton:(id)sender{
-    if ([[LQDownloadManager sharedInstance] isGameInstalled:self.downloadObject.gameInfo.package]){
+    BOOL value = [[LQDownloadManager sharedInstance] isGameInstalled:self.downloadObject.gameInfo.package];
+    
+    
+    if (value == YES){
         [[LQDownloadManager sharedInstance] startGame:self.downloadObject.gameInfo.package];
     }else{
-        [[LQDownloadManager sharedInstance] installGameBy:self.downloadObject.gameInfo.gameId];
+        [[LQDownloadManager sharedInstance] installGameBy:self.downloadObject.gameInfo.gameId force:YES];
     }
+    
 }
 
 - (IBAction)onCancelButton:(id)sender{

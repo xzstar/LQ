@@ -103,7 +103,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onUpdateDownloadStatus:) name:kQYXDownloadStatusUpdateNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(onUpdateDownloadStatus:) name:kQYXDownloadStatusUpdateNotification object:nil];
     
     [self.historyView reloadData];
 }
@@ -111,16 +111,16 @@
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:kQYXDownloadStatusUpdateNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:kQYXDownloadStatusUpdateNotification object:nil];
 }
 
-- (void)onUpdateDownloadStatus:(NSNotification*)notification{
-    [self performSelectorOnMainThread:@selector(updateDownloadStatus) withObject:nil waitUntilDone:NO];
-}
-
-- (void)updateDownloadStatus{
-    [self.historyView reloadData];
-}
+//- (void)onUpdateDownloadStatus:(NSNotification*)notification{
+//    [self performSelectorOnMainThread:@selector(updateDownloadStatus) withObject:nil waitUntilDone:NO];
+//}
+//
+//- (void)updateDownloadStatus{
+//    [self.historyView reloadData];
+//}
 
 
 #pragma mark - View Init

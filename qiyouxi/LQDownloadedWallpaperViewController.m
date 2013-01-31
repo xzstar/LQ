@@ -12,7 +12,7 @@
 #import "LQInstallTableViewCell.h"
 #import "LQWallpaperCell.h"
 #import "LQWallpaperViewController.h"
-extern NSString* const kNotificationDownloadComplete;
+extern NSString* const kNotificationStatusChanged;
 #define WALLPAPER_COUNT_PERLINE 3
 @interface LQDownloadedWallpaperViewController ()
 
@@ -27,7 +27,7 @@ extern NSString* const kNotificationDownloadComplete;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(updateStatus:)
-												 name:kNotificationDownloadComplete
+												 name:kNotificationStatusChanged
 											   object:nil];
     
     [self updateStatus:nil];

@@ -25,6 +25,12 @@
     return self;
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    if([LQDownloadManager sharedInstance].downloadGames.count>0)
+        [self loadScrollViewWithPage:1];
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

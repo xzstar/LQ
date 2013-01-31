@@ -15,6 +15,8 @@
 #import "LQUpdateViewController.h"
 #import "LQMoreViewController.h"
 #import "LQConfig.h"
+extern NSString* const kNotificationStatusChanged;
+
 @interface LQMainTabBarController ()
 
 @end
@@ -116,7 +118,10 @@
     [[AppUpdateReader sharedInstance] addListener: self];
     [[AppUpdateReader sharedInstance] loadNeedUpdateApps];
     
-  
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateDownloadingStatus:)
+                                                 name:kNotificationStatusChanged
+                                               object:nil];
        
 }
 
@@ -128,6 +133,7 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     [[AppUpdateReader sharedInstance] removeListener:self];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 
 }
 
@@ -201,14 +207,30 @@
     UITabBarItem *tabItem = [tabItems objectAtIndex:3];
     if(appsList!=nil && appsList.count>0){
         tabItem.badgeValue = [NSString stringWithFormat:@"%d",appsList.count];
+        [UIApplication sharedApplication].applicationIconBadgeNumber = appsList.count;
     }
-    else
-        tabItem.badgeValue = nil;    
+    else{
+        tabItem.badgeValue = nil;   
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    } 
 }
 //获得appList失败
 -(void) didAppUpdateListFailed:(LQClientError*)error{
     UITabBarItem *tabItem = [tabItems objectAtIndex:3];
     tabItem.badgeValue = nil; 
+}
+
+- (void)updateDownloadingStatus:(NSNotification*)notification{
+    UITabBarItem *tabItem = [tabItems objectAtIndex:2];
+    
+    int count = [LQDownloadManager sharedInstance].downloadGames.count;
+    
+    if(count>0){
+            tabItem.badgeValue = [NSString stringWithFormat:@"%d",count];
+        }
+        else
+            tabItem.badgeValue = nil;    
+    
 }
 
 

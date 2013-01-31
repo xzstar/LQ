@@ -19,7 +19,7 @@ typedef enum _DOWNLOAD_STATUS{
     kQYXDSInstalled,
 } QYXDownloadStatus;
 
-#define kQYXDownloadStatusUpdateNotification @"kQYXDownloadStatusUpdateNotification"
+//#define kQYXDownloadStatusUpdateNotification @"kQYXDownloadStatusUpdateNotification"
 
 @class QYXDownloadObject;
 @interface LQDownloadManager : NSObject
@@ -40,6 +40,8 @@ typedef enum _DOWNLOAD_STATUS{
 - (void)resumeDownloadById:(int)gameId;
 - (QYXDownloadStatus)getStatusById:(int)gameId;
 - (void)installGameBy:(int)gameId;
+- (void)installGameBy:(int)gameId force:(BOOL)force;
+
 - (void)removeDownloadBy:(int)gameId;
 
 - (void)startGame:(NSString*)identifier;

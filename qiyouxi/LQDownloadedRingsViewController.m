@@ -17,7 +17,7 @@
 #import "LQSMSRingReplaceViewController.h"
 
 #define RINGTONEPATH @"/private/var/mobile/Media/iTunes_Control/Ringtones"
-extern NSString* const kNotificationDownloadComplete;
+extern NSString* const kNotificationStatusChanged;
 @interface LQDownloadedRingsViewController ()
 
 @end
@@ -32,7 +32,7 @@ extern NSString* const kNotificationDownloadComplete;
 
     [[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(updateStatus:)
-												 name:kNotificationDownloadComplete
+												 name:kNotificationStatusChanged
 											   object:nil];
     
     [self updateStatus:nil];

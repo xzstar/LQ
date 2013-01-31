@@ -10,7 +10,7 @@
 #import "LQInstaller.h"
 #import "LQDownloadTableViewCell.h"
 #import "LQInstallTableViewCell.h"
-extern NSString* const kNotificationDownloadComplete;
+extern NSString* const kNotificationStatusChanged;
 
 @interface LQDownloadedViewController ()
 
@@ -26,7 +26,7 @@ extern NSString* const kNotificationDownloadComplete;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateStatus:)
-                                                 name:kNotificationDownloadComplete
+                                                 name:kNotificationStatusChanged
                                                object:nil];
     
     [self updateStatus:nil];

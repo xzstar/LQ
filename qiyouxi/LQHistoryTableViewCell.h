@@ -13,6 +13,8 @@
 
 - (IBAction)onActionButton:(id)sender;
 - (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
+
+- (void) setDetailInfo:(NSString*) detailInfo;
 @end
 
 @interface LQHistoryTableViewCell()
