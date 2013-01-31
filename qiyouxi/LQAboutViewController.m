@@ -244,7 +244,7 @@
     //_loadingView.hidden = YES;
     
     //新浪微博响应
-    if ([request.url hasSuffix:@"statuses/update.json"])
+    if ([request.url hasSuffix:@"statuses/upload.json"])
     {
         if([[result objectForKey:@"error_code"] intValue]==20019)
         {

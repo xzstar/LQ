@@ -29,7 +29,6 @@
 @property (unsafe_unretained) IBOutlet UILabel* gameSize;
 @property (unsafe_unretained) IBOutlet UILabel* gameDownloadCount;
 @property (unsafe_unretained) IBOutlet UILabel* gameType;
-@property (unsafe_unretained) IBOutlet UILabel* gameVender;
 @property (unsafe_unretained) IBOutlet UILabel* gameVersion;
 @property (unsafe_unretained) IBOutlet UILabel* gameScore;
 @property (unsafe_unretained) IBOutlet UIButton* downloadNowButton;

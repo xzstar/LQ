@@ -18,7 +18,7 @@
 
 @synthesize commentCount;
 
-@synthesize downloadUrl;
+@synthesize downloadUrl,downloadNumber;
 
 @synthesize package;
 
@@ -74,6 +74,7 @@
         self.commentCount = [[result objectForKey:@"comment_count"] intValue];
         
         self.downloadUrl = [result objectForKey:@"downloadUri"];
+        self.downloadNumber = [result objectForKey:@"downloadNum"];
         self.package = [result objectForKey:@"package"];
         self.shareUri = [result objectForKey:@"shareUri"];
 //        self.downloadUrl = @"http://172.16.96.53/~wangqing/ukongarith.ipa";

@@ -12,6 +12,8 @@
 #import "AudioCell.h"
 #import "AudioPlayer.h"
 #import "AudioMoreItemCell.h"
+#import "SVPullToRefresh.h"
+#import "LQWallpaperViewController.h"
 @interface LQRankViewController ()
 
 @end
@@ -55,11 +57,26 @@
     [super loadData];
     
     if(self.orderBy == nil || self.nodeId == nil){
+        [self.tableView.pullToRefreshView stopAnimating];
         [self endLoading];
         return;
     }
+    else
+        self.appsList = nil;
     //[self startLoading];    
     [self.client loadAppListCommon:self.listOperator nodeid:self.nodeId orderby:self.orderBy];
+}
+
+- (void)loadMoreData{
+    if(self.moreUrl != nil){
+        [self.client loadAppMoreListCommon:self.moreUrl];
+    }
+    else {
+        //[self endLoading];
+        [self.tableView.infiniteScrollingView stopAnimating];
+        return;
+    }
+    
 }
 
 #pragma mark - Network Callback
@@ -71,9 +88,19 @@
             if ([result isKindOfClass:[NSDictionary class]]){
                 // [self loadTodayGames:result];
                 [self loadApps:[result objectForKey:@"apps"]];
+                self.moreUrl = [result objectForKey:@"more_url"];  
+
             }
             break;
-            
+        case C_COMMAND_GETAPPLISTSOFTGAME_MORE:
+            [self endLoading];
+            if ([result isKindOfClass:[NSDictionary class]]){
+                // [self loadTodayGames:result];
+                [self loadMoreApps:[result objectForKey:@"apps"]];
+                self.moreUrl = [result objectForKey:@"more_url"];  
+                
+            }
+            break;
         default:
             break;
     }
@@ -263,6 +290,63 @@
 @end
 
 @implementation LQWallpaperRankViewController
+
+- (void)loadMoreApps:(NSArray*) apps{
+    NSMutableArray* items = [NSMutableArray array];
+    
+    for (NSDictionary* game in apps){
+        [items addObject:[[LQGameInfo alloc] initWithAPIResult:game]];
+    }
+    
+    int oldAppsCount = 0;   
+    if(self.appsList ==nil){
+        self.appsList = items;
+    }
+    else {
+        oldAppsCount = self.appsList.count;
+        [self.appsList addObjectsFromArray:items];
+    }
+    
+    __unsafe_unretained LQCommonTableViewController* weakSelf = self;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        
+        NSMutableArray *indexPaths = [NSMutableArray array];
+        int oldRows = [weakSelf.tableView numberOfRowsInSection:0];
+        int newRows = (self.appsList.count%3 == 0)? self.appsList.count/3: (self.appsList.count/3) +1;
+        
+        for(int i=oldRows;i<newRows;i++)
+        {
+            [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+        }
+        if(indexPaths.count>0){
+            [weakSelf.tableView beginUpdates];
+            
+            [weakSelf.tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+            [weakSelf.tableView endUpdates];
+        }
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+    });
+    
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    //#warning Incomplete method implementation.
+    // Return the number of rows in the section.
+    return (self.appsList.count%WALLPAPER_COUNT_PERLINE)==0?
+    self.appsList.count/WALLPAPER_COUNT_PERLINE:((self.appsList.count/WALLPAPER_COUNT_PERLINE)+1);
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //return 70.f;
+    UITableViewCell *cell = [self tableView:tableView cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height;
+}
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -273,17 +357,33 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"LQWallpaperCell" owner:self options:nil] objectAtIndex:0];
     }
     
-    int startIndex = indexPath.row * 4;
+    int startIndex = indexPath.row * WALLPAPER_COUNT_PERLINE;
     // Configure the cell..
     NSMutableArray *itemList = [NSMutableArray array];
-    for(int i=startIndex;i<self.appsList.count&&i<(4+startIndex);i++){
+    for(int i=startIndex;i<self.appsList.count&&i<(WALLPAPER_COUNT_PERLINE+startIndex);i++){
         LQGameInfo *item = [self.appsList objectAtIndex:i];
         [itemList addObject:item];
     }
     [cell setButtonInfo:itemList];
-    
+    [cell addInfoButtonsTarget:self action:@selector(onWallpaperClicked:) tag:indexPath.row*WALLPAPER_COUNT_PERLINE];
     return cell;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return;
+}
 
+
+- (void) onWallpaperClicked:(id) sender{
+    UIButton* button = (UIButton*)sender;
+    int tag = button.tag;
+    LQWallpaperViewController* controller = [[LQWallpaperViewController alloc]initWithNibName:@"LQWallpaperViewController" bundle:nil];
+    LQGameInfo *item = [self.appsList objectAtIndex:tag];
+    
+    controller.imageUrl = item.downloadUrl;
+    controller.titleString = item.name;
+    controller.gameInfo = item;
+    [self.parent.parentViewController.navigationController pushViewController:controller animated:YES];
+}
 
 @end

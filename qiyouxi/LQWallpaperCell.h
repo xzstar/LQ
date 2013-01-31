@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#define WALLPAPER_COUNT_PERLINE 3
 @interface LQWallpaperCell : UITableViewCell<LQImageReceiver>
 {
     NSArray* buttonList;

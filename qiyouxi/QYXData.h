@@ -26,6 +26,7 @@
 @property (nonatomic, assign) int commentCount;
 
 @property (nonatomic, strong) NSString* downloadUrl;
+@property (nonatomic, strong) NSString* downloadNumber;
 @property (nonatomic, strong) NSString* package;
 @property (nonatomic, strong) NSString* shareUri;
 

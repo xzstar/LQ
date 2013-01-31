@@ -9,6 +9,7 @@
 #import "LQCategoryListViewController.h"
 #import "LQTopicCell.h"
 #import "LQAppsListWrapperViewController.h"
+#import "SVPullToRefresh.h"
 @interface LQCategoryListViewController ()
 
 @end
@@ -71,10 +72,17 @@
     
     if(self.category == nil){
         [self endLoading];
+        [self.tableView.pullToRefreshView stopAnimating];
         return;
     }
+    else
+        self.appsList = nil;
     //[self startLoading];    
     [self.client loadCategory:category];
+}
+
+- (void)loadMoreData{
+    [self.tableView.infiniteScrollingView stopAnimating];
 }
 
 #pragma mark - Network Callback
@@ -83,6 +91,7 @@
     switch (command) {
         case C_COMMAND_GETCATEGORY:
             [self endLoading];
+            [self.tableView.pullToRefreshView stopAnimating];
             if ([result isKindOfClass:[NSDictionary class]]){
                 // [self loadTodayGames:result];
                 [self loadCats:[result objectForKey:@"cats"]];

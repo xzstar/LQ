@@ -254,7 +254,6 @@
 
 #pragma mark -- LQWallpaperListViewController --
 
-#define WALLPAPER_COUNT_PERLINE 3
 @implementation LQWallpaperListViewController
 - (void)viewDidLoad
 {

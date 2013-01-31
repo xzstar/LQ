@@ -28,7 +28,7 @@
 @synthesize gameInfoUserComments;
 @synthesize mainScrollView;
 
-@synthesize gameVender,gameVersion,gameType,gameScore,gameDownloadCount,gameBaseInfoPanel,gameSize;
+@synthesize gameVersion,gameType,gameScore,gameDownloadCount,gameBaseInfoPanel,gameSize;
 @synthesize installNowButton,downloadNowButton;
 @synthesize weiboShareButton,qqShareButton;
 @synthesize gamePhotoInfoPanel;
@@ -119,8 +119,8 @@
  
     self.gameVersion.text = [NSString stringWithFormat:@"版本:%@",gameInfo.versionCode];
     self.gameScore.text = [NSString stringWithFormat:@"%@分",gameInfo.rating];
-    self.gameType.text = [NSString stringWithFormat:@"分类:%@", gameInfo.tags];
-    self.gameVender.text = [NSString stringWithFormat:@"开发商:%@",@""];
+    self.gameType.text = [NSString stringWithFormat:@"标签:%@", gameInfo.tags];
+    self.gameDownloadCount.text = [NSString stringWithFormat:@"下载:%@", gameInfo.downloadNumber];
     self.commentLabel.text = gameInfo.intro;
     //文字居中显示  
     commentLabel.textAlignment = UITextAlignmentLeft;  
@@ -393,7 +393,7 @@
                 [_krShare requestWithURL:@"statuses/upload.json"
                                   params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                                           shareText, @"status",
-                                          gameIconView.imageView.image, @"pic", nil]
+                                          [UIImage imageNamed:@"icon.png"], @"pic", nil]
                               httpMethod:@"POST"
                                 delegate:self];
         
@@ -418,7 +418,7 @@
                                          @"0",@"compatibleflag",
                                          @"2.a",@"oauth_version",
                                          kTencentWeiboAppKey,@"oauth_consumer_key",
-                                         gameIconView.imageView.image, @"pic", nil]
+                                         [UIImage imageNamed:@"icon.png"], @"pic", nil]
                              httpMethod:@"POST"
                                delegate:self];
 //        [krShare requestWithURL:@"t/add"
@@ -517,7 +517,7 @@
     //_loadingView.hidden = YES;
     
     //新浪微博响应
-    if ([request.url hasSuffix:@"statuses/update.json"])
+    if ([request.url hasSuffix:@"statuses/upload.json"])
     {
         if([[result objectForKey:@"error_code"] intValue]==20019)
         {
@@ -527,9 +527,13 @@
         {
             [LQUtilities AlertWithMessage:@"发送微博成功"];
         }
+        else{
+            [LQUtilities AlertWithMessage:[NSString stringWithFormat:@"sina code %@",
+             [result objectForKey:@"error"]]];
+        }
     }
     //腾讯微博响应
-    else if ([request.url hasSuffix:@"api/t/add"])
+    else if ([request.url hasSuffix:@"api/t/add_pic"])
     {
         if([[result objectForKey:@"errcode"] intValue]==0)
         {

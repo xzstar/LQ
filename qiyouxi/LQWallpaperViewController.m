@@ -114,6 +114,10 @@
 // Called when a button is clicked. The view will be automatically dismissed after this call returns
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     
+    if (buttonIndex>=3) {
+        return;
+    }
+    
     QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameInfo.gameId];
     QYXDownloadObject* obj = [[LQDownloadManager sharedInstance] objectWithGameId:gameInfo.gameId];
     

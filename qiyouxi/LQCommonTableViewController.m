@@ -378,8 +378,6 @@
 
 - (void)client:(LQClientBase*)client didFailExecution:(LQClientError*)error{
     [self endLoading];
-    [self.tableView.pullToRefreshView stopAnimating];
-    [self.tableView.infiniteScrollingView stopAnimating];
     [self handleNetworkError:error];
 }
 
