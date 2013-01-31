@@ -177,7 +177,7 @@
         cell.gameInfo = [appsList objectAtIndex:indexPath.row];
         
         [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:indexPath.row];
-        [cell addLeftButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
+        [cell addLeftButtonTarget:self action:@selector(onGameDownloadAndInstall:) tag:indexPath.row];
         [cell addMiddleButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
         [cell addRightButtonTarget:self action:@selector(onGameDetail:) tag:indexPath.row];
         return cell;

@@ -293,6 +293,7 @@
             frame.origin.x = 0;
             listController.view.frame = frame;
             needSearchAgain = NO;
+            listController.parent = self;
         }
         else {
             listController.keywords = keyword;
