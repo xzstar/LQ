@@ -9,12 +9,14 @@
 #import "LQViewController.h"
 
 @interface LQWallpaperViewController : LQViewController<LQImageReceiver,UIActionSheetDelegate>{
+    NSString* iconImageUrl;
     NSString* imageUrl;
     BOOL hidden;
     NSString* titleString;
 }
 
 @property(nonatomic,strong) LQGameInfo *gameInfo;
+@property(nonatomic,strong) NSString* iconImageUrl;
 @property(nonatomic,strong) NSString* imageUrl;
 @property(nonatomic,strong) NSString* titleString;
 

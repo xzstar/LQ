@@ -18,7 +18,7 @@
 @end
 
 @implementation LQWallpaperViewController
-@synthesize imageUrl,imageView,fullScreenButton,setWallpaperButton,downloadButton,topView,bottomView,title,titleString,gameInfo;
+@synthesize iconImageUrl,imageUrl,imageView,fullScreenButton,setWallpaperButton,downloadButton,topView,bottomView,title,titleString,gameInfo;
 @synthesize shadowView,animationTimer;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,9 +33,16 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    UIImage* image = [[LQImageLoader sharedInstance] loadImage:imageUrl context:self];
+    UIImage* image = [[LQImageLoader sharedInstance] loadImage:iconImageUrl context:self];
     if (image != nil){
         [imageView setImage:image];
+        UIImage* image = [[LQImageLoader sharedInstance] loadImage:imageUrl context:self];
+        if (image != nil){
+            [imageView setImage:image];
+        }
+        else {
+            [self startLoading];
+        }
     }else {
         [self startLoading];
     }
@@ -56,10 +63,21 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)updateImage:(UIImage*)image forUrl:(NSString*)imageUrl{
+- (void)updateImage:(UIImage*)image forUrl:(NSString*)aImageUrl{
     if (image != nil) {
         [imageView setImage:image];
         [self endLoading];
+
+        if ([aImageUrl isEqualToString:iconImageUrl]) {
+            UIImage* image = [[LQImageLoader sharedInstance] loadImage:imageUrl context:self];
+            if (image != nil){
+                [imageView setImage:image];
+            }
+            else {
+                [self startLoading];
+            }
+        }
+        
     }
 }
 

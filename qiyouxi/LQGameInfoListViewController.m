@@ -352,7 +352,7 @@
     int tag = button.tag;
     LQWallpaperViewController* controller = [[LQWallpaperViewController alloc]initWithNibName:@"LQWallpaperViewController" bundle:nil];
     LQGameInfo *item = [self.appsList objectAtIndex:tag];
-
+    controller.iconImageUrl = item.icon;
     controller.imageUrl = item.downloadUrl;
     controller.titleString = item.name;
     controller.gameInfo = item;
@@ -728,7 +728,7 @@
     int tag = button.tag;
     LQWallpaperViewController* controller = [[LQWallpaperViewController alloc]initWithNibName:@"LQWallpaperViewController" bundle:nil];
     LQGameInfo *item = [self.appsList objectAtIndex:tag];
-    
+    controller.iconImageUrl = item.icon;
     controller.imageUrl = item.downloadUrl;
     controller.titleString = item.name;
     controller.gameInfo = item;
