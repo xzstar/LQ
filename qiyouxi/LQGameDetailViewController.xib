@@ -605,13 +605,35 @@ AAgACAAIAAEAAQABAAE</bytes>
 							<string key="NSResourceName">ico_comment_24.png</string>
 						</object>
 					</object>
+					<object class="IBUILabel" id="960116004">
+						<reference key="NSNextResponder" ref="383612880"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{87, 554}, {147, 31}}</string>
+						<reference key="NSSuperview" ref="383612880"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="238722921"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClipsSubviews">YES</bool>
+						<int key="IBUIContentMode">7</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<string key="IBUIText">还没有人评论过</string>
+						<reference key="IBUITextColor" ref="909438980"/>
+						<nil key="IBUIHighlightedColor"/>
+						<int key="IBUIBaselineAdjustment">0</int>
+						<float key="IBUIMinimumFontSize">10</float>
+						<int key="IBUITextAlignment">1</int>
+						<reference key="IBUIFontDescription" ref="954587910"/>
+						<reference key="IBUIFont" ref="247608177"/>
+					</object>
 					<object class="IBUITableView" id="550156438">
 						<reference key="NSNextResponder" ref="383612880"/>
 						<int key="NSvFlags">274</int>
 						<string key="NSFrame">{{-1, 510}, {320, 267}}</string>
 						<reference key="NSSuperview" ref="383612880"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="238722921"/>
+						<reference key="NSNextKeyView" ref="960116004"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="42756047"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -823,6 +845,14 @@ AAgACAAIAAEAAQABAAE</bytes>
 					<int key="connectionID">130</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">postCommentButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="238722921"/>
+					</object>
+					<int key="connectionID">139</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">onGameDownload:</string>
 						<reference key="source" ref="1011856298"/>
@@ -1003,6 +1033,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 							<reference ref="312598517"/>
 							<reference ref="389814541"/>
 							<reference ref="278919524"/>
+							<reference ref="960116004"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -1076,6 +1107,11 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<reference key="object" ref="238722921"/>
 						<reference key="parent" ref="383612880"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">138</int>
+						<reference key="object" ref="960116004"/>
+						<reference key="parent" ref="383612880"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -1093,6 +1129,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 				<string key="127.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="131.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="131.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<string key="138.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="30.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<reference key="30.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="30.showNotes"/>
@@ -1141,7 +1178,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">137</int>
+			<int key="maxID">139</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1201,6 +1238,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<string key="gameVersion">UILabel</string>
 						<string key="installNowButton">UIButton</string>
 						<string key="mainScrollView">UIScrollView</string>
+						<string key="postCommentButton">UIButton</string>
 						<string key="qqShareButton">UIButton</string>
 						<string key="screenShotsView">LQAdvertiseView</string>
 						<string key="weiboShareButton">UIButton</string>
@@ -1265,6 +1303,10 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<object class="IBToOneOutletInfo" key="mainScrollView">
 							<string key="name">mainScrollView</string>
 							<string key="candidateClassName">UIScrollView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="postCommentButton">
+							<string key="name">postCommentButton</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="qqShareButton">
 							<string key="name">qqShareButton</string>

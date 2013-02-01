@@ -38,6 +38,21 @@
     [self initTables];
     [self initPageController];
     self.titleLabel.text = titleString;
+    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    tapGr.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGr];
+}
+
+-(void)viewTapped:(UITapGestureRecognizer*)tapGr{
+    //[activitySearchBar resignFirstResponder];
+    for(LQCommonTableViewController *controller in viewControllers){
+        if([controller respondsToSelector:@selector(viewTapped:)]){
+            [controller performSelectorOnMainThread:@selector(viewTapped:) 
+                                         withObject:tapGr
+                                      waitUntilDone:NO];
+        }
+                                                                        
+    }
 }
 
 - (void)viewDidUnload

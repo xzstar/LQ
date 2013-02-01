@@ -55,5 +55,5 @@ feedback.error.nocontact = "请填入联系方式";
 feedback.error.nocontent = "请填入反馈内容";
 
 comment.error.nocontent = "请填入评论内容";
-
+comment.summit.success = "评论提交成功";
 info.share = "历趣助手提供ios软件游戏主题壁纸铃声等方面的下载，管理iphone手机手机应用，欢迎访问 http://www.apodang.com";

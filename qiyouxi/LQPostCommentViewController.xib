@@ -46,7 +46,7 @@
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="954192404"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="569342612"/>
+						<reference key="NSNextKeyView" ref="427566130"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -116,7 +116,6 @@
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">17</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
-							<int key="IBUIReturnKeyType">9</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<int key="IBUIClearButtonMode">1</int>
@@ -145,7 +144,6 @@
 						<string key="IBUIText">我也说两句</string>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
 							<int key="IBUIAutocapitalizationType">2</int>
-							<int key="IBUIReturnKeyType">9</int>
 							<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						</object>
 						<reference key="IBUIFontDescription" ref="233719995"/>
@@ -365,7 +363,7 @@
 								<string key="NSFrame">{{135, 1}, {24, 24}}</string>
 								<reference key="NSSuperview" ref="307322061"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="315167516"/>
+								<reference key="NSNextKeyView" ref="569342612"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -399,6 +397,7 @@
 						<string key="NSFrame">{{0, 160}, {320, 321}}</string>
 						<reference key="NSSuperview" ref="954192404"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<reference key="IBUIBackgroundColor" ref="216249244"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -416,7 +415,7 @@
 				<string key="NSFrameSize">{320, 480}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="427566130"/>
+				<reference key="NSNextKeyView" ref="315167516"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -502,6 +501,14 @@
 					<int key="connectionID">41</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">contactField</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="264607352"/>
+					</object>
+					<int key="connectionID">47</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">onSubmit:</string>
 						<reference key="source" ref="331947867"/>
@@ -509,6 +516,14 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">11</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">delegate</string>
+						<reference key="source" ref="264607352"/>
+						<reference key="destination" ref="372490531"/>
+					</object>
+					<int key="connectionID">48</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -740,7 +755,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">46</int>
+			<int key="maxID">48</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

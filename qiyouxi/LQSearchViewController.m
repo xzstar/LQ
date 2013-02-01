@@ -81,9 +81,16 @@
         }
     }
 
+    UITapGestureRecognizer *tapGr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    tapGr.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGr];
 
 
    
+}
+
+-(void)viewTapped:(UITapGestureRecognizer*)tapGr{
+    [searchBar resignFirstResponder];
 }
 
 - (void)viewDidUnload

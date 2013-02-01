@@ -34,6 +34,7 @@
 @synthesize gamePhotoInfoPanel;
 @synthesize gameScore2;
 @synthesize gameInfoCommentTableView;
+@synthesize postCommentButton;
 
 @synthesize gameIconView, gameTitleLabel;
 @synthesize commentLabel;
@@ -151,7 +152,19 @@
     [self.gameInfoUserComments removeAllObjects];
     [self.gameInfoUserComments addObjectsFromArray: result];
     [self.gameInfoCommentTableView reloadData];
+    
+    if(self.gameInfoUserComments.count == 0){
+        self.gameInfoCommentTableView.hidden = YES;
+        self.postCommentButton.hidden = YES;
+        CGSize size = mainScrollView.contentSize;
+        size.height -= 30;
+        mainScrollView.contentSize = size;
+    }
+    else{
+        self.gameInfoCommentTableView.hidden = NO;
+        self.postCommentButton.hidden = NO;
 
+    }
 }
 
 

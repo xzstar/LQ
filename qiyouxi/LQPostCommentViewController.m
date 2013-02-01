@@ -93,8 +93,12 @@
             [weakSelf loadMoreData];
         });
     }];
+}
 
-    
+-(void)viewTapped:(UITapGestureRecognizer*)tapGr{
+    //[activitySearchBar resignFirstResponder];
+    [self.contactField resignFirstResponder];
+    [self.contentField resignFirstResponder];
 }
 
 - (IBAction)onSubmit:(id)sender{
@@ -106,7 +110,7 @@
         return;
     }
     
-    //[self startLoading];
+    [self startLoading];
 //    [self.client submitComment:self.gameId comment:content nick:contact];
     [self.client postComment:self.gameId rating:[[NSNumber numberWithInt:score]stringValue]  text:content];
 }
@@ -130,12 +134,12 @@
     }
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
-    if (textField == self.contactField){
-        [self.contentField becomeFirstResponder];
-    }else{
-        [textField resignFirstResponder];
-    }
-    
+//    if (textField == self.contactField){
+//        [self.contentField becomeFirstResponder];
+//    }else{
+//        [textField resignFirstResponder];
+//    }
+    [textField resignFirstResponder];
     return YES;
 }
 
@@ -203,8 +207,8 @@
             }
         }
             [self endLoading];
-            
-            [self.navigationController popViewControllerAnimated:YES];
+            [LQUtilities AlertWithMessage:LocalString(@"comment.summit.success")];
+            //[self.navigationController popViewControllerAnimated:YES];
             break;
         default:
             break;
