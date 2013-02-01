@@ -26,9 +26,13 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+#error back from soft/game/ring/wallpaper
     if([LQDownloadManager sharedInstance].downloadGames.count>0)
-        [self loadScrollViewWithPage:1];
-
+        [self switchToPage:1];
+    else
+        [self switchToPage:0];
 }
 
 - (void)viewDidLoad

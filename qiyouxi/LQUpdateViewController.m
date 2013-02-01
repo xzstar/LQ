@@ -340,7 +340,8 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
     UIButton* button = (UIButton*)sender;
     int row = button.tag;
     LQGameInfo* gameInfo = [updateAppsList objectAtIndex:row];
-    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameInfo.gameId];
+    [[LQDownloadManager sharedInstance] commonAction:gameInfo installAfterDownloaded:NO];
+//    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameInfo.gameId];
 //    LQGameInfo* info;
 //    for (LQGameInfo* tempinfo in updateAppsList) {
 //        if(tempinfo.gameId == gameId){
@@ -348,31 +349,36 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
 //            break;
 //        }
 //    }
-    switch (status) {
-        case kQYXDSFailed:
-            [[LQDownloadManager sharedInstance] resumeDownloadById:gameInfo.gameId];
-            break;
-            //        case kQYXDSCompleted:
-            //        case kQYXDSInstalling:
-            //            [[LQDownloadManager sharedInstance] installGameBy:self.gameInfo.gameId];
-            //            break;
-            //        case kQYXDSPaused:
-            //            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
-            //            break;
-            //        case kQYXDSRunning:
-            //            [[LQDownloadManager sharedInstance] pauseDownloadById:self.gameInfo.gameId];
-            //            break;
-        case kQYXDSNotFound:
-            if(gameInfo!=nil)
-                [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo installAfterDownloaded:NO];
-            
-            break;
-            //        case kQYXDSInstalled:
-            //            [[LQDownloadManager sharedInstance] startGame:self.gameInfo.package];
-            //            break;
-        default:
-            break;
-    }
+//    switch (status) {
+//        case kQYXDSFailed:
+//        case kQYXDSPaused:
+//            info = [NSString stringWithFormat:LocalString(@"info.download.running"),gameInfo.name];
+//            [info showToastAsInfo];
+//            [[LQDownloadManager sharedInstance] resumeDownloadById:gameInfo.gameId];
+//            break;
+//        case kQYXDSCompleted:
+//            info = [NSString stringWithFormat:LocalString(@"info.download.downloaded"),gameInfo.name];
+//            [info showToastAsInfo];
+//            break;
+//        case kQYXDSInstalling:
+//            info = [NSString stringWithFormat:LocalString(@"info.download.install"),gameInfo.name];
+//            [info showToastAsInfo];
+//            break;
+//        case kQYXDSRunning:
+//            info = [NSString stringWithFormat:LocalString(@"info.download.running"),gameInfo.name];
+//            [info showToastAsInfo];
+//            break;
+//        case kQYXDSNotFound:
+//            if(gameInfo!=nil)
+//                [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo installAfterDownloaded:NO];
+//            break;
+//        case kQYXDSInstalled:
+//            info = [NSString stringWithFormat:LocalString(@"info.download.install.success"),gameInfo.name];
+//            [info showToastAsInfo];
+//            break;
+//        default:
+//            break;
+//    }
 }
 
 - (void)updateIgoreButton{
@@ -485,38 +491,14 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
 }
 - (IBAction) onUpdateAll:(id)sender{
   
-    for(LQGameInfo* info in appsList){
-        int gameId = info.gameId;
-        QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameId];
-        QYXDownloadObject* obj = [[LQDownloadManager sharedInstance] objectWithGameId:info.gameId];
-        if(obj!=nil)
-            obj.installAfterDownloaded = YES;
-        switch (status) {
-            case kQYXDSFailed:
-            case kQYXDSPaused:
-                [[LQDownloadManager sharedInstance] resumeDownloadById:gameId];
-                break;
-                //        case kQYXDSCompleted:
-                //        case kQYXDSInstalling:
-                //            [[LQDownloadManager sharedInstance] installGameBy:self.gameInfo.gameId];
-                //            break;
-                //        case kQYXDSPaused:
-                //            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
-                //            break;
-                //        case kQYXDSRunning:
-                //            [[LQDownloadManager sharedInstance] pauseDownloadById:self.gameInfo.gameId];
-                //            break;
-            case kQYXDSNotFound:
-                if(info!=nil)
-                    [[LQDownloadManager sharedInstance] addToDownloadQueue:info installAfterDownloaded:YES];
-                
-                break;
-                //        case kQYXDSInstalled:
-                //            [[LQDownloadManager sharedInstance] startGame:self.gameInfo.package];
-                //            break;
-            default:
-                break;
-        }
+    for(LQGameInfo* gameInfo in appsList){
+        //int gameId = info.gameId;
+        [[LQDownloadManager sharedInstance] commonAction:gameInfo installAfterDownloaded:YES];
+//        QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameId];
+//        QYXDownloadObject* obj = [[LQDownloadManager sharedInstance] objectWithGameId:info.gameId];
+//        if(obj!=nil)
+//            obj.installAfterDownloaded = YES;
+       
     }
 }
 

@@ -96,21 +96,28 @@ extern NSString* const kNotificationStatusChanged;
 -(IBAction)onSoftClick:(id)sender{
     LQDownloadedViewController *controller = [[LQDownloadedViewController alloc] initWithNibName:@"LQDownloadedViewController" bundle:nil];
     controller.type = @"soft";
+    controller.titleString = @"软件";
     [self.parent.navigationController pushViewController:controller animated:YES];
 }
 -(IBAction)onGameClick:(id)sender{
     LQDownloadedViewController *controller = [[LQDownloadedViewController alloc] initWithNibName:@"LQDownloadedViewController" bundle:nil];
     controller.type = @"game";
+    controller.titleString = @"游戏";
+
     [self.parent.navigationController pushViewController:controller animated:YES];
  
 }
 -(IBAction)onRingClick:(id)sender{
     LQDownloadedRingsViewController *controller = [[LQDownloadedRingsViewController alloc] initWithNibName:@"LQDownloadedViewController" bundle:nil];
+    controller.titleString = @"铃声";
+
     [self.parent.navigationController pushViewController:controller animated:YES];
 
 }
 -(IBAction)onWallpaerClick:(id)sender{
    LQDownloadedWallpaperViewController *controller = [[LQDownloadedWallpaperViewController alloc] initWithNibName:@"LQDownloadedViewController" bundle:nil];
+    controller.titleString = @"壁纸";
+
     [self.parent.navigationController pushViewController:controller animated:YES];
 
 }

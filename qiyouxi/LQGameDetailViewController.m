@@ -157,8 +157,10 @@
         self.gameInfoCommentTableView.hidden = YES;
         self.postCommentButton.hidden = YES;
         CGSize size = mainScrollView.contentSize;
-        size.height -= 30;
+        size.height -= 2*gameInfoCommentTableView.frame.size.height/3;
         mainScrollView.contentSize = size;
+        [mainScrollView layoutIfNeeded];
+
     }
     else{
         self.gameInfoCommentTableView.hidden = NO;
@@ -213,65 +215,69 @@
 
 - (IBAction)onGameDownload:(id)sender{
     //int gameId = gameInfo.gameId;
-    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameId];
-    switch (status) {
-        case kQYXDSFailed:
-            [[LQDownloadManager sharedInstance] resumeDownloadById:gameId];
-            break;
-        case kQYXDSCompleted:
-        case kQYXDSInstalling:           
-            [[NSString stringWithFormat:LocalString(@"info.download.downloaded"), gameInfo.name] showToastAsInfo];
-            break;
-        case kQYXDSPaused:
-            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
-            break;
-        case kQYXDSRunning:
-            [[NSString stringWithFormat:LocalString(@"info.download.running"), gameInfo.name] showToastAsInfo];
-            break;
-        case kQYXDSNotFound:
-            if(gameInfo!=nil)
-                [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo installAfterDownloaded:NO];
-            
-            break;
-            //        case kQYXDSInstalled:
-            //            [[LQDownloadManager sharedInstance] startGame:self.gameInfo.package];
-            //            break;
-        default:
-            break;
-    }
+    
+    [[LQDownloadManager sharedInstance] commonAction:gameInfo installAfterDownloaded:NO];
+    
+//    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameId];
+//    switch (status) {
+//        case kQYXDSFailed:
+//            [[LQDownloadManager sharedInstance] resumeDownloadById:gameId];
+//            break;
+//        case kQYXDSCompleted:
+//        case kQYXDSInstalling:           
+//            [[NSString stringWithFormat:LocalString(@"info.download.downloaded"), gameInfo.name] showToastAsInfo];
+//            break;
+//        case kQYXDSPaused:
+//            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
+//            break;
+//        case kQYXDSRunning:
+//            [[NSString stringWithFormat:LocalString(@"info.download.running"), gameInfo.name] showToastAsInfo];
+//            break;
+//        case kQYXDSNotFound:
+//            if(gameInfo!=nil)
+//                [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo installAfterDownloaded:NO];
+//            
+//            break;
+//            //        case kQYXDSInstalled:
+//            //            [[LQDownloadManager sharedInstance] startGame:self.gameInfo.package];
+//            //            break;
+//        default:
+//            break;
+//    }
 }
 - (IBAction)onGameDownloadAndInstall:(id)sender{
+    [[LQDownloadManager sharedInstance] commonAction:gameInfo installAfterDownloaded:YES];
     //int gameId = gameInfo.gameId;
-    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameId];
-    QYXDownloadObject* obj =[[LQDownloadManager sharedInstance] objectWithGameId:gameId];
-    if(obj!=nil)           
-        obj.installAfterDownloaded = YES;
-
-    switch (status) {
-        case kQYXDSFailed:
-            obj.installAfterDownloaded = YES;
-            [[LQDownloadManager sharedInstance] resumeDownloadById:gameId];
-            break;
-        case kQYXDSCompleted:
-        case kQYXDSInstalling:
-            [[LQDownloadManager sharedInstance] installGameBy:self.gameInfo.gameId];
-            break;
-        case kQYXDSPaused:
-            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
-            break;
-        case kQYXDSRunning:
-             [[NSString stringWithFormat:LocalString(@"info.download.running"), gameInfo.name] showToastAsInfo];            break;
-        case kQYXDSNotFound:
-            if(gameInfo!=nil)
-                [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo installAfterDownloaded:YES];
-            
-            break;
-            //        case kQYXDSInstalled:
-            //            [[LQDownloadManager sharedInstance] startGame:self.gameInfo.package];
-            //            break;
-        default:
-            break;
-    }
+//    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameId];
+//    QYXDownloadObject* obj =[[LQDownloadManager sharedInstance] objectWithGameId:gameId];
+//    if(obj!=nil)           
+//        obj.installAfterDownloaded = YES;
+//
+//    switch (status) {
+//        case kQYXDSFailed:
+//            obj.installAfterDownloaded = YES;
+//            [[LQDownloadManager sharedInstance] resumeDownloadById:gameId];
+//            break;
+//        case kQYXDSCompleted:
+//        case kQYXDSInstalling:
+//            [[LQDownloadManager sharedInstance] installGameBy:self.gameInfo.gameId];
+//            break;
+//        case kQYXDSPaused:
+//            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
+//            break;
+//        case kQYXDSRunning:
+//             [[NSString stringWithFormat:LocalString(@"info.download.running"), gameInfo.name] showToastAsInfo];            break;
+//        case kQYXDSNotFound:
+//            if(gameInfo!=nil)
+//                [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo installAfterDownloaded:YES];
+//            
+//            break;
+//            //        case kQYXDSInstalled:
+//            //            [[LQDownloadManager sharedInstance] startGame:self.gameInfo.package];
+//            //            break;
+//        default:
+//            break;
+//    }
 
 }
 

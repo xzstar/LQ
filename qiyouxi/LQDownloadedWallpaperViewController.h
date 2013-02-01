@@ -12,6 +12,8 @@
     NSMutableArray* appsList;
 }
 @property (unsafe_unretained) IBOutlet UITableView* applicaitonView;
+@property (unsafe_unretained) IBOutlet UILabel* title;
+@property (nonatomic,strong) NSString* titleString;
 
 -(IBAction)onBack:(id)sender;
 

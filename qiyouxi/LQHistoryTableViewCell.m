@@ -106,35 +106,36 @@
 }
 
 - (IBAction)onActionButton:(id)sender{
-    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:self.gameInfo.gameId];
-    switch (status) {
-        case kQYXDSFailed:
-            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
-            break;
-        case kQYXDSCompleted:
-        case kQYXDSInstalling:
-            [[LQDownloadManager sharedInstance] installGameBy:self.gameInfo.gameId];
-            break;
-        case kQYXDSPaused:
-            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
-            break;
-        case kQYXDSRunning:
-            [[LQDownloadManager sharedInstance] pauseDownloadById:self.gameInfo.gameId];
-            break;
-        case kQYXDSNotFound:
-            if ([[LQDownloadManager sharedInstance] isGameInstalled:self.gameInfo.package]){
-                [[LQDownloadManager sharedInstance] startGame:self.gameInfo.package];
-            }else{
-                [[LQDownloadManager sharedInstance] addToDownloadQueue:self.gameInfo installAfterDownloaded:NO];
-            }
-            break;
-        case kQYXDSInstalled:
-            [[LQDownloadManager sharedInstance] startGame:self.gameInfo.package];
-            break;
-        default:
-            break;
-    }
-    self.gameInfo = gameInfo;
+    [[LQDownloadManager sharedInstance] commonAction:gameInfo installAfterDownloaded:NO];
+//    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:self.gameInfo.gameId];
+//    switch (status) {
+//        case kQYXDSFailed:
+//            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
+//            break;
+//        case kQYXDSCompleted:
+//        case kQYXDSInstalling:
+//            [[LQDownloadManager sharedInstance] installGameBy:self.gameInfo.gameId];
+//            break;
+//        case kQYXDSPaused:
+//            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
+//            break;
+//        case kQYXDSRunning:
+//            [[LQDownloadManager sharedInstance] pauseDownloadById:self.gameInfo.gameId];
+//            break;
+//        case kQYXDSNotFound:
+//            if ([[LQDownloadManager sharedInstance] isGameInstalled:self.gameInfo.package]){
+//                //[[LQDownloadManager sharedInstance] startGame:self.gameInfo.package];
+//            }else{
+//                [[LQDownloadManager sharedInstance] addToDownloadQueue:self.gameInfo installAfterDownloaded:NO];
+//            }
+//            break;
+//        case kQYXDSInstalled:
+//            [[LQDownloadManager sharedInstance] startGame:self.gameInfo.package];
+//            break;
+//        default:
+//            break;
+//    }
+//    self.gameInfo = gameInfo;
 }
 
 - (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag{

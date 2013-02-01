@@ -122,7 +122,7 @@ extern NSString* const kNotificationStatusChanged;
                                              selector:@selector(updateDownloadingStatus:)
                                                  name:kNotificationStatusChanged
                                                object:nil];
-       
+           
 }
 
 - (void)viewWillAppear:(BOOL)animated{

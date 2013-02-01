@@ -34,24 +34,27 @@
 
 
 - (IBAction)onActionButton:(id)sender{
-    switch (self.downloadObject.status) {
-        case kQYXDSFailed:
-            [[LQDownloadManager sharedInstance] resumeDownloadById:self.downloadObject.gameInfo.gameId];
-            break;
-        case kQYXDSCompleted:
-            [[LQDownloadManager sharedInstance] installGameBy:self.downloadObject.gameInfo.gameId];
-            break;
-        case kQYXDSPaused:
-            [[LQDownloadManager sharedInstance] resumeDownloadById:self.downloadObject.gameInfo.gameId];
-            break;
-        case kQYXDSRunning:
-            [[LQDownloadManager sharedInstance] pauseDownloadById:self.downloadObject.gameInfo.gameId];
-            break;
-        default:
-            break;
-    }
     
-    self.downloadObject = downloadObject;
+    [[LQDownloadManager sharedInstance] commonAction:self.downloadObject.gameInfo installAfterDownloaded:NO];
+    
+//    switch (self.downloadObject.status) {
+//        case kQYXDSFailed:
+//            [[LQDownloadManager sharedInstance] resumeDownloadById:self.downloadObject.gameInfo.gameId];
+//            break;
+//        case kQYXDSCompleted:
+//            [[LQDownloadManager sharedInstance] installGameBy:self.downloadObject.gameInfo.gameId];
+//            break;
+//        case kQYXDSPaused:
+//            [[LQDownloadManager sharedInstance] resumeDownloadById:self.downloadObject.gameInfo.gameId];
+//            break;
+//        case kQYXDSRunning:
+//            [[LQDownloadManager sharedInstance] pauseDownloadById:self.downloadObject.gameInfo.gameId];
+//            break;
+//        default:
+//            break;
+//    }
+    
+//    self.downloadObject = downloadObject;
 
 }
 

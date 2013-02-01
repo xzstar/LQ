@@ -21,6 +21,7 @@ extern NSString* const kNotificationStatusChanged;
 @implementation LQDownloadedWallpaperViewController
 
 @synthesize applicaitonView;
+@synthesize titleString,title;
 
 - (void)loadViews{
     //    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updateStatus:) userInfo:nil repeats:YES];
@@ -35,6 +36,8 @@ extern NSString* const kNotificationStatusChanged;
 
 - (void) viewDidLoad{
     [super viewDidLoad];
+    if(self.titleString!=nil)
+        self.title.text = self.titleString;
     
 }
 - (void) viewDidUnload{

@@ -97,18 +97,29 @@
     //LQGameInfo* info = [appsList objectAtIndex:row];
     int gameId = gameInfo.gameId;
     QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameId];
+    NSString* info;
     switch (status) {
         case kQYXDSFailed:
+            info = [NSString stringWithFormat:LocalString(@"info.download.running"),gameInfo.name];
+            [info showToastAsInfo];
             [[LQDownloadManager sharedInstance] resumeDownloadById:gameId];
             break;
-            //        case kQYXDSCompleted:
+        case kQYXDSCompleted:
+            info = [NSString stringWithFormat:LocalString(@"info.download.running"),gameInfo.name];
+            [info showToastAsInfo];
+            break;
             //        case kQYXDSInstalling:
             //            [[LQDownloadManager sharedInstance] installGameBy:self.gameInfo.gameId];
             //            break;
-            //        case kQYXDSPaused:
-            //            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
-            //            break;
-            //        case kQYXDSRunning:
+        case kQYXDSPaused:
+            info = [NSString stringWithFormat:LocalString(@"info.download.running"),gameInfo.name];
+            [info showToastAsInfo];
+            [[LQDownloadManager sharedInstance] resumeDownloadById:self.gameInfo.gameId];
+            break;
+        case kQYXDSRunning:
+            info = [NSString stringWithFormat:LocalString(@"info.download.running"),gameInfo.name];
+            [info showToastAsInfo];
+            break;
             //            [[LQDownloadManager sharedInstance] pauseDownloadById:self.gameInfo.gameId];
             //            break;
         case kQYXDSNotFound:

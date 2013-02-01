@@ -122,15 +122,27 @@ static int callback(NSDictionary *dict, id result) {
     if (result == NO) {
         return result;
     }
+    
+    //更新 ringtone表
     NSMutableDictionary *custDict = [[NSMutableDictionary alloc] initWithContentsOfFile:RINGTONEPLIST];
     NSString* filename = [dest lastPathComponent];
     NSMutableDictionary *ringtoneDict = [custDict objectForKey:@"Ringtones"];
     
     NSMutableDictionary *ringtoneItemDict = [[NSMutableDictionary alloc]init ];
     [ringtoneItemDict setObject:displayName forKey:@"Name"];
-    [ringtoneItemDict setObject:[LQUtilities stringWithUUID] forKey:@"GUID"];
+    NSString* uuid = [LQUtilities stringWithUUID];
+    [ringtoneItemDict setObject:uuid forKey:@"GUID"];
     [ringtoneDict setObject:ringtoneItemDict forKey:filename];
     result = [custDict writeToFile:RINGTONEPLIST atomically:YES];
+    if (result == NO) {
+        return result;
+    }
+    //更新选中铃声表
+    custDict = [[NSMutableDictionary alloc] initWithContentsOfFile:SPRINGBOARDPLIST];
+    filename = [[dest lastPathComponent] stringByDeletingPathExtension];
+    NSString* ringtone = [NSString stringWithFormat:@"itunes:%@",uuid];
+    [custDict setObject:ringtone forKey:@"ringtone"];
+    result = [custDict writeToFile:SPRINGBOARDPLIST atomically:YES];
     return result;
 }
 

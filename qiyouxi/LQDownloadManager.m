@@ -54,6 +54,8 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
         self.completedGames = [[NSMutableArray alloc] init];
         self.gameMap = [[NSMutableDictionary alloc] init];
         
+        NSMutableArray* restartGames = [[NSMutableArray alloc] init];
+        
         if ([[NSFileManager defaultManager] fileExistsAtPath:self.infoFilePath]){
             NSArray* items = [NSArray arrayWithContentsOfFile:self.infoFilePath];
             for (NSDictionary* item in items){
@@ -91,6 +93,7 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
                         break;
                     case kQYXDSRunning:
                         [self.downloadGames addObject:obj];
+                        [restartGames addObject:obj];
                         obj.status = kQYXDSPaused;
                         break;
                     case kQYXDSInstalled:
@@ -103,7 +106,14 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
                 [self.gameMap setObject:obj forKey:[NSNumber numberWithInt:obj.gameInfo.gameId]];
             }
         }
+        for(QYXDownloadObject* obj in restartGames){
+            [self resumeDownload:obj];
+        }
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:self];
     }
+    
+  
     
     return self;
 }
@@ -259,7 +269,7 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
 }
 
 - (void)resumeDownload:(QYXDownloadObject*)object{
-    if (object.status == kQYXDSPaused){
+    if (object.status == kQYXDSPaused || object.status == kQYXDSFailed){
         [object resume];
         [self synchronize];
     }
@@ -438,6 +448,53 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
     [[LQInstaller defaultInstaller] launchApp:identifier];
 }
 
+
+- (void)commonAction:(LQGameInfo*)gameInfo installAfterDownloaded:(BOOL)installAfterDownloaded{
+    QYXDownloadStatus status = [self getStatusById:gameInfo.gameId];
+    NSString* info;
+    
+    QYXDownloadObject* obj = [self objectWithGameId:gameInfo.gameId];
+    if(obj!=nil)
+        obj.installAfterDownloaded = installAfterDownloaded;
+    
+    switch (status) {
+        case kQYXDSFailed:
+        case kQYXDSPaused:
+            info = [NSString stringWithFormat:LocalString(@"info.download.running"),gameInfo.name];
+            [info showToastAsInfo];
+            [[LQDownloadManager sharedInstance] resumeDownload:obj];
+            break;
+        case kQYXDSCompleted:
+            info = [NSString stringWithFormat:LocalString(@"info.download.downloaded"),gameInfo.name];
+            [info showToastAsInfo];
+            break;
+        case kQYXDSInstalling:
+            info = [NSString stringWithFormat:LocalString(@"info.download.install"),gameInfo.name];
+            [info showToastAsInfo];
+            break;
+        case kQYXDSRunning:
+            info = [NSString stringWithFormat:LocalString(@"info.download.running"),gameInfo.name];
+            [info showToastAsInfo];
+            break;
+        case kQYXDSNotFound:
+            if(gameInfo!=nil)
+                [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo installAfterDownloaded:installAfterDownloaded];
+            break;
+        case kQYXDSInstalled:
+            info = [NSString stringWithFormat:LocalString(@"info.download.install.success"),gameInfo.name];
+            [info showToastAsInfo];
+            break;
+        default:
+            break;
+    }
+    
+}
+- (void)restartGames{
+    for (QYXDownloadObject* obj in [self.gameMap allValues]){
+        if(obj.status == kQYXDSFailed)
+            [self resumeDownload:obj];
+    }
+}
 @end
 
 @implementation QYXDownloadObject

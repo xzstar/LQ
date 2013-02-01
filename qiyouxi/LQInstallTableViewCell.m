@@ -34,7 +34,8 @@
 
 
 - (IBAction)onActionButton:(id)sender{
-    BOOL value = [[LQDownloadManager sharedInstance] isGameInstalled:self.downloadObject.gameInfo.package];
+    
+    BOOL value = [[LQDownloadManager sharedInstance] isGameInstalled:self.downloadObject.gameInfo.package] && self.downloadObject.status!= kQYXDSInstalled;
     
     
     if (value == YES){
@@ -63,7 +64,7 @@
     }
     
     NSString* title = nil;
-    if ([[LQDownloadManager sharedInstance] isGameInstalled:aDownloadObject.gameInfo.package]){
+    if ([[LQDownloadManager sharedInstance] isGameInstalled:aDownloadObject.gameInfo.package] && aDownloadObject.status== kQYXDSInstalled){
         title = LocalString(@"button.start");
     }else{
         if (aDownloadObject.status == kQYXDSInstalling){
@@ -76,7 +77,7 @@
     [self.actionButton setTitle:title forState:UIControlStateNormal];
     
     
-    if ([[LQDownloadManager sharedInstance] isGameInstalled:aDownloadObject.gameInfo.package]){
+    if ([[LQDownloadManager sharedInstance] isGameInstalled:aDownloadObject.gameInfo.package] && aDownloadObject.status== kQYXDSInstalled){
         title = LocalString(@"button.uninstall");
     }else{
         title = LocalString(@"button.delete");
