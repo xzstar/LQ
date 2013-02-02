@@ -34,8 +34,14 @@
 
 
 - (IBAction)onActionButton:(id)sender{
+    switch (self.downloadObject.status){
+        case kQYXDSRunning:
+            [[LQDownloadManager sharedInstance] pauseDownloadById:self.downloadObject.gameInfo.gameId];
+            break;
+        default:
+            [[LQDownloadManager sharedInstance] commonAction:self.downloadObject.gameInfo installAfterDownloaded:self.downloadObject.installAfterDownloaded];
+    }
     
-    [[LQDownloadManager sharedInstance] commonAction:self.downloadObject.gameInfo installAfterDownloaded:NO];
     
 //    switch (self.downloadObject.status) {
 //        case kQYXDSFailed:

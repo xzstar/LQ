@@ -15,6 +15,7 @@
 @end
 
 @implementation LQDownloadTablesController
+@synthesize showDownloadingList;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,11 +29,18 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-#error back from soft/game/ring/wallpaper
+//#error back from soft/game/ring/wallpaper
+    
+    //点击菜单的tabitem时需要判断是否显示正在下载
+    if(showDownloadingList == NO)
+        return;
+    
     if([LQDownloadManager sharedInstance].downloadGames.count>0)
         [self switchToPage:1];
     else
         [self switchToPage:0];
+    
+    showDownloadingList = NO;
 }
 
 - (void)viewDidLoad

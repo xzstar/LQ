@@ -75,11 +75,10 @@ extern NSString* const kNotificationStatusChanged;
     LQMoreViewController * more = [[LQMoreViewController alloc] initWithNibName:@"LQMoreViewController"
                                                                                     bundle:nil];  
     
-    NSArray *viewControllerArray = [NSArray arrayWithObjects:/*todayController,historyController,downloadController,feedbackViewController,postCommentViewController,*/tab1Nav,search,download,update,more,nil];  
+    NSArray *viewControllerArray = [NSArray arrayWithObjects:tab1Nav,search,download,update,more,nil];  
     self.viewControllers = viewControllerArray;  
 
     NSArray* items = self.tabBar.items;
-    //NSMutableArray* newItems = [NSMutableArray array];
     if(tabItems == nil)
         tabItems = [NSMutableArray array];
     else
@@ -122,6 +121,9 @@ extern NSString* const kNotificationStatusChanged;
                                              selector:@selector(updateDownloadingStatus:)
                                                  name:kNotificationStatusChanged
                                                object:nil];
+   
+    //初始化显示在下载列表中的个数
+    [self updateDownloadingStatus:nil];
            
 }
 
@@ -151,7 +153,11 @@ extern NSString* const kNotificationStatusChanged;
         @"menu_about_current.png"};
     item.image = [UIImage imageNamed:images[self.selectedIndex]];
     
-
+    //下载管理需要判断是否跳转到正在下载页
+    if(item.tag == 2){
+        LQDownloadTablesController* controller = (LQDownloadTablesController*)[self.viewControllers objectAtIndex:item.tag];
+        controller.showDownloadingList = YES;
+    }
 //    switch (item.tag) {
 //        case 0:
 //            item.image = [UIImage imageNamed:@"menu_home_selected.png"];

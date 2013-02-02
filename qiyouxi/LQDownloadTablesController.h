@@ -10,4 +10,5 @@
 
 @interface LQDownloadTablesController : LQTablesController
 
+@property (nonatomic,assign)BOOL showDownloadingList;
 @end
