@@ -29,6 +29,8 @@
     // Configure the view for the selected state
 }
 
+#define CELL_HEIGHT 49
+#define COMMENT_HEIGHT 21
 - (void)setComment:(NSDictionary *)aComment{
     comment = aComment;
     
@@ -46,15 +48,45 @@
     if (nick.length == 0){
         nick = LocalString(@"nick.default");
     }
-    
-    
+    self.dateLabel.text = [aComment objectForKey:@"date"];
+    self.nickLabel.text = nick;
 
     
-    self.nickLabel.text = nick;
-    self.commentLabel.text = [aComment objectForKey:@"data"];
-    [self.commentLabel autowrap:INT_MAX];
+    //先设置成默认
+    CGRect frame = self.frame;
+    frame.size.height = CELL_HEIGHT;
+    self.frame = frame;
     
-    self.dateLabel.text = [aComment objectForKey:@"date"];
+    frame = self.commentLabel.frame;
+    frame.size.height = COMMENT_HEIGHT;
+    self.commentLabel.frame = frame;
+    
+    
+    self.commentLabel.text = [aComment objectForKey:@"data"];
+    //[self.commentLabel autowrap:INT_MAX];
+    
+    UIFont *font = [UIFont systemFontOfSize:14];  
+    self.commentLabel.numberOfLines = 0;
+    NSString *content = self.commentLabel.text;  
+    frame = self.commentLabel.frame;
+    CGSize size = [content sizeWithFont:font 
+                      constrainedToSize:CGSizeMake(frame.size.width, 1000)
+                          lineBreakMode:UILineBreakModeWordWrap];  
+    
+    // 没必要 扩展
+    if(size.height<= frame.size.height){
+        return;
+    }    
+    
+    frame.size.height = size.height;
+    int addHeight = frame.size.height - self.commentLabel.frame.size.height;
+    self.commentLabel.frame = frame;
+     
+    frame = self.frame;
+    frame.size.height+=addHeight;
+    self.frame = frame;
+    
+    
 }
 
 - (void)layoutSubviews{

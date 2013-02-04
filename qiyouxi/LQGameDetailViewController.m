@@ -27,6 +27,7 @@
 @synthesize gameInfo;
 @synthesize gameInfoUserComments;
 @synthesize mainScrollView;
+@synthesize moreDescButton;
 
 @synthesize gameVersion,gameType,gameScore,gameDownloadCount,gameBaseInfoPanel,gameSize;
 @synthesize installNowButton,downloadNowButton;
@@ -56,7 +57,13 @@
     mainScrollView.showsHorizontalScrollIndicator = NO;
     mainScrollView.showsVerticalScrollIndicator = YES;
     mainScrollView.scrollsToTop = NO;
+    [self Layout];
     
+    self.gameInfoUserComments = [[NSMutableArray alloc]init];
+    [self loadData];
+
+}
+- (void) Layout{
     [gameBaseInfoPanel removeFromSuperview];
     int height = 0;
     CGRect frame = gameBaseInfoPanel.frame;
@@ -73,10 +80,8 @@
     mainScrollView.contentSize = CGSizeMake(mainScrollView.frame.size.width, height);
     [mainScrollView layoutIfNeeded];
     
-    self.gameInfoUserComments = [[NSMutableArray alloc]init];
-    [self loadData];
-
 }
+
 -  (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 }
@@ -185,6 +190,59 @@
 }
 
 #pragma mark - Actions
+#define COLLAPSE_HEIGHT 80
+- (IBAction)onMoreDesc:(id)sender{
+    int oldheight = self.commentLabel.frame.size.height;
+    CGRect frame;
+    CGSize size;
+    CGFloat contentWidth = self.commentLabel.frame.size.width;  
+
+    if(oldheight == COLLAPSE_HEIGHT){
+    
+        UIFont *font = [UIFont systemFontOfSize:13];  
+        
+        self.commentLabel.numberOfLines = 0;
+        NSString *content = self.commentLabel.text;  
+        
+        size = [content sizeWithFont:font constrainedToSize:CGSizeMake(contentWidth, 1000) lineBreakMode:UILineBreakModeWordWrap];  
+        
+        // 没必要 扩展
+        if(size.height<= COLLAPSE_HEIGHT)
+            return;
+        
+        [moreDescButton setBackgroundImage:[UIImage imageNamed:@"inf_close_default.png"] forState:UIControlStateNormal];
+    }
+    else{
+        size = CGSizeMake(contentWidth, COLLAPSE_HEIGHT);
+        [moreDescButton setBackgroundImage:[UIImage imageNamed:@"inf_open_default.png"] forState:UIControlStateNormal];
+
+    }
+        
+    frame = self.commentLabel.frame;
+    frame.size.height = size.height;
+    self.commentLabel.frame =frame;
+    
+    frame = gameBaseInfoPanel.frame;
+    frame.size.height += size.height -oldheight;
+    gameBaseInfoPanel.frame = frame;
+    
+    frame = moreDescButton.frame;
+    frame.origin.y = self.commentLabel.frame.origin.y+self.commentLabel.frame.size.height;
+    moreDescButton.frame = frame;
+    
+    
+    int height = 0;
+    height+=gameBaseInfoPanel.frame.size.height;        
+
+    frame = gamePhotoInfoPanel.frame;
+    frame.origin.y= height;
+    height+=frame.size.height;
+    gamePhotoInfoPanel.frame = frame;
+    
+    mainScrollView.contentSize = CGSizeMake(mainScrollView.frame.size.width, height);
+    [mainScrollView layoutIfNeeded];
+
+}
 
 - (void) addSwitchPageWithActionHandler:(void (^)(int))actionHandler{
     self.switchPageActionHandler = actionHandler;

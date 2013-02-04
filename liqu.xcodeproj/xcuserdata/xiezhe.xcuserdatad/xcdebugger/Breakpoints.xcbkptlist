@@ -372,11 +372,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "qiyouxi/LQGameDetailViewController.m"
-         timestampString = "381598763.43469"
+         timestampString = "381651902.510474"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "410"
-         endingLineNumber = "410"
+         startingLineNumber = "468"
+         endingLineNumber = "468"
          landmarkName = "-KRShareDidLogIn:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -467,6 +467,19 @@
          startingLineNumber = "71"
          endingLineNumber = "71"
          landmarkName = "+sharedInstanceWithTarget:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "qiyouxi/LQGameDetailViewController.m"
+         timestampString = "381651902.510474"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "226"
+         endingLineNumber = "226"
+         landmarkName = "-onMoreDesc:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

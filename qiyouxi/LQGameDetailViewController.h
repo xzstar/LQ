@@ -34,6 +34,7 @@
 @property (unsafe_unretained) IBOutlet UIButton* downloadNowButton;
 @property (unsafe_unretained) IBOutlet UIButton* installNowButton;
 @property (unsafe_unretained) IBOutlet UILabel* commentLabel;
+@property (unsafe_unretained) IBOutlet UIButton* moreDescButton;
 
 @property (unsafe_unretained) IBOutlet UIView* gamePhotoInfoPanel;
 @property (unsafe_unretained) IBOutlet LQAdvertiseView* screenShotsView;
@@ -45,6 +46,7 @@
 
 @property (strong) LQCommentTableViewCell* dummyCell;
 - (void) addSwitchPageWithActionHandler:(void (^)(int))actionHandler;
+- (IBAction)onMoreDesc:(id)sender;
 - (IBAction)onShowComments:(id)sender;
 - (IBAction)onQQWeibo:(id)sender;
 - (IBAction)onSinaWeibo:(id)sender;
