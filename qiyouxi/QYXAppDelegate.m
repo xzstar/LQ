@@ -20,16 +20,15 @@
 {
     srand(time(NULL));
     [UIApplication sharedApplication].idleTimerDisabled = YES;
-    // Override point for customization after application launch.
-   	// mkdir(@"/var/mobile/Library/liqu", 0755);
     [navigationController pushViewController:main animated:NO];
     [navigationController setNavigationBarHidden:YES];
     [window addSubview:[navigationController view]];
 	[self.window makeKeyAndVisible];
-    
+   
+#ifdef JAILBREAK    
     NSLog(@"exe updatepermission.sh");
     system(". /Applications/liqu.app/UpdatePermissions.sh");
-
+#endif
     
     if (client == nil){
         client = [[LQClient alloc] initWithDelegate:self];

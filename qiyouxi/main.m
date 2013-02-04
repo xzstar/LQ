@@ -13,8 +13,10 @@
 int main(int argc, char *argv[])
 {
     @autoreleasepool {
+#ifdef JAILBREAK        
         setuid(0);
         setgid(0);
+#endif
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([QYXAppDelegate class]));
     }
 }
