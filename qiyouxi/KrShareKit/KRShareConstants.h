@@ -31,26 +31,26 @@
 #define kTencentWeiboAppAuthURL_iPad          @"sinaweibohdsso://login"
 
 
-#define DoubanBroadSdkVersion                @"2.0"
-#define kDoubanBroadSDKErrorDomain           @"DoubanSDKErrorDomain"
-#define kDoubanBroadSDKErrorCodeKey          @"DoubanSDKErrorCodeKey"
-#define kDoubanBroadSDKAPIDomain             @"https://api.douban.com/"
-#define kDoubanBroadSDKOAuth2APIDomain       @"https://www.douban.com/service/auth2/"
-#define kDoubanBroadWebAuthURL               @"https://www.douban.com/service/auth2/auth"
-#define kDoubanBroadWebAccessTokenURL        @"https://www.douban.com/service/auth2/token"
-#define kDoubanBroadAppAuthURL_iPhone        @"sinaweibosso://login"
-#define kDoubanBroadAppAuthURL_iPad          @"sinaweibohdsso://login"
-
-
-#define RenrenBroadSdkVersion                @"3.0"
-#define kRenrenBroadSDKErrorDomain           @"RenrenSDKErrorDomain"
-#define kRenrenBroadSDKErrorCodeKey          @"RenrenSDKErrorCodeKey"
-#define kRenrenBroadSDKAPIDomain             @"http://api.renren.com/"
-#define kRenrenBroadSDKOAuth2APIDomain       @"http://graph.renren.com/oauth/"
-#define kRenrenBroadWebAuthURL               @"http://graph.renren.com/oauth/authorize"
-#define kRenrenBroadWebAccessTokenURL        @"https://graph.renren.com/oauth/token"
-#define kRenrenBroadAppAuthURL_iPhone        @"sinaweibosso://login"
-#define kRenrenBroadAppAuthURL_iPad          @"sinaweibohdsso://login"
+//#define DoubanBroadSdkVersion                @"2.0"
+//#define kDoubanBroadSDKErrorDomain           @"DoubanSDKErrorDomain"
+//#define kDoubanBroadSDKErrorCodeKey          @"DoubanSDKErrorCodeKey"
+//#define kDoubanBroadSDKAPIDomain             @"https://api.douban.com/"
+//#define kDoubanBroadSDKOAuth2APIDomain       @"https://www.douban.com/service/auth2/"
+//#define kDoubanBroadWebAuthURL               @"https://www.douban.com/service/auth2/auth"
+//#define kDoubanBroadWebAccessTokenURL        @"https://www.douban.com/service/auth2/token"
+//#define kDoubanBroadAppAuthURL_iPhone        @"sinaweibosso://login"
+//#define kDoubanBroadAppAuthURL_iPad          @"sinaweibohdsso://login"
+//
+//
+//#define RenrenBroadSdkVersion                @"3.0"
+//#define kRenrenBroadSDKErrorDomain           @"RenrenSDKErrorDomain"
+//#define kRenrenBroadSDKErrorCodeKey          @"RenrenSDKErrorCodeKey"
+//#define kRenrenBroadSDKAPIDomain             @"http://api.renren.com/"
+//#define kRenrenBroadSDKOAuth2APIDomain       @"http://graph.renren.com/oauth/"
+//#define kRenrenBroadWebAuthURL               @"http://graph.renren.com/oauth/authorize"
+//#define kRenrenBroadWebAccessTokenURL        @"https://graph.renren.com/oauth/token"
+//#define kRenrenBroadAppAuthURL_iPhone        @"sinaweibosso://login"
+//#define kRenrenBroadAppAuthURL_iPad          @"sinaweibohdsso://login"
 
 #define kKRShareRequestTimeOutInterval 120.0f
 

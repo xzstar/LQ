@@ -118,6 +118,11 @@ extern NSString* const kNotificationStatusChanged;
     controller.imageUrl = item.downloadUrl;
     controller.titleString = item.name;
     controller.gameInfo = item;
+    controller.appsList = appsList;
+    controller.currentIndex = tag;
+    controller.moreUrl = nil;
+    controller.downloadButton.hidden = YES;
+    
     [self.navigationController pushViewController:controller animated:YES];
 }
 

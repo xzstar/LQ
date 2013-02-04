@@ -72,23 +72,23 @@
     {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KRShareAuthData-Tencent"];
     }
-    else if(_krShare.shareTarget == KRShareTargetDoubanblog)
-    {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KRShareAuthData-Douban"];
-    }
-    else if(_krShare.shareTarget == KRShareTargetRenrenblog)
-    {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KRShareAuthData-Renren"];
-    }
+//    else if(_krShare.shareTarget == KRShareTargetDoubanblog)
+//    {
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KRShareAuthData-Douban"];
+//    }
+//    else if(_krShare.shareTarget == KRShareTargetRenrenblog)
+//    {
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"KRShareAuthData-Renren"];
+//    }
 }
 
 - (void)storeAuthData
 {
     NSDictionary *authData = [NSDictionary dictionaryWithObjectsAndKeys:
-                              _krShare.accessToken, @"AccessTokenKey",
-                              _krShare.expirationDate, @"ExpirationDateKey",
-                              _krShare.userID, @"UserIDKey",
-                              _krShare.refreshToken, @"refresh_token", nil];
+                              _krShare.currentInfo.accessToken, @"AccessTokenKey",
+                              _krShare.currentInfo.expirationDate, @"ExpirationDateKey",
+                              _krShare.currentInfo.userID, @"UserIDKey",
+                              _krShare.currentInfo.refreshToken, @"refresh_token", nil];
     
     if(_krShare.shareTarget == KRShareTargetSinablog)
     {
@@ -98,14 +98,14 @@
     {
         [[NSUserDefaults standardUserDefaults] setObject:authData forKey:@"KRShareAuthData-Tencent"];
     }
-    else if(_krShare.shareTarget == KRShareTargetDoubanblog)
-    {
-        [[NSUserDefaults standardUserDefaults] setObject:authData forKey:@"KRShareAuthData-Douban"];
-    }
-    else if(_krShare.shareTarget == KRShareTargetRenrenblog)
-    {
-        [[NSUserDefaults standardUserDefaults] setObject:authData forKey:@"KRShareAuthData-Renren"];
-    }
+//    else if(_krShare.shareTarget == KRShareTargetDoubanblog)
+//    {
+//        [[NSUserDefaults standardUserDefaults] setObject:authData forKey:@"KRShareAuthData-Douban"];
+//    }
+//    else if(_krShare.shareTarget == KRShareTargetRenrenblog)
+//    {
+//        [[NSUserDefaults standardUserDefaults] setObject:authData forKey:@"KRShareAuthData-Renren"];
+//    }
     
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -123,12 +123,12 @@
                       httpMethod:@"POST"
                         delegate:self];
         
-        [_krShare requestWithURL:@"statuses/update.json"
-                          params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                  @"test 这是我分享", @"status",
-                                   nil]
-                      httpMethod:@"POST"
-                        delegate:self];
+//        [_krShare requestWithURL:@"statuses/update.json"
+//                          params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                                  @"test 这是我分享", @"status",
+//                                   nil]
+//                      httpMethod:@"POST"
+//                        delegate:self];
     }
     
     if(krShare.shareTarget == KRShareTargetTencentblog)
@@ -137,9 +137,9 @@
                          params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                                  shareText, @"content",
                                  @"json",@"format",
-                                 @"221.232.172.30",@"clientip",
+                                 //@"221.232.172.30",@"clientip",
                                  @"all",@"scope",
-                                 krShare.userID,@"openid",
+                                 krShare.currentInfo.userID,@"openid",
                                  @"ios-sdk-2.0-publish",@"appfrom",
                                  @"0",@"compatibleflag",
                                  @"2.a",@"oauth_version",
@@ -163,30 +163,30 @@
 //                     httpMethod:@"POST"
 //                       delegate:self];    
             }
-    if(krShare.shareTarget == KRShareTargetDoubanblog)
-    {
-        [krShare requestWithURL:@"shuo/v2/statuses"
-                         params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                 @"这是我分享的图片", @"text",
-                                 kDoubanBroadAppKey,@"source",
-                                 [UIImage imageNamed:@"Default.png"], @"image", nil]
-                     httpMethod:@"POST"
-                       delegate:self];
-    }
-    if(krShare.shareTarget == KRShareTargetRenrenblog)
-    {
-        [krShare requestWithURL:@"restserver.do"
-                         params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                 @"1.0",@"v",
-                                 @"这是我分享的图片", @"caption",
-                                 @"json",@"format",
-                                 @"method",@"photos.upload",
-                                 @"file",@"upload",
-                                 kRenrenBroadAppKey,@"api_key",
-                                 [UIImage imageNamed:@"Default.png"], @"image", nil]
-                     httpMethod:@"POST"
-                       delegate:self];
-    }
+//    if(krShare.shareTarget == KRShareTargetDoubanblog)
+//    {
+//        [krShare requestWithURL:@"shuo/v2/statuses"
+//                         params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                                 @"这是我分享的图片", @"text",
+//                                 kDoubanBroadAppKey,@"source",
+//                                 [UIImage imageNamed:@"Default.png"], @"image", nil]
+//                     httpMethod:@"POST"
+//                       delegate:self];
+//    }
+//    if(krShare.shareTarget == KRShareTargetRenrenblog)
+//    {
+//        [krShare requestWithURL:@"restserver.do"
+//                         params:[NSMutableDictionary dictionaryWithObjectsAndKeys:
+//                                 @"1.0",@"v",
+//                                 @"这是我分享的图片", @"caption",
+//                                 @"json",@"format",
+//                                 @"method",@"photos.upload",
+//                                 @"file",@"upload",
+//                                 kRenrenBroadAppKey,@"api_key",
+//                                 [UIImage imageNamed:@"Default.png"], @"image", nil]
+//                     httpMethod:@"POST"
+//                       delegate:self];
+//    }
     
 }
 
@@ -253,6 +253,10 @@
         else if([[result objectForKey:@"error_code"] intValue]==0)
         {
             [LQUtilities AlertWithMessage:@"发送微博成功"];
+        }
+        else {
+            [LQUtilities AlertWithMessage:[result objectForKey:@"error"]];
+
         }
     }
     //腾讯微博响应

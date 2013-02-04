@@ -622,10 +622,11 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
     self.connection = nil;
     [self.fileHandle closeFile];
     self.fileHandle = nil;
-    
-    [[LQDownloadManager sharedInstance] updateDownloadObject:self];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
     self.status = kQYXDSCompleted;
+    [[LQDownloadManager sharedInstance] updateDownloadObject:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:self];
+    
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
 
 //    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:self];
 

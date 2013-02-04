@@ -10,7 +10,7 @@
 
 @implementation LQImageButton
 @synthesize imageUrl;
-
+@synthesize realImage;
 - (void)applyImage:(UIImage*)image{
     if (image != nil){
         [self setBackgroundImage:image forState:UIControlStateNormal];
@@ -22,6 +22,9 @@
     return nil;
 }
 
+- (UIImage*)availableImage{
+    return realImage;
+}
 - (void)loadImageUrl:(NSString*)url defaultImage:(UIImage*)defaultImage{
     self.imageUrl = url;
     UIImage* image = [[LQImageLoader sharedInstance] loadImage:url context:self];
@@ -29,6 +32,7 @@
         [_loadingView removeFromSuperview];
         [_animationTimer invalidate];
         [self applyImage:image];
+        self.realImage = image;
     }else{
         [self applyImage:defaultImage];
         
@@ -58,6 +62,7 @@
     if ([imageUrl isEqualToString:aImageUrl]){
         [_loadingView removeFromSuperview];
         [_animationTimer invalidate];
+        self.realImage = image;
         [self applyImage:image];
     }
 }

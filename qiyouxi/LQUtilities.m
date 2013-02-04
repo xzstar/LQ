@@ -58,47 +58,79 @@
 
 +(NSString *)documentsDirectoryPath
 {
-
+    
+#ifdef JAILBREAK
+    NSString *documentPath =@"/var/mobile/Library/liqu/Documents";
+    if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
+    {
+        [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
+                                  withIntermediateDirectories:NO
+                                                   attributes:nil
+                                                        error:NULL];
+    }
+    return documentPath;
+#else
     NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString* path = [documentPaths objectAtIndex:0];    
+    return path;
+#endif
     
-    if([path isEqualToString:@"/var/mobile/Library"]){
-        //Application is installed in /Applications
-        NSString *documentPath =@"/var/mobile/Library/liqu/Documents";
-        if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
-        {
-            [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
-                                      withIntermediateDirectories:NO
-                                                       attributes:nil
-                                                            error:NULL];
-        }
-        return documentPath;
-    }
-    else
-        return path;
+//    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString* path = [documentPaths objectAtIndex:0];    
+//    
+//    if([path isEqualToString:@"/var/mobile/Library"]){
+//        //Application is installed in /Applications
+//        NSString *documentPath =@"/var/mobile/Library/liqu/Documents";
+//        if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
+//        {
+//            [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
+//                                      withIntermediateDirectories:NO
+//                                                       attributes:nil
+//                                                            error:NULL];
+//        }
+//        return documentPath;
+//    }
+//    else
+//        return path;
 }
 
 +(NSString *)cacheDirectoryPath
 {
-    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString* path = [documentPaths objectAtIndex:0];    
-    
-    if([path isEqualToString:@"/var/mobile/Library"]){
-        //Application is installed in /Applications
-        NSString *documentPath =@"/var/mobile/Library/liqu/Cache";
-        
-        if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
-        {
-            [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
-                                      withIntermediateDirectories:NO
-                                                       attributes:nil
-                                                            error:NULL];
-        }
-        
-        return documentPath;
-        
+#ifdef JAILBREAK
+    NSString *documentPath =@"/var/mobile/Library/liqu/Cache";
+    if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
+    {
+        [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
+                                  withIntermediateDirectories:NO
+                                                   attributes:nil
+                                                        error:NULL];
     }
+    return documentPath;
+#else
+    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString* path = [documentPaths objectAtIndex:0];    
     return path;
+#endif
+    
+//    NSArray *documentPaths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+//    NSString* path = [documentPaths objectAtIndex:0];    
+//    
+//    if([path isEqualToString:@"/var/mobile/Library"]){
+//        //Application is installed in /Applications
+//        NSString *documentPath =@"/var/mobile/Library/liqu/Cache";
+//        
+//        if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
+//        {
+//            [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
+//                                      withIntermediateDirectories:NO
+//                                                       attributes:nil
+//                                                            error:NULL];
+//        }
+//        
+//        return documentPath;
+//        
+//    }
+//    return path;
 }
 
 
@@ -142,7 +174,6 @@
     UIImage* sourceImage = [UIImage imageWithContentsOfFile:imagePath];
     if(sourceImage == nil)
         return nil;
-
 
     CGSize size = [UIScreen mainScreen].bounds.size; 
     UIImage* sizedSourceImage =[sourceImage scaleToSize:size];

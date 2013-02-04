@@ -14,7 +14,7 @@
 @property (unsafe_unretained) IBOutlet UIButton* middleButton;
 @property (unsafe_unretained) IBOutlet UIButton* rightButton;
 
-- (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
+//- (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
 //- (void) addDownloadButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
 
 - (void) setButtonsName:(NSString*)left middle:(NSString*)middle right:(NSString*)right;

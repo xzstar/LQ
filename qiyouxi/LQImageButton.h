@@ -12,11 +12,13 @@
 @private    
     UIImageView* _loadingView;
     NSTimer* _animationTimer;
+    UIImage* realImage;
 }
 
 @property (nonatomic, strong) NSString* imageUrl;
-
+@property (nonatomic, strong) UIImage* realImage;
 - (void)loadImageUrl:(NSString*)url defaultImage:(UIImage*)defaultImage;
 - (UIView*)availableImageView;
+- (UIImage*)availableImage;
 
 @end

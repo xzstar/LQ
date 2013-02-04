@@ -21,19 +21,38 @@
 
 static KRShare *instance;
 
+@implementation KRAuthInfo
+
+@synthesize accessToken,expirationDate,userID,refreshToken;
+
+- (id) init {
+    self = [super init];
+    if (self != nil){
+        accessToken = nil;
+        expirationDate = nil;
+        userID = nil;
+        refreshToken = nil;
+    }
+    return self;
+}
+
+@end
+
 @implementation KRShare
 
-@synthesize userID;
-@synthesize accessToken;
-@synthesize expirationDate;
-@synthesize refreshToken;
+//@synthesize userID;
+//@synthesize accessToken;
+//@synthesize expirationDate;
+//@synthesize refreshToken;
 @synthesize ssoCallbackScheme;
 @synthesize delegate;
 @synthesize appKey;
 @synthesize appSecret;
 @synthesize appRedirectURI;
 @synthesize shareTarget;
-
+@synthesize tencentInfo;
+@synthesize sinaInfo;
+@synthesize currentInfo;
 #pragma mark - Memory management
 
 /**
@@ -47,10 +66,12 @@ static KRShare *instance;
 
 + (id)sharedInstanceWithTarget:(KRShareTarget)target
 {
+   
+    
     if (instance == nil)
     {
         instance = [[KRShare alloc] initwithShareTarget:target];
-        
+            
         NSDictionary *KRShareAuthInfo;
         if(target == KRShareTargetSinablog)
         {
@@ -60,21 +81,31 @@ static KRShare *instance;
         {
             KRShareAuthInfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"KRShareAuthData-Tencent"];
         }
-        else if(target == KRShareTargetDoubanblog)
-        {
-            KRShareAuthInfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"KRShareAuthData-Douban"];
-        }
-        else if(target == KRShareTargetRenrenblog)
-        {
-            KRShareAuthInfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"KRShareAuthData-Renren"];
-        }
+//        else if(target == KRShareTargetDoubanblog)
+//        {
+//            KRShareAuthInfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"KRShareAuthData-Douban"];
+//        }
+//        else if(target == KRShareTargetRenrenblog)
+//        {
+//            KRShareAuthInfo = [[NSUserDefaults standardUserDefaults] objectForKey:@"KRShareAuthData-Renren"];
+//        }
         
         NSLog(@"%@",KRShareAuthInfo);
         if ([KRShareAuthInfo objectForKey:@"AccessTokenKey"] && [KRShareAuthInfo objectForKey:@"ExpirationDateKey"] && [KRShareAuthInfo objectForKey:@"UserIDKey"])
         {
-            instance.accessToken = [KRShareAuthInfo objectForKey:@"AccessTokenKey"];
-            instance.expirationDate = [KRShareAuthInfo objectForKey:@"ExpirationDateKey"];
-            instance.userID = [KRShareAuthInfo objectForKey:@"UserIDKey" ];
+//            instance.accessToken = [KRShareAuthInfo objectForKey:@"AccessTokenKey"];
+//            instance.expirationDate = [KRShareAuthInfo objectForKey:@"ExpirationDateKey"];
+//            instance.userID = [KRShareAuthInfo objectForKey:@"UserIDKey" ];
+//            
+            if(target == KRShareTargetSinablog){
+                instance.currentInfo = instance.sinaInfo;
+            }
+            else{
+                instance.currentInfo = instance.tencentInfo;
+            }
+            instance.currentInfo.accessToken = [KRShareAuthInfo objectForKey:@"AccessTokenKey"];
+            instance.currentInfo.userID = [KRShareAuthInfo objectForKey:@"UserIDKey" ];
+            instance.currentInfo.expirationDate = [KRShareAuthInfo objectForKey:@"ExpirationDateKey"];
         }
     }
     else{
@@ -84,25 +115,27 @@ static KRShare *instance;
             instance.appKey = kSinaWeiboAppKey;
             instance.appSecret = kSinaWeiboAppSecret;
             instance.appRedirectURI = kSinaWeiboAppRedirectURI;
+            instance.currentInfo = instance.sinaInfo;
         }
         else if(target == KRShareTargetTencentblog)
         {
             instance.appKey = kTencentWeiboAppKey;
             instance.appSecret = kTencentWeiboAppSecret;
             instance.appRedirectURI = kTencentWeiboAppRedirectURI;
+            instance.currentInfo = instance.tencentInfo;
         }
-        else if(target == KRShareTargetDoubanblog)
-        {
-            instance.appKey = kDoubanBroadAppKey;
-            instance.appSecret = kDoubanBroadAppSecret;
-            instance.appRedirectURI = kDoubanBroadAppRedirectURI;
-        }
-        else if(target == KRShareTargetRenrenblog)
-        {
-            instance.appKey = kRenrenBroadAppKey;
-            instance.appSecret = kRenrenBroadAppSecret;
-            instance.appRedirectURI = kRenrenBroadAppRedirectURI;
-        }
+//        else if(target == KRShareTargetDoubanblog)
+//        {
+//            instance.appKey = kDoubanBroadAppKey;
+//            instance.appSecret = kDoubanBroadAppSecret;
+//            instance.appRedirectURI = kDoubanBroadAppRedirectURI;
+//        }
+//        else if(target == KRShareTargetRenrenblog)
+//        {
+//            instance.appKey = kRenrenBroadAppKey;
+//            instance.appSecret = kRenrenBroadAppSecret;
+//            instance.appRedirectURI = kRenrenBroadAppRedirectURI;
+//        }
         else{
             instance = nil;
         }
@@ -120,8 +153,10 @@ static KRShare *instance;
 
 - (id)initwithShareTarget:(KRShareTarget)ashareTarget
 {
-    shareTarget = ashareTarget;
-    
+    shareTarget = ashareTarget;       
+    sinaInfo = [[KRAuthInfo alloc]init];
+    tencentInfo = [[KRAuthInfo alloc]init];
+
     if(ashareTarget == KRShareTargetSinablog)
     {
         return [self initWithAppKey:kSinaWeiboAppKey appSecret:kSinaWeiboAppSecret appRedirectURI:kSinaWeiboAppRedirectURI ssoCallbackScheme:nil andDelegate:nil];
@@ -130,14 +165,14 @@ static KRShare *instance;
     {
         return [self initWithAppKey:kTencentWeiboAppKey appSecret:kTencentWeiboAppSecret appRedirectURI:kTencentWeiboAppRedirectURI ssoCallbackScheme:nil andDelegate:nil];
     }
-    else if(ashareTarget == KRShareTargetDoubanblog)
-    {
-        return [self initWithAppKey:kDoubanBroadAppKey appSecret:kDoubanBroadAppSecret appRedirectURI:kDoubanBroadAppRedirectURI ssoCallbackScheme:nil andDelegate:nil];
-    }
-    else if(ashareTarget == KRShareTargetRenrenblog)
-    {
-        return [self initWithAppKey:kRenrenBroadAppKey appSecret:kRenrenBroadAppSecret appRedirectURI:kRenrenBroadAppRedirectURI ssoCallbackScheme:nil andDelegate:nil];
-    }
+//    else if(ashareTarget == KRShareTargetDoubanblog)
+//    {
+//        return [self initWithAppKey:kDoubanBroadAppKey appSecret:kDoubanBroadAppSecret appRedirectURI:kDoubanBroadAppRedirectURI ssoCallbackScheme:nil andDelegate:nil];
+//    }
+//    else if(ashareTarget == KRShareTargetRenrenblog)
+//    {
+//        return [self initWithAppKey:kRenrenBroadAppKey appSecret:kRenrenBroadAppSecret appRedirectURI:kRenrenBroadAppRedirectURI ssoCallbackScheme:nil andDelegate:nil];
+//    }
     else{
         return nil;
     }
@@ -187,14 +222,16 @@ static KRShare *instance;
     
     [request disconnect];
     [request release], request = nil;
-    [userID release], userID = nil;
-    [accessToken release], accessToken = nil;
-    [expirationDate release], expirationDate = nil;
+//    [userID release], userID = nil;
+//    [accessToken release], accessToken = nil;
+//    [expirationDate release], expirationDate = nil;
     [appKey release], appKey = nil;
     [appSecret release], appSecret = nil;
     [appRedirectURI release], appRedirectURI = nil;
     [ssoCallbackScheme release], ssoCallbackScheme = nil;
-    
+    [sinaInfo release], sinaInfo = nil;
+    [tencentInfo release], tencentInfo = nil;
+    currentInfo = nil;
     [super dealloc];
 }
 
@@ -203,9 +240,13 @@ static KRShare *instance;
  */
 - (void)removeAuthData
 {
-    self.accessToken = nil;
-    self.userID = nil;
-    self.expirationDate = nil;
+//    self.accessToken = nil;
+//    self.userID = nil;
+//    self.expirationDate = nil;
+    
+    self.currentInfo.accessToken = nil;
+    self.currentInfo.userID = nil;
+    self.currentInfo.expirationDate =nil;
     
     NSHTTPCookieStorage* cookies = [NSHTTPCookieStorage sharedHTTPCookieStorage];
     
@@ -218,14 +259,14 @@ static KRShare *instance;
     {
         url = @"https://open.t.qq.com";
     }
-    else if(shareTarget == KRShareTargetDoubanblog)
-    {
-        url = @"https://www.douban.com";
-    }
-    else if(shareTarget == KRShareTargetRenrenblog)
-    {
-        url = @"https://graph.renren.com";
-    }
+//    else if(shareTarget == KRShareTargetDoubanblog)
+//    {
+//        url = @"https://www.douban.com";
+//    }
+//    else if(shareTarget == KRShareTargetRenrenblog)
+//    {
+//        url = @"https://graph.renren.com";
+//    }
 
     
     NSArray* KRShareCookies = [cookies cookiesForURL:
@@ -260,14 +301,14 @@ static KRShare *instance;
     {
         AccessTokenURL = kTencentWeiboWebAccessTokenURL;
     }
-    else if(shareTarget == KRShareTargetDoubanblog)
-    {
-        AccessTokenURL = kDoubanBroadWebAccessTokenURL;
-    }
-    else if(shareTarget == KRShareTargetRenrenblog)
-    {
-        AccessTokenURL = kRenrenBroadWebAccessTokenURL;
-    }
+//    else if(shareTarget == KRShareTargetDoubanblog)
+//    {
+//        AccessTokenURL = kDoubanBroadWebAccessTokenURL;
+//    }
+//    else if(shareTarget == KRShareTargetRenrenblog)
+//    {
+//        AccessTokenURL = kRenrenBroadWebAccessTokenURL;
+//    }
     
     request = [[KRShareRequest requestWithURL:AccessTokenURL
                                      httpMethod:@"POST"
@@ -305,14 +346,14 @@ static KRShare *instance;
     {
         SDKErrorDomain = kTencentWeiboSDKErrorDomain;
     }
-    else if(shareTarget == KRShareTargetDoubanblog)
-    {
-        SDKErrorDomain = kDoubanBroadSDKErrorDomain;
-    }
-    else if(shareTarget == KRShareTargetRenrenblog)
-    {
-        SDKErrorDomain = kRenrenBroadSDKErrorDomain;
-    }
+//    else if(shareTarget == KRShareTargetDoubanblog)
+//    {
+//        SDKErrorDomain = kDoubanBroadSDKErrorDomain;
+//    }
+//    else if(shareTarget == KRShareTargetRenrenblog)
+//    {
+//        SDKErrorDomain = kRenrenBroadSDKErrorDomain;
+//    }
 
     NSError *error = [NSError errorWithDomain:SDKErrorDomain
                                          code:21315
@@ -347,18 +388,20 @@ static KRShare *instance;
     {
         uid = [authInfo objectForKey:@"openid"];
         remind_in = [authInfo objectForKey:@"expires_in"];
-    }
-    
-    if(shareTarget == KRShareTargetDoubanblog)
-    {
-        uid = [authInfo objectForKey:@"douban_user_id"];
-        remind_in = [authInfo objectForKey:@"expires_in"];
-    }
-    
-    if(shareTarget == KRShareTargetRenrenblog)
-    {
-        uid = [[authInfo objectForKey:@"user"] objectForKey:@"id"];
-        remind_in = [authInfo objectForKey:@"expires_in"];
+        self.currentInfo = self.tencentInfo;
+    }    
+//    else if(shareTarget == KRShareTargetDoubanblog)
+//    {
+//        uid = [authInfo objectForKey:@"douban_user_id"];
+//        remind_in = [authInfo objectForKey:@"expires_in"];
+//    }
+//    else if(shareTarget == KRShareTargetRenrenblog)
+//    {
+//        uid = [[authInfo objectForKey:@"user"] objectForKey:@"id"];
+//        remind_in = [authInfo objectForKey:@"expires_in"];
+//    }
+    else {
+        self.currentInfo = self.sinaInfo;
     }
     
     if (access_token && uid)
@@ -368,17 +411,24 @@ static KRShare *instance;
             int expVal = [remind_in intValue];
             if (expVal == 0)
             {
-                self.expirationDate = [NSDate distantFuture];
+                //self.expirationDate = [NSDate distantFuture];
+                self.currentInfo.expirationDate = [NSDate distantFuture];
             }
             else
             {
-                self.expirationDate = [NSDate dateWithTimeIntervalSinceNow:expVal];
+                //self.expirationDate = [NSDate dateWithTimeIntervalSinceNow:expVal];
+                self.currentInfo.expirationDate = [NSDate dateWithTimeIntervalSinceNow:expVal];
             }
         }
         
-        self.accessToken = access_token;
-        self.userID = uid;
-        self.refreshToken = refresh_token;
+        //self.accessToken = access_token;
+        //self.userID = uid;
+        //self.refreshToken = refresh_token;
+        
+        self.currentInfo.accessToken = access_token;
+        self.currentInfo.userID = uid;
+        self.currentInfo.refreshToken = refresh_token;
+        //self.currentInfo.expirationDate = self.expirationDate;
         
         if ([delegate respondsToSelector:@selector(KRShareDidLogIn:)])
         {
@@ -412,14 +462,14 @@ static KRShare *instance;
             {
                 SDKErrorDomain = kTencentWeiboSDKErrorDomain;
             }
-            else if(shareTarget == KRShareTargetDoubanblog)
-            {
-                SDKErrorDomain = kDoubanBroadSDKErrorDomain;
-            }
-            else if(shareTarget == KRShareTargetRenrenblog)
-            {
-                SDKErrorDomain = kRenrenBroadSDKErrorDomain;
-            }
+//            else if(shareTarget == KRShareTargetDoubanblog)
+//            {
+//                SDKErrorDomain = kDoubanBroadSDKErrorDomain;
+//            }
+//            else if(shareTarget == KRShareTargetRenrenblog)
+//            {
+//                SDKErrorDomain = kRenrenBroadSDKErrorDomain;
+//            }
             
             NSError *error = [NSError errorWithDomain:SDKErrorDomain
                                                  code:[error_code intValue]
@@ -438,7 +488,8 @@ static KRShare *instance;
  */
 - (BOOL)isLoggedIn
 {
-    return userID && accessToken && expirationDate;
+    return currentInfo.userID && currentInfo.accessToken && currentInfo.expirationDate;
+    //return userID && accessToken && expirationDate;
 }
 
 /**
@@ -448,7 +499,7 @@ static KRShare *instance;
 - (BOOL)isAuthorizeExpired
 {
     NSDate *now = [NSDate date];
-    return ([now compare:expirationDate] == NSOrderedDescending);
+    return ([now compare:currentInfo.expirationDate] == NSOrderedDescending);
 }
 
 
@@ -565,7 +616,7 @@ static KRShare *instance;
     if ([self isAuthValid])
     {
         
-        [params setValue:self.accessToken forKey:@"access_token"];
+        [params setValue:self.currentInfo.accessToken forKey:@"access_token"];
             
         
         NSString *SDKDomain;
@@ -577,14 +628,14 @@ static KRShare *instance;
         {
             SDKDomain = kTencentWeiboSDKAPIDomain;
         }
-        else if(shareTarget == KRShareTargetDoubanblog)
-        {
-            SDKDomain = kDoubanBroadSDKAPIDomain;
-        }
-        else if(shareTarget == KRShareTargetRenrenblog)
-        {
-            SDKDomain = kRenrenBroadSDKAPIDomain;
-        }
+//        else if(shareTarget == KRShareTargetDoubanblog)
+//        {
+//            SDKDomain = kDoubanBroadSDKAPIDomain;
+//        }
+//        else if(shareTarget == KRShareTargetRenrenblog)
+//        {
+//            SDKDomain = kRenrenBroadSDKAPIDomain;
+//        }
 
         
         NSString *fullURL = [SDKDomain stringByAppendingString:url];
@@ -718,15 +769,15 @@ static KRShare *instance;
                     {
                         SDKErrorDomain = kTencentWeiboSDKErrorDomain;
                     }
-                    else if(shareTarget == KRShareTargetDoubanblog)
-                    {
-                        SDKErrorDomain = kDoubanBroadSDKErrorDomain;
-                    }
-                    else if(shareTarget == KRShareTargetRenrenblog)
-                    {
-                        SDKErrorDomain = kRenrenBroadSDKErrorDomain;
-                    }
-
+//                    else if(shareTarget == KRShareTargetDoubanblog)
+//                    {
+//                        SDKErrorDomain = kDoubanBroadSDKErrorDomain;
+//                    }
+//                    else if(shareTarget == KRShareTargetRenrenblog)
+//                    {
+//                        SDKErrorDomain = kRenrenBroadSDKErrorDomain;
+//                    }
+//
                     
                     NSError *error = [NSError errorWithDomain:SDKErrorDomain
                                                          code:kSinaWeiboSDKErrorCodeSSOParamsError

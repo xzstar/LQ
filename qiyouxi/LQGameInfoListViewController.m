@@ -356,6 +356,10 @@
     controller.imageUrl = item.downloadUrl;
     controller.titleString = item.name;
     controller.gameInfo = item;
+    controller.appsList = self.appsList;
+    controller.currentIndex = tag;
+    controller.moreUrl = self.moreUrl;
+
     [self.parent.parentViewController.navigationController pushViewController:controller animated:YES];
 }
 @end
@@ -732,6 +736,10 @@
     controller.imageUrl = item.downloadUrl;
     controller.titleString = item.name;
     controller.gameInfo = item;
+    controller.appsList = self.appsList;
+    controller.currentIndex = tag;
+    controller.moreUrl = self.moreUrl;
+
     [self.parent.parentViewController.navigationController pushViewController:controller animated:YES];
 }
 

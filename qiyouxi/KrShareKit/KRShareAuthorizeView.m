@@ -356,14 +356,14 @@ static CGFloat kBorderWidth = 10;
     {
         webAuthURL = kTencentWeiboWebAuthURL;
     }
-    else if(krShare.shareTarget == KRShareTargetDoubanblog)
-    {
-        webAuthURL = kDoubanBroadWebAuthURL;
-    }
-    else if(krShare.shareTarget == KRShareTargetRenrenblog)
-    {
-        webAuthURL = kRenrenBroadWebAuthURL;
-    }
+//    else if(krShare.shareTarget == KRShareTargetDoubanblog)
+//    {
+//        webAuthURL = kDoubanBroadWebAuthURL;
+//    }
+//    else if(krShare.shareTarget == KRShareTargetRenrenblog)
+//    {
+//        webAuthURL = kRenrenBroadWebAuthURL;
+//    }
 
     
     NSString *authPagePath = [KRShareRequest serializeURL:webAuthURL

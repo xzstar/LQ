@@ -14,28 +14,35 @@
 #define kSinaWeiboAppSecret          @"bfe68d7af6dbf5b67a11c9c7a6849395" //@"b40da38bc76d70a2ffcd1f4f7a754390" //
 #define kSinaWeiboAppRedirectURI     @"http://www.apodang.com" //@"http://weibo.com/u/3195606297"
 
-#define kTencentWeiboAppKey             @"801310648" // @"801291903" //@"801310648" //
+#define kTencentWeiboAppKey             @"801310648" //@"801291903" //@"801310648" //
 #define kTencentWeiboAppSecret          @"f8c6c2d927ba24919eb0d0cfcb556ece"//@"0cba6f47ac642efc970877d03b2b1891" //@"f8c6c2d927ba24919eb0d0cfcb556ece"//
-#define kTencentWeiboAppRedirectURI     @"http://www.apodang.com" //@"https://itunes.apple.com/cn/app/zhong-guo-ying-lou/id541608192?mt=8"
+#define kTencentWeiboAppRedirectURI     @"http://www.apodang.com" //@"https://itunes.apple.com/cn/app/zhong-guo-ying-lou/id541608192?mt=8" //@"http://www.apodang.com" //
 
-#define kDoubanBroadAppKey             @"0077a5c719af2a470166f1554d0d7ed5"
-#define kDoubanBroadAppSecret          @"e624d4fab3356f0a"
-#define kDoubanBroadAppRedirectURI     @"http://www.qq.com"
-
-#define kRenrenBroadAPPID             @"223954"
-#define kRenrenBroadAppKey             @"bdc9de15d9084d3c81bfbcac2bb56425"
-#define kRenrenBroadAppSecret          @"adc75e9663a64df292fbe75369b8167e"
-#define kRenrenBroadAppRedirectURI     @"http://widget.renren.com/callback.html"
+//#define kDoubanBroadAppKey             @"0077a5c719af2a470166f1554d0d7ed5"
+//#define kDoubanBroadAppSecret          @"e624d4fab3356f0a"
+//#define kDoubanBroadAppRedirectURI     @"http://www.qq.com"
+//
+//#define kRenrenBroadAPPID             @"223954"
+//#define kRenrenBroadAppKey             @"bdc9de15d9084d3c81bfbcac2bb56425"
+//#define kRenrenBroadAppSecret          @"adc75e9663a64df292fbe75369b8167e"
+//#define kRenrenBroadAppRedirectURI     @"http://widget.renren.com/callback.html"
 
 
 enum
 {
     KRShareTargetSinablog = 0,
     KRShareTargetTencentblog,
-    KRShareTargetDoubanblog,
-    KRShareTargetRenrenblog
+//    KRShareTargetDoubanblog,
+//    KRShareTargetRenrenblog
 };
 typedef NSInteger KRShareTarget;
+
+@interface KRAuthInfo : NSObject
+@property (nonatomic, copy) NSString *userID;
+@property (nonatomic, copy) NSString *accessToken;
+@property (nonatomic, copy) NSDate *expirationDate;
+@property (nonatomic, copy) NSString *refreshToken;
+@end
 
 @protocol KRShareDelegate;
 
@@ -44,9 +51,9 @@ typedef NSInteger KRShareTarget;
     KRShareTarget shareTarget;
     KRShare *instance;
     
-    NSString *userID;
-    NSString *accessToken;
-    NSDate *expirationDate;
+//    NSString *userID;
+//    NSString *accessToken;
+//    NSDate *expirationDate;
     id<KRShareDelegate> delegate;
     
     NSString *appKey;
@@ -57,16 +64,22 @@ typedef NSInteger KRShareTarget;
     KRShareRequest *request;
     NSMutableSet *requests;
     BOOL ssoLoggingIn;
+    
+    KRAuthInfo *tencentInfo;
+    KRAuthInfo *sinaInfo;
+    KRAuthInfo *currentInfo;
 }
 
-@property (nonatomic, copy) NSString *userID;
-@property (nonatomic, copy) NSString *accessToken;
-@property (nonatomic, copy) NSDate *expirationDate;
-@property (nonatomic, copy) NSString *refreshToken;
+//@property (nonatomic, copy) NSString *userID;
+//@property (nonatomic, copy) NSString *accessToken;
+//@property (nonatomic, copy) NSDate *expirationDate;
+//@property (nonatomic, copy) NSString *refreshToken;
 @property (nonatomic, copy) NSString *ssoCallbackScheme;
 @property (nonatomic, assign) id<KRShareDelegate> delegate;
 @property KRShareTarget shareTarget;
-
+@property (nonatomic, copy) KRAuthInfo* tencentInfo;
+@property (nonatomic, copy) KRAuthInfo* sinaInfo;
+@property (nonatomic, assign) KRAuthInfo* currentInfo;
 
 + (id)sharedInstanceWithTarget:(KRShareTarget)target;
 
@@ -105,6 +118,8 @@ typedef NSInteger KRShareTarget;
                            delegate:(id<KRShareRequestDelegate>)delegate;
 
 @end
+
+
 
 
 @protocol KRShareDelegate <NSObject>

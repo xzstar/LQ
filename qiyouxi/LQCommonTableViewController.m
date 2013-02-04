@@ -311,11 +311,11 @@
 
 - (void)startLoading{
     self.shadowView = [[UIWindow alloc] initWithFrame:CGRectMake(0, 20, 320, 460)];
-    self.shadowView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+    self.shadowView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.3];
     self.shadowView.hidden = NO;
     self.shadowView.windowLevel = UIWindowLevelAlert;
     
-    UIImageView* animationView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"progress_loading.png"]];
+    UIImageView* animationView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"image_progress.png"]];
     animationView.center = CGPointMake(self.shadowView.bounds.size.width/2, self.shadowView.bounds.size.height/2);
     [self.shadowView addSubview:animationView];
     
