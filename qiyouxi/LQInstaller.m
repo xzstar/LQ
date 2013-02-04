@@ -166,25 +166,27 @@ static int callback(NSDictionary *dict, id result) {
     NSString* filename = [[dest lastPathComponent] stringByDeletingPathExtension];
     
     NSLog(@"install src %@",src);
-    
-    NSString* cpbitmapPath = [LQUtilities createcpBitmap:src savedcpbitmapName:filename];
-    NSString* cpbitmapPathDest;
-    if([filename hasPrefix:@"HomeBackground"]){
-        cpbitmapPathDest = HOME_1;
+
+    if(SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(@"4.2"))
+    {
+        return [LQUtilities copyFile:src destPath:dest];
+    }else{
+        NSString* cpbitmapPath = [LQUtilities createcpBitmap:src savedcpbitmapName:filename];
+        NSString* cpbitmapPathDest;
+        if([filename hasPrefix:@"HomeBackground"]){
+            cpbitmapPathDest = HOME_1;
+        }
+        else{
+            cpbitmapPathDest = LOCK_1;
+        }  
+        
+        NSLog(@"create cpbitmap finish");
+        
+        BOOL result = NO;
+        if(cpbitmapPath!=nil)
+            result = [LQUtilities copyFile:cpbitmapPath destPath:cpbitmapPathDest]; 
+        return result;
     }
-    else{
-        cpbitmapPathDest = LOCK_1;
-    }  
-    
-    NSLog(@"remove finish");
-    
-    BOOL result;
-    if(cpbitmapPath!=nil)
-        result = [LQUtilities copyFile:cpbitmapPath destPath:cpbitmapPathDest]; 
-    if(result == YES)
-        result = [LQUtilities copyFile:src destPath:dest];
-    
-    return result;
 }
 
 @end

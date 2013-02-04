@@ -176,6 +176,9 @@
         return nil;
 
     CGSize size = [UIScreen mainScreen].bounds.size; 
+    float scale = [UIScreen mainScreen].scale;
+    size.width*=scale;
+    size.height*=scale;
     UIImage* sizedSourceImage =[sourceImage scaleToSize:size];
     
     void* data = [self getImageData:sizedSourceImage];

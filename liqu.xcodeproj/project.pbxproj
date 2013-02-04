@@ -45,7 +45,6 @@
 		4355484015C8BEAB0030B21B /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4355483415C8BEAB0030B21B /* SBJsonWriter.m */; };
 		4355484315C8CA090030B21B /* LQClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 4355484215C8CA090030B21B /* LQClient.m */; };
 		4355485815C8CE010030B21B /* LQViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4355485715C8CE010030B21B /* LQViewController.m */; };
-		437E341815CA482200F4183A /* MoreTabView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 437E341715CA482200F4183A /* MoreTabView.xib */; };
 		437E342215CA5C6700F4183A /* LQInstaller.m in Sources */ = {isa = PBXBuildFile; fileRef = 437E342115CA5C6700F4183A /* LQInstaller.m */; };
 		43C2467515C666EE00EAE2C2 /* foot_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C2467215C666EE00EAE2C2 /* foot_bg.png */; };
 		43C2467615C666EE00EAE2C2 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 43C2467315C666EE00EAE2C2 /* Icon@2x.png */; };
@@ -521,7 +520,6 @@
 		4355484215C8CA090030B21B /* LQClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQClient.m; sourceTree = "<group>"; };
 		4355485615C8CE000030B21B /* LQViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQViewController.h; sourceTree = "<group>"; };
 		4355485715C8CE010030B21B /* LQViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQViewController.m; sourceTree = "<group>"; };
-		437E341715CA482200F4183A /* MoreTabView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoreTabView.xib; sourceTree = "<group>"; };
 		437E342015CA5C6600F4183A /* LQInstaller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQInstaller.h; sourceTree = "<group>"; };
 		437E342115CA5C6700F4183A /* LQInstaller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQInstaller.m; sourceTree = "<group>"; };
 		43C2467215C666EE00EAE2C2 /* foot_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foot_bg.png; sourceTree = "<group>"; };
@@ -1057,7 +1055,6 @@
 				434BF5EE15C787FF00CCE2CC /* HistoryTableSectionHeader.xib */,
 				434BF5F615C78E7800CCE2CC /* CategoryTableViewCell.xib */,
 				43CC7B1515C92B31006A9C3C /* CommentTableViewCell.xib */,
-				437E341715CA482200F4183A /* MoreTabView.xib */,
 				43D54E1B15CBBBC5007D83AE /* DownloadTableViewCell.xib */,
 				4348B7C815CBC0D10086DE04 /* InstallTableViewCell.xib */,
 				434BF5E115C7812A00CCE2CC /* LQHistoryTableViewCell.h */,
@@ -1839,7 +1836,6 @@
 				434BF60215C7A56600CCE2CC /* btn_back_pressed@2x.png in Resources */,
 				434BF60715C7A56600CCE2CC /* left_bg_hover@2x.png in Resources */,
 				43CC7B1615C92B31006A9C3C /* CommentTableViewCell.xib in Resources */,
-				437E341815CA482200F4183A /* MoreTabView.xib in Resources */,
 				43D54E1C15CBBBC5007D83AE /* DownloadTableViewCell.xib in Resources */,
 				4348B7C915CBC0D10086DE04 /* InstallTableViewCell.xib in Resources */,
 				43F3743715D118A7000F475B /* toast_bg.png in Resources */,
