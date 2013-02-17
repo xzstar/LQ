@@ -9,6 +9,7 @@
 #import "QYXAppDelegate.h"
 #import "LQLaunchViewController.h"
 #import "LQConfig.h"
+#import "MobClick.h"
 @implementation QYXAppDelegate
 
 @synthesize window;
@@ -38,8 +39,8 @@
         [client bootRecord:YES];
         [LQConfig setFirstBoot:NO];
     }
-    
-
+    [MobClick startWithAppkey:@"50fa1ab1527015336e000024"];;
+    [MobClick checkUpdate];
     return YES;
 }
 							

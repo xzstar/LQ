@@ -135,6 +135,8 @@
 		F226513616AD0EAA001A6846 /* LQTopicSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F226513516AD0EAA001A6846 /* LQTopicSectionHeader.xib */; };
 		F230807C16A1B6990052F0C9 /* LQWallpaperCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F230807B16A1B6960052F0C9 /* LQWallpaperCell.m */; };
 		F230807E16A1B6B90052F0C9 /* LQWallpaperCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F230807D16A1B6B80052F0C9 /* LQWallpaperCell.xib */; };
+		F23090C616C2140400D7B415 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F23090C416C2140400D7B415 /* libMobClickLibrary.a */; };
+		F23090C916C2143500D7B415 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F23090C816C2143500D7B415 /* libz.dylib */; };
 		F23AA8B316AD2B45008845C1 /* LQRingTablesController.m in Sources */ = {isa = PBXBuildFile; fileRef = F23AA8B216AD2B45008845C1 /* LQRingTablesController.m */; };
 		F23D3B8F169AD70700B7DD46 /* LQSearchHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23D3B8E169AD70700B7DD46 /* LQSearchHistoryCell.m */; };
 		F23D3B92169B02D300B7DD46 /* LQSearchHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */; };
@@ -634,6 +636,9 @@
 		F230807A16A1B6920052F0C9 /* LQWallpaperCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQWallpaperCell.h; sourceTree = "<group>"; };
 		F230807B16A1B6960052F0C9 /* LQWallpaperCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQWallpaperCell.m; sourceTree = "<group>"; };
 		F230807D16A1B6B80052F0C9 /* LQWallpaperCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQWallpaperCell.xib; sourceTree = "<group>"; };
+		F23090C416C2140400D7B415 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		F23090C516C2140400D7B415 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
+		F23090C816C2143500D7B415 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		F23AA8B116AD2B44008845C1 /* LQRingTablesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQRingTablesController.h; sourceTree = "<group>"; };
 		F23AA8B216AD2B45008845C1 /* LQRingTablesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQRingTablesController.m; sourceTree = "<group>"; };
 		F23D3B8D169AD70700B7DD46 /* LQSearchHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQSearchHistoryCell.h; sourceTree = "<group>"; };
@@ -1002,12 +1007,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F23090C916C2143500D7B415 /* libz.dylib in Frameworks */,
 				F26CD2B216930A8F00E1E30B /* CFNetwork.framework in Frameworks */,
 				F26CD2B016930A8800E1E30B /* AudioToolbox.framework in Frameworks */,
 				43CC7B0D15C9060B006A9C3C /* QuartzCore.framework in Frameworks */,
 				43F5ED3015C65424001A0F8D /* UIKit.framework in Frameworks */,
 				43F5ED3215C65424001A0F8D /* Foundation.framework in Frameworks */,
 				43F5ED3415C65424001A0F8D /* CoreGraphics.framework in Frameworks */,
+				F23090C616C2140400D7B415 /* libMobClickLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1156,6 +1163,7 @@
 		43F5ED2015C65424001A0F8D = {
 			isa = PBXGroup;
 			children = (
+				F23090C816C2143500D7B415 /* libz.dylib */,
 				F26CD2B116930A8F00E1E30B /* CFNetwork.framework */,
 				F26CD2AF16930A8800E1E30B /* AudioToolbox.framework */,
 				43CC7B0C15C9060B006A9C3C /* QuartzCore.framework */,
@@ -1187,6 +1195,8 @@
 		43F5ED3515C65424001A0F8D /* qiyouxi */ = {
 			isa = PBXGroup;
 			children = (
+				F23090C416C2140400D7B415 /* libMobClickLibrary.a */,
+				F23090C516C2140400D7B415 /* MobClick.h */,
 				F2241AEE16B9095F0050CB7A /* UpdatePermissions.sh */,
 				F2241AF116B90AC40050CB7A /* SetSMSRing.sh */,
 				43F5ED3E15C65424001A0F8D /* QYXAppDelegate.h */,
@@ -2307,6 +2317,10 @@
 				GCC_PREFIX_HEADER = "qiyouxi/liqu-Prefix.pch";
 				INFOPLIST_FILE = "qiyouxi/liqu-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/qiyouxi\"",
+				);
 				PRODUCT_NAME = liqu;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -2324,6 +2338,10 @@
 				GCC_PREFIX_HEADER = "qiyouxi/liqu-Prefix.pch";
 				INFOPLIST_FILE = "qiyouxi/liqu-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/qiyouxi\"",
+				);
 				PRODUCT_NAME = liqu;
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
