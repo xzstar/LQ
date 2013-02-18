@@ -27,7 +27,7 @@
 - (void)loadImageForPage:(int)page scroll:(BOOL)scroll{
     if (page < self.imageUrls.count){
         LQImageButton* imageview = (LQImageButton*) [scrollView viewWithTag:page+1];
-        [imageview loadImageUrl:[self.imageUrls objectAtIndex:page] defaultImage:nil];
+//        [imageview loadImageUrl:[self.imageUrls objectAtIndex:page] defaultImage:nil];
         if (scroll){
             [scrollView scrollRectToVisible:imageview.frame animated:NO];
         }
@@ -52,7 +52,7 @@
         [imageView addTarget:self action:@selector(onSelectPage:) forControlEvents:UIControlEventTouchUpInside];
         [scrollView addSubview:imageView];
         frame.origin.x += frame.size.width;
-        
+        [imageView loadImageUrl:[self.imageUrls objectAtIndex:index] defaultImage:nil];
         index++;
     }
     

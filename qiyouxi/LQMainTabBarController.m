@@ -15,10 +15,16 @@
 #import "LQUpdateViewController.h"
 #import "LQMoreViewController.h"
 #import "LQConfig.h"
+#import "LQDownloadManager.h"
 extern NSString* const kNotificationStatusChanged;
 
-@interface LQMainTabBarController ()
-
+@interface LQMainTabBarController (){
+    UINavigationController* tab0Nav;
+    UINavigationController* tab1Nav;
+    UINavigationController* tab2Nav;
+    UINavigationController* tab3Nav;
+    UINavigationController* tab4Nav;
+}
 @end
 
 @implementation LQMainTabBarController
@@ -26,58 +32,43 @@ extern NSString* const kNotificationStatusChanged;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+      
+    LQFirstPageViewController * first = [[LQFirstPageViewController alloc] 
+                                         initWithNibName:@"LQFirstPageViewController" bundle:nil];  
+     tab0Nav = [[UINavigationController alloc] init];
+    [tab0Nav setNavigationBarHidden:YES];
+    [tab0Nav pushViewController:first animated:NO];
+
     
-//    NSArray* items = self.tabBar.items;
-//    NSMutableArray* newItems = [NSMutableArray array];
-    
-//    int index = 0;
-//    for (UITabBarItem* item in items){
-//        [newItems addObject:[[UITabBarItem alloc] initWithTitle:item.title 
-//                                                          image:item.image 
-//                                                            tag:index++]];
-//    }
-//    
-//    [newItems addObject:[[UITabBarItem alloc] initWithTitle:nil 
-//                                                      image:nil
-//                                                        tag:index++]];
-// 
-//    [newItems addObject:[[UITabBarItem alloc] initWithTitle:nil 
-//                                                      image:nil
-//                                                        tag:index++]];
-// 
-//    [newItems addObject:[[UITabBarItem alloc] initWithTitle:nil 
-//                                                      image:nil
-//                                                        tag:index++]];
-// 
-//    [newItems addObject:[[UITabBarItem alloc] initWithTitle:nil 
-//                                                      image:nil
-//                                                        tag:index++]];
-//    
-//    [newItems addObject:[[UITabBarItem alloc] initWithTitle:nil 
-//                                                      image:nil
-//                                                        tag:index++]];
-//    LQTodayViewController* todayController = [[LQTodayViewController alloc] init];  
-//    LQHistoryViewController* historyController = [[LQHistoryViewController alloc] init];
-    
-    LQFirstPageViewController * first = [[LQFirstPageViewController alloc] initWithNibName:@"LQFirstPageViewController"
-                                                         bundle:nil];  
-    UINavigationController *tab1Nav = [[UINavigationController alloc] init];
+    LQSearchViewController * search = [[LQSearchViewController alloc]
+                                       initWithNibName:@"LQSearchViewController" bundle:nil];  
+
+    tab1Nav = [[UINavigationController alloc] init];
     [tab1Nav setNavigationBarHidden:YES];
-    [tab1Nav pushViewController:first animated:NO];
-
-    LQSearchViewController * search = [[LQSearchViewController alloc] initWithNibName:@"LQSearchViewController"
-                                                                                    bundle:nil];  
-//    LQDownloadViewController * download = [[LQDownloadViewController alloc] initWithNibName:@"LQDownloadViewController"
-//                                                                                    bundle:nil];  
-    LQDownloadTablesController* download = [[LQDownloadTablesController alloc] initWithNibName:@"LQTablesController" bundle:nil];
-    LQUpdateViewController * update = [[LQUpdateViewController alloc] initWithNibName:@"LQUpdateViewController"
-                                                                                    bundle:nil];  
-    LQMoreViewController * more = [[LQMoreViewController alloc] initWithNibName:@"LQMoreViewController"
-                                                                                    bundle:nil];  
+    [tab1Nav pushViewController:search animated:NO];
     
-    NSArray *viewControllerArray = [NSArray arrayWithObjects:tab1Nav,search,download,update,more,nil];  
-    self.viewControllers = viewControllerArray;  
 
+    LQDownloadTablesController* download = [[LQDownloadTablesController alloc] 
+                                            initWithNibName:@"LQTablesController" bundle:nil];
+    tab2Nav = [[UINavigationController alloc] init];
+    [tab2Nav setNavigationBarHidden:YES];
+    [tab2Nav pushViewController:download animated:NO];
+    
+    LQUpdateViewController* update = [[LQUpdateViewController alloc]
+                                       initWithNibName:@"LQUpdateViewController" bundle:nil];  
+    tab3Nav = [[UINavigationController alloc] init];
+    [tab3Nav setNavigationBarHidden:YES];
+    [tab3Nav pushViewController:update animated:NO];
+    
+    LQMoreViewController* more = [[LQMoreViewController alloc]
+                                   initWithNibName:@"LQMoreViewController" bundle:nil];  
+    tab4Nav = [[UINavigationController alloc] init];
+    [tab4Nav setNavigationBarHidden:YES];
+    [tab4Nav pushViewController:more animated:NO];
+    
+    NSArray* viewControllerArray = [NSArray arrayWithObjects:tab0Nav,tab1Nav,tab2Nav,tab3Nav,tab4Nav,nil];  
+    self.viewControllers = viewControllerArray;  
+    
     NSArray* items = self.tabBar.items;
     if(tabItems == nil)
         tabItems = [NSMutableArray array];
@@ -145,6 +136,30 @@ extern NSString* const kNotificationStatusChanged;
 }
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+    
+    if(self.selectedIndex == item.tag){
+        switch (item.tag) {
+            case 0:
+                [tab0Nav popToRootViewControllerAnimated:YES];
+                break;
+            case 1:   
+                [tab1Nav popToRootViewControllerAnimated:YES];
+                break;
+            case 2:   
+                [tab2Nav popToRootViewControllerAnimated:YES];
+                break;
+            case 3:   
+                [tab3Nav popToRootViewControllerAnimated:YES];
+                break;
+            case 4:   
+                [tab4Nav popToRootViewControllerAnimated:YES];
+                break;
+            default:
+                break;
+        }
+    }
+    
+    
     self.selectedIndex = item.tag;
     NSString* images[] = {@"menu_home_current.png",
         @"menu_search_current.png",
@@ -154,48 +169,15 @@ extern NSString* const kNotificationStatusChanged;
     item.image = [UIImage imageNamed:images[self.selectedIndex]];
     
     //下载管理需要判断是否跳转到正在下载页
+    //如果有下载，则需要跳转到下载页面，否则不需要
     if(item.tag == 2){
-        LQDownloadTablesController* controller = (LQDownloadTablesController*)[self.viewControllers objectAtIndex:item.tag];
-        controller.showDownloadingList = YES;
+ 
+        LQDownloadTablesController* controller = (LQDownloadTablesController*)[tab1Nav presentedViewController];
+        int count = [LQDownloadManager sharedInstance].downloadGames.count;
+        controller.showDownloadingList = count>0?YES:NO;
     }
-//    switch (item.tag) {
-//        case 0:
-//            item.image = [UIImage imageNamed:@"menu_home_selected.png"];
-//            tabBar.selectionIndicatorImage = [UIImage imageNamed:@"menu_home_default.png"];
-//            break;
-//        case 1:
-//            tabBar.selectionIndicatorImage = [UIImage imageNamed:@"tabbar_search.png"];
-//            break;
-//        case 2:
-//            tabBar.selectionIndicatorImage = [UIImage imageNamed:@"tabbar_down.png"];
-//            break;
-//        case 3:
-//            tabBar.selectionIndicatorImage = [UIImage imageNamed:@"tabbar_update.png"];
-//            break;
-//        case 4:
-//            tabBar.selectionIndicatorImage = [UIImage imageNamed:@"tabbar_more.png"];
-//            break;
-//
-//        default:
-//            break;
-//    }
-//    if (item.tag == 3){
-//        if (moreBgView == nil){
-//            
-//            moreBgView = [[[NSBundle mainBundle] loadNibNamed:@"MoreTabView" owner:self options:nil] objectAtIndex:0];
-//            [self.view addSubview:moreBgView];
-//
-//            CGRect frame = moreBgView.frame;
-//            frame.origin.x = self.view.bounds.size.width - frame.size.width;
-//            frame.origin.y = tabBar.frame.origin.y - frame.size.height;
-//            moreBgView.frame = frame;
-//            moreBgView.hidden = YES;
-//        }
-//
-//        moreBgView.hidden = !moreBgView.hidden;
-//    }else{
-//        moreBgView.hidden = YES;
-//    }
+    
+    
 }
 
 - (IBAction)onManage:(id)sender{

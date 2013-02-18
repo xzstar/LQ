@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LQClient.h"
+@class QYXDownloadObject;
 @interface LQUtilities : NSObject
 
 +(BOOL) copyFile:(NSString*) srcPath destPath:(NSString*) destPath;
@@ -18,6 +19,7 @@
 +(unsigned char *)getImageData:(UIImage*)image;
 +(NSString*)createcpBitmap:(NSString*)imagePath savedcpbitmapName:(NSString*)savedcpbitmapName;
 +(NSString*) stringWithUUID;
++(void)installRing:(UIViewController*)controller downloadObj:(QYXDownloadObject*) obj;
 @end
 
 @interface AppUpdateReader:NSObject <LQClientDelegate>{

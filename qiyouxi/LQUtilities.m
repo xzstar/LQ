@@ -9,6 +9,10 @@
 #import "LQUtilities.h"
 #import "LQConfig.h"
 #import "UIImage+Scale.h"
+#import "LQDownloadManager.h"
+#import "LQSMSRingReplaceViewController.h"
+#define RINGTONEPATH @"/private/var/mobile/Media/iTunes_Control/Ringtones"
+
 @implementation LQUtilities
 +(BOOL) copyFile:(NSString*) srcPath destPath:(NSString*) destPath{
     NSError* error=nil;
@@ -243,6 +247,27 @@
     CFRelease(uuid_string_ref);
     return uuid;
 }
+
+
++(void) installRing:(UIViewController*)controller downloadObj:(QYXDownloadObject*) obj{
+    if([obj.gameInfo.fileType isEqualToString:@"sms_ring"]){
+        LQSMSRingReplaceViewController* controller = [[LQSMSRingReplaceViewController alloc] initWithNibName:@"LQSMSRingReplaceViewController" bundle:nil];
+        controller.ringObject = obj;
+        [controller.navigationController pushViewController:controller animated:YES];
+    }
+    else{
+        //NSString* fileName= [obj.filePath lastPathComponent];
+        NSString* fileName= [NSString stringWithFormat:@"%@.m4r",obj.gameInfo.name];
+        
+        NSString* destPath=[RINGTONEPATH stringByAppendingPathComponent:fileName];//这里要特别主意，目标文件路径一定要以文件名结尾，而不要以文件夹结尾
+        
+        NSArray* destPaths = [NSArray arrayWithObjects:destPath,nil];
+        obj.finalFilePaths = destPaths;
+        obj.installAfterDownloaded = YES;
+        [[LQDownloadManager sharedInstance] installGameBy:obj.gameInfo.gameId];
+    }
+}
+
 @end
 
 static AppUpdateReader* _intance = nil;

@@ -18,13 +18,14 @@
 #import "LQImageLoader.h"
 #import "LQUtilities.h"
 
+#import "QYXData.h"
+#import "LQDownloadManager.h"
+
 #define LocalString(key) NSLocalizedStringFromTable(key, @"qiyouxi", NULL) 
 #define DEFAULT_GAME_ICON [UIImage imageNamed:@"icon_small.png"]
 
 #define JAILBREAK
 
-#import "QYXData.h"
-#import "LQDownloadManager.h"
 
 #define SYSTEM_VERSION_EQUAL_TO(v)         ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedSame)
 #define SYSTEM_VERSION_GREATER_THAN(v)       ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedDescending)

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@class QYXDownloadObject;
 
 @interface LQSMSRingReplaceViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>{
     NSDictionary* toneDictory;

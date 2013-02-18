@@ -517,40 +517,4 @@
 //    }
 }
 
-//#pragma mark - EGORefreshTableView
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{	
-//    if (moreToLoad){
-//        [headerView egoRefreshScrollViewDidScroll:scrollView];
-//    }
-//}
-//
-//- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
-//    if (moreToLoad){
-//        [headerView egoRefreshScrollViewDidEndDragging:scrollView];
-//    }
-//}
-//
-//
-//#pragma mark -
-//#pragma mark EGORefreshTableHeaderDelegate Methods
-//- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
-//    //[self loadCurrentCategory];
-//    [self loadMoreData];
-//}
-//
-//- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
-//	return _reloading; // should return if data source model is reloading
-//}
-//
-//- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
-//	return [NSDate date]; // should return date data source was last changed
-//}
-//
-//- (float)egoRefreshTableHeaderTableViewHeight:(EGORefreshTableHeaderView*)view{
-//    return self.view.frame.size.height;
-//}
-//
-//- (BOOL)egoRefreshTableHeaderDataSourceNeedLoading:(EGORefreshTableHeaderView*)view{
-//    return moreToLoad;
-//}
 @end

@@ -210,11 +210,11 @@
         if(size.height<= COLLAPSE_HEIGHT)
             return;
         
-        [moreDescButton setBackgroundImage:[UIImage imageNamed:@"inf_close_default.png"] forState:UIControlStateNormal];
+        [moreDescButton setImage:[UIImage imageNamed:@"inf_close_default.png"] forState:UIControlStateNormal];
     }
     else{
         size = CGSizeMake(contentWidth, COLLAPSE_HEIGHT);
-        [moreDescButton setBackgroundImage:[UIImage imageNamed:@"inf_open_default.png"] forState:UIControlStateNormal];
+        [moreDescButton setImage:[UIImage imageNamed:@"inf_open_default.png"] forState:UIControlStateNormal];
 
     }
         

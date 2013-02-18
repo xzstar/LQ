@@ -15,7 +15,8 @@
 #import "AudioPlayer.h"
 #import "AudioMoreItemCell.h"
 #import "LQSMSRingReplaceViewController.h"
-
+#import "LQDownloadManager.h"
+#import "LQUtilities.h"
 #define RINGTONEPATH @"/private/var/mobile/Media/iTunes_Control/Ringtones"
 extern NSString* const kNotificationStatusChanged;
 @interface LQDownloadedRingsViewController ()
@@ -199,21 +200,22 @@ extern NSString* const kNotificationStatusChanged;
     int row = button.tag;
     QYXDownloadObject *obj = [appsList objectAtIndex:row];
 
-    if([obj.gameInfo.fileType isEqualToString:@"sms_ring"]){
-    LQSMSRingReplaceViewController* controller = [[LQSMSRingReplaceViewController alloc] initWithNibName:@"LQSMSRingReplaceViewController" bundle:nil];
-    controller.ringObject = obj;
-    [self.navigationController pushViewController:controller animated:YES];
-    }
-    else{
-        //NSString* fileName= [obj.filePath lastPathComponent];
-        NSString* fileName= [NSString stringWithFormat:@"%@.m4r",obj.gameInfo.name];
-
-        NSString* destPath=[RINGTONEPATH stringByAppendingPathComponent:fileName];//这里要特别主意，目标文件路径一定要以文件名结尾，而不要以文件夹结尾
-       
-        NSArray* destPaths = [NSArray arrayWithObjects:destPath,nil];
-        obj.finalFilePaths = destPaths;
-        obj.installAfterDownloaded = YES;
-        [[LQDownloadManager sharedInstance] installGameBy:obj.gameInfo.gameId];
-    }
+    [LQUtilities installRing:self downloadObj:obj];
+//    if([obj.gameInfo.fileType isEqualToString:@"sms_ring"]){
+//    LQSMSRingReplaceViewController* controller = [[LQSMSRingReplaceViewController alloc] initWithNibName:@"LQSMSRingReplaceViewController" bundle:nil];
+//    controller.ringObject = obj;
+//    [self.navigationController pushViewController:controller animated:YES];
+//    }
+//    else{
+//        //NSString* fileName= [obj.filePath lastPathComponent];
+//        NSString* fileName= [NSString stringWithFormat:@"%@.m4r",obj.gameInfo.name];
+//
+//        NSString* destPath=[RINGTONEPATH stringByAppendingPathComponent:fileName];//这里要特别主意，目标文件路径一定要以文件名结尾，而不要以文件夹结尾
+//       
+//        NSArray* destPaths = [NSArray arrayWithObjects:destPath,nil];
+//        obj.finalFilePaths = destPaths;
+//        obj.installAfterDownloaded = YES;
+//        [[LQDownloadManager sharedInstance] installGameBy:obj.gameInfo.gameId];
+//    }
 }
 @end

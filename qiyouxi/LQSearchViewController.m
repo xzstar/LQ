@@ -202,7 +202,7 @@
     }
     int row = indexPath.row;
     NSString* keyword = (currentRecommendIndex==0)?[searchHistoryItems objectAtIndex:row]:[searchHotKeywordItems objectAtIndex:row];
-    
+    self.searchBar.text = keyword;
     [self search:keyword];
         
 

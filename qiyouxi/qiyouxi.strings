@@ -40,7 +40,7 @@ evaluator.nicklabel = "小编: %@";
 
 
 info.download.add = "%@加入下载队列";
-info.download.remove = "%@移出了队列";
+info.download.remove = "%@已删除";
 info.download.install = "%@正在安装中...";
 info.download.install.success = "%@已安装成功";
 info.download.install.fail = "%@安装失败";
@@ -57,3 +57,5 @@ feedback.error.nocontent = "请填入反馈内容";
 comment.error.nocontent = "请填入评论内容";
 comment.summit.success = "评论提交成功";
 info.share = "历趣助手提供ios软件游戏主题壁纸铃声等方面的下载，管理iphone手机手机应用，欢迎访问 http://www.apodang.com";
+
+search.nofound = "对不起，未找到相关搜索结果";
