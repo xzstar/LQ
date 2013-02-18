@@ -172,9 +172,12 @@ extern NSString* const kNotificationStatusChanged;
     //如果有下载，则需要跳转到下载页面，否则不需要
     if(item.tag == 2){
  
-        LQDownloadTablesController* controller = (LQDownloadTablesController*)[tab1Nav presentedViewController];
-        int count = [LQDownloadManager sharedInstance].downloadGames.count;
-        controller.showDownloadingList = count>0?YES:NO;
+//        LQDownloadTablesController* controller = (LQDownloadTablesController*)[tab2Nav presentedViewController];
+        UIViewController* controller = [tab2Nav topViewController];
+        if([controller isKindOfClass:[LQDownloadTablesController class]] == YES){
+            int count = [LQDownloadManager sharedInstance].downloadGames.count;
+            ((LQDownloadTablesController*)controller).showDownloadingList = count>0?YES:NO;
+        }
     }
     
     

@@ -130,7 +130,7 @@ extern NSString* const kNotificationStatusChanged;
             
             QYXDownloadObject* obj  = [installedList objectAtIndex:indexPath.row];
             cell.downloadObject = obj;
-            cell.actionButton.hidden = YES;
+            //cell.actionButton.hidden = YES;
             return cell;
         }
         default:

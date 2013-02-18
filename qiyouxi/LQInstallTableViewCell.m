@@ -35,14 +35,19 @@
 
 - (IBAction)onActionButton:(id)sender{
     
-    BOOL value = [[LQDownloadManager sharedInstance] isGameInstalled:self.downloadObject.gameInfo.package] && self.downloadObject.status!= kQYXDSInstalled;
+//    BOOL value = [[LQDownloadManager sharedInstance] isGameInstalled:self.downloadObject.gameInfo.package] && self.downloadObject.status!= kQYXDSInstalled;
     
-    
-    if (value == YES){
-        [[LQDownloadManager sharedInstance] startGame:self.downloadObject.gameInfo.package];
-    }else{
-        [[LQDownloadManager sharedInstance] installGameBy:self.downloadObject.gameInfo.gameId force:YES];
+    if (self.downloadObject.status!=kQYXDSInstalling) {
+         [[LQDownloadManager sharedInstance] installGameBy:self.downloadObject.gameInfo.gameId force:YES];
     }
+   
+
+    
+//    if (value == YES){
+//        [[LQDownloadManager sharedInstance] startGame:self.downloadObject.gameInfo.package];
+//    }else{
+//        [[LQDownloadManager sharedInstance] installGameBy:self.downloadObject.gameInfo.gameId force:YES];
+//    }
     
 }
 
@@ -65,7 +70,7 @@
     
     NSString* title = nil;
     if ([[LQDownloadManager sharedInstance] isGameInstalled:aDownloadObject.gameInfo.package] && aDownloadObject.status== kQYXDSInstalled){
-        title = LocalString(@"button.start");
+        title = LocalString(@"button.reinstall");
     }else{
         if (aDownloadObject.status == kQYXDSInstalling){
             title = LocalString(@"button.installing");

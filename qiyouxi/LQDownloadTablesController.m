@@ -10,6 +10,8 @@
 #import "LQDownloadingViewController.h"
 #import "LQDownloadedCategoryController.h"
 #define kDownloadTables 2
+extern NSString* const kNotificationStatusChanged;
+
 @interface LQDownloadTablesController ()
 
 @end
@@ -25,6 +27,7 @@
     }
     return self;
 }
+
 
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -49,12 +52,19 @@
 	// Do any additional setup after loading the view.
     self.titleLabel.text = @"下载详情";
     self.backButton.hidden = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateDownloadingStatus:)
+                                                 name:kNotificationStatusChanged
+                                               object:nil];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -138,5 +148,15 @@
         [scrollView addSubview:controller.view];
         //controller.parent = self;
     }
+}
+
+- (void)updateDownloadingStatus:(NSNotification*)notification{
+    
+    int count = [LQDownloadManager sharedInstance].downloadGames.count;
+    
+    if(count == 0 && pageController.currentPage!=0){
+        [self switchToPage:0];
+    }
+       
 }
 @end

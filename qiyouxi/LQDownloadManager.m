@@ -300,7 +300,9 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
 
 - (void)installGameBy:(int)gameId{
     QYXDownloadObject* obj = [self objectWithGameId:gameId];
-    if (obj.status == kQYXDSCompleted && obj.installAfterDownloaded == YES){
+    
+    // 下载完成 或者已经安装要重装的
+    if ((obj.status == kQYXDSCompleted  && obj.installAfterDownloaded == YES)|| obj.status == kQYXDSInstalled){
         
         //软件和游戏变更状态，铃声壁纸保持completed
         if([obj.gameInfo.fileType isEqualToString:@"soft"] ||
@@ -430,7 +432,9 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
 - (void)doneInstallGame:(QYXDownloadObject*)obj{
     id tmp = obj;
     [self.completedGames removeObject:obj];
-    [self.installedGames addObject:tmp];
+    
+    if([self.installedGames containsObject:tmp] == NO)
+        [self.installedGames addObject:tmp];
 //    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
     [[NSString stringWithFormat:LocalString(@"info.download.install.success"), obj.gameInfo.name] showToastAsInfo];
     obj.status = kQYXDSInstalled;

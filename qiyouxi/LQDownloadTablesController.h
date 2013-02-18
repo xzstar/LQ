@@ -11,4 +11,5 @@
 @interface LQDownloadTablesController : LQTablesController
 
 @property (nonatomic,assign)BOOL showDownloadingList;
+- (void)updateDownloadingStatus:(NSNotification*)notification;
 @end

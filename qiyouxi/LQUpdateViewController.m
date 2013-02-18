@@ -252,7 +252,7 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
             cell.gameInfo = [updateAppsList objectAtIndex:indexPath.row];
             [cell setButtonsName:@"立刻更新" middle:@"下载" right:@"暂不更新"];
             [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:indexPath.row];
-            [cell addLeftButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
+            [cell addLeftButtonTarget:self action:@selector(onGameDownloadAndInstall:) tag:indexPath.row];
             [cell addMiddleButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
             [cell addRightButtonTarget:self action:@selector(onAppIgnore:) tag:indexPath.row];
             
@@ -336,6 +336,12 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
     [self.navigationController pushViewController:controller animated:YES];    
 }
 
+- (void) onGameDownloadAndInstall:(id)sender{
+    UIButton* button = (UIButton*)sender;
+    int row = button.tag;
+    LQGameInfo* info = [appsList objectAtIndex:row];
+    [[LQDownloadManager sharedInstance] commonAction:info installAfterDownloaded:YES];
+}
 - (void) onGameDownload:(id)sender{
     UIButton* button = (UIButton*)sender;
     int row = button.tag;

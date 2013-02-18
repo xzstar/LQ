@@ -487,7 +487,7 @@
     UIButton* button = (UIButton*)sender;
     int row = button.tag;
     LQGameInfo* info = [appsList objectAtIndex:row];
-    [[LQDownloadManager sharedInstance] commonAction:info installAfterDownloaded:YES];
+    [[LQDownloadManager sharedInstance] commonAction:info installAfterDownloaded:NO];
 //    int gameId = info.gameId;
 //    QYXDownloadStatus status = [[LQDownloadManager sharedInstance] getStatusById:gameId];
 //    switch (status) {
