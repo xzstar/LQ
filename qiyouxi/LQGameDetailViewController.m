@@ -170,8 +170,38 @@
     else{
         self.gameInfoCommentTableView.hidden = NO;
         self.postCommentButton.hidden = NO;
-
+        
+        CGFloat height = 0;
+        for(int i=0;i<self.gameInfoUserComments.count;i++){
+            NSIndexPath* indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            height+=[self tableView:gameInfoCommentTableView heightForRowAtIndexPath:indexPath];
+        }
+        
+        CGRect frame = gameInfoCommentTableView.frame;
+        int oldHeight = frame.size.height;
+        frame.size.height = height;
+        gameInfoCommentTableView.frame = frame;
+        
+        //调整scrollView高度
+        CGSize size = mainScrollView.contentSize;
+        size.height += height - oldHeight;
+        mainScrollView.contentSize = size;
+        
+        //调整父view的高度
+        frame = gamePhotoInfoPanel.frame;
+        frame.size.height += height - oldHeight;
+        gamePhotoInfoPanel.frame = frame;
+        
+        //调整按钮高度
+        frame = postCommentButton.frame;
+        frame.origin.y += height - oldHeight; 
+        postCommentButton.frame = frame;
+        
+        [mainScrollView layoutIfNeeded];
+    
+        
     }
+    
 }
 
 

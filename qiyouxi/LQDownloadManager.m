@@ -9,6 +9,7 @@
 #import "LQDownloadManager.h"
 #import "LQInstaller.h"
 #import "LQUtilities.h"
+#import "Reachability.h"
 
 static LQDownloadManager* _intance = nil;
 
@@ -34,6 +35,7 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
 
 @synthesize ipaInstalled;
 @synthesize infoFilePath;
+@synthesize reachability;
 
 + (LQDownloadManager*)sharedInstance{
     if (_intance == nil){
@@ -48,6 +50,9 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
     if (self != nil){
 //        NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //        self.infoFilePath =  [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:@"downloads.plist"];
+        
+        reachability = [[Reachability alloc]init];
+        
         self.infoFilePath =  [[LQUtilities documentsDirectoryPath]stringByAppendingPathComponent:@"downloads.plist"];
         self.downloadGames = [[NSMutableArray alloc] init];
         self.installedGames = [[NSMutableArray alloc] init];
@@ -319,6 +324,12 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
     
     [[NSFileManager defaultManager] removeItemAtPath:obj.filePath error:NULL];
     
+    NSString* toastMsg = LocalString(@"info.download.delete");
+    if([self.downloadGames containsObject:obj] == YES){
+        toastMsg = LocalString(@"info.download.remove");
+    }
+        
+    
     [self.downloadGames removeObject:obj];
     [self.completedGames removeObject:obj];
     [self.installedGames removeObject:obj];
@@ -328,7 +339,7 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
 
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:self];
     
-    [[NSString stringWithFormat:LocalString(@"info.download.remove"), obj.gameInfo.name] showToastAsInfo];
+    [[NSString stringWithFormat:toastMsg, obj.gameInfo.name] showToastAsInfo];
     [self synchronize];
 }
 
@@ -452,14 +463,20 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
     [[LQInstaller defaultInstaller] launchApp:identifier];
 }
 
-
 - (void)commonAction:(LQGameInfo*)gameInfo installAfterDownloaded:(BOOL)installAfterDownloaded{
+    [self commonAction:gameInfo installAfterDownloaded:installAfterDownloaded installPaths:nil];
+}
+
+- (void)commonAction:(LQGameInfo*)gameInfo installAfterDownloaded:(BOOL)installAfterDownloaded installPaths:(NSArray*) installPaths{
     QYXDownloadStatus status = [self getStatusById:gameInfo.gameId];
     NSString* info;
     
     QYXDownloadObject* obj = [self objectWithGameId:gameInfo.gameId];
-    if(obj!=nil)
+    if(obj!=nil){
         obj.installAfterDownloaded = installAfterDownloaded;
+        if(installPaths !=nil)
+            obj.finalFilePaths = installPaths;
+    }
     
     switch (status) {
         case kQYXDSFailed:
@@ -471,6 +488,7 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
         case kQYXDSCompleted:
             info = [NSString stringWithFormat:LocalString(@"info.download.downloaded"),gameInfo.name];
             [info showToastAsInfo];
+            [self installGameBy:gameInfo.gameId];
             break;
         case kQYXDSInstalling:
             info = [NSString stringWithFormat:LocalString(@"info.download.install"),gameInfo.name];
@@ -482,7 +500,7 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
             break;
         case kQYXDSNotFound:
             if(gameInfo!=nil)
-                [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo installAfterDownloaded:installAfterDownloaded];
+                [[LQDownloadManager sharedInstance] addToDownloadQueue:gameInfo installAfterDownloaded:installAfterDownloaded installPaths:installPaths];
             break;
         case kQYXDSInstalled:
             info = [NSString stringWithFormat:LocalString(@"info.download.install.success"),gameInfo.name];
@@ -605,6 +623,31 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
     }
 }
 
+- (float)speed{
+    NSDate *date = [NSDate date];
+    double nowTime = [date timeIntervalSince1970];
+    if(status != kQYXDSRunning)
+        return 0;
+    
+    if (lastTime == 0 || lastDataLength ==0) {
+        lastDataLength = self.dataLength;
+        lastTime = nowTime;
+        return 0;
+    }
+    else {
+        
+        if(nowTime>lastTime && self.dataLength>lastDataLength){
+            return (float)(self.dataLength-lastDataLength)/(float)((nowTime-lastTime)*1000);
+        }
+        else {
+            lastDataLength = self.dataLength;
+            lastTime = nowTime;
+            return 0;
+        }
+        
+    }
+    
+}
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
     NSHTTPURLResponse* hr = (NSHTTPURLResponse*) response;
@@ -626,7 +669,14 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
     self.connection = nil;
     [self.fileHandle closeFile];
     self.fileHandle = nil;
-    self.status = kQYXDSCompleted;
+    //self.status = kQYXDSCompleted;
+    if(self.totalLength == self.dataLength)
+    {
+        self.status = kQYXDSCompleted;
+    }
+    else {
+        self.status = kQYXDSFailed;
+    }
     [[LQDownloadManager sharedInstance] updateDownloadObject:self];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:self];
     
@@ -640,8 +690,14 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
     self.connection = nil;
     
 //    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
-    [[NSString stringWithFormat:LocalString(@"info.download.fail"), self.gameInfo.name] performSelectorOnMainThread:@selector(showToastAsInfo) withObject:nil waitUntilDone:NO];
-    self.status = kQYXDSFailed;
+    
+    if([[LQDownloadManager sharedInstance].reachability isReachable] == NO){
+        self.status = kQYXDSPaused;
+    }
+    else{    
+        [[NSString stringWithFormat:LocalString(@"info.download.fail"), self.gameInfo.name] performSelectorOnMainThread:@selector(showToastAsInfo) withObject:nil waitUntilDone:NO];
+        self.status = kQYXDSFailed;
+    }
 
 }
 

@@ -200,7 +200,7 @@ extern NSString* const kNotificationStatusChanged;
     int row = button.tag;
     QYXDownloadObject *obj = [appsList objectAtIndex:row];
 
-    [LQUtilities installRing:self downloadObj:obj];
+    [LQUtilities installRing:self gameInfo:obj.gameInfo];
 //    if([obj.gameInfo.fileType isEqualToString:@"sms_ring"]){
 //    LQSMSRingReplaceViewController* controller = [[LQSMSRingReplaceViewController alloc] initWithNibName:@"LQSMSRingReplaceViewController" bundle:nil];
 //    controller.ringObject = obj;

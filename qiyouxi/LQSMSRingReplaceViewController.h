@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-@class QYXDownloadObject;
 
 @interface LQSMSRingReplaceViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>{
     NSDictionary* toneDictory;
     int selectedRow;
 }
-@property(nonatomic,strong) QYXDownloadObject* ringObject;
+@property(nonatomic,strong) LQGameInfo* ringGameInfo;
 -(IBAction)onReplaceRing:(id)sender;
 
 -(IBAction)onBack:(id) sender;

@@ -249,22 +249,23 @@
 }
 
 
-+(void) installRing:(UIViewController*)controller downloadObj:(QYXDownloadObject*) obj{
-    if([obj.gameInfo.fileType isEqualToString:@"sms_ring"]){
++(void) installRing:(UIViewController*)controller gameInfo:(LQGameInfo*) gameInfo{
+    if([gameInfo.fileType isEqualToString:@"sms_ring"]){
         LQSMSRingReplaceViewController* controller = [[LQSMSRingReplaceViewController alloc] initWithNibName:@"LQSMSRingReplaceViewController" bundle:nil];
-        controller.ringObject = obj;
+        controller.ringGameInfo = gameInfo;
         [controller.navigationController pushViewController:controller animated:YES];
     }
     else{
         //NSString* fileName= [obj.filePath lastPathComponent];
-        NSString* fileName= [NSString stringWithFormat:@"%@.m4r",obj.gameInfo.name];
+        NSString* fileName= [NSString stringWithFormat:@"%@.m4r",gameInfo.name];
         
         NSString* destPath=[RINGTONEPATH stringByAppendingPathComponent:fileName];//这里要特别主意，目标文件路径一定要以文件名结尾，而不要以文件夹结尾
         
         NSArray* destPaths = [NSArray arrayWithObjects:destPath,nil];
-        obj.finalFilePaths = destPaths;
-        obj.installAfterDownloaded = YES;
-        [[LQDownloadManager sharedInstance] installGameBy:obj.gameInfo.gameId];
+        //obj.finalFilePaths = destPaths;
+        //obj.installAfterDownloaded = YES;
+        [[LQDownloadManager sharedInstance] commonAction:gameInfo installAfterDownloaded:YES installPaths:destPaths];
+        //[[LQDownloadManager sharedInstance] installGameBy:obj.gameInfo.gameId];
     }
 }
 
@@ -296,6 +297,8 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
         if(updateListeners == nil){
             updateListeners = [NSMutableArray array];
         }
+        
+        installedApps = [NSMutableDictionary dictionary];
             
     }
     return self;
@@ -313,10 +316,16 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
             continue;
         
         NSDictionary* appDict = [dictionary objectForKey:appKey];
-        NSString* appVersion = [appDict objectForKey:@"CFBundleVersion"];
+        NSString* appVersion = [appDict objectForKey:@"CFBundleShortVersionString"];
+        NSRange dotrange;
+        if(appVersion!=nil){
+            dotrange= [appVersion rangeOfString:@"."];
+        }
+        if(appVersion == nil || dotrange.length==0)
+            appVersion = [appDict objectForKey:@"CFBundleVersion"];
         NSString* appValue = [NSString stringWithFormat:@"%@,%@",appKey,appVersion];
         [desktopApps addObject:appValue];
-        
+        [installedApps setObject:appVersion forKey:appKey];
         
     }
     return desktopApps;
@@ -341,24 +350,27 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
 }
 
 - (NSString*)currentVersion:(NSString*)package{
-    BOOL isDir = NO;
-    if([[NSFileManager defaultManager] fileExistsAtPath: installedAppListPath isDirectory: &isDir] && !isDir) 
-    {
-        NSDictionary *cacheDict = [NSDictionary dictionaryWithContentsOfFile: installedAppListPath];
-        NSDictionary *system = [cacheDict objectForKey: @"System"];
-        
-        NSDictionary* appDict = [system objectForKey:package];
-        if(appDict!=nil && appDict.count>0)
-            return [appDict objectForKey:@"CFBundleVersion"];
-        
-        
-        NSDictionary *user = [cacheDict objectForKey: @"User"]; 
-        appDict = [user objectForKey:package];
-        if(appDict!=nil && appDict.count>0)
-            return [appDict objectForKey:@"CFBundleVersion"];        
-    }
-    
-    return nil;
+//    BOOL isDir = NO;
+//    if([[NSFileManager defaultManager] fileExistsAtPath: installedAppListPath isDirectory: &isDir] && !isDir) 
+//    {
+//        NSDictionary *cacheDict = [NSDictionary dictionaryWithContentsOfFile: installedAppListPath];
+//        NSDictionary *system = [cacheDict objectForKey: @"System"];
+//        
+//        NSDictionary* appDict = [system objectForKey:package];
+//        if(appDict!=nil && appDict.count>0)
+//            return [appDict objectForKey:@"CFBundleShortVersionString"];
+//        
+//        
+//        NSDictionary *user = [cacheDict objectForKey: @"User"]; 
+//        appDict = [user objectForKey:package];
+//        if(appDict!=nil && appDict.count>0)
+//            return [appDict objectForKey:@"CFBundleShortVersionString"];        
+//    }
+//    return nil;
+    NSString *version = [installedApps objectForKey:package];
+    if(version == nil)
+        return 0;
+    return [installedApps objectForKey:package];
 }
 
 

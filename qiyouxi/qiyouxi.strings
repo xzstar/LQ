@@ -41,7 +41,8 @@ evaluator.nicklabel = "小编: %@";
 
 
 info.download.add = "%@加入下载队列";
-info.download.remove = "%@已删除";
+info.download.delete = "%@已删除";
+info.download.remove = "%@已移出了下载队列";
 info.download.install = "%@正在安装中...";
 info.download.install.success = "%@已安装成功";
 info.download.install.fail = "%@安装失败";

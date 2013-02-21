@@ -20,7 +20,7 @@
 
 @implementation LQGameInfoListViewController
 @synthesize type;
-
+@synthesize afterLoadAppsActionHandler;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -125,6 +125,8 @@
                 // [self loadTodayGames:result];
                 [self loadApps:[result objectForKey:@"apps"]];
                 self.moreUrl = [result objectForKey:@"more_url"];
+                if(self.afterLoadAppsActionHandler!=nil)
+                    afterLoadAppsActionHandler();
             }
             break;
         case C_COMMAND_GETAPPLISTSOFTGAME_MORE:  
@@ -206,7 +208,7 @@
             
             [morecell setButtonsName:@"设置" middle:@"下载" right:nil];
             
-            [morecell addLeftButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
+            [morecell addLeftButtonTarget:self action:@selector(onInstallRing:) tag:indexPath.row];
             [morecell addMiddleButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
         }
         cell = morecell;
@@ -232,6 +234,13 @@
     return cell;
 }
 
+- (void) onInstallRing:(id) sender{
+    UIButton* button = sender;
+    int row = button.tag;
+    LQGameInfo *gameInfo = [self.appsList objectAtIndex:row];
+    
+    [LQUtilities installRing:self gameInfo:gameInfo];
+}
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -586,7 +595,7 @@
             
             [morecell setButtonsName:@"设置" middle:@"下载" right:nil];
             
-            [morecell addLeftButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
+            [morecell addLeftButtonTarget:self action:@selector(onInstallRing:) tag:indexPath.row];
             [morecell addMiddleButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
         }
         cell = morecell;

@@ -15,6 +15,9 @@
 #import "LQUtilities.h"
 
 static NSString* const installedAppListPath = @"/private/var/mobile/Library/Caches/com.apple.mobile.installation.plist";
+NSString* const kNotificationUpdateListChanged    = @"NotificationUpdateListChanged";
+
+extern NSString* const kNotificationStatusChanged;
 
 @implementation InstalledAppReader
 
@@ -79,6 +82,10 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
 - (void) onAppNotIgnore:(id)sender;
 - (IBAction)onOpenIgnoreView:(id)sender;
 - (IBAction) onCloseIgnoreView:(id)sender;
+- (void) updateIgoreButton;
+- (void) updateIgoreListFile;
+- (void) postUpdateNumberNotification;
+- (void) updateStatus:(NSNotification*)notification;
 @end
 
 @implementation LQUpdateViewController
@@ -103,26 +110,33 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
 //    NSArray * array = [InstalledAppReader installedApp];
-//    //[InstalledAppReader getRings];
 //    NSString* appsString = [array componentsJoinedByString:@","];
-////    if(appsString == nil)
-////        appsString = [LQConfig restoreAppList];
-////    else 
-////        [LQConfig saveAppList:appsString];
+//    if(appsString == nil)
+//        appsString = [LQConfig restoreAppList];
+//    else 
+//        [LQConfig saveAppList:appsString];
 //    if(appsString !=nil && appsString.length>0)
-//    [self.client loadAppUpdate:appsString];
-    
+//        [self.client loadAppUpdate:appsString];
+//    
     [[AppUpdateReader sharedInstance] addListener:self];
     [[AppUpdateReader sharedInstance] loadNeedUpdateApps];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateStatus:)
+                                                 name:kNotificationStatusChanged
+                                               object:nil];
+
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    [[AppUpdateReader sharedInstance] removeListener:self];
 
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
+    [[AppUpdateReader sharedInstance] removeListener:self];
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -148,7 +162,7 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
         
         BOOL found = NO;
         for(NSString* package in savedIgnoreList){
-            if(package == gameInfo.package)
+            if([package isEqualToString:gameInfo.package] == YES)
             {
                 found = YES;
                 break;
@@ -169,6 +183,14 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
     
     [self.tableView reloadData];
     [self updateIgoreButton];
+    [self postUpdateNumberNotification];
+}
+
+- (void) postUpdateNumberNotification{
+    NSNumber* number = [NSNumber numberWithInt:updateAppsList.count];
+    NSDictionary* infoDict = [NSDictionary dictionaryWithObject:number forKey:@"number"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationUpdateListChanged object:self userInfo:infoDict];
+
 }
 
 - (void) saveAppsList{
@@ -339,7 +361,7 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
 - (void) onGameDownloadAndInstall:(id)sender{
     UIButton* button = (UIButton*)sender;
     int row = button.tag;
-    LQGameInfo* info = [appsList objectAtIndex:row];
+    LQGameInfo* info = [updateAppsList objectAtIndex:row];
     [[LQDownloadManager sharedInstance] commonAction:info installAfterDownloaded:YES];
 }
 - (void) onGameDownload:(id)sender{
@@ -396,14 +418,28 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
         title = [NSString stringWithFormat:@"忽略(%d)",ignoreAppsList.count];
     [openIgnoreView setTitle:title forState:UIControlStateNormal];
 }
-
+- (void)updateIgoreListFile{
+    if(ignoreAppsList==nil || ignoreAppsList.count==0)
+        return;
+    
+    NSMutableArray* array = [NSMutableArray arrayWithCapacity:ignoreAppsList.count];
+    for (LQGameInfo* gameInfo in ignoreAppsList) {
+        [array addObject:gameInfo.package];
+    }
+    
+    [LQConfig saveIgnoreAppList:array];
+}
 - (void)onAppIgnore:(id)sender{
     UIButton* button = (UIButton*)sender;
     int row = button.tag;
     LQGameInfo* gameInfo = [updateAppsList objectAtIndex:row];   
     [ignoreAppsList addObject:gameInfo];
     [updateAppsList removeObject:gameInfo];
+
     [self updateIgoreButton];
+    [self updateIgoreListFile];
+    [self postUpdateNumberNotification];
+
     LQUpdateViewController* __unsafe_unretained weakSelf = self;
     selectedRow = -1;
     selectedSection = -1;
@@ -441,7 +477,8 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
     
     [self updateList];
     [self updateIgoreButton];
-
+    [self updateIgoreListFile];
+    [self postUpdateNumberNotification];
     //[updateAppsList addObject:gameInfo];
 
     
@@ -517,5 +554,35 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
     [self endLoading];
 }
 
+- (void) updateStatus:(NSNotification*)notification{
+    QYXDownloadObject* obj = (QYXDownloadObject*)notification.object;
+    NSString* package = obj.gameInfo.package;
+    BOOL found = NO;
+    int row = 0;
+    for (LQGameInfo* gameInfo in updateAppsList){
+        
+        if([package isEqualToString:gameInfo.package] == YES)
+        {
+            found = YES;
+            [updateAppsList removeObject:gameInfo];
+            break;
+        }
+        row++;
+    }
+        
+    LQUpdateViewController* __unsafe_unretained weakSelf = self;
+    selectedRow = -1;
+    selectedSection = -1;
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSMutableArray *indexPaths = [NSMutableArray array];
+        [indexPaths addObject:[NSIndexPath indexPathForRow:row inSection:0]];
+        
+        if(indexPaths.count>0){
+            [weakSelf.tableView beginUpdates];            
+            [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+            [weakSelf.tableView endUpdates];
+        }
+    });    
+}
 
 @end

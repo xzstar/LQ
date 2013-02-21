@@ -21,6 +21,8 @@
 @property(unsafe_unretained) IBOutlet UIScrollView* scrollView;
 @property(unsafe_unretained) IBOutlet UIView* searchHistoryView;
 @property(unsafe_unretained) IBOutlet UITableView* searchHistoryTable;
+@property(nonatomic,strong) IBOutlet UILabel* searchNoResultLabel;
+@property(nonatomic,strong) LQGameInfoListViewController* listController;
 
 - (void)onSwitchRecommendSection:(id)sender;
 - (void)onDeleteSearchItem:(id)sender;

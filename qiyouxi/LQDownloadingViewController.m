@@ -19,7 +19,7 @@
 @synthesize applicaitonView;
 
 - (void)loadViews{
-    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updateStatus:) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(updateStatus:) userInfo:nil repeats:YES];
 }
 
 - (void)updateStatus:(NSTimer*)timer{

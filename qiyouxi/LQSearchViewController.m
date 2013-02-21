@@ -14,7 +14,7 @@
 #define LQAPPSEARCH @"app_search"
 
 @interface LQSearchViewController ()
-
+-(void) saveHistoryItems:(NSString*)item;
 @end
 
 @implementation LQSearchViewController
@@ -24,7 +24,8 @@
 @synthesize scrollView;
 @synthesize searchHistoryView;
 @synthesize searchHistoryTable;
-
+@synthesize listController;
+@synthesize searchNoResultLabel;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -114,10 +115,17 @@
     if(searchText.length==0)
         return;
     
-//    SearchHistoryItem* item = 
-//    [SearchHistoryItem searchHistoryItemWithType:@"soft"
-//                                            name:[searchbar text]];
     NSString* item = [searchbar text];
+    
+    [self saveHistoryItems:item];
+    [searchHistoryTable reloadData];
+    
+    [self search:[searchbar text]];
+
+}
+
+
+-(void) saveHistoryItems:(NSString*)item{
     //移除旧的
     for (NSString* tempItem in searchHistoryItems) {
         if(tempItem == item)
@@ -130,11 +138,6 @@
     [searchHistoryItems addObject:item];
     
     [LQConfig saveSearchHisory:searchHistoryItems];
-    
-    [searchHistoryTable reloadData];
-    
-    [self search:[searchbar text]];
-
 }
 
 #pragma mark - TableView DataSource
@@ -203,6 +206,8 @@
     int row = indexPath.row;
     NSString* keyword = (currentRecommendIndex==0)?[searchHistoryItems objectAtIndex:row]:[searchHotKeywordItems objectAtIndex:row];
     self.searchBar.text = keyword;
+    [self saveHistoryItems:keyword];
+
     [self search:keyword];
         
 
@@ -293,6 +298,9 @@
 - (void)search:(NSString*)keyword{
     if (keyword!=nil) {
         BOOL needSearchAgain = YES;
+        searchNoResultLabel.text = LocalString(@"search.nofound");
+        searchNoResultLabel.hidden = YES;
+
         if(listController==nil)
         {
             listController = [[LQGameInfoListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:LQAPPSEARCH keywords:keyword];
@@ -301,17 +309,38 @@
             listController.view.frame = frame;
             needSearchAgain = NO;
             listController.parent = self;
+            
+            LQSearchViewController* __unsafe_unretained weakSelf = self;
+
+            listController.afterLoadAppsActionHandler = ^{dispatch_async(dispatch_get_main_queue(), ^{
+                if(weakSelf!=nil && weakSelf.listController!=nil){
+                    if(weakSelf.listController.appsList==nil || weakSelf.listController.appsList.count == 0){
+                        weakSelf.listController.view.hidden = YES;
+                        weakSelf.searchNoResultLabel.hidden = NO;
+                    }
+                    else {
+                        weakSelf.listController.view.hidden = NO;
+                        weakSelf.searchNoResultLabel.hidden = YES;
+
+                    }
+                }
+            });
+            };
         }
         else {
             listController.keywords = keyword;
             listController.appsList = nil;
             [listController loadData];
         }
-        NSArray* subViews = [searchResultTable subviews];
-        for (UIView* view in subViews) {
-            [view removeFromSuperview];
+//        NSArray* subViews = [searchResultTable subviews];
+//        for (UIView* view in subViews) {
+//            [view removeFromSuperview];
+//        }
+        
+        if (listController.view.superview == nil) {
+            [searchResultTable addSubview:listController.view];
         }
-        [searchResultTable addSubview:listController.view];
+        
         if (needSearchAgain) {
             [listController loadData];
         }

@@ -22,10 +22,14 @@ typedef enum _DOWNLOAD_STATUS{
 //#define kQYXDownloadStatusUpdateNotification @"kQYXDownloadStatusUpdateNotification"
 
 @class QYXDownloadObject;
-@interface LQDownloadManager : NSObject
+@class Reachability;
+@interface LQDownloadManager : NSObject{
+    Reachability* reachability;
+}
 @property (nonatomic, strong) NSMutableArray* downloadGames;
 @property (nonatomic, strong) NSMutableArray* completedGames;
 @property (nonatomic, strong) NSMutableArray* installedGames;
+@property (nonatomic, strong) Reachability* reachability;
 
 + (LQDownloadManager*)sharedInstance;
 
@@ -45,12 +49,16 @@ typedef enum _DOWNLOAD_STATUS{
 - (void)startGame:(NSString*)identifier;
 
 - (void)commonAction:(LQGameInfo*)gameInfo installAfterDownloaded:(BOOL)installAfterDownloaded;
+- (void)commonAction:(LQGameInfo*)gameInfo installAfterDownloaded:(BOOL)installAfterDownloaded installPaths:(NSArray*) installPaths;
+
 - (void)restartGames;
 @end
 
 
 @interface QYXDownloadObject : NSObject{
     NSMutableData* _data;
+    int lastDataLength;
+    double lastTime;
 }
 
 @property (nonatomic, strong) LQGameInfo* gameInfo;
@@ -67,5 +75,6 @@ typedef enum _DOWNLOAD_STATUS{
 
 - (NSString*)totalSizeDesc;
 - (int)percent;
+- (float)speed;
 
 @end

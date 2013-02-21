@@ -189,6 +189,7 @@
         if (cell == nil){
             cell = [[[NSBundle mainBundle] loadNibNamed:@"HistoryTableViewCell" owner:self options:nil] objectAtIndex:0];
         }
+        
         cell.gameInfo = [appsList objectAtIndex:indexPath.row];
         
         [cell addInfoButtonsTarget:self action:@selector(onGameDetail:) tag:indexPath.row];
@@ -296,7 +297,7 @@
     if(appsList==nil)
         appsList = [NSMutableArray array];
     else {
-        [appsList removeAllObjects];
+        //[appsList removeAllObjects];
     }
     [self startLoading];
     selectedRow = -1;

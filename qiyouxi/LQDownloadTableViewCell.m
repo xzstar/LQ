@@ -72,8 +72,17 @@
     downloadObject = aDownloadObject;
     
     self.gameNameLabel.text = aDownloadObject.gameInfo.name;
-    self.gameDetailLabel.text = [NSString stringWithFormat:@"%d%%/%@", [aDownloadObject percent], 
-                                 [aDownloadObject totalSizeDesc]];
+    
+    if (self.downloadObject.status == kQYXDSRunning) {
+        self.gameDetailLabel.text = [NSString stringWithFormat:@"%d%%/%@/%.2fK字节/秒", [aDownloadObject percent], 
+                                     [aDownloadObject totalSizeDesc],[aDownloadObject speed]];
+        
+    }
+    else{
+        self.gameDetailLabel.text = [NSString stringWithFormat:@"%d%%/%@", [aDownloadObject percent], 
+                                     [aDownloadObject totalSizeDesc]];
+        
+    }
     self.progressView.progress = (float)[aDownloadObject percent]/100;
     
     UIImage* image = [[LQImageLoader sharedInstance] loadImage:self.downloadObject.gameInfo.icon context:self];

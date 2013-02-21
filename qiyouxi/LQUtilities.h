@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LQClient.h"
-@class QYXDownloadObject;
+@class LQGameInfo;
 @interface LQUtilities : NSObject
 
 +(BOOL) copyFile:(NSString*) srcPath destPath:(NSString*) destPath;
@@ -19,13 +19,14 @@
 +(unsigned char *)getImageData:(UIImage*)image;
 +(NSString*)createcpBitmap:(NSString*)imagePath savedcpbitmapName:(NSString*)savedcpbitmapName;
 +(NSString*) stringWithUUID;
-+(void)installRing:(UIViewController*)controller downloadObj:(QYXDownloadObject*) obj;
++(void) installRing:(UIViewController*)controller gameInfo:(LQGameInfo*) gameInfo;
 @end
 
 @interface AppUpdateReader:NSObject <LQClientDelegate>{
     LQClient* client;
     NSArray* appsList;
     NSMutableArray* updateListeners;
+    NSMutableDictionary* installedApps;
 }
 @property (nonatomic,readonly) NSArray* appsList;
 //@property (nonatomic,unsafe_unretained) id delegate;

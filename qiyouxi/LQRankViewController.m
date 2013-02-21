@@ -203,7 +203,7 @@
             
             [morecell setButtonsName:@"设置" middle:@"下载" right:nil];
             
-            [morecell addLeftButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
+            [morecell addLeftButtonTarget:self action:@selector(onInstallRing:) tag:indexPath.row];
             [morecell addMiddleButtonTarget:self action:@selector(onGameDownload:) tag:indexPath.row];
         }
         cell = morecell;
@@ -228,6 +228,14 @@
     [cell.audioButton addTarget:self action:@selector(playAudio:) forControlEvents:UIControlEventTouchUpInside];    
     
     return cell;
+}
+
+- (void) onInstallRing:(id) sender{
+    UIButton* button = sender;
+    int row = button.tag;
+    LQGameInfo *gameInfo = [self.appsList objectAtIndex:row];
+    
+    [LQUtilities installRing:self gameInfo:gameInfo];
 }
 
 #pragma mark - Table view delegate

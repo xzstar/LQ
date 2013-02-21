@@ -149,12 +149,14 @@
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">btn_download.png</string>
 										</object>
-										<object class="IBUIFontDescription" key="IBUIFontDescription" id="167969657">
-											<int key="type">2</int>
+										<object class="IBUIFontDescription" key="IBUIFontDescription" id="21813811">
+											<string key="name">STHeitiSC-Light</string>
+											<string key="family">Heiti SC</string>
+											<int key="traits">0</int>
 											<double key="pointSize">15</double>
 										</object>
-										<object class="NSFont" key="IBUIFont" id="505108738">
-											<string key="NSName">Helvetica-Bold</string>
+										<object class="NSFont" key="IBUIFont" id="600983276">
+											<string key="NSName">STHeitiSC-Light</string>
 											<double key="NSSize">15</double>
 											<int key="NSfFlags">16</int>
 										</object>
@@ -179,8 +181,8 @@
 										</object>
 										<reference key="IBUINormalTitleShadowColor" ref="617367531"/>
 										<reference key="IBUINormalBackgroundImage" ref="881886204"/>
-										<reference key="IBUIFontDescription" ref="167969657"/>
-										<reference key="IBUIFont" ref="505108738"/>
+										<reference key="IBUIFontDescription" ref="21813811"/>
+										<reference key="IBUIFont" ref="600983276"/>
 									</object>
 									<object class="IBUIButton" id="134791290">
 										<reference key="NSNextResponder" ref="122223325"/>
@@ -203,8 +205,8 @@
 										</object>
 										<reference key="IBUINormalTitleShadowColor" ref="617367531"/>
 										<reference key="IBUINormalBackgroundImage" ref="881886204"/>
-										<reference key="IBUIFontDescription" ref="167969657"/>
-										<reference key="IBUIFont" ref="505108738"/>
+										<reference key="IBUIFontDescription" ref="21813811"/>
+										<reference key="IBUIFont" ref="600983276"/>
 									</object>
 								</array>
 								<string key="NSFrame">{{0, 61}, {320, 50}}</string>

@@ -141,6 +141,8 @@
 		F23D3B8F169AD70700B7DD46 /* LQSearchHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F23D3B8E169AD70700B7DD46 /* LQSearchHistoryCell.m */; };
 		F23D3B92169B02D300B7DD46 /* LQSearchHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */; };
 		F24E027B16B01DF5007C7217 /* LQUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F24E027A16B01DF5007C7217 /* LQUtilities.m */; };
+		F257FD9416D4C32E00B52927 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F257FD9316D4C32E00B52927 /* SystemConfiguration.framework */; };
+		F257FD9716D6269B00B52927 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = F257FD9616D6269B00B52927 /* Reachability.m */; };
 		F25BB3D716A24BF900E8F7EE /* UIImage+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = F25BB3D616A24BF900E8F7EE /* UIImage+Scale.m */; };
 		F266A9DB169F9B7C0014FE75 /* LQRankSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = F266A9DA169F9B7B0014FE75 /* LQRankSectionHeader.m */; };
 		F266A9DE169F9B9E0014FE75 /* LQRankSectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = F266A9DD169F9B9E0014FE75 /* LQRankSectionHeader.xib */; };
@@ -639,6 +641,7 @@
 		F23090C416C2140400D7B415 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
 		F23090C516C2140400D7B415 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		F23090C816C2143500D7B415 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		F234211516D44856002B5AFC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "/Users/xiezhe/work/LQ/qiyouxi/zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
 		F23AA8B116AD2B44008845C1 /* LQRingTablesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQRingTablesController.h; sourceTree = "<group>"; };
 		F23AA8B216AD2B45008845C1 /* LQRingTablesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQRingTablesController.m; sourceTree = "<group>"; };
 		F23D3B8D169AD70700B7DD46 /* LQSearchHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQSearchHistoryCell.h; sourceTree = "<group>"; };
@@ -646,6 +649,9 @@
 		F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQSearchHistoryCell.xib; sourceTree = "<group>"; };
 		F24E027916B01DF5007C7217 /* LQUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQUtilities.h; sourceTree = "<group>"; };
 		F24E027A16B01DF5007C7217 /* LQUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQUtilities.m; sourceTree = "<group>"; };
+		F257FD9316D4C32E00B52927 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		F257FD9516D6269B00B52927 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		F257FD9616D6269B00B52927 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		F25BB3D516A24BF900E8F7EE /* UIImage+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Scale.h"; sourceTree = "<group>"; };
 		F25BB3D616A24BF900E8F7EE /* UIImage+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Scale.m"; sourceTree = "<group>"; };
 		F266A9D9169F9B7B0014FE75 /* LQRankSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQRankSectionHeader.h; sourceTree = "<group>"; };
@@ -1007,6 +1013,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F257FD9416D4C32E00B52927 /* SystemConfiguration.framework in Frameworks */,
 				F23090C916C2143500D7B415 /* libz.dylib in Frameworks */,
 				F26CD2B216930A8F00E1E30B /* CFNetwork.framework in Frameworks */,
 				F26CD2B016930A8800E1E30B /* AudioToolbox.framework in Frameworks */,
@@ -1122,6 +1129,8 @@
 		43D54E1315CB7A5D007D83AE /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				F257FD9516D6269B00B52927 /* Reachability.h */,
+				F257FD9616D6269B00B52927 /* Reachability.m */,
 				43F3743615D118A7000F475B /* toast_bg.png */,
 				43F3743215D1168C000F475B /* LQToast.h */,
 				43F3743315D1168C000F475B /* LQToast.m */,
@@ -1163,6 +1172,7 @@
 		43F5ED2015C65424001A0F8D = {
 			isa = PBXGroup;
 			children = (
+				F257FD9316D4C32E00B52927 /* SystemConfiguration.framework */,
 				F23090C816C2143500D7B415 /* libz.dylib */,
 				F26CD2B116930A8F00E1E30B /* CFNetwork.framework */,
 				F26CD2AF16930A8800E1E30B /* AudioToolbox.framework */,
@@ -2239,6 +2249,7 @@
 				F298A82B16B1749400CC464D /* KRShareAuthorizeView.m in Sources */,
 				F298A82C16B1749400CC464D /* KRShareRequest.m in Sources */,
 				F275CFBA16BD1DD200AAC69D /* KTPhotoView.m in Sources */,
+				F257FD9716D6269B00B52927 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2249,6 +2260,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				43F5ED3915C65424001A0F8D /* en */,
+				F234211516D44856002B5AFC /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2311,8 +2323,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = liqu;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = liqu;
+				CODE_SIGN_IDENTITY = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "qiyouxi/liqu-Prefix.pch";
 				INFOPLIST_FILE = "qiyouxi/liqu-Info.plist";
@@ -2322,8 +2334,8 @@
 					"\"$(SRCROOT)/qiyouxi\"",
 				);
 				PRODUCT_NAME = liqu;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "9DB99E3B-3C83-403F-8057-50B74A511AE7";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9DB99E3B-3C83-403F-8057-50B74A511AE7";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2333,7 +2345,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = liqu;
+				CODE_SIGN_IDENTITY = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "qiyouxi/liqu-Prefix.pch";
 				INFOPLIST_FILE = "qiyouxi/liqu-Info.plist";
@@ -2343,7 +2355,7 @@
 					"\"$(SRCROOT)/qiyouxi\"",
 				);
 				PRODUCT_NAME = liqu;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "9DB99E3B-3C83-403F-8057-50B74A511AE7";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

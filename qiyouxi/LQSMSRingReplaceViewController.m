@@ -19,7 +19,7 @@
 @end
 
 @implementation LQSMSRingReplaceViewController
-@synthesize ringNames,ringFileName,ringObject;
+@synthesize ringNames,ringFileName,ringGameInfo;
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -110,9 +110,12 @@
     NSString* destPath=[RINGPATH stringByAppendingPathComponent:fileName];//这里要特别主意，目标文件路径一定要以文件名结尾，而不要以文件夹结尾
    
     NSArray* destPaths = [NSArray arrayWithObjects:destPath,nil];
-    self.ringObject.finalFilePaths = destPaths;
-    ringObject.installAfterDownloaded = YES;
-    [[LQDownloadManager sharedInstance] installGameBy:ringObject.gameInfo.gameId];
+     [[LQDownloadManager sharedInstance] commonAction:ringGameInfo installAfterDownloaded:YES installPaths:destPaths];
+    
+    //self.ringObject.finalFilePaths = destPaths;
+    //ringObject.installAfterDownloaded = YES;
+   
+//    [[LQDownloadManager sharedInstance] installGameBy:ringObject.gameInfo.gameId];
 //    NSError* error=nil;
 //    
 //    if ([fileManager fileExistsAtPath:dstPath]) {

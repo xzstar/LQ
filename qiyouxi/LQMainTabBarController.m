@@ -17,6 +17,7 @@
 #import "LQConfig.h"
 #import "LQDownloadManager.h"
 extern NSString* const kNotificationStatusChanged;
+extern NSString* const kNotificationUpdateListChanged;
 
 @interface LQMainTabBarController (){
     UINavigationController* tab0Nav;
@@ -112,6 +113,10 @@ extern NSString* const kNotificationStatusChanged;
                                              selector:@selector(updateDownloadingStatus:)
                                                  name:kNotificationStatusChanged
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(setNeedUpdateNumber:)
+                                                 name:kNotificationUpdateListChanged
+                                               object:nil];
    
     //初始化显示在下载列表中的个数
     [self updateDownloadingStatus:nil];
@@ -197,8 +202,15 @@ extern NSString* const kNotificationStatusChanged;
 -(void) didAppUpdateListSuccess:(NSArray*) appsList{
     UITabBarItem *tabItem = [tabItems objectAtIndex:3];
     if(appsList!=nil && appsList.count>0){
-        tabItem.badgeValue = [NSString stringWithFormat:@"%d",appsList.count];
-        [UIApplication sharedApplication].applicationIconBadgeNumber = appsList.count;
+        
+        NSArray* ignoreApps = [LQConfig restoreIgnoreAppList];
+        int ignoreCount =0;
+        
+        if(ignoreApps!=nil)
+            ignoreCount = ignoreApps.count;
+        
+        tabItem.badgeValue = [NSString stringWithFormat:@"%d",appsList.count - ignoreCount];
+        [UIApplication sharedApplication].applicationIconBadgeNumber = appsList.count-ignoreCount;
     }
     else{
         tabItem.badgeValue = nil;   
@@ -209,6 +221,24 @@ extern NSString* const kNotificationStatusChanged;
 -(void) didAppUpdateListFailed:(LQClientError*)error{
     UITabBarItem *tabItem = [tabItems objectAtIndex:3];
     tabItem.badgeValue = nil; 
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+}
+
+
+- (void)setNeedUpdateNumber:(NSNotification*)notification{
+    UITabBarItem *tabItem = [tabItems objectAtIndex:3];
+    if(notification.userInfo!=nil && [notification.userInfo objectForKey:@"number"]!=nil  ){
+        NSNumber* number = [notification.userInfo objectForKey:@"number"];
+        UITabBarItem *tabItem = [tabItems objectAtIndex:3];
+            
+        tabItem.badgeValue = [NSString stringWithFormat:@"%d",[number intValue] ];
+        [UIApplication sharedApplication].applicationIconBadgeNumber = [number intValue];
+    }
+    else{
+        tabItem.badgeValue = nil;   
+        [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    } 
+
 }
 
 - (void)updateDownloadingStatus:(NSNotification*)notification{

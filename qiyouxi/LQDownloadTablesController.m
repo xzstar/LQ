@@ -150,6 +150,7 @@ extern NSString* const kNotificationStatusChanged;
     }
 }
 
+
 - (void)updateDownloadingStatus:(NSNotification*)notification{
     
     int count = [LQDownloadManager sharedInstance].downloadGames.count;
