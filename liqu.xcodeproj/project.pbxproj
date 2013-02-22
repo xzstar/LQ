@@ -540,7 +540,6 @@
 		43CC7B1815C92BB3006A9C3C /* LQCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQCommentTableViewCell.m; sourceTree = "<group>"; };
 		43D2AFE115CF63DD0045EFF5 /* QYXObjectExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYXObjectExtension.h; sourceTree = "<group>"; };
 		43D2AFE215CF63DD0045EFF5 /* QYXObjectExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QYXObjectExtension.m; sourceTree = "<group>"; };
-		43D54E0B15CB7448007D83AE /* qiyouxi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = qiyouxi.entitlements; path = qiyouxi/qiyouxi.entitlements; sourceTree = "<group>"; };
 		43D54E1415CB7A9A007D83AE /* LQDownloadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDownloadManager.h; sourceTree = "<group>"; };
 		43D54E1515CB7A9A007D83AE /* LQDownloadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = LQDownloadManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		43D54E1715CB7AC5007D83AE /* QYXData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QYXData.h; sourceTree = "<group>"; };
@@ -644,6 +643,7 @@
 		F234211516D44856002B5AFC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "/Users/xiezhe/work/LQ/qiyouxi/zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
 		F23AA8B116AD2B44008845C1 /* LQRingTablesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQRingTablesController.h; sourceTree = "<group>"; };
 		F23AA8B216AD2B45008845C1 /* LQRingTablesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQRingTablesController.m; sourceTree = "<group>"; };
+		F23BA34616D75FEE00C947D0 /* liqu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = liqu.entitlements; sourceTree = "<group>"; };
 		F23D3B8D169AD70700B7DD46 /* LQSearchHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQSearchHistoryCell.h; sourceTree = "<group>"; };
 		F23D3B8E169AD70700B7DD46 /* LQSearchHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQSearchHistoryCell.m; sourceTree = "<group>"; };
 		F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQSearchHistoryCell.xib; sourceTree = "<group>"; };
@@ -1172,12 +1172,12 @@
 		43F5ED2015C65424001A0F8D = {
 			isa = PBXGroup;
 			children = (
+				F23BA34616D75FEE00C947D0 /* liqu.entitlements */,
 				F257FD9316D4C32E00B52927 /* SystemConfiguration.framework */,
 				F23090C816C2143500D7B415 /* libz.dylib */,
 				F26CD2B116930A8F00E1E30B /* CFNetwork.framework */,
 				F26CD2AF16930A8800E1E30B /* AudioToolbox.framework */,
 				43CC7B0C15C9060B006A9C3C /* QuartzCore.framework */,
-				43D54E0B15CB7448007D83AE /* qiyouxi.entitlements */,
 				43F5ED3515C65424001A0F8D /* qiyouxi */,
 				43F5ED2E15C65424001A0F8D /* Frameworks */,
 				43F5ED2C15C65424001A0F8D /* Products */,
@@ -2274,8 +2274,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
+				CODE_SIGN_IDENTITY = liqu;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = liqu;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2289,9 +2289,9 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
-				PROVISIONING_PROFILE = "9DB99E3B-3C83-403F-8057-50B74A511AE7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9DB99E3B-3C83-403F-8057-50B74A511AE7";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2302,18 +2302,18 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
+				CODE_SIGN_IDENTITY = liqu;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = liqu;
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "9DB99E3B-3C83-403F-8057-50B74A511AE7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9DB99E3B-3C83-403F-8057-50B74A511AE7";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2322,20 +2322,20 @@
 		43F5ED5515C65424001A0F8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
+				CODE_SIGN_ENTITLEMENTS = liqu.entitlements;
+				CODE_SIGN_IDENTITY = liqu;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = liqu;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "qiyouxi/liqu-Prefix.pch";
 				INFOPLIST_FILE = "qiyouxi/liqu-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/qiyouxi\"",
 				);
 				PRODUCT_NAME = liqu;
-				PROVISIONING_PROFILE = "9DB99E3B-3C83-403F-8057-50B74A511AE7";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "9DB99E3B-3C83-403F-8057-50B74A511AE7";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2344,18 +2344,18 @@
 		43F5ED5615C65424001A0F8D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: JIANJUN WANG (DS9RJN9JC4)";
+				CODE_SIGN_ENTITLEMENTS = liqu.entitlements;
+				CODE_SIGN_IDENTITY = liqu;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "qiyouxi/liqu-Prefix.pch";
 				INFOPLIST_FILE = "qiyouxi/liqu-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/qiyouxi\"",
 				);
 				PRODUCT_NAME = liqu;
-				PROVISIONING_PROFILE = "9DB99E3B-3C83-403F-8057-50B74A511AE7";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

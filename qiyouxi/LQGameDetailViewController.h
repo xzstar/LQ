@@ -43,6 +43,7 @@
 @property (unsafe_unretained) IBOutlet UILabel* gameScore2;
 @property (unsafe_unretained) IBOutlet UITableView *gameInfoCommentTableView;
 @property (unsafe_unretained) IBOutlet UIButton* postCommentButton;
+@property (unsafe_unretained) IBOutlet UILabel* gameNoCommentLabel;
 
 @property (strong) LQCommentTableViewCell* dummyCell;
 - (void) addSwitchPageWithActionHandler:(void (^)(int))actionHandler;

@@ -14,6 +14,7 @@
 @property (unsafe_unretained) IBOutlet UITableView* applicaitonView;
 @property (unsafe_unretained) IBOutlet UILabel* title;
 @property (nonatomic,strong) NSString* titleString;
+@property (nonatomic, strong) UIViewController* parent;
 
 -(IBAction)onBack:(id)sender;
 

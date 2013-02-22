@@ -20,7 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     srand(time(NULL));
-    [UIApplication sharedApplication].idleTimerDisabled = YES;
+    //[UIApplication sharedApplication].idleTimerDisabled = YES;
     [navigationController pushViewController:main animated:NO];
     [navigationController setNavigationBarHidden:YES];
     [window addSubview:[navigationController view]];

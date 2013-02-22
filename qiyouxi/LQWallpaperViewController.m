@@ -407,6 +407,8 @@
     [self unloadPhoto:currentIndex - 2];
     
     [self setTitleWithCurrentPhotoIndex];
+    self.gameInfo = [appsList objectAtIndex:currentIndex];
+
     //[self toggleNavButtons];
     if(currentIndex+4>appsList.count)
         [self loadMoreData];

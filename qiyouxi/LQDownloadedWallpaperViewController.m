@@ -22,6 +22,7 @@ extern NSString* const kNotificationStatusChanged;
 
 @synthesize applicaitonView;
 @synthesize titleString,title;
+@synthesize parent;
 
 - (void)loadViews{
     //    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updateStatus:) userInfo:nil repeats:YES];
@@ -123,7 +124,7 @@ extern NSString* const kNotificationStatusChanged;
     controller.moreUrl = nil;
     controller.downloadButton.hidden = YES;
     
-    [self.navigationController pushViewController:controller animated:YES];
+    [self.parent.navigationController pushViewController:controller animated:YES];
 }
 
 -(IBAction)onBack:(id)sender{

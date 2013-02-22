@@ -117,7 +117,7 @@ extern NSString* const kNotificationStatusChanged;
 -(IBAction)onWallpaerClick:(id)sender{
    LQDownloadedWallpaperViewController *controller = [[LQDownloadedWallpaperViewController alloc] initWithNibName:@"LQDownloadedViewController" bundle:nil];
     controller.titleString = @"壁纸";
-
+    controller.parent = self.parent.parentViewController;
     [self.parent.navigationController pushViewController:controller animated:YES];
 
 }

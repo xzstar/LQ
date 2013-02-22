@@ -185,10 +185,6 @@
 						<reference key="IBUIHighlightedTitleColor" ref="958828291"/>
 						<reference key="IBUINormalTitleColor" ref="668278997"/>
 						<reference key="IBUINormalTitleShadowColor" ref="925125613"/>
-						<object class="NSCustomResource" key="IBUISelectedImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">home_bt_wallpaper_down.png</string>
-						</object>
 						<object class="NSCustomResource" key="IBUINormalImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">ico_index_paper.png</string>
@@ -297,11 +293,11 @@
 							<reference ref="518343516"/>
 							<reference ref="1051107293"/>
 							<reference ref="877289972"/>
-							<reference ref="720562874"/>
 							<reference ref="899416800"/>
 							<reference ref="813995988"/>
 							<reference ref="519417610"/>
 							<reference ref="638538269"/>
+							<reference ref="720562874"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -366,20 +362,20 @@
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="10.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="1" key="10.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
-				<real value="1" key="10.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="10.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="1" key="5.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
-				<real value="1" key="5.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="5.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="6.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="6.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
-				<real value="1" key="6.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="2" key="6.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="2" key="7.IBUIButtonInspectorSelectedEdgeInsetMetadataKey"/>
-				<real value="1" key="7.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="7.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
@@ -432,7 +428,6 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="home_bt_wallpaper_down.png">{80, 44}</string>
 			<string key="ico_index_game.png">{40, 28}</string>
 			<string key="ico_index_paper.png">{40, 28}</string>
 			<string key="ico_index_ring.png">{40, 28}</string>

@@ -69,7 +69,7 @@
     }
     
     NSString* title = nil;
-    if ([[LQDownloadManager sharedInstance] isGameInstalled:aDownloadObject.gameInfo.package] && aDownloadObject.status== kQYXDSInstalled){
+    if (/*[[LQDownloadManager sharedInstance] isGameInstalled:aDownloadObject.gameInfo.package] &&*/ aDownloadObject.status== kQYXDSInstalled){
         title = LocalString(@"button.reinstall");
     }else{
         if (aDownloadObject.status == kQYXDSInstalling){
@@ -82,11 +82,13 @@
     [self.actionButton setTitle:title forState:UIControlStateNormal];
     
     
-    if ([[LQDownloadManager sharedInstance] isGameInstalled:aDownloadObject.gameInfo.package] && aDownloadObject.status== kQYXDSInstalled){
-        title = LocalString(@"button.uninstall");
-    }else{
-        title = LocalString(@"button.delete");
-    }
+//    if ([[LQDownloadManager sharedInstance] isGameInstalled:aDownloadObject.gameInfo.package] && aDownloadObject.status== kQYXDSInstalled){
+//        title = LocalString(@"button.uninstall");
+//    }else{
+//        title = LocalString(@"button.delete");
+//    }
+
+    title = LocalString(@"button.delete");
 
     [self.cancelButton setTitle:title forState:UIControlStateNormal];
     

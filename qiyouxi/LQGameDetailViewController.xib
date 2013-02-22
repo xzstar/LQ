@@ -666,7 +666,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 					<object class="IBUITableView" id="550156438">
 						<reference key="NSNextResponder" ref="383612880"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{-1, 510}, {320, 267}}</string>
+						<string key="NSFrame">{{0, 510}, {320, 267}}</string>
 						<reference key="NSSuperview" ref="383612880"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="960116004"/>
@@ -688,6 +688,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<string key="NSFrame">{{107, 785}, {104, 28}}</string>
 						<reference key="NSSuperview" ref="383612880"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -894,6 +895,14 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<reference key="destination" ref="694876415"/>
 					</object>
 					<int key="connectionID">142</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">gameNoCommentLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="960116004"/>
+					</object>
+					<int key="connectionID">146</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -1244,7 +1253,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">145</int>
+			<int key="maxID">146</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1300,6 +1309,7 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<string key="gameDownloadCount">UILabel</string>
 						<string key="gameIconView">LQImageButton</string>
 						<string key="gameInfoCommentTableView">UITableView</string>
+						<string key="gameNoCommentLabel">UILabel</string>
 						<string key="gamePhotoInfoPanel">UIView</string>
 						<string key="gameScore">UILabel</string>
 						<string key="gameScore2">UILabel</string>
@@ -1339,6 +1349,10 @@ AAgACAAIAAEAAQABAAE</bytes>
 						<object class="IBToOneOutletInfo" key="gameInfoCommentTableView">
 							<string key="name">gameInfoCommentTableView</string>
 							<string key="candidateClassName">UITableView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="gameNoCommentLabel">
+							<string key="name">gameNoCommentLabel</string>
+							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="gamePhotoInfoPanel">
 							<string key="name">gamePhotoInfoPanel</string>

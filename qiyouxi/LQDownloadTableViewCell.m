@@ -74,7 +74,7 @@
     self.gameNameLabel.text = aDownloadObject.gameInfo.name;
     
     if (self.downloadObject.status == kQYXDSRunning) {
-        self.gameDetailLabel.text = [NSString stringWithFormat:@"%d%%/%@/%.2fK字节/秒", [aDownloadObject percent], 
+        self.gameDetailLabel.text = [NSString stringWithFormat:@"%d%%/%@/%.2fKB/秒", [aDownloadObject percent], 
                                      [aDownloadObject totalSizeDesc],[aDownloadObject speed]];
         
     }

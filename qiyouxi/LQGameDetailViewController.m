@@ -36,6 +36,7 @@
 @synthesize gameScore2;
 @synthesize gameInfoCommentTableView;
 @synthesize postCommentButton;
+@synthesize gameNoCommentLabel;
 
 @synthesize gameIconView, gameTitleLabel;
 @synthesize commentLabel;
@@ -159,6 +160,7 @@
     [self.gameInfoCommentTableView reloadData];
     
     if(self.gameInfoUserComments.count == 0){
+        self.gameNoCommentLabel.hidden = NO;
         self.gameInfoCommentTableView.hidden = YES;
         self.postCommentButton.hidden = YES;
         CGSize size = mainScrollView.contentSize;
@@ -168,6 +170,7 @@
 
     }
     else{
+        self.gameNoCommentLabel.hidden = YES;
         self.gameInfoCommentTableView.hidden = NO;
         self.postCommentButton.hidden = NO;
         
@@ -179,8 +182,8 @@
         
         CGRect frame = gameInfoCommentTableView.frame;
         int oldHeight = frame.size.height;
-        frame.size.height = height;
-        gameInfoCommentTableView.frame = frame;
+//        frame.size.height = height;
+//        gameInfoCommentTableView.frame = frame;
         
         //调整scrollView高度
         CGSize size = mainScrollView.contentSize;
@@ -196,6 +199,12 @@
         frame = postCommentButton.frame;
         frame.origin.y += height - oldHeight; 
         postCommentButton.frame = frame;
+        
+        frame = gameInfoCommentTableView.frame;
+        oldHeight = frame.size.height;
+        frame.size.height = height;
+        gameInfoCommentTableView.frame = frame;
+
         
         [mainScrollView layoutIfNeeded];
     
