@@ -412,7 +412,7 @@ extern NSString* const kNotificationStatusChanged;
 - (void)updateIgoreButton{
     NSString* title;
     if (ignoreAppsList==nil) {
-        title = [NSString stringWithFormat:@"忽略(0)",ignoreAppsList.count];
+        title = [NSString stringWithFormat:@"忽略(0)"];
     }
     else
         title = [NSString stringWithFormat:@"忽略(%d)",ignoreAppsList.count];
@@ -452,9 +452,9 @@ extern NSString* const kNotificationStatusChanged;
 
         
         if(indexPaths.count>0){
-            [weakSelf.tableView beginUpdates];            
+            //[weakSelf.tableView beginUpdates];
             [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
-            [weakSelf.tableView endUpdates];
+            //[weakSelf.tableView endUpdates];
         }
     });
 }
@@ -493,9 +493,10 @@ extern NSString* const kNotificationStatusChanged;
         [ignoreIndexPaths addObject:[NSIndexPath indexPathForRow:row inSection:0]];
         
         if(ignoreIndexPaths.count>0){
-            [weakSelf.ignoreTableView beginUpdates];
+            //[weakSelf.ignoreTableView beginUpdates];
             [weakSelf.ignoreTableView deleteRowsAtIndexPaths:ignoreIndexPaths withRowAnimation:UITableViewRowAnimationTop];
-            [weakSelf.ignoreTableView endUpdates];
+            //[weakSelf.ignoreTableView endUpdates];
+            [weakSelf.ignoreTableView reloadData];
             
         }
     });
@@ -555,7 +556,11 @@ extern NSString* const kNotificationStatusChanged;
 }
 
 - (void) updateStatus:(NSNotification*)notification{
+    
     QYXDownloadObject* obj = (QYXDownloadObject*)notification.object;
+    if (obj.status != kQYXDSInstalled) {
+        return;
+    }
     NSString* package = obj.gameInfo.package;
     BOOL found = NO;
     int row = 0;
@@ -569,7 +574,10 @@ extern NSString* const kNotificationStatusChanged;
         }
         row++;
     }
-        
+    
+    if(found == NO)
+        return;
+    
     LQUpdateViewController* __unsafe_unretained weakSelf = self;
     selectedRow = -1;
     selectedSection = -1;
@@ -578,9 +586,9 @@ extern NSString* const kNotificationStatusChanged;
         [indexPaths addObject:[NSIndexPath indexPathForRow:row inSection:0]];
         
         if(indexPaths.count>0){
-            [weakSelf.tableView beginUpdates];            
+            //[weakSelf.tableView beginUpdates];
             [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
-            [weakSelf.tableView endUpdates];
+            //[weakSelf.tableView endUpdates];
         }
     });    
 }

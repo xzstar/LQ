@@ -14,6 +14,8 @@
 #import "LQWallpaperViewController.h"
 extern NSString* const kNotificationStatusChanged;
 #define WALLPAPER_COUNT_PERLINE 3
+#define NORMAL_STATE 0
+#define MODIFY_STATE 1
 @interface LQDownloadedWallpaperViewController ()
 
 @end
@@ -23,7 +25,9 @@ extern NSString* const kNotificationStatusChanged;
 @synthesize applicaitonView;
 @synthesize titleString,title;
 @synthesize parent;
-
+@synthesize modifyButton;
+@synthesize deleteButton;
+@synthesize backButton;
 - (void)loadViews{
     //    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updateStatus:) userInfo:nil repeats:YES];
     
@@ -113,21 +117,50 @@ extern NSString* const kNotificationStatusChanged;
 - (void) onWallpaperClicked:(id) sender{
     UIButton* button = (UIButton*)sender;
     int tag = button.tag;
-    LQWallpaperViewController* controller = [[LQWallpaperViewController alloc]initWithNibName:@"LQWallpaperViewController" bundle:nil];
-    LQGameInfo *item = [appsList objectAtIndex:tag];
-    controller.iconImageUrl = item.icon;
-    controller.imageUrl = item.downloadUrl;
-    controller.titleString = item.name;
-    controller.gameInfo = item;
-    controller.appsList = appsList;
-    controller.currentIndex = tag;
-    controller.moreUrl = nil;
-    controller.downloadButton.hidden = YES;
     
-    [self.parent.navigationController pushViewController:controller animated:YES];
+    if(state == NORMAL_STATE){
+        LQWallpaperViewController* controller = [[LQWallpaperViewController alloc]initWithNibName:@"LQWallpaperViewController" bundle:nil];
+        LQGameInfo *item = [appsList objectAtIndex:tag];
+        controller.iconImageUrl = item.icon;
+        controller.imageUrl = item.downloadUrl;
+        controller.titleString = item.name;
+        controller.gameInfo = item;
+        controller.appsList = appsList;
+        controller.currentIndex = tag;
+        controller.moreUrl = nil;
+        controller.downloadButton.hidden = YES;
+        
+        [self.parent.navigationController pushViewController:controller animated:YES];
+    }
+    else {
+        //setDeleteIcon
+        //[button setSelected:YES];
+        int row = tag/WALLPAPER_COUNT_PERLINE;
+        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:row inSection:0]; 
+        LQWallpaperCell *cell = (LQWallpaperCell*)[self tableView:self.applicaitonView cellForRowAtIndexPath:indexPath];
+        [cell setDeleteIcon:tag];
+        
+    }
 }
 
 -(IBAction)onBack:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(IBAction)onModify:(id)sender{
+    if(state == NORMAL_STATE){
+        deleteButton.hidden = NO;
+        backButton.hidden = YES;
+        state = MODIFY_STATE;
+    }
+    else {
+        deleteButton.hidden = YES;
+        backButton.hidden = NO;
+        state = NORMAL_STATE;
+    }
+}
+
+-(IBAction)onDelete:(id)sender{
     [self.navigationController popViewControllerAnimated:YES];
 }
 

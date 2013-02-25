@@ -118,6 +118,8 @@
 		F20D0B2D16AE8838005C5FB0 /* LQDownloadedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D0B2B16AE8838005C5FB0 /* LQDownloadedViewController.m */; };
 		F20D0B2E16AE8838005C5FB0 /* LQDownloadedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F20D0B2C16AE8838005C5FB0 /* LQDownloadedViewController.xib */; };
 		F20D0B3116AE976C005C5FB0 /* LQDownloadedRingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D0B3016AE976B005C5FB0 /* LQDownloadedRingsViewController.m */; };
+		F20D28B416DB5D0A00C418AD /* LQShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F20D28B216DB5D0A00C418AD /* LQShareViewController.m */; };
+		F20D28B516DB5D0A00C418AD /* LQShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F20D28B316DB5D0A00C418AD /* LQShareViewController.xib */; };
 		F20F991D16B2DB71005AD279 /* subnav_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20F991B16B2DB71005AD279 /* subnav_bg@2x.png */; };
 		F20F991E16B2DB71005AD279 /* subnav_hover@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F20F991C16B2DB71005AD279 /* subnav_hover@2x.png */; };
 		F20F992216B2DB84005AD279 /* subnav_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = F20F992016B2DB84005AD279 /* subnav_bg.png */; };
@@ -185,6 +187,7 @@
 		F298A82B16B1749400CC464D /* KRShareAuthorizeView.m in Sources */ = {isa = PBXBuildFile; fileRef = F298A82516B1749400CC464D /* KRShareAuthorizeView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F298A82C16B1749400CC464D /* KRShareRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F298A82816B1749400CC464D /* KRShareRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F298A83C16B17B0E00CC464D /* SinaWeibo.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F298A83B16B17B0E00CC464D /* SinaWeibo.bundle */; };
+		F2AC0B0B16DA258100B41156 /* LQDownloadedWallpaperViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2AC0B0A16DA258100B41156 /* LQDownloadedWallpaperViewController.xib */; };
 		F2B7A657168FDE5A00679C6E /* LQFirstPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */; };
 		F2B7A658168FDE5A00679C6E /* LQFirstPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */; };
 		F2B7A65D168FE10500679C6E /* LQSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2B7A65B168FE10400679C6E /* LQSearchViewController.m */; };
@@ -616,6 +619,9 @@
 		F20D0B2C16AE8838005C5FB0 /* LQDownloadedViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQDownloadedViewController.xib; sourceTree = "<group>"; };
 		F20D0B2F16AE976A005C5FB0 /* LQDownloadedRingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQDownloadedRingsViewController.h; sourceTree = "<group>"; };
 		F20D0B3016AE976B005C5FB0 /* LQDownloadedRingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQDownloadedRingsViewController.m; sourceTree = "<group>"; };
+		F20D28B116DB5D0A00C418AD /* LQShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQShareViewController.h; sourceTree = "<group>"; };
+		F20D28B216DB5D0A00C418AD /* LQShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQShareViewController.m; sourceTree = "<group>"; };
+		F20D28B316DB5D0A00C418AD /* LQShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQShareViewController.xib; sourceTree = "<group>"; };
 		F20F991B16B2DB71005AD279 /* subnav_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "subnav_bg@2x.png"; sourceTree = "<group>"; };
 		F20F991C16B2DB71005AD279 /* subnav_hover@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "subnav_hover@2x.png"; sourceTree = "<group>"; };
 		F20F992016B2DB84005AD279 /* subnav_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = subnav_bg.png; sourceTree = "<group>"; };
@@ -720,6 +726,7 @@
 		F298A82716B1749400CC464D /* KRShareRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRShareRequest.h; sourceTree = "<group>"; };
 		F298A82816B1749400CC464D /* KRShareRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRShareRequest.m; sourceTree = "<group>"; };
 		F298A83B16B17B0E00CC464D /* SinaWeibo.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SinaWeibo.bundle; sourceTree = "<group>"; };
+		F2AC0B0A16DA258100B41156 /* LQDownloadedWallpaperViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQDownloadedWallpaperViewController.xib; sourceTree = "<group>"; };
 		F2B7A654168FDE5800679C6E /* LQFirstPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQFirstPageViewController.h; sourceTree = "<group>"; };
 		F2B7A655168FDE5900679C6E /* LQFirstPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQFirstPageViewController.m; sourceTree = "<group>"; };
 		F2B7A656168FDE5900679C6E /* LQFirstPageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQFirstPageViewController.xib; sourceTree = "<group>"; };
@@ -1645,6 +1652,7 @@
 				F20D0B2A16AE8837005C5FB0 /* LQDownloadedViewController.h */,
 				F20D0B2B16AE8838005C5FB0 /* LQDownloadedViewController.m */,
 				F20D0B2C16AE8838005C5FB0 /* LQDownloadedViewController.xib */,
+				F2AC0B0A16DA258100B41156 /* LQDownloadedWallpaperViewController.xib */,
 				F20D0B2F16AE976A005C5FB0 /* LQDownloadedRingsViewController.h */,
 				F20D0B3016AE976B005C5FB0 /* LQDownloadedRingsViewController.m */,
 				F2E29D3516AEE2000084A7F0 /* LQDownloadedWallpaperViewController.h */,
@@ -1655,6 +1663,9 @@
 				F2E29D4A16AFE0620084A7F0 /* LQSMSRingReplaceViewController.h */,
 				F2E29D4B16AFE0620084A7F0 /* LQSMSRingReplaceViewController.m */,
 				F2E29D4C16AFE0630084A7F0 /* LQSMSRingReplaceViewController.xib */,
+				F20D28B116DB5D0A00C418AD /* LQShareViewController.h */,
+				F20D28B216DB5D0A00C418AD /* LQShareViewController.m */,
+				F20D28B316DB5D0A00C418AD /* LQShareViewController.xib */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -2148,6 +2159,8 @@
 				F20F992516B3BAE0005AD279 /* icon_small.png in Resources */,
 				F20F992716B3BAF3005AD279 /* icon_small@2x.png in Resources */,
 				F2241AEF16B9095F0050CB7A /* UpdatePermissions.sh in Resources */,
+				F2AC0B0B16DA258100B41156 /* LQDownloadedWallpaperViewController.xib in Resources */,
+				F20D28B516DB5D0A00C418AD /* LQShareViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2250,6 +2263,7 @@
 				F298A82C16B1749400CC464D /* KRShareRequest.m in Sources */,
 				F275CFBA16BD1DD200AAC69D /* KTPhotoView.m in Sources */,
 				F257FD9716D6269B00B52927 /* Reachability.m in Sources */,
+				F20D28B416DB5D0A00C418AD /* LQShareViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2274,8 +2288,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = liqu;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = liqu;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2289,9 +2303,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -2302,18 +2314,16 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = liqu;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = liqu;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -2322,20 +2332,17 @@
 		43F5ED5515C65424001A0F8D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = liqu.entitlements;
-				CODE_SIGN_IDENTITY = liqu;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = liqu;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "qiyouxi/liqu-Prefix.pch";
 				INFOPLIST_FILE = "qiyouxi/liqu-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/qiyouxi\"",
 				);
 				PRODUCT_NAME = liqu;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -2344,18 +2351,16 @@
 		43F5ED5615C65424001A0F8D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = liqu.entitlements;
-				CODE_SIGN_IDENTITY = liqu;
+				CODE_SIGN_IDENTITY = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "qiyouxi/liqu-Prefix.pch";
 				INFOPLIST_FILE = "qiyouxi/liqu-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/qiyouxi\"",
 				);
 				PRODUCT_NAME = liqu;
-				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

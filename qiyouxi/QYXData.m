@@ -29,6 +29,7 @@
 @synthesize requestUrl;
 @synthesize fileType;
 @synthesize shareUri;
+@synthesize photo;
 
 - (id)initWithAPIResult:(NSDictionary*)result{
     self = [super init];
@@ -89,7 +90,7 @@
         self.intro = [result objectForKey:@"Intro"];
         self.date = [result objectForKey:@"date"];
         self.requestUrl = [result objectForKey:@"request_url"];
-        
+        self.photo = [result objectForKey:@"Photo"];
         NSString* rootCat = [result objectForKey:@"RootCat"];
         
         if([rootCat isEqualToString:@"手机软件"]){

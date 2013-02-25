@@ -207,10 +207,10 @@
             [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:1]];
         }
         if(indexPaths.count>0){
-            [weakSelf.historyView beginUpdates];
+            //[weakSelf.historyView beginUpdates];
             
             [weakSelf.historyView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
-            [weakSelf.historyView endUpdates];
+            //[weakSelf.historyView endUpdates];
         }
         [weakSelf.historyView.infiniteScrollingView stopAnimating];
     });

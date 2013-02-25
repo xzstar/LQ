@@ -14,9 +14,12 @@
 #import "LQCommentTableViewCell.h"
 #import "KRShare.h"
 
+@class LQShareViewController;
 @interface LQGameDetailViewController : LQViewController<UITableViewDataSource, UITableViewDelegate,KRShareDelegate,KRShareRequestDelegate>{
     id delegate;
     KRShare* _krShare;
+    LQShareViewController* shareController;
+    LQImageButton* photoImage;
 }
 @property (assign) int gameId;
 @property (strong) LQGameInfo* gameInfo;

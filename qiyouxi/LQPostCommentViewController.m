@@ -251,10 +251,10 @@
             [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
         }
         if(indexPaths.count>0){
-            [weakSelf.commentsTableView beginUpdates];
+            //[weakSelf.commentsTableView beginUpdates];
             
             [weakSelf.commentsTableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
-            [weakSelf.commentsTableView endUpdates];
+            //[weakSelf.commentsTableView endUpdates];
         }
         [weakSelf.commentsTableView.infiniteScrollingView stopAnimating];
     });

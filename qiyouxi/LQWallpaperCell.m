@@ -1,4 +1,4 @@
-//
+    //
 //  LQWallpaperCell.m
 //  qiyouxi
 //
@@ -10,6 +10,7 @@
 #import "QYXData.h"
 @implementation LQWallpaperCell
 @synthesize button1,button2,button3;
+@synthesize delete1,delete2,delete3;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -72,6 +73,30 @@
     for(UIButton* button in buttonList){
         button.tag = tag++;
         [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    }
+}
+
+- (void)setDeleteIcon:(int)tag {
+    
+    if(tag<gameInfoList.count)
+    {
+        int index = 0;
+        for(UIButton* button in buttonList){
+            if(button.tag == tag)
+            {
+                break;
+            }
+            index++;
+        }
+        if(index == 0){
+            delete1.hidden = !delete1.hidden;
+        }
+        else if(index == 1) {
+            delete2.hidden = !delete2.hidden;
+        }
+        else if(index == 2) {
+            delete3.hidden = !delete3.hidden;
+        }
     }
 }
 @end

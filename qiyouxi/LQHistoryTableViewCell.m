@@ -36,7 +36,7 @@
     int size= [self.gameInfo.size intValue];
     float sizeMB= (float)size/(1024*1024);
     
-    self.gameDetailLabel.text = [NSString stringWithFormat:@"版本%@|大小%.2fMB", self.gameInfo.versionCode, sizeMB,self.gameInfo.date];
+    self.gameDetailLabel.text = [NSString stringWithFormat:@"版本%@|大小%.2fMB", self.gameInfo.versionCode, sizeMB];
 
     UIImage* image = [[LQImageLoader sharedInstance] loadImage:self.gameInfo.icon context:self];
     if (image != nil){

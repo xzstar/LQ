@@ -20,7 +20,7 @@
 #define RINGTONEPATH @"/private/var/mobile/Media/iTunes_Control/Ringtones"
 extern NSString* const kNotificationStatusChanged;
 @interface LQDownloadedRingsViewController ()
-
+- (void) onDeleteRing:(id) sender;
 @end
 
 @implementation LQDownloadedRingsViewController
@@ -122,9 +122,11 @@ extern NSString* const kNotificationStatusChanged;
             morecell = [[[NSBundle mainBundle] loadNibNamed:@"AudioMoreItemCell" owner:self options:nil] objectAtIndex:0];
             [morecell configurePlayerButton];
          
-            [morecell setButtonsName:@"设置" middle:nil right:nil];
+            [morecell setButtonsName:@"设置" middle:@"删除" right:nil];
             
             [morecell addLeftButtonTarget:self action:@selector(onInstallRing:) tag:indexPath.row];
+            [morecell addMiddleButtonTarget:self action:@selector(onDeleteRing:) tag:indexPath.row];
+
           
         }
         cell = morecell;
@@ -218,4 +220,12 @@ extern NSString* const kNotificationStatusChanged;
 //        [[LQDownloadManager sharedInstance] installGameBy:obj.gameInfo.gameId];
 //    }
 }
+
+- (void) onDeleteRing:(id) sender{
+    UIButton* button = sender;
+    int row = button.tag;
+    QYXDownloadObject *obj = [appsList objectAtIndex:row];
+    [[LQDownloadManager sharedInstance] removeDownloadBy:obj.gameInfo.gameId];
+}
+
 @end

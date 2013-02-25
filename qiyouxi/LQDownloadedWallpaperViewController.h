@@ -10,13 +10,16 @@
 
 @interface LQDownloadedWallpaperViewController : LQViewController<UITableViewDelegate, UITableViewDataSource>{
     NSMutableArray* appsList;
+    int state; 
 }
 @property (unsafe_unretained) IBOutlet UITableView* applicaitonView;
 @property (unsafe_unretained) IBOutlet UILabel* title;
 @property (nonatomic,strong) NSString* titleString;
 @property (nonatomic, strong) UIViewController* parent;
-
+@property (unsafe_unretained) IBOutlet UIButton* modifyButton;
+@property (unsafe_unretained) IBOutlet UIButton* deleteButton;
+@property (unsafe_unretained) IBOutlet UIButton* backButton;
 -(IBAction)onBack:(id)sender;
-
-
+-(IBAction)onModify:(id)sender;
+-(IBAction)onDelete:(id)sender;
 @end

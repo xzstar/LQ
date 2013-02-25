@@ -43,6 +43,9 @@
 //类型:soft,game,ring,wallpaper
 @property (nonatomic, strong) NSString* fileType;
 
+//分享用图
+@property (nonatomic, strong) NSString* photo;
+
 - (id)initWithAPIResult:(NSDictionary*)result;
 
 @end

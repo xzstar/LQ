@@ -58,11 +58,15 @@ static int callback(NSDictionary *dict, id result) {
         MobileInstallationInstall pMobileInstallationInstall = (MobileInstallationInstall)dlsym(lib, "MobileInstallationInstall");
         if (pMobileInstallationInstall)
         {
+            NSLog(@"MobileInstallationInstall");
             NSString *name = [@"Install_" stringByAppendingString:path.lastPathComponent];
             NSString* temp = [NSTemporaryDirectory() stringByAppendingPathComponent:name];
-            if (![[NSFileManager defaultManager] copyItemAtPath:path toPath:temp error:nil])
+            NSLog(@"MobileInstallationInstall %@ %@",name,temp);
+
+            if (![[NSFileManager defaultManager] copyItemAtPath:path toPath:temp error:nil]){
+                NSLog(@"MobileInstallationInstall file not found");
                 return IPAResultFileNotFound;
-            
+            }
             int ret = (IPAResult) pMobileInstallationInstall(temp, 
                                                              [NSDictionary dictionaryWithObject:
                                                               @"User" forKey:@"ApplicationType"], 0, path);

@@ -113,9 +113,10 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
         }
         for(QYXDownloadObject* obj in restartGames){
             [self resumeDownload:obj];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:obj];
         }
         
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:self];
+        
     }
     
   
@@ -337,7 +338,7 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
     [self.gameMap removeObjectForKey:[NSNumber numberWithInt:gameId]];
 //    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:obj];
     
     [[NSString stringWithFormat:toastMsg, obj.gameInfo.name] showToastAsInfo];
     [self synchronize];

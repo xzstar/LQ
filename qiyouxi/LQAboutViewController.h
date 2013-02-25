@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "KRShare.h"
-
+@class LQShareViewController;
 @interface LQAboutViewController : UIViewController<KRShareDelegate,KRShareRequestDelegate>{
     KRShare *_krShare;
-
+    LQShareViewController* shareController;
 }
 
 - (IBAction)onBack:(id)sender;

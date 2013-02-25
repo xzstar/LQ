@@ -40,8 +40,8 @@
 }
 
 - (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag{
-        deleteButton.tag = tag;
-        [deleteButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    deleteButton.tag = tag;
+    [deleteButton addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)updateImage:(UIImage*)image forUrl:(NSString*)imageUrl{

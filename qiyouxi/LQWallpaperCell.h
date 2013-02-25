@@ -17,7 +17,11 @@
 @property (unsafe_unretained) IBOutlet UIButton* button1;
 @property (unsafe_unretained) IBOutlet UIButton* button2;
 @property (unsafe_unretained) IBOutlet UIButton* button3;
+@property (strong) IBOutlet UIImageView* delete1;
+@property (strong) IBOutlet UIImageView* delete2;
+@property (strong) IBOutlet UIImageView* delete3;
 
 -(void) setButtonInfo:(NSArray*) infoList;
 - (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
+- (void)setDeleteIcon:(int)tag;
 @end
