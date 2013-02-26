@@ -10,7 +10,10 @@
 
 @interface LQDownloadedWallpaperViewController : LQViewController<UITableViewDelegate, UITableViewDataSource>{
     NSMutableArray* appsList;
+    NSMutableArray* deleteList;
+
     int state; 
+    BOOL isWaitingDeleteActionFinished;
 }
 @property (unsafe_unretained) IBOutlet UITableView* applicaitonView;
 @property (unsafe_unretained) IBOutlet UILabel* title;

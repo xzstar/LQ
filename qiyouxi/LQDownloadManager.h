@@ -46,6 +46,8 @@ typedef enum _DOWNLOAD_STATUS{
 - (void)installGameBy:(int)gameId;
 - (void)installGameBy:(int)gameId force:(BOOL)force;
 - (void)removeDownloadBy:(int)gameId;
+- (void)removeDownloadWallpaperBy:(NSArray*)gameIds;
+
 - (void)startGame:(NSString*)identifier;
 
 - (void)commonAction:(LQGameInfo*)gameInfo installAfterDownloaded:(BOOL)installAfterDownloaded;

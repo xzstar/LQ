@@ -22,6 +22,8 @@
 @property (strong) IBOutlet UIImageView* delete3;
 
 -(void) setButtonInfo:(NSArray*) infoList;
-- (void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
-- (void)setDeleteIcon:(int)tag;
+-(void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
+-(void) hiddenDeleteIcon:(int)index hidden:(BOOL)hidden;
+-(BOOL) isDeleteIconHidden:(int)index;
+
 @end

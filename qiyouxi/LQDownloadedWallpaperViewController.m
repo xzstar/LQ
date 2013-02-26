@@ -13,6 +13,7 @@
 #import "LQWallpaperCell.h"
 #import "LQWallpaperViewController.h"
 extern NSString* const kNotificationStatusChanged;
+extern NSString* const kNotificationWallpaperRefresh;
 #define WALLPAPER_COUNT_PERLINE 3
 #define NORMAL_STATE 0
 #define MODIFY_STATE 1
@@ -36,6 +37,10 @@ extern NSString* const kNotificationStatusChanged;
 												 name:kNotificationStatusChanged
 											   object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(AfterDeleteWallpapers:)
+												 name:kNotificationWallpaperRefresh
+											   object:nil];
     [self updateStatus:nil];
 }
 
@@ -43,13 +48,16 @@ extern NSString* const kNotificationStatusChanged;
     [super viewDidLoad];
     if(self.titleString!=nil)
         self.title.text = self.titleString;
-    
+    isWaitingDeleteActionFinished = NO;
 }
 - (void) viewDidUnload{
     [super viewDidUnload];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 - (void)updateStatus:(NSNotification*)notification{
+    if (isWaitingDeleteActionFinished == YES) {
+        return;
+    }
     if(appsList ==nil)
         appsList = [NSMutableArray array];
     [appsList removeAllObjects];
@@ -103,6 +111,15 @@ extern NSString* const kNotificationStatusChanged;
     }
     [cell setButtonInfo:itemList];
     [cell addInfoButtonsTarget:self action:@selector(onWallpaperClicked:) tag:indexPath.row* WALLPAPER_COUNT_PERLINE];
+    
+    
+    for(NSNumber* number in deleteList){
+        int value = [number intValue];
+        if (value>=indexPath.row*WALLPAPER_COUNT_PERLINE 
+            && value < (indexPath.row+1)*WALLPAPER_COUNT_PERLINE) {
+            [cell hiddenDeleteIcon:value-indexPath.row*WALLPAPER_COUNT_PERLINE hidden:NO];
+        }
+    }
     return cell;
 }
 
@@ -134,11 +151,27 @@ extern NSString* const kNotificationStatusChanged;
     }
     else {
         //setDeleteIcon
-        //[button setSelected:YES];
-        int row = tag/WALLPAPER_COUNT_PERLINE;
-        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:row inSection:0]; 
-        LQWallpaperCell *cell = (LQWallpaperCell*)[self tableView:self.applicaitonView cellForRowAtIndexPath:indexPath];
-        [cell setDeleteIcon:tag];
+        if(deleteList == nil)
+        {
+            deleteList = [NSMutableArray array];
+        }
+        
+        BOOL found = NO;
+        for(NSNumber* number in deleteList){
+            int value = [number intValue];
+            if (value == tag) {
+                found = YES;
+                [deleteList removeObject:number];
+                break;
+            }
+        }
+        if (found == NO) {
+            [deleteList addObject:[NSNumber numberWithInt:tag]];
+        }
+        [applicaitonView reloadData];
+//        NSIndexPath* indexPath = [NSIndexPath indexPathForRow:row inSection:0]; 
+//        LQWallpaperCell *cell = (LQWallpaperCell*)[self tableView:self.applicaitonView cellForRowAtIndexPath:indexPath];
+//        [cell setDeleteIcon:tag];
         
     }
 }
@@ -152,16 +185,34 @@ extern NSString* const kNotificationStatusChanged;
         deleteButton.hidden = NO;
         backButton.hidden = YES;
         state = MODIFY_STATE;
+        [modifyButton setTitle:@"完成" forState:UIControlStateNormal];
     }
     else {
         deleteButton.hidden = YES;
         backButton.hidden = NO;
         state = NORMAL_STATE;
+        [modifyButton setTitle:@"编辑" forState:UIControlStateNormal];
+
     }
 }
 
 -(IBAction)onDelete:(id)sender{
-    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
+    isWaitingDeleteActionFinished = YES;
+    
+    NSMutableArray* deleteGameIds = [NSMutableArray array];
+    for(NSNumber* number in deleteList){
+        int value = [number intValue];
+        LQGameInfo *item = [appsList objectAtIndex:value];
+        [deleteGameIds addObject:[NSNumber numberWithInt:item.gameId]];
+    }
+    [[LQDownloadManager sharedInstance] removeDownloadWallpaperBy:deleteGameIds];
 }
 
+-(void) AfterDeleteWallpapers:(NSNotification*)notification{
+    isWaitingDeleteActionFinished = NO;
+    [deleteList removeAllObjects];
+    [self onModify:nil];
+    [self updateStatus:nil];
+}
 @end

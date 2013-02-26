@@ -14,6 +14,8 @@
 static LQDownloadManager* _intance = nil;
 
 NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
+NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefresh";
+
 //NSString* const kNotificationInstalledComplete    = @"NotificationInstalledComplete";
 
 @interface LQDownloadManager()
@@ -344,6 +346,28 @@ NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
     [self synchronize];
 }
 
+- (void)removeDownloadWallpaperBy:(NSArray*)gameIds{
+    
+    for (NSNumber* number in gameIds) {
+        int gameId = [number intValue];
+        QYXDownloadObject* obj = [self objectWithGameId:gameId];
+        //[obj pause];
+        
+        [[NSFileManager defaultManager] removeItemAtPath:obj.filePath error:NULL];
+                
+        [self.downloadGames removeObject:obj];
+        [self.completedGames removeObject:obj];
+        [self.installedGames removeObject:obj];
+        
+        [self.gameMap removeObjectForKey:[NSNumber numberWithInt:gameId]];
+ 
+        [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:obj];
+    }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationWallpaperRefresh object:self];
+
+    [self synchronize];
+}
 - (BOOL)isGameInstalled:(NSString*)identifier{
     NSDictionary* dict = [self.ipaInstalled objectForKey:identifier];
     NSString* version = [dict objectForKey:@"CFBundleShortVersionString"];

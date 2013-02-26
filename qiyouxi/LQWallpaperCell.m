@@ -52,6 +52,11 @@
         UIButton* button = [buttonList objectAtIndex:i];
         [button setBackgroundImage:nil forState:UIControlStateNormal];
     }
+    
+//    delete1.hidden = YES;
+//    delete2.hidden = YES;
+//    delete3.hidden = YES;
+
 }
 
 - (void)updateImage:(UIImage*)image forUrl:(NSString*)imageUrl{
@@ -76,27 +81,30 @@
     }
 }
 
-- (void)setDeleteIcon:(int)tag {
+- (void)hiddenDeleteIcon:(int)index hidden:(BOOL)hidden{
     
-    if(tag<gameInfoList.count)
-    {
-        int index = 0;
-        for(UIButton* button in buttonList){
-            if(button.tag == tag)
-            {
-                break;
-            }
-            index++;
-        }
-        if(index == 0){
-            delete1.hidden = !delete1.hidden;
-        }
-        else if(index == 1) {
-            delete2.hidden = !delete2.hidden;
-        }
-        else if(index == 2) {
-            delete3.hidden = !delete3.hidden;
-        }
+    if(index == 0){
+        delete1.hidden = hidden;
     }
+    else if(index == 1) {
+        delete2.hidden = hidden;
+    }
+    else if(index == 2) {
+        delete3.hidden = hidden;
+    }
+    
+}
+
+-(BOOL) isDeleteIconHidden:(int)index{
+    if(index == 0){
+        return delete1.hidden;
+    }
+    else if(index == 1) {
+        return delete2.hidden;
+    }
+    else if(index == 2) {
+        return delete3.hidden;
+    }
+    return NO;
 }
 @end
