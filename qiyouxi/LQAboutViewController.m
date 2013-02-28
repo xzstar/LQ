@@ -10,6 +10,7 @@
 #import "LQUtilities.h"
 #import "KRShare.h"
 #import "LQShareViewController.h"
+#import "LQWebViewController.h"
 @interface LQAboutViewController ()
 
 @end
@@ -119,7 +120,7 @@
     shareController = [[LQShareViewController alloc] initWithNibName:@"LQShareViewController" bundle:nil ];
     
     shareController.shareTextContent = shareText;
-    shareController.shareImageContent = [UIImage imageNamed:@"icon.png"];
+    shareController.shareImageContent = [UIImage imageNamed:@"Icon.png"];
     shareController.krShare = krShare;
     shareController.krShareRequestDelegate = self;
     [self.navigationController pushViewController:shareController animated:YES];
@@ -235,14 +236,17 @@
     {
         if([[result objectForKey:@"error_code"] intValue]==20019)
         {
+            [shareController finishSend];
             [LQUtilities AlertWithMessage:@"发送频率过高，请您过会再发"];
         }
         else if([[result objectForKey:@"error_code"] intValue]==0)
         {
+            [shareController finishSend];
             [LQUtilities AlertWithMessage:@"发送微博成功"];
             [shareController onBack:nil];
         }
         else {
+            [shareController finishSend];
             [LQUtilities AlertWithMessage:[result objectForKey:@"error"]];
 
         }
@@ -252,12 +256,15 @@
     {
         if([[result objectForKey:@"errcode"] intValue]==0)
         {
-            [LQUtilities AlertWithMessage:@"发表微博成功"];
+            [shareController finishSend];
             [shareController onBack:nil];
+            [LQUtilities AlertWithMessage:@"发表微博成功"];
         }
         else{
+            [shareController finishSend];
             NSLog(@"%@",result);
             [LQUtilities AlertWithMessage:@"发表微博失败"];
+
         }
     }
     //豆瓣说响应
@@ -284,6 +291,22 @@
             [LQUtilities AlertWithMessage:@"发表人人网相片失败"];
         }
     }
+}
+
+- (IBAction)onHomepage:(id)sender{
+    LQWebViewController* controller = [[LQWebViewController alloc] initWithNibName:@"LQWebViewController" bundle:nil];
+    controller.url
+     = @"http://www.apodang.com";
+    controller.titleString = @"官方主页";
+    [self.navigationController pushViewController:controller animated:YES];
+}
+- (IBAction)onHomeWeibo:(id)sender{
+    LQWebViewController* controller = [[LQWebViewController alloc] initWithNibName:@"LQWebViewController" bundle:nil];
+    controller.url
+    = @"http://weibo.com/apodang";
+    controller.titleString = @"官方微博";
+
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end

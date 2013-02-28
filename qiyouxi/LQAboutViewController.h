@@ -17,4 +17,6 @@
 - (IBAction)onBack:(id)sender;
 - (IBAction)onQQWeibo:(id)sender;
 - (IBAction)onSinaWeibo:(id)sender;
+- (IBAction)onHomepage:(id)sender;
+- (IBAction)onHomeWeibo:(id)sender;
 @end

@@ -512,7 +512,7 @@
     if(image == nil)
         image =gameIconView.realImage;
     if(image == nil)
-        image =[UIImage imageNamed:@"icon.png"];
+        image =[UIImage imageNamed:@"Icon.png"];
     
     if(shareController==nil)
         shareController = [[LQShareViewController alloc] initWithNibName:@"LQShareViewController" bundle:nil ];
@@ -634,16 +634,21 @@
     {
         if([[result objectForKey:@"error_code"] intValue]==20019)
         {
+            [shareController finishSend];
             [LQUtilities AlertWithMessage:@"发送频率过高，请您过会再发"];
+
         }
         else if([[result objectForKey:@"error_code"] intValue]==0)
         {
+            [shareController finishSend];
             [LQUtilities AlertWithMessage:@"发送微博成功"];
             [shareController onBack:nil];
         }
         else{
+            [shareController finishSend];
             [LQUtilities AlertWithMessage:[NSString stringWithFormat:@"sina code %@",
              [result objectForKey:@"error"]]];
+
         }
     }
     //腾讯微博响应
@@ -651,13 +656,17 @@
     {
         if([[result objectForKey:@"errcode"] intValue]==0)
         {
+            [shareController finishSend];
             [LQUtilities AlertWithMessage:@"发表微博成功"];
             [shareController onBack:nil];
 
         }
         else{
+            [shareController finishSend];
+
             NSLog(@"%@",result);
             [LQUtilities AlertWithMessage:@"发表微博失败"];
+            
         }
     }
     //豆瓣说响应

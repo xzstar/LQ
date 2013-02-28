@@ -17,10 +17,14 @@
 
 @property (unsafe_unretained) IBOutlet UITextView* shareTextView;
 @property (unsafe_unretained) IBOutlet UIImageView* shareImageView;
+@property (unsafe_unretained) IBOutlet UIImageView* shareWeiboIcon;
 @property (nonatomic,strong)  KRShare *krShare;
 @property (nonatomic,strong) id krShareRequestDelegate;
 @property (nonatomic,strong) NSString* shareTextContent;
 @property (nonatomic,strong) UIImage* shareImageContent;
+@property (unsafe_unretained) IBOutlet UIImageView* backgroundImageView;
+
 -(IBAction)onBack:(id)sender;
 -(IBAction)onSend:(id)sender;
+-(void) finishSend;
 @end
