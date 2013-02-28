@@ -120,7 +120,7 @@ extern NSString* const kNotificationUpdateListChanged;
    
     //初始化显示在下载列表中的个数
     [self updateDownloadingStatus:nil];
-           
+               
 }
 
 - (void)viewWillAppear:(BOOL)animated{

@@ -18,6 +18,8 @@
 @property (unsafe_unretained) int selectedRow;
 @property (unsafe_unretained) IBOutlet UILabel* title;
 @property (unsafe_unretained) IBOutlet UITableView* applicaitonView;
+@property (unsafe_unretained) IBOutlet UILabel* noItemLabel;
 @property (nonatomic,strong) NSString* titleString;
+
 -(IBAction)onBack:(id)sender;
 @end

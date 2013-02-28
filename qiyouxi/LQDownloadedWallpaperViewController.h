@@ -22,6 +22,7 @@
 @property (unsafe_unretained) IBOutlet UIButton* modifyButton;
 @property (unsafe_unretained) IBOutlet UIButton* deleteButton;
 @property (unsafe_unretained) IBOutlet UIButton* backButton;
+@property (unsafe_unretained) IBOutlet UILabel* noItemLabel;
 -(IBAction)onBack:(id)sender;
 -(IBAction)onModify:(id)sender;
 -(IBAction)onDelete:(id)sender;

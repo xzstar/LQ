@@ -29,6 +29,7 @@ extern NSString* const kNotificationWallpaperRefresh;
 @synthesize modifyButton;
 @synthesize deleteButton;
 @synthesize backButton;
+@synthesize noItemLabel;
 - (void)loadViews{
     //    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updateStatus:) userInfo:nil repeats:YES];
     
@@ -67,7 +68,14 @@ extern NSString* const kNotificationWallpaperRefresh;
         }
         
     }
-    
+    if (appsList.count == 0) {
+        noItemLabel.hidden = NO;
+        self.applicaitonView.hidden = YES;
+    }
+    else{
+        noItemLabel.hidden = YES;
+        self.applicaitonView.hidden = NO;
+    }
     [self.applicaitonView reloadData];
 }
 
@@ -134,7 +142,9 @@ extern NSString* const kNotificationWallpaperRefresh;
 - (void) onWallpaperClicked:(id) sender{
     UIButton* button = (UIButton*)sender;
     int tag = button.tag;
-    
+    if (tag>=appsList.count) {
+        return;
+    }
     if(state == NORMAL_STATE){
         LQWallpaperViewController* controller = [[LQWallpaperViewController alloc]initWithNibName:@"LQWallpaperViewController" bundle:nil];
         LQGameInfo *item = [appsList objectAtIndex:tag];

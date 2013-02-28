@@ -59,7 +59,7 @@
 						<reference key="NSNextResponder" ref="954192404"/>
 						<int key="NSvFlags">1316</int>
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
-						<string key="NSFrame">{{255, 119}, {60, 33}}</string>
+						<string key="NSFrame">{{251, 38}, {60, 33}}</string>
 						<reference key="NSSuperview" ref="954192404"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="545727206"/>
@@ -98,7 +98,7 @@
 						<reference key="NSNextResponder" ref="954192404"/>
 						<int key="NSvFlags">1316</int>
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
-						<string key="NSFrame">{{5, 121}, {170, 31}}</string>
+						<string key="NSFrame">{{5, 39}, {170, 31}}</string>
 						<reference key="NSSuperview" ref="954192404"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="331947867"/>
@@ -133,7 +133,7 @@
 						<reference key="NSNextResponder" ref="954192404"/>
 						<int key="NSvFlags">1316</int>
 						<object class="NSPSMatrix" key="NSFrameMatrix"/>
-						<string key="NSFrame">{{5, 63}, {310, 45}}</string>
+						<string key="NSFrame">{{5, 75}, {310, 45}}</string>
 						<reference key="NSSuperview" ref="954192404"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="264607352"/>
@@ -380,7 +380,7 @@
 								<reference key="IBUIFont" ref="598077149"/>
 							</object>
 						</array>
-						<string key="NSFrame">{{0, 35}, {320, 22}}</string>
+						<string key="NSFrame">{{0, 118}, {320, 22}}</string>
 						<reference key="NSSuperview" ref="954192404"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="793144170"/>
@@ -394,7 +394,7 @@
 					<object class="IBUITableView" id="545727206">
 						<reference key="NSNextResponder" ref="954192404"/>
 						<int key="NSvFlags">1298</int>
-						<string key="NSFrame">{{0, 160}, {320, 320}}</string>
+						<string key="NSFrame">{{0, 150}, {320, 330}}</string>
 						<reference key="NSSuperview" ref="954192404"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -613,13 +613,13 @@
 							<reference ref="288473607"/>
 							<reference ref="644123107"/>
 							<reference ref="498838496"/>
-							<reference ref="307322061"/>
 							<reference ref="545727206"/>
-							<reference ref="569342612"/>
 							<reference ref="564397159"/>
-							<reference ref="331947867"/>
-							<reference ref="315167516"/>
 							<reference ref="264607352"/>
+							<reference ref="315167516"/>
+							<reference ref="331947867"/>
+							<reference ref="307322061"/>
+							<reference ref="569342612"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>

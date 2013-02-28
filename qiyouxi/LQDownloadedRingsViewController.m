@@ -26,6 +26,7 @@ extern NSString* const kNotificationStatusChanged;
 @implementation LQDownloadedRingsViewController
 @synthesize applicaitonView;
 @synthesize selectedRow,title,titleString;
+@synthesize noItemLabel;
 
 - (void)loadViews{
 //    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updateStatus:) userInfo:nil repeats:YES];
@@ -64,7 +65,14 @@ extern NSString* const kNotificationStatusChanged;
         }
         
     }
-    
+    if (appsList.count == 0) {
+        noItemLabel.hidden = NO;
+        self.applicaitonView.hidden = YES;
+    }
+    else{
+        noItemLabel.hidden = YES;
+        self.applicaitonView.hidden = NO;
+    }
     [self.applicaitonView reloadData];
 }
 //

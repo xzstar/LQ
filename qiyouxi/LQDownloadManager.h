@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "QYXData.h"
-
+//@class ASINetworkQueue;
+@class ASIHTTPRequest;
 typedef enum _DOWNLOAD_STATUS{
     kQYXDSRunning,
     kQYXDSPaused,
@@ -25,12 +26,13 @@ typedef enum _DOWNLOAD_STATUS{
 @class Reachability;
 @interface LQDownloadManager : NSObject{
     Reachability* reachability;
+    //ASINetworkQueue* downloadingQueue;
 }
 @property (nonatomic, strong) NSMutableArray* downloadGames;
 @property (nonatomic, strong) NSMutableArray* completedGames;
 @property (nonatomic, strong) NSMutableArray* installedGames;
 @property (nonatomic, strong) Reachability* reachability;
-
+//@property (nonatomic, strong) ASINetworkQueue* downloadingQueue;
 + (LQDownloadManager*)sharedInstance;
 
 - (void)loadIpaInstalled;
@@ -61,6 +63,9 @@ typedef enum _DOWNLOAD_STATUS{
     NSMutableData* _data;
     int lastDataLength;
     double lastTime;
+    ASIHTTPRequest *request;
+    double percent;
+    double oldpercent;
 }
 
 @property (nonatomic, strong) LQGameInfo* gameInfo;
@@ -69,6 +74,7 @@ typedef enum _DOWNLOAD_STATUS{
 @property (nonatomic, assign) int dataLength;
 @property (nonatomic, assign) int totalLength;
 @property (nonatomic, strong) NSFileHandle* fileHandle;
+@property (nonatomic, strong) NSFileHandle* tempfileHandle;
 @property (nonatomic, strong) NSString* filePath;
 @property (nonatomic, strong) NSArray* finalFilePaths;  //最后的安装路径 for ring & wallpaper
 @property (nonatomic, assign) BOOL installAfterDownloaded;
@@ -76,7 +82,13 @@ typedef enum _DOWNLOAD_STATUS{
 - (void)resume;
 
 - (NSString*)totalSizeDesc;
-- (int)percent;
+- (double)percent;
 - (float)speed;
 
+
+- (void)setProgress:(float)newProgress;
+//- (void)request:(ASIHTTPRequest *)request didReceiveBytes:(long long)bytes;
+//- (void)request:(ASIHTTPRequest *)request didReceiveData:(NSData *)data;
+- (void)request:(ASIHTTPRequest *)request didReceiveResponseHeaders:(NSMutableDictionary *)newResponseHeaders;
+- (void)request:(ASIHTTPRequest *)orig willRedirectToURL:(NSURL *)newURL;
 @end

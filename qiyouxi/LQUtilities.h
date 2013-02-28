@@ -19,7 +19,7 @@
 +(unsigned char *)getImageData:(UIImage*)image;
 +(NSString*)createcpBitmap:(NSString*)imagePath savedcpbitmapName:(NSString*)savedcpbitmapName;
 +(NSString*) stringWithUUID;
-+(void) installRing:(UIViewController*)controller gameInfo:(LQGameInfo*) gameInfo;
++(void) installRing:(UIViewController*)parentController gameInfo:(LQGameInfo*) gameInfo;
 @end
 
 @interface AppUpdateReader:NSObject <LQClientDelegate>{

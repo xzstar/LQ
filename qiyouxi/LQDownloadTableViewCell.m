@@ -74,7 +74,11 @@
     self.gameNameLabel.text = aDownloadObject.gameInfo.name;
     
     if (self.downloadObject.status == kQYXDSRunning) {
-        self.gameDetailLabel.text = [NSString stringWithFormat:@"%d%%/%@/%.2fKB/秒", [aDownloadObject percent], 
+        
+        if([aDownloadObject totalSizeDesc]<=0)
+            self.gameDetailLabel.text = @"连接中，请稍等";
+        else
+            self.gameDetailLabel.text = [NSString stringWithFormat:@"%.2f%%/%@/%.2fKB/秒", [aDownloadObject percent], 
                                      [aDownloadObject totalSizeDesc],[aDownloadObject speed]];
         
     }

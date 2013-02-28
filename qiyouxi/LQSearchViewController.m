@@ -130,8 +130,8 @@
     for (NSString* tempItem in searchHistoryItems) {
         if(tempItem == item)
         {
-            [searchHistoryItems removeObject:tempItem];
-            break;
+            //[searchHistoryItems removeObject:tempItem];
+            return;
         }
     }
     

@@ -133,9 +133,12 @@
         }
         controller.requestUrl = info.requestUrl;
         controller.titleString = info.name;
-        if(self.parent!=nil)
+        if(self.parent!=nil){
+            controller.parent = self.parent;
             [self.parent.navigationController pushViewController:controller animated:YES];
+        }
         else {
+            controller.parent = self;
             [self.navigationController pushViewController:controller animated:YES];
         }
         

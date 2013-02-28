@@ -10,6 +10,7 @@
 #import "LQInstaller.h"
 #import "LQDownloadTableViewCell.h"
 #import "LQInstallTableViewCell.h"
+
 extern NSString* const kNotificationStatusChanged;
 
 @interface LQDownloadedViewController ()
@@ -20,7 +21,7 @@ extern NSString* const kNotificationStatusChanged;
 
 
 @synthesize applicaitonView,type,title, titleString;
-
+@synthesize noItemLabel;
 - (void)loadViews{
 //    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(updateStatus:) userInfo:nil repeats:YES];
     
@@ -69,7 +70,14 @@ extern NSString* const kNotificationStatusChanged;
         }
         
     }
-    
+    if (installedList.count == 0 && completedList == 0) {
+        noItemLabel.hidden = NO;
+        self.applicaitonView.hidden = YES;
+    }
+    else{
+        noItemLabel.hidden = YES;
+        self.applicaitonView.hidden = NO;
+    }
     [self.applicaitonView reloadData];
 }
 

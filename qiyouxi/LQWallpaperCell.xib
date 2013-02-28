@@ -125,9 +125,9 @@
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage" id="500100757">
+								<object class="NSCustomResource" key="IBUIImage" id="369902088">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">cell_del.png</string>
+									<string key="NSResourceName">Selected.png</string>
 								</object>
 							</object>
 							<object class="IBUIImageView" id="754103585">
@@ -139,7 +139,7 @@
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<reference key="IBUIImage" ref="500100757"/>
+								<reference key="IBUIImage" ref="369902088"/>
 							</object>
 							<object class="IBUIImageView" id="944969138">
 								<reference key="NSNextResponder" ref="984625360"/>
@@ -151,7 +151,7 @@
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<reference key="IBUIImage" ref="500100757"/>
+								<reference key="IBUIImage" ref="369902088"/>
 							</object>
 						</array>
 						<string key="NSFrameSize">{320, 109}</string>
@@ -366,8 +366,8 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">cell_del.png</string>
-			<string key="NS.object.0">{25, 25}</string>
+			<string key="NS.key.0">Selected.png</string>
+			<string key="NS.object.0">{28, 28}</string>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">1181</string>
 	</data>

@@ -60,7 +60,7 @@
 @interface LQRingListWithReqUrlViewController : LQAppsListViewController{
 AudioPlayer *_audioPlayer;
 }
-
+- (void) onInstallRing:(id) sender;
 @end
 
 @interface LQWallpaperListWithReqUrlViewController : LQAppsListViewController

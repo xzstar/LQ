@@ -239,7 +239,7 @@
     int row = button.tag;
     LQGameInfo *gameInfo = [self.appsList objectAtIndex:row];
     
-    [LQUtilities installRing:self gameInfo:gameInfo];
+    [LQUtilities installRing:self.parent gameInfo:gameInfo];
 }
 #pragma mark - Table view delegate
 
@@ -622,6 +622,13 @@
     return cell;
 }
 
+- (void) onInstallRing:(id) sender{
+    UIButton* button = sender;
+    int row = button.tag;
+    LQGameInfo *gameInfo = [self.appsList objectAtIndex:row];
+    
+    [LQUtilities installRing:self.parent gameInfo:gameInfo];
+}
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -637,7 +644,6 @@
     [self.tableView reloadData];
     
 }
-
 
 @end
 

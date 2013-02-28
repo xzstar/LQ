@@ -13,6 +13,7 @@ NSString* requstUrl;
 }
 
 @property (nonatomic, strong) NSString* requestUrl;
+@property (strong) UIViewController* parent;
 
 - (LQRequestListViewController*) getController:(int)page;
 

@@ -249,11 +249,11 @@
 }
 
 
-+(void) installRing:(UIViewController*)controller gameInfo:(LQGameInfo*) gameInfo{
++(void) installRing:(UIViewController*)parentController gameInfo:(LQGameInfo*) gameInfo{
     if([gameInfo.fileType isEqualToString:@"sms_ring"]){
         LQSMSRingReplaceViewController* controller = [[LQSMSRingReplaceViewController alloc] initWithNibName:@"LQSMSRingReplaceViewController" bundle:nil];
         controller.ringGameInfo = gameInfo;
-        [controller.navigationController pushViewController:controller animated:YES];
+        [parentController.navigationController pushViewController:controller animated:YES];
     }
     else{
         //NSString* fileName= [obj.filePath lastPathComponent];

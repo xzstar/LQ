@@ -235,7 +235,7 @@
     int row = button.tag;
     LQGameInfo *gameInfo = [self.appsList objectAtIndex:row];
     
-    [LQUtilities installRing:self gameInfo:gameInfo];
+    [LQUtilities installRing:self.parent gameInfo:gameInfo];
 }
 
 #pragma mark - Table view delegate

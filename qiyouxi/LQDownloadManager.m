@@ -10,7 +10,8 @@
 #import "LQInstaller.h"
 #import "LQUtilities.h"
 #import "Reachability.h"
-
+#import "ASIHTTPRequest.h"
+//#import "ASINetworkQueue.h"
 static LQDownloadManager* _intance = nil;
 
 NSString* const kNotificationStatusChanged    = @"NotificationStatusChanged";
@@ -38,6 +39,7 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
 @synthesize ipaInstalled;
 @synthesize infoFilePath;
 @synthesize reachability;
+//@synthesize downloadingQueue;
 
 + (LQDownloadManager*)sharedInstance{
     if (_intance == nil){
@@ -54,7 +56,9 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
 //        self.infoFilePath =  [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:@"downloads.plist"];
         
         reachability = [[Reachability alloc]init];
-        
+//        downloadingQueue = [[ASINetworkQueue alloc] init];
+//        downloadingQueue.maxConcurrentOperationCount = 2;
+//        [downloadingQueue setShouldCancelAllRequestsOnFailure:NO];
         self.infoFilePath =  [[LQUtilities documentsDirectoryPath]stringByAppendingPathComponent:@"downloads.plist"];
         self.downloadGames = [[NSMutableArray alloc] init];
         self.installedGames = [[NSMutableArray alloc] init];
@@ -326,7 +330,8 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
     [obj pause];
     
     [[NSFileManager defaultManager] removeItemAtPath:obj.filePath error:NULL];
-    
+    [[NSFileManager defaultManager] removeItemAtPath:[NSString stringWithFormat:@"%@%@", obj.filePath,@".download"] error:NULL];
+
     NSString* toastMsg = LocalString(@"info.download.delete");
     if([self.downloadGames containsObject:obj] == YES){
         toastMsg = LocalString(@"info.download.remove");
@@ -552,13 +557,18 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
 @synthesize totalLength;
 
 @synthesize fileHandle;
+@synthesize tempfileHandle;
 @synthesize filePath;
 @synthesize finalFilePaths; 
 @synthesize installAfterDownloaded;
 
+- (void)dealloc
+{
+    [request clearDelegatesAndCancel];
+    request = nil;
+}
 - (void)setGameInfo:(LQGameInfo *)aGameInfo{
     gameInfo = aGameInfo;
-    
 //    NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     
     
@@ -579,7 +589,13 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
     }
     
     self.fileHandle = [NSFileHandle fileHandleForUpdatingAtPath:self.filePath];
+    self.tempfileHandle = [NSFileHandle fileHandleForUpdatingAtPath:[NSString stringWithFormat:@"%@%@",self.filePath,@".download"]];
     self.dataLength = [self.fileHandle seekToEndOfFile];
+    if(self.dataLength ==0)
+        self.dataLength = [self.tempfileHandle seekToEndOfFile];
+    
+    if(self.totalLength!=0)
+        percent = (double)self.dataLength/(double)self.totalLength;
 }
 
 - (void)setStatus:(QYXDownloadStatus) aStatus{
@@ -593,11 +609,22 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
     @synchronized(self){
         [self.fileHandle closeFile];
         self.fileHandle = nil;
+        [self.tempfileHandle closeFile];
+        self.tempfileHandle = nil;
     }
     
-    [self.connection cancel];
-    self.connection = nil;
+    //[self.connection cancel];
+    //self.connection = nil;
+    [request clearDelegatesAndCancel];
+    request = nil;
     self.status = kQYXDSPaused;
+//    NSLog(@"operations: %d",[LQDownloadManager sharedInstance].downloadingQueue.operations.count);
+//    
+//    NSArray *queueArray = [LQDownloadManager sharedInstance].downloadingQueue.operations;
+//    for (ASIHTTPRequest *request in queueArray) {
+//        NSString *objid = [request.userInfo objectForKey:@"path"];
+//        NSLog(@"%@",objid);
+//    }
     
 //    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
 }
@@ -605,26 +632,49 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
 - (void)resume{
     @synchronized(self){
         self.fileHandle = [NSFileHandle fileHandleForUpdatingAtPath:self.filePath];
-        self.dataLength = [self.fileHandle seekToEndOfFile];
-    }
+        self.tempfileHandle = [NSFileHandle fileHandleForUpdatingAtPath:[NSString stringWithFormat:@"%@%@",self.filePath,@".download"]];
 
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.gameInfo.downloadUrl] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0];
-    self.status = kQYXDSRunning;
-    
-    if (self.dataLength > 0 && 
-        self.totalLength > 0){
-        [request setAllHTTPHeaderFields:[NSDictionary dictionaryWithObjectsAndKeys:
-                                         [NSString stringWithFormat:@"bytes=%d-%d", self.dataLength, self.totalLength], @"Range",
-                                         nil]];
-    }else{
-        self.dataLength = 0;
-        self.totalLength = 0;
+        self.dataLength = [self.tempfileHandle seekToEndOfFile];
     }
-    
-    self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    
-//    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+    NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+    [dict  setObject:self.filePath forKey:@"path"];
+    request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:gameInfo.downloadUrl]];
+    [request setDelegate:self];
+    [request setDownloadProgressDelegate:self];
+    //request.numberOfTimesToRetryOnTimeout = 3;
+    [request setShowAccurateProgress:YES];
+    [request setDownloadDestinationPath:self.filePath];
+    [request setTemporaryFileDownloadPath:
+     [NSString stringWithFormat:@"%@%@",self.filePath,@".download"]];
+    [request setAllowResumeForFileDownloads:YES];
+    request.userInfo = dict;
+
+//    [[LQDownloadManager sharedInstance].downloadingQueue setShowAccurateProgress:YES];
+//    [[LQDownloadManager sharedInstance].downloadingQueue addOperation:request];
+
+    self.status = kQYXDSRunning;
+    request.shouldContinueWhenAppEntersBackground=YES; 
+    [request startAsynchronous];
+//    if([[LQDownloadManager sharedInstance].downloadingQueue isSuspended] == YES){
+//        [[LQDownloadManager sharedInstance].downloadingQueue go];
+//    }
+//    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:self.gameInfo.downloadUrl] cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:60.0];
+//    self.status = kQYXDSRunning;
+//    
+//    if (self.dataLength > 0 && 
+//        self.totalLength > 0){
+//        [request setAllHTTPHeaderFields:[NSDictionary dictionaryWithObjectsAndKeys:
+//                                         [NSString stringWithFormat:@"bytes=%d-%d", self.dataLength, self.totalLength], @"Range",
+//                                         nil]];
+//    }else{
+//        self.dataLength = 0;
+//        self.totalLength = 0;
+//    }
+//    
+//    self.connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+
 }
+
 
 - (NSString*)totalSizeDesc{
     if (self.totalLength == 0){
@@ -640,12 +690,8 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
     return @"";
 }
 
-- (int)percent{
-    if (self.totalLength == 0){
-        return 0;
-    }else {
-        return 100 * (float) self.dataLength/(float) self.totalLength;
-    }
+- (double)percent{
+    return 100*percent;
 }
 
 - (float)speed{
@@ -654,18 +700,22 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
     if(status != kQYXDSRunning)
         return 0;
     
-    if (lastTime == 0 || lastDataLength ==0) {
-        lastDataLength = self.dataLength;
+    if (lastTime == 0 || oldpercent ==0) {
+        oldpercent = percent;
         lastTime = nowTime;
         return 0;
     }
     else {
         
-        if(nowTime>lastTime && self.dataLength>lastDataLength){
-            return (float)(self.dataLength-lastDataLength)/(float)((nowTime-lastTime)*1000);
+        if(nowTime>lastTime && percent>oldpercent){
+            NSLog(@"%f %f %d %f",percent,oldpercent,self.totalLength,(nowTime-lastTime)*1000);
+            int value = (float)(percent-oldpercent)*self.totalLength/(float)((nowTime-lastTime)*1000);
+            oldpercent = percent;
+            lastTime = nowTime;
+            return value;
         }
         else {
-            lastDataLength = self.dataLength;
+            oldpercent = percent;
             lastTime = nowTime;
             return 0;
         }
@@ -674,56 +724,142 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
     
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
-    NSHTTPURLResponse* hr = (NSHTTPURLResponse*) response;
+//- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response{
+//    NSHTTPURLResponse* hr = (NSHTTPURLResponse*) response;
+//    if (self.totalLength == 0){
+//        self.totalLength = self.dataLength + [[hr.allHeaderFields objectForKey:@"Content-Length"] intValue];
+//        [[LQDownloadManager sharedInstance] synchronize];
+//    }
+//}
+//
+//- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
+//    [_data appendData:data];
+//    @synchronized(self){
+//        [self.fileHandle writeData:data];
+//        self.dataLength += data.length;
+//    }
+//}
+//
+//- (void)connectionDidFinishLoading:(NSURLConnection *)connection{
+//    self.connection = nil;
+//    [self.fileHandle closeFile];
+//    self.fileHandle = nil;
+//    //self.status = kQYXDSCompleted;
+//    if(self.totalLength == self.dataLength)
+//    {
+//        self.status = kQYXDSCompleted;
+//    }
+//    else {
+//        self.status = kQYXDSFailed;
+//    }
+//    [[LQDownloadManager sharedInstance] updateDownloadObject:self];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:self];
+//    
+////    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+//
+////    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:self];
+//
+//}
+//
+//- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
+//    self.connection = nil;
+//    
+////    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+//    
+//    if([[LQDownloadManager sharedInstance].reachability isReachable] == NO){
+//        self.status = kQYXDSPaused;
+//    }
+//    else{    
+//        [[NSString stringWithFormat:LocalString(@"info.download.fail"), self.gameInfo.name] performSelectorOnMainThread:@selector(showToastAsInfo) withObject:nil waitUntilDone:NO];
+//        self.status = kQYXDSFailed;
+//    }
+//
+//}
+
+
+- (void)setProgress:(float)newProgress{
+    NSLog(@"percent %f",newProgress);
+    //oldpercent = percent;
+    percent = newProgress;
+}
+
+//- (void)request:(ASIHTTPRequest *)request didReceiveBytes:(long long)bytes{
+//    if(self.totalLength == 0)
+//        self.totalLength = request.contentLength;
+//    self.dataLength += bytes;
+//    
+//    NSLog(@"%@ %d %d",request.url, self.totalLength,self.dataLength);
+//
+//}
+
+//- (void)request:(ASIHTTPRequest *)request didReceiveData:(NSData *)data{
+//    //[_data appendData:data];
+//    @synchronized(self){
+//        //[self.fileHandle writeData:data];
+//        //self.dataLength += data.length;
+//    }
+//}
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    @synchronized(self){
+        [self.fileHandle closeFile];
+        self.fileHandle = nil;
+        [self.tempfileHandle closeFile];
+        self.tempfileHandle =nil;
+    }
+    self.status = kQYXDSCompleted;
+//    if(self.totalLength == self.dataLength)
+//    {
+//        self.status = kQYXDSCompleted;
+//    }
+//    else {
+//        self.status = kQYXDSFailed;
+//    }
+    [[LQDownloadManager sharedInstance] updateDownloadObject:self];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:self];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    @synchronized(self){
+        [self.fileHandle closeFile];
+        self.fileHandle = nil;
+        [self.tempfileHandle closeFile];
+        self.tempfileHandle =nil;
+    }
+
+    //NSError *error = [request error];
+    
+    if(self.status == kQYXDSPaused)
+        return;
+    
+   // self.connection = nil;
+    
+    //    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+    
+//    if([[LQDownloadManager sharedInstance].reachability isReachable] == NO){
+//        self.status = kQYXDSPaused;
+//    }
+//    else{    
+        [[NSString stringWithFormat:LocalString(@"info.download.fail"), self.gameInfo.name] performSelectorOnMainThread:@selector(showToastAsInfo) withObject:nil waitUntilDone:NO];
+        self.status = kQYXDSFailed;
+    //}
+}
+
+- (void)request:(ASIHTTPRequest *)request didReceiveResponseHeaders:(NSMutableDictionary *)newResponseHeaders{
     if (self.totalLength == 0){
-        self.totalLength = self.dataLength + [[hr.allHeaderFields objectForKey:@"Content-Length"] intValue];
+        NSLog(@"get HeadLength");
+        self.totalLength = self.dataLength + [[newResponseHeaders objectForKey:@"Content-Length"] intValue];
         [[LQDownloadManager sharedInstance] synchronize];
     }
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data{
-    [_data appendData:data];
-    @synchronized(self){
-        [self.fileHandle writeData:data];
-        self.dataLength += data.length;
-    }
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection{
-    self.connection = nil;
-    [self.fileHandle closeFile];
-    self.fileHandle = nil;
-    //self.status = kQYXDSCompleted;
-    if(self.totalLength == self.dataLength)
-    {
-        self.status = kQYXDSCompleted;
-    }
-    else {
-        self.status = kQYXDSFailed;
-    }
-    [[LQDownloadManager sharedInstance] updateDownloadObject:self];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:self];
-    
-//    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
-
-//    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:self];
-
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error{
-    self.connection = nil;
-    
-//    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
-    
-    if([[LQDownloadManager sharedInstance].reachability isReachable] == NO){
-        self.status = kQYXDSPaused;
-    }
-    else{    
-        [[NSString stringWithFormat:LocalString(@"info.download.fail"), self.gameInfo.name] performSelectorOnMainThread:@selector(showToastAsInfo) withObject:nil waitUntilDone:NO];
-        self.status = kQYXDSFailed;
-    }
-
+- (void)request:(ASIHTTPRequest *)orig willRedirectToURL:(NSURL *)newURL {
+    [request setDownloadDestinationPath:self.filePath];
+    [request setTemporaryFileDownloadPath:
+     [NSString stringWithFormat:@"%@%@",self.filePath,@".download"]];
+    [request redirectToURL:newURL];
 }
 
 @end

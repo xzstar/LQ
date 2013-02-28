@@ -14,6 +14,8 @@
 
 @implementation LQAppsListWrapperViewController
 @synthesize requestUrl;
+@synthesize parent;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -85,6 +87,7 @@
     if ((NSNull *)controller == [NSNull null])
     {
         controller = [[LQAppsListViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil requestUrl:requestUrl];        
+        controller.parent = self.parent;
         [viewControllers replaceObjectAtIndex:page withObject:controller];
     }
     return controller;
@@ -123,7 +126,9 @@
     if ((NSNull *)controller == [NSNull null])
     {
         controller = [[LQRingListWithReqUrlViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil requestUrl:self.requestUrl];        
+        controller.parent = self.pageController;
         [viewControllers replaceObjectAtIndex:page withObject:controller];
+        
     }
     return controller;
 }

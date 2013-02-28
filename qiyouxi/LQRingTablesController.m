@@ -106,6 +106,7 @@
             }
             else if(nodeId == @"ls"){
                 controller = [[LQRingRankViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:@"374" orderBy:orderBy];
+                controller.parent = self;
             }
             else {
                 controller = [[LQWallpaperRankViewController alloc] initWithNibName:@"LQCommonTableViewController" bundle:nil listOperator:listOperator nodeId:nodeId orderBy:orderBy];
