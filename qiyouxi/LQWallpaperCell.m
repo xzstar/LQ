@@ -1,16 +1,16 @@
-    //
+//
 //  LQWallpaperCell.m
 //  qiyouxi
 //
 //  Created by Xie Zhe on 13-1-12.
 //  Copyright (c) 2013年 科技有限公司. All rights reserved.
 //
-
 #import "LQWallpaperCell.h"
 #import "QYXData.h"
 @implementation LQWallpaperCell
 @synthesize button1,button2,button3;
 @synthesize delete1,delete2,delete3;
+@synthesize refreshActionHandler;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -67,7 +67,9 @@
             if(i<buttonList.count){
                 UIButton *button = [buttonList objectAtIndex:i];
                 [button setBackgroundImage:image forState:UIControlStateNormal];
-           }
+                if(self.refreshActionHandler!=nil)
+                    refreshActionHandler(button.tag);
+            }
             break;
         }
     }
@@ -106,5 +108,9 @@
         return delete3.hidden;
     }
     return NO;
+}
+
+- (void)addRefreshActionHandler:(void (^)(int))actionHandler {
+    self.refreshActionHandler = actionHandler;
 }
 @end

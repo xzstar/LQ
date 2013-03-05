@@ -374,6 +374,20 @@
     }
     [cell setButtonInfo:itemList];
     [cell addInfoButtonsTarget:self action:@selector(onWallpaperClicked:) tag:indexPath.row*WALLPAPER_COUNT_PERLINE];
+    __unsafe_unretained UITableView* weakTableView = tableView;
+    // setup refresh
+    [cell addRefreshActionHandler:^(int tag){
+        
+        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            int row = tag/WALLPAPER_COUNT_PERLINE;
+            NSIndexPath* index = [NSIndexPath indexPathForRow:row inSection:0];
+            [weakTableView beginUpdates];
+            [weakTableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:index, nil]
+                                 withRowAnimation:UITableViewRowAnimationNone];
+            [weakTableView endUpdates]; 
+        });
+    }];
+
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
