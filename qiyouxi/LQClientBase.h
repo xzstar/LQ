@@ -51,7 +51,7 @@
 
 @optional
 // when checkupdate is returned
-- (void)client:(LQClientBase*)client didNeedUpdate:(NSString*)description link:(NSString*)link;
+- (void)client:(LQClientBase*)client didNeedUpdate:(NSString*)description link:(NSString*)link newVersion:(NSString*)newVersion;
 
 // when command is completed
 - (void)client:(LQClientBase*)client didGetCommandResult:(id)result forCommand:(int)command format:(int)format tag:(int)tag;

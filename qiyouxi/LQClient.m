@@ -16,13 +16,15 @@
 
 #define LQ_FIRSTBOOT_URL @"http://appserver.liqucn.com/ios/request.php?op=first_boot"
 #define LQ_BOOT_URL @"http://appserver.liqucn.com/ios/request.php?op=boot"
+#define LQ_UPDATE_URL @"http://appserver.liqucn.com/ios/request.php?op=check_update_self"
+
 @implementation LQClient
 #pragma mark - Override
 - (NSMutableDictionary*)composeParametersForCommand:(int)command withUrl:(NSString*)url ofFormat:(int)format{
     CGRect frame = [UIScreen mainScreen].bounds;
     NSString* width = [NSString stringWithFormat:@"%.0f",frame.size.width];
     NSString* height = [NSString stringWithFormat:@"%.0f",frame.size.height];
-
+    NSString* version= [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
     return 	[NSMutableDictionary dictionaryWithObjectsAndKeys:
              [NSNumber numberWithInt:command], P_INTERNAL_COMMAND,
              [NSNumber numberWithInt:30.0f], P_INTERNAL_TIMEOUT,
@@ -31,6 +33,8 @@
              [UIDevice currentDevice].model,@"model",
              width,@"w",
              height,@"h",
+             version,@"self_version",
+             @"P3002",@"UMENG_CHANNEL",
              nil];    
 }
 
@@ -504,4 +508,16 @@
               parameters:parameters
                 encoding:NO];
 }
+
+- (void)checkUpdate{
+    NSString* requestUrl = LQ_UPDATE_URL;
+    NSDictionary* parameters = [self getParameter:requestUrl];
+    
+    [self processCommand:[NSString stringWithFormat:@"%@%@", LQ_API_SERVER, LQ_API_REQUEST]
+                 command:C_COMMAND_BOOT
+                  format:F_JSON
+              parameters:parameters
+                encoding:NO];
+}
+
 @end

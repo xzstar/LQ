@@ -29,7 +29,7 @@ button.uninstall = "卸载";
 button.delete = "删除";
 button.installing = "安装中";
 button.reinstall = "重装";
-
+button.upgrade = "升级";
 
 ego.releaserefresh = "松开开始刷新";
 ego.pulltorefresh = "下拉以便刷新";

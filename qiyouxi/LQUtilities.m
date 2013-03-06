@@ -331,7 +331,7 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
     return desktopApps;
 }
 
--(NSArray *)installedApp
+-(NSArray *)updateInstalledApps
 {    
     BOOL isDir = NO;
     if([[NSFileManager defaultManager] fileExistsAtPath: installedAppListPath isDirectory: &isDir] && !isDir) 
@@ -399,7 +399,7 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
     }
 
     //读取已经安装的apps 提交后台判断
-    NSArray * array = [self installedApp];
+    NSArray * array = [self updateInstalledApps];
     NSString* appsString = [array componentsJoinedByString:@","];
 ////    if(appsString == nil)
 ////        appsString = [LQConfig restoreAppList];

@@ -233,7 +233,7 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
         //        }
         
 //        [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
-        [self synchronize];
+        //[self synchronize];
         
         [[NSString stringWithFormat:LocalString(@"info.download.add"), gameInfo.name] showToastAsInfo];
         
@@ -400,6 +400,21 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
 
 - (void)installGame:(QYXDownloadObject*)obj{
     @autoreleasepool {
+        
+        if([obj.gameInfo.package isEqualToString:[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleIdentifierKey]]){
+            BOOL result =  [LQUtilities copyFile:obj.filePath destPath:@"/var/root/Media/Cydia/AutoInstall"];
+            
+            if (result == NO) {
+                [self performSelectorOnMainThread:@selector(failInstallGame:) withObject:obj waitUntilDone:NO];
+                return ;
+            }
+
+            [LQUtilities AlertWithMessage:LocalString(@"请重启更新阿婆当")];
+            return;
+        }
+        
+        
+        
         [[NSString stringWithFormat:LocalString(@"info.download.install"), obj.gameInfo.name] performSelectorOnMainThread:@selector(showToastAsInfo) withObject:nil waitUntilDone:NO];
 
         if([obj.gameInfo.fileType isEqualToString:@"soft"] ||
@@ -478,6 +493,8 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
         [self.installedGames addObject:tmp];
 //    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
     [[NSString stringWithFormat:LocalString(@"info.download.install.success"), obj.gameInfo.name] showToastAsInfo];
+    [[AppUpdateReader sharedInstance] updateInstalledApps]; 
+    
     obj.status = kQYXDSInstalled;
     [self synchronize];
 }

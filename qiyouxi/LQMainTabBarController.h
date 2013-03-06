@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "LQUtilities.h"
 
-@interface LQMainTabBarController : UITabBarController<AppUpdateReaderDelegate>{
+@interface LQMainTabBarController : UITabBarController<AppUpdateReaderDelegate,LQClientDelegate,UIAlertViewDelegate>{
     UIView* moreBgView;
     NSMutableArray* tabItems;
-
+    NSString* updateLink;
+    NSString* updateDesc;
+    NSString* updateVersion;
 }
 
 @property (nonatomic,strong) NSMutableArray* tabItems;

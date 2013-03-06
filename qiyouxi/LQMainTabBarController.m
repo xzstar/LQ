@@ -33,22 +33,22 @@ extern NSString* const kNotificationUpdateListChanged;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-      
+    
     LQFirstPageViewController * first = [[LQFirstPageViewController alloc] 
                                          initWithNibName:@"LQFirstPageViewController" bundle:nil];  
-     tab0Nav = [[UINavigationController alloc] init];
+    tab0Nav = [[UINavigationController alloc] init];
     [tab0Nav setNavigationBarHidden:YES];
     [tab0Nav pushViewController:first animated:NO];
-
+    
     
     LQSearchViewController * search = [[LQSearchViewController alloc]
                                        initWithNibName:@"LQSearchViewController" bundle:nil];  
-
+    
     tab1Nav = [[UINavigationController alloc] init];
     [tab1Nav setNavigationBarHidden:YES];
     [tab1Nav pushViewController:search animated:NO];
     
-
+    
     LQDownloadTablesController* download = [[LQDownloadTablesController alloc] 
                                             initWithNibName:@"LQTablesController" bundle:nil];
     tab2Nav = [[UINavigationController alloc] init];
@@ -56,13 +56,13 @@ extern NSString* const kNotificationUpdateListChanged;
     [tab2Nav pushViewController:download animated:NO];
     
     LQUpdateViewController* update = [[LQUpdateViewController alloc]
-                                       initWithNibName:@"LQUpdateViewController" bundle:nil];  
+                                      initWithNibName:@"LQUpdateViewController" bundle:nil];  
     tab3Nav = [[UINavigationController alloc] init];
     [tab3Nav setNavigationBarHidden:YES];
     [tab3Nav pushViewController:update animated:NO];
     
     LQMoreViewController* more = [[LQMoreViewController alloc]
-                                   initWithNibName:@"LQMoreViewController" bundle:nil];  
+                                  initWithNibName:@"LQMoreViewController" bundle:nil];  
     tab4Nav = [[UINavigationController alloc] init];
     [tab4Nav setNavigationBarHidden:YES];
     [tab4Nav pushViewController:more animated:NO];
@@ -85,13 +85,13 @@ extern NSString* const kNotificationUpdateListChanged;
         
         UIImage* image = [UIImage imageNamed:images[index]];
         UITabBarItem *tabItem = [[UITabBarItem alloc] initWithTitle:title[index] 
-                                                               image:image 
-                                                                 tag:index];
+                                                              image:image 
+                                                                tag:index];
         [tabItems addObject:tabItem];
         
-//        [newItems addObject:[[UITabBarItem alloc] initWithTitle:title[index] 
-//                                                          image:image 
-//                                                            tag:index]];
+        //        [newItems addObject:[[UITabBarItem alloc] initWithTitle:title[index] 
+        //                                                          image:image 
+        //                                                            tag:index]];
         index++;
         
     }
@@ -117,10 +117,9 @@ extern NSString* const kNotificationUpdateListChanged;
                                              selector:@selector(setNeedUpdateNumber:)
                                                  name:kNotificationUpdateListChanged
                                                object:nil];
-   
+    
     //初始化显示在下载列表中的个数
     [self updateDownloadingStatus:nil];
-               
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -132,7 +131,7 @@ extern NSString* const kNotificationUpdateListChanged;
     // Release any retained subviews of the main view.
     [[AppUpdateReader sharedInstance] removeListener:self];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
-
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -176,8 +175,8 @@ extern NSString* const kNotificationUpdateListChanged;
     //下载管理需要判断是否跳转到正在下载页
     //如果有下载，则需要跳转到下载页面，否则不需要
     if(item.tag == 2){
- 
-//        LQDownloadTablesController* controller = (LQDownloadTablesController*)[tab2Nav presentedViewController];
+        
+        //        LQDownloadTablesController* controller = (LQDownloadTablesController*)[tab2Nav presentedViewController];
         UIViewController* controller = [tab2Nav topViewController];
         if([controller isKindOfClass:[LQDownloadTablesController class]] == YES){
             int count = [LQDownloadManager sharedInstance].downloadGames.count;
@@ -230,7 +229,7 @@ extern NSString* const kNotificationUpdateListChanged;
     if(notification.userInfo!=nil && [notification.userInfo objectForKey:@"number"]!=nil  ){
         NSNumber* number = [notification.userInfo objectForKey:@"number"];
         UITabBarItem *tabItem = [tabItems objectAtIndex:3];
-            
+        
         tabItem.badgeValue = [NSString stringWithFormat:@"%d",[number intValue] ];
         [UIApplication sharedApplication].applicationIconBadgeNumber = [number intValue];
     }
@@ -238,7 +237,7 @@ extern NSString* const kNotificationUpdateListChanged;
         tabItem.badgeValue = nil;   
         [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
     } 
-
+    
 }
 
 - (void)updateDownloadingStatus:(NSNotification*)notification{
@@ -247,12 +246,58 @@ extern NSString* const kNotificationUpdateListChanged;
     int count = [LQDownloadManager sharedInstance].downloadGames.count;
     
     if(count>0){
-            tabItem.badgeValue = [NSString stringWithFormat:@"%d",count];
-        }
-        else
-            tabItem.badgeValue = nil;    
+        tabItem.badgeValue = [NSString stringWithFormat:@"%d",count];
+    }
+    else
+        tabItem.badgeValue = nil;    
     
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(buttonIndex == 1)
+    {
+        NSDictionary* category = [NSDictionary dictionaryWithObject:@"阿婆当" forKey:@"name"];
+        NSDictionary* dict = [NSDictionary dictionaryWithObjectsAndKeys:
+                              @"0",@"id", 
+                              @"阿婆当",@"name",
+                              updateDesc,@"description",
+                              updateLink,@"downloadUri",
+                              @"com.liqu.liquhelper",@"package",
+                              updateDesc,@"Intro",
+                              updateVersion,@"versionName",
+                              @"",@"icon",
+                              category,@"category",
+                              @"阿婆当",@"tags",
+                              nil];
+        LQGameInfo* info = [[LQGameInfo alloc] initWithAPIResult:dict];
+        [[LQDownloadManager sharedInstance] addToDownloadQueue:info installAfterDownloaded:NO];
+    }
+}
 
+-(void) willPresentAlertView:(UIAlertView *)alertView{
+    for( UIView * view in alertView.subviews )
+    {
+        if( [view isKindOfClass:[UILabel class]] )
+        {
+            UILabel* label = (UILabel*) view;
+            label.textAlignment=UITextAlignmentLeft;
+        }
+    }
+}
+
+- (void)client:(LQClientBase*)client didNeedUpdate:(NSString*)description link:(NSString*)link newVersion:(NSString *)newVersion{
+    updateDesc = description;
+    updateLink = link;
+    updateVersion = newVersion;
+    [self performSelector:@selector(showUpdateInfo) withObject:nil afterDelay:5];
+    
+}
+-(void) showUpdateInfo{
+    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"更新提示" 
+                                                   message:updateDesc 
+                                                  delegate:self   
+                                         cancelButtonTitle:@"取消" 
+                                         otherButtonTitles:@"确定",nil];
+    [alert show];
+}
 @end

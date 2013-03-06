@@ -89,11 +89,17 @@
     }
     self.progressView.progress = (float)[aDownloadObject percent]/100;
     
+    
     UIImage* image = [[LQImageLoader sharedInstance] loadImage:self.downloadObject.gameInfo.icon context:self];
     if (image != nil){
         self.gameIconView.image = image;
     }else {
-        self.gameIconView.image = [UIImage imageNamed:@"icon_small.png"];
+        if([self.downloadObject.gameInfo.name isEqualToString:[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleIdentifierKey]]){
+            self.gameIconView.image = [UIImage imageNamed:@"Icon.png"];
+        }
+        else {
+            self.gameIconView.image = [UIImage imageNamed:@"icon_small.png"];
+        }
     }
 
     NSString* title = nil;

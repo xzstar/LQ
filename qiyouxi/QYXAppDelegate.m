@@ -10,6 +10,7 @@
 #import "LQLaunchViewController.h"
 #import "LQConfig.h"
 #import "MobClick.h"
+#define LQ_UPDATE_URL @"http://appserver.liqucn.com/ios/request.php"
 @implementation QYXAppDelegate
 
 @synthesize window;
@@ -32,7 +33,7 @@
 #endif
     
     if (client == nil){
-        client = [[LQClient alloc] initWithDelegate:self];
+        client = [[LQClient alloc] initWithDelegate:main];
     }
     
     if([LQConfig isFirstBoot] == YES){
@@ -40,7 +41,7 @@
         [LQConfig setFirstBoot:NO];
     }
     [MobClick startWithAppkey:@"50fa1ab1527015336e000024"];;
-    [MobClick checkUpdate];
+    //[MobClick checkUpdate];
     return YES;
 }
 							
@@ -67,6 +68,9 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [client bootRecord:NO];
     [[LQDownloadManager sharedInstance] restartGames];
+    [client processCheckUpdate:LQ_UPDATE_URL];
+
+    //[self performSelector:@selector(checkUpdate) withObject:nil afterDelay:5000];          
 
 }
 
@@ -75,4 +79,6 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)checkUpdate{
+}
 @end

@@ -193,11 +193,11 @@
             NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             body = [body stringByReplacingOccurrencesOfString:@"\r"withString:@"\\r"];
             body = [body stringByReplacingOccurrencesOfString:@"\n"withString:@"\\n"];
-
+            NSLog(@"%@",body);
             id json = nil;
             //there may be no result for POST or DELETE method
             if (statusCode == 204 ||
-                body.length == 0){
+                body.length == 0 || [body isEqualToString:@"ok"]){
                 json = [NSDictionary dictionary];
             }else{
                 json = [body JSONValue];
@@ -271,13 +271,16 @@
 
 - (void)notifyDelegateForCheckUpdate:(NSDictionary*)jsonObj{
     NSString* curVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
-    NSString* ver = [jsonObj valueForKey:@"version"];
+    
+    NSDictionary* updateObj = [jsonObj valueForKey:@"self_update"];
+    
+    NSString* ver = [updateObj valueForKey:@"versionName"];
     if ([curVersion compare:ver options:NSNumericSearch] == NSOrderedAscending){
-        NSString* link = [jsonObj valueForKey:@"link"];
+        NSString* link = [updateObj valueForKey:@"downloadUri"];
         NSString* localDescKey = [NSString stringWithFormat:@"%@_%@", @"desc", [[NSLocale currentLocale] localeIdentifier]];
-        NSString* desc = [jsonObj valueForKey:localDescKey];
+        NSString* desc = [updateObj valueForKey:localDescKey];
         if (desc == nil){
-            desc = [jsonObj valueForKey:@"desc"];
+            desc = [updateObj valueForKey:@"Intro"];
         }
         
         if (link == nil){
@@ -288,8 +291,8 @@
             desc = @"";
         }
         
-        if([self.delegate respondsToSelector:@selector(client:didNeedUpdate:link:)]) {
-            [self.delegate client:self didNeedUpdate:desc link:link];
+        if([self.delegate respondsToSelector:@selector(client:didNeedUpdate:link:newVersion:)]) {
+            [self.delegate client:self didNeedUpdate:desc link:link newVersion:ver];
         }
     }    
     
@@ -377,6 +380,7 @@
 
 - (void)processCheckUpdate:(NSString*)url{
 	NSMutableDictionary* queryParams = [self composeParametersForCommand:C_CHECK_UPDATE withUrl:url ofFormat:F_JSON]; 
+    [queryParams setObject:@"check_update_self" forKey:@"op"];
 	[NSThread detachNewThreadSelector:@selector(commonHttpThreadEntry:) toTarget:self withObject:queryParams];
 }
 

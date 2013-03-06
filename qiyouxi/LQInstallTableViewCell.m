@@ -65,17 +65,32 @@
     if (image != nil){
         self.gameIconView.image = image;
     }else {
-        self.gameIconView.image = [UIImage imageNamed:@"icon_small.png"];
+        if([self.downloadObject.gameInfo.package isEqualToString:[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleIdentifierKey]]){
+            self.gameIconView.image = [UIImage imageNamed:@"Icon.png"];
+        }
+        else {
+            self.gameIconView.image = [UIImage imageNamed:@"icon_small.png"];
+        }
     }
     
     NSString* title = nil;
     if (/*[[LQDownloadManager sharedInstance] isGameInstalled:aDownloadObject.gameInfo.package] &&*/ aDownloadObject.status== kQYXDSInstalled){
-        title = LocalString(@"button.reinstall");
+        NSString* currentVersion = [[AppUpdateReader sharedInstance] currentVersion:aDownloadObject.gameInfo.package];
+        if([currentVersion compare:aDownloadObject.gameInfo.versionCode options:NSNumericSearch] == NSOrderedAscending){
+            title = LocalString(@"button.upgrade");
+        }
+        else
+            title = LocalString(@"button.reinstall");
     }else{
         if (aDownloadObject.status == kQYXDSInstalling){
             title = LocalString(@"button.installing");
         }else{
-            title = LocalString(@"button.install");
+            NSString* currentVersion = [[AppUpdateReader sharedInstance] currentVersion:aDownloadObject.gameInfo.package];
+            if([currentVersion compare:aDownloadObject.gameInfo.versionCode options:NSNumericSearch] == NSOrderedAscending){
+                title = LocalString(@"button.upgrade");
+            }
+            else
+                title = LocalString(@"button.install");
         }
     }
 

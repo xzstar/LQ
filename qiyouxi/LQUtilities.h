@@ -32,7 +32,7 @@
 //@property (nonatomic,unsafe_unretained) id delegate;
 @property (nonatomic,strong) LQClient* client;
 + (AppUpdateReader*)sharedInstance;
--(NSArray *)installedApp;
+-(NSArray *)updateInstalledApps;
 //-(NSMutableDictionary *)appDescriptionFromDictionary:(NSDictionary *)dictionary;
 - (void)loadApps:(NSArray*) apps;
 - (void)loadNeedUpdateApps;

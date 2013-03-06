@@ -30,6 +30,7 @@
 #define C_COMMAND_GETHOTKEYWORDS C_USER_COMMAND + 19
 #define C_COMMAND_GETAPPUPDATE C_USER_COMMAND + 20
 #define C_COMMAND_BOOT C_USER_COMMAND + 21
+#define C_COMMAND_UPDATE C_USER_COMMAND + 22
 
 @interface LQClient : LQClientBase
 - (void)loadLaunchImage;
@@ -67,4 +68,5 @@
 - (void)postComment:(int) gameId rating:(NSString*) rating text:(NSString*) text;
 
 - (void)bootRecord:(BOOL) isFirst;
+- (void)checkUpdate;
 @end
