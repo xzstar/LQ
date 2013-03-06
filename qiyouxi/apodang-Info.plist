@@ -8,6 +8,11 @@
 	<string>阿婆当</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Icon@2x.png</string>
+		<string>icon.png</string>
+	</array>
 	<key>CFBundleIcons</key>
 	<dict>
 		<key>CFBundlePrimaryIcon</key>
@@ -15,6 +20,7 @@
 			<key>CFBundleIconFiles</key>
 			<array>
 				<string>Icon@2x.png</string>
+				<string>icon.png</string>
 			</array>
 			<key>UIPrerenderedIcon</key>
 			<true/>

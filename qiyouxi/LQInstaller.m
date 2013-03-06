@@ -104,7 +104,7 @@ static int callback(NSDictionary *dict, id result) {
 //        return result;
 //    }
     BOOL result;
-    NSString* command = [NSString stringWithFormat:@". /Applications/liqu.app/SetSMSRing.sh %@ %@",src,dest];
+    NSString* command = [NSString stringWithFormat:@". /Applications/apodang.app/SetSMSRing.sh %@ %@",src,dest];
     
     int state = system([command cStringUsingEncoding:NSUTF8StringEncoding]);
     result = state>=0;

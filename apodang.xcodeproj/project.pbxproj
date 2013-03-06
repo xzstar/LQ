@@ -370,6 +370,7 @@
 		F2BAD5E0169D6AE800893F4C /* LQPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BAD5DF169D6AE800893F4C /* LQPageController.m */; };
 		F2C2667E169DB9B600382479 /* LQCommonTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2C2667C169DB9B600382479 /* LQCommonTableViewController.m */; };
 		F2C2667F169DB9B600382479 /* LQCommonTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2C2667D169DB9B600382479 /* LQCommonTableViewController.xib */; };
+		F2D70C1116E729E2005D9A9E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F2D70C1016E729E1005D9A9E /* icon.png */; };
 		F2E1655A169071300049BD05 /* LQGameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E165581690712F0049BD05 /* LQGameDetailViewController.m */; };
 		F2E1655B169071300049BD05 /* LQGameDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F2E165591690712F0049BD05 /* LQGameDetailViewController.xib */; };
 		F2E29D3716AEE2000084A7F0 /* LQDownloadedWallpaperViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F2E29D3616AEE2000084A7F0 /* LQDownloadedWallpaperViewController.m */; };
@@ -564,14 +565,14 @@
 		43F3743215D1168C000F475B /* LQToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQToast.h; sourceTree = "<group>"; };
 		43F3743315D1168C000F475B /* LQToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQToast.m; sourceTree = "<group>"; };
 		43F3743615D118A7000F475B /* toast_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = toast_bg.png; sourceTree = SOURCE_ROOT; };
-		43F5ED2B15C65424001A0F8D /* liqu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = liqu.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		43F5ED2B15C65424001A0F8D /* apodang.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = apodang.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43F5ED2F15C65424001A0F8D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		43F5ED3115C65424001A0F8D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		43F5ED3315C65424001A0F8D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		43F5ED3715C65424001A0F8D /* apodang-Info.plist */ = {isa = PBXFileReference; path = "apodang-Info.plist"; sourceTree = "<group>"; };
+		43F5ED3715C65424001A0F8D /* apodang-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "apodang-Info.plist"; sourceTree = "<group>"; };
 		43F5ED3915C65424001A0F8D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		43F5ED3B15C65424001A0F8D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		43F5ED3D15C65424001A0F8D /* apodang-Prefix.pch */ = {isa = PBXFileReference; path = "apodang-Prefix.pch"; sourceTree = "<group>"; };
+		43F5ED3D15C65424001A0F8D /* apodang-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "apodang-Prefix.pch"; sourceTree = "<group>"; };
 		43F5ED3E15C65424001A0F8D /* QYXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QYXAppDelegate.h; sourceTree = "<group>"; };
 		43F5ED3F15C65424001A0F8D /* QYXAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QYXAppDelegate.m; sourceTree = "<group>"; };
 		43F5ED5815C6556A001A0F8D /* btn_action_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_action_left.png; sourceTree = "<group>"; };
@@ -660,7 +661,6 @@
 		F234211516D44856002B5AFC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "/Users/xiezhe/work/LQ/qiyouxi/zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<absolute>"; };
 		F23AA8B116AD2B44008845C1 /* LQRingTablesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQRingTablesController.h; sourceTree = "<group>"; };
 		F23AA8B216AD2B45008845C1 /* LQRingTablesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQRingTablesController.m; sourceTree = "<group>"; };
-		F23BA34616D75FEE00C947D0 /* liqu.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = liqu.entitlements; sourceTree = "<group>"; };
 		F23D3B8D169AD70700B7DD46 /* LQSearchHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQSearchHistoryCell.h; sourceTree = "<group>"; };
 		F23D3B8E169AD70700B7DD46 /* LQSearchHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQSearchHistoryCell.m; sourceTree = "<group>"; };
 		F23D3B91169B02D300B7DD46 /* LQSearchHistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQSearchHistoryCell.xib; sourceTree = "<group>"; };
@@ -941,6 +941,7 @@
 		F2C2667B169DB9B600382479 /* LQCommonTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQCommonTableViewController.h; sourceTree = "<group>"; };
 		F2C2667C169DB9B600382479 /* LQCommonTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQCommonTableViewController.m; sourceTree = "<group>"; };
 		F2C2667D169DB9B600382479 /* LQCommonTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQCommonTableViewController.xib; sourceTree = "<group>"; };
+		F2D70C1016E729E1005D9A9E /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		F2E165571690712E0049BD05 /* LQGameDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LQGameDetailViewController.h; sourceTree = "<group>"; };
 		F2E165581690712F0049BD05 /* LQGameDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LQGameDetailViewController.m; sourceTree = "<group>"; };
 		F2E165591690712F0049BD05 /* LQGameDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LQGameDetailViewController.xib; sourceTree = "<group>"; };
@@ -1213,8 +1214,8 @@
 		43F5ED2015C65424001A0F8D = {
 			isa = PBXGroup;
 			children = (
+				F2D70C1016E729E1005D9A9E /* icon.png */,
 				F2A838B916DCB70400EDB2BA /* MobileCoreServices.framework */,
-				F23BA34616D75FEE00C947D0 /* liqu.entitlements */,
 				F257FD9316D4C32E00B52927 /* SystemConfiguration.framework */,
 				F23090C816C2143500D7B415 /* libz.dylib */,
 				F26CD2B116930A8F00E1E30B /* CFNetwork.framework */,
@@ -1229,7 +1230,7 @@
 		43F5ED2C15C65424001A0F8D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				43F5ED2B15C65424001A0F8D /* liqu.app */,
+				43F5ED2B15C65424001A0F8D /* apodang.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1853,7 +1854,7 @@
 			);
 			name = apodang;
 			productName = qiyouxi;
-			productReference = 43F5ED2B15C65424001A0F8D /* liqu.app */;
+			productReference = 43F5ED2B15C65424001A0F8D /* apodang.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -2238,6 +2239,7 @@
 				F2AC0B0B16DA258100B41156 /* LQDownloadedWallpaperViewController.xib in Resources */,
 				F20D28B516DB5D0A00C418AD /* LQShareViewController.xib in Resources */,
 				F266F81716DFAF660016B1C4 /* LQWebViewController.xib in Resources */,
+				F2D70C1116E729E2005D9A9E /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

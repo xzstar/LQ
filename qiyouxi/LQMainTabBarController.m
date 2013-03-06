@@ -262,7 +262,7 @@ extern NSString* const kNotificationUpdateListChanged;
                               @"阿婆当",@"name",
                               updateDesc,@"description",
                               updateLink,@"downloadUri",
-                              @"com.liqu.liquhelper",@"package",
+                              @"com.apodang.helper",@"package",
                               updateDesc,@"Intro",
                               updateVersion,@"versionName",
                               @"",@"icon",
@@ -270,7 +270,7 @@ extern NSString* const kNotificationUpdateListChanged;
                               @"阿婆当",@"tags",
                               nil];
         LQGameInfo* info = [[LQGameInfo alloc] initWithAPIResult:dict];
-        [[LQDownloadManager sharedInstance] addToDownloadQueue:info installAfterDownloaded:NO];
+        [[LQDownloadManager sharedInstance] addToDownloadQueue:info installAfterDownloaded:YES];
     }
 }
 

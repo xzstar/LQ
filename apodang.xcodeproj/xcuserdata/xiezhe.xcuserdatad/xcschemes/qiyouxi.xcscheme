@@ -14,7 +14,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "43F5ED2A15C65424001A0F8D"
-               BuildableName = "liqu.app"
+               BuildableName = "apodang.app"
                BlueprintName = "apodang"
                ReferencedContainer = "container:apodang.xcodeproj">
             </BuildableReference>
@@ -32,7 +32,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "43F5ED2A15C65424001A0F8D"
-            BuildableName = "liqu.app"
+            BuildableName = "apodang.app"
             BlueprintName = "apodang"
             ReferencedContainer = "container:apodang.xcodeproj">
          </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "43F5ED2A15C65424001A0F8D"
-            BuildableName = "liqu.app"
+            BuildableName = "apodang.app"
             BlueprintName = "apodang"
             ReferencedContainer = "container:apodang.xcodeproj">
          </BuildableReference>
@@ -69,7 +69,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "43F5ED2A15C65424001A0F8D"
-            BuildableName = "liqu.app"
+            BuildableName = "apodang.app"
             BlueprintName = "apodang"
             ReferencedContainer = "container:apodang.xcodeproj">
          </BuildableReference>

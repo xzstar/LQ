@@ -29,7 +29,7 @@
    
 #ifdef JAILBREAK    
     NSLog(@"exe updatepermission.sh");
-    system(". /Applications/liqu.app/UpdatePermissions.sh");
+    system(". /Applications/apodang.app/UpdatePermissions.sh");
 #endif
     
     if (client == nil){

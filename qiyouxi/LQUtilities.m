@@ -64,7 +64,7 @@
 {
     
 #ifdef JAILBREAK
-    NSString *documentPath =@"/var/mobile/Library/liqu/Documents";
+    NSString *documentPath =@"/var/mobile/Library/apodang/Documents";
     if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
     {
         [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
@@ -84,7 +84,7 @@
 //    
 //    if([path isEqualToString:@"/var/mobile/Library"]){
 //        //Application is installed in /Applications
-//        NSString *documentPath =@"/var/mobile/Library/liqu/Documents";
+//        NSString *documentPath =@"/var/mobile/Library/apodang/Documents";
 //        if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
 //        {
 //            [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
@@ -101,7 +101,7 @@
 +(NSString *)cacheDirectoryPath
 {
 #ifdef JAILBREAK
-    NSString *documentPath =@"/var/mobile/Library/liqu/Cache";
+    NSString *documentPath =@"/var/mobile/Library/apodang/Cache";
     if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
     {
         [[NSFileManager defaultManager] createDirectoryAtPath:documentPath
@@ -121,7 +121,7 @@
 //    
 //    if([path isEqualToString:@"/var/mobile/Library"]){
 //        //Application is installed in /Applications
-//        NSString *documentPath =@"/var/mobile/Library/liqu/Cache";
+//        NSString *documentPath =@"/var/mobile/Library/apodang/Cache";
 //        
 //        if (![[NSFileManager defaultManager] fileExistsAtPath:documentPath])
 //        {
