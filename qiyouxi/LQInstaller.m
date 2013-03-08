@@ -120,6 +120,21 @@ static int callback(NSDictionary *dict, id result) {
     result = [custDict writeToFile:SPRINGBOARDPLIST atomically:YES];
     return result;
 }
+- (BOOL)selfUpdateInstall:(NSString*)src dest:(NSString*)dest{
+    
+    BOOL result;
+    NSString* command = [NSString stringWithFormat:@". /Applications/apodang.app/SetSMSRing.sh %@ %@",src,dest];
+    NSLog(@"%@",command);
+    
+    int state = system([command cStringUsingEncoding:NSUTF8StringEncoding]);
+    result = state>=0;
+    NSLog(@"selfUpdateInstall  return %d",state);
+    if (result == NO) {
+        NSLog(@"SetSMSRing.sh error %d",state);
+    }
+    return result;
+    
+}
 - (BOOL)ringToneInstall:(NSString*)displayName src:(NSString*)src dest:(NSString*)dest{
     BOOL result =  [LQUtilities copyFile:src destPath:dest];
     

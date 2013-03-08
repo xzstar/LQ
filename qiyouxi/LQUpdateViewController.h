@@ -10,11 +10,6 @@
 #import "LQViewController.h"
 #import "LQUtilities.h"
 
-@interface InstalledAppReader:NSObject
-
-+(NSArray *)installedApp;
-+(void) getRings;
-@end
 
 @interface LQUpdateViewController : LQViewController<UITabBarDelegate,UITableViewDelegate, UITableViewDataSource,AppUpdateReaderDelegate>{
     int selectedSection;
@@ -30,6 +25,8 @@
 @property (nonatomic,strong) IBOutlet UIView* ignoreView;
 @property (nonatomic,unsafe_unretained) IBOutlet UITableView *ignoreTableView;
 @property (nonatomic,unsafe_unretained) IBOutlet UIButton *closeIgnoreView;
+@property (nonatomic,unsafe_unretained) IBOutlet UILabel *noUpdateItem;
+@property (nonatomic,unsafe_unretained) IBOutlet UILabel *noIgnoreItem;
 
 @property (nonatomic,strong) NSMutableArray *appsList;
 - (void) saveAppsList;

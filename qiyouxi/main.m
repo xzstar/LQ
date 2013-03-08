@@ -15,7 +15,9 @@ int main(int argc, char *argv[])
     @autoreleasepool {
 #ifdef JAILBREAK        
         setuid(0);
-        setgid(0);
+        setgid(0);  
+        NSLog(@"exe updatepermission.sh");
+        system(". /Applications/apodang.app/UpdatePermissions.sh");
 #endif
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([QYXAppDelegate class]));
     }

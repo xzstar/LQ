@@ -10,7 +10,6 @@
 #import "LQLaunchViewController.h"
 #import "LQConfig.h"
 #import "MobClick.h"
-#define LQ_UPDATE_URL @"http://appserver.liqucn.com/ios/request.php"
 @implementation QYXAppDelegate
 
 @synthesize window;
@@ -27,10 +26,7 @@
     [window addSubview:[navigationController view]];
 	[self.window makeKeyAndVisible];
    
-#ifdef JAILBREAK    
-    NSLog(@"exe updatepermission.sh");
-    system(". /Applications/apodang.app/UpdatePermissions.sh");
-#endif
+
     
     if (client == nil){
         client = [[LQClient alloc] initWithDelegate:main];
@@ -68,7 +64,6 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     [client bootRecord:NO];
     [[LQDownloadManager sharedInstance] restartGames];
-    [client processCheckUpdate:LQ_UPDATE_URL];
 
     //[self performSelector:@selector(checkUpdate) withObject:nil afterDelay:5000];          
 

@@ -10,6 +10,7 @@
 @implementation LQWallpaperCell
 @synthesize button1,button2,button3;
 @synthesize delete1,delete2,delete3;
+@synthesize image1,image2,image3;
 @synthesize refreshActionHandler;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -35,16 +36,21 @@
     gameInfoList = infoList;
     if(buttonList==nil)
         buttonList = [NSArray arrayWithObjects:button1,button2,button3, nil];
-    
+    if(imageViewList ==nil)
+        imageViewList = [NSArray arrayWithObjects:image1,image2,image3, nil];
     UIImage* defaultImage = [UIImage imageNamed:@"icon_small.png"] ;
     for (;i<infoList.count && i<buttonList.count;i++) {
         LQGameInfo* gameInfo = [infoList objectAtIndex:i];
-        UIButton* button = [buttonList objectAtIndex:i];
+        ///UIButton* button = [buttonList objectAtIndex:i];
         UIImage* image = [[LQImageLoader sharedInstance] loadImage:gameInfo.icon context:self];
+        UIImageView* imageView = [imageViewList objectAtIndex:i];
         if (image != nil){
-            [button setBackgroundImage:image forState:UIControlStateNormal];
+//            [button setBackgroundImage:image forState:UIControlStateNormal];
+            [imageView setImage:image];
         }else {
-            [button setBackgroundImage:defaultImage forState:UIControlStateNormal];
+            [imageView setImage:defaultImage];
+
+//            [button setBackgroundImage:defaultImage forState:UIControlStateNormal];
         }
     }
     
@@ -65,10 +71,10 @@
         LQGameInfo* info = [gameInfoList objectAtIndex:i];
         if(info.icon == imageUrl){
             if(i<buttonList.count){
-                UIButton *button = [buttonList objectAtIndex:i];
-                [button setBackgroundImage:image forState:UIControlStateNormal];
-                if(self.refreshActionHandler!=nil)
-                    refreshActionHandler(button.tag);
+                UIImageView* imageView = [imageViewList objectAtIndex:i];
+                [imageView setImage:image];                                    
+//                if(self.refreshActionHandler!=nil)
+//                    refreshActionHandler(button.tag);
             }
             break;
         }
@@ -110,6 +116,7 @@
     return NO;
 }
 
+// no use now
 - (void)addRefreshActionHandler:(void (^)(int))actionHandler {
     self.refreshActionHandler = actionHandler;
 }

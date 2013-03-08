@@ -193,7 +193,6 @@
             NSString* body = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
             body = [body stringByReplacingOccurrencesOfString:@"\r"withString:@"\\r"];
             body = [body stringByReplacingOccurrencesOfString:@"\n"withString:@"\\n"];
-            NSLog(@"%@",body);
             id json = nil;
             //there may be no result for POST or DELETE method
             if (statusCode == 204 ||

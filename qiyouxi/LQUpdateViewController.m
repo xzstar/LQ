@@ -14,66 +14,10 @@
 #import "LQIgnoreAppCell.h"
 #import "LQUtilities.h"
 
-static NSString* const installedAppListPath = @"/private/var/mobile/Library/Caches/com.apple.mobile.installation.plist";
+//static NSString* const installedAppListPath = @"/private/var/mobile/Library/Caches/com.apple.mobile.installation.plist";
 NSString* const kNotificationUpdateListChanged    = @"NotificationUpdateListChanged";
 
 extern NSString* const kNotificationStatusChanged;
-
-@implementation InstalledAppReader
-
-#pragma mark - Init
-+(NSMutableArray *)desktopAppsFromDictionary:(NSDictionary *)dictionary
-{
-    NSMutableArray *desktopApps = [NSMutableArray array];
-    
-    for (NSString *appKey in dictionary)
-    {
-        NSRange range = [appKey rangeOfString:@"com.apple."];
-        if(range.location == 0 && range.length>0)
-            continue;
-        
-        NSDictionary* appDict = [dictionary objectForKey:appKey];
-        NSString* appVersion = [appDict objectForKey:@"CFBundleVersion"];
-        NSString* appValue = [NSString stringWithFormat:@"%@,%@",appKey,appVersion];
-        [desktopApps addObject:appValue];
-        
-        
-    }
-    return desktopApps;
-}
-
-+(NSArray *)installedApp
-{    
-    BOOL isDir = NO;
-    if([[NSFileManager defaultManager] fileExistsAtPath: installedAppListPath isDirectory: &isDir] && !isDir) 
-    {
-        NSDictionary *cacheDict = [NSDictionary dictionaryWithContentsOfFile: installedAppListPath];
-        NSDictionary *system = [cacheDict objectForKey: @"System"];
-        NSMutableArray *installedApp = [NSMutableArray arrayWithArray:[self desktopAppsFromDictionary:system]];
-        
-        NSDictionary *user = [cacheDict objectForKey: @"User"]; 
-        [installedApp addObjectsFromArray:[self desktopAppsFromDictionary:user]];
-        
-        return installedApp;
-    }
-    
-    return nil;
-}
-
-+(void) getRings{
-//     BOOL isDir = NO;
-//    if([[NSFileManager defaultManager] fileExistsAtPath: @"/var/mobile/Library/Preferences/com.apple.springboard.plist" isDirectory: &isDir] && !isDir) 
-//    { 
-//        NSDictionary *cacheDict = [NSDictionary dictionaryWithContentsOfFile: installedAppListPath];
-//        
-//        NSMutableDictionary *custDict = [[NSMutableDictionary alloc] initWithContentsOfFile:@"/private/var/mobile/Media/iTunes_Control/iTunes/Ringtones.plist"];
-//        NSMutableDictionary *dictionary = [custDict objectForKey:@"Ringtones"];
-//
-//    }
-//
-    
-}
-@end
 
 @interface LQUpdateViewController ()
 - (void) onGameDownload:(id)sender;
@@ -86,12 +30,15 @@ extern NSString* const kNotificationStatusChanged;
 - (void) updateIgoreListFile;
 - (void) postUpdateNumberNotification;
 - (void) updateStatus:(NSNotification*)notification;
+- (void) updateNoItemHint;
 @end
 
 @implementation LQUpdateViewController
 @synthesize appsList,tableView,openIgnoreView;
 @synthesize ignoreView,ignoreTableView,closeIgnoreView;
 @synthesize updateAllButton;
+@synthesize noIgnoreItem,noUpdateItem;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -184,6 +131,7 @@ extern NSString* const kNotificationStatusChanged;
     [self.tableView reloadData];
     [self updateIgoreButton];
     [self postUpdateNumberNotification];
+    [self updateNoItemHint];
 }
 
 - (void) postUpdateNumberNotification{
@@ -439,6 +387,7 @@ extern NSString* const kNotificationStatusChanged;
     [self updateIgoreButton];
     [self updateIgoreListFile];
     [self postUpdateNumberNotification];
+    [self updateNoItemHint];
 
     LQUpdateViewController* __unsafe_unretained weakSelf = self;
     selectedRow = -1;
@@ -457,6 +406,8 @@ extern NSString* const kNotificationStatusChanged;
             //[weakSelf.tableView endUpdates];
         }
     });
+    
+    
 }
 
 - (void)updateList{
@@ -468,6 +419,30 @@ extern NSString* const kNotificationStatusChanged;
   
 }
 
+- (void) updateNoItemHint{
+    if(ignoreAppsList.count == 0)
+    {
+        self.ignoreTableView.hidden = YES;
+        self.noIgnoreItem.hidden = NO;
+    }
+    else
+    {
+        self.ignoreTableView.hidden = NO;
+        self.noIgnoreItem.hidden = YES;
+    }
+
+
+    if(updateAppsList.count == 0)
+    {
+        self.tableView.hidden = YES;
+        self.noUpdateItem.hidden = NO;
+    }
+    else
+    {
+        self.tableView.hidden = NO;
+        self.noUpdateItem.hidden = YES;
+    }
+}
 
 - (void)onAppNotIgnore:(id)sender{
     UIButton* button = (UIButton*)sender;
@@ -479,6 +454,7 @@ extern NSString* const kNotificationStatusChanged;
     [self updateIgoreButton];
     [self updateIgoreListFile];
     [self postUpdateNumberNotification];
+    [self updateNoItemHint];
     //[updateAppsList addObject:gameInfo];
 
     
@@ -586,9 +562,12 @@ extern NSString* const kNotificationStatusChanged;
         [indexPaths addObject:[NSIndexPath indexPathForRow:row inSection:0]];
         
         if(indexPaths.count>0){
-            //[weakSelf.tableView beginUpdates];
+            [weakSelf.tableView beginUpdates];
+//            [weakSelf.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
+//            
             [weakSelf.tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationTop];
-            //[weakSelf.tableView endUpdates];
+            [weakSelf.tableView endUpdates];
+            [weakSelf postUpdateNumberNotification];
         }
     });    
 }

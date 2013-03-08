@@ -7,16 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-
-#define kQYXToastLengthShort  2.0
+//#import "FDStatusBarNotifierView.h"
+#define kQYXToastLengthShort  5.0
 #define kQYXToastLengthLong  5.0
-
+@class AMN_StatusViewControl;
 @interface LQToast : NSObject {
 	// background view
 	UIImageView* _bgView;
 	
 	// label for displaying text
 	UILabel* _label;
+    
+    AMN_StatusViewControl *_statusView;
+    
 }
 
 @property (nonatomic, strong) UILabel* label;

@@ -18,6 +18,7 @@
 #import "LQDownloadManager.h"
 extern NSString* const kNotificationStatusChanged;
 extern NSString* const kNotificationUpdateListChanged;
+#define LQ_UPDATE_URL @"http://appserver.liqucn.com/ios/request.php"
 
 @interface LQMainTabBarController (){
     UINavigationController* tab0Nav;
@@ -120,6 +121,13 @@ extern NSString* const kNotificationUpdateListChanged;
     
     //初始化显示在下载列表中的个数
     [self updateDownloadingStatus:nil];
+    
+    if (client == nil){
+        client = [[LQClient alloc] initWithDelegate:self];
+    }
+
+    [client processCheckUpdate:LQ_UPDATE_URL];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -230,7 +238,12 @@ extern NSString* const kNotificationUpdateListChanged;
         NSNumber* number = [notification.userInfo objectForKey:@"number"];
         UITabBarItem *tabItem = [tabItems objectAtIndex:3];
         
-        tabItem.badgeValue = [NSString stringWithFormat:@"%d",[number intValue] ];
+        if([number intValue]!=0){
+            tabItem.badgeValue = [NSString stringWithFormat:@"%d",[number intValue] ];
+        }
+        else {
+            tabItem.badgeValue = nil;
+        }
         [UIApplication sharedApplication].applicationIconBadgeNumber = [number intValue];
     }
     else{
@@ -289,7 +302,7 @@ extern NSString* const kNotificationUpdateListChanged;
     updateDesc = description;
     updateLink = link;
     updateVersion = newVersion;
-    [self performSelector:@selector(showUpdateInfo) withObject:nil afterDelay:5];
+    [self performSelector:@selector(showUpdateInfo) withObject:nil afterDelay:3];
     
 }
 -(void) showUpdateInfo{

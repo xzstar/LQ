@@ -314,15 +314,25 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
         NSRange range = [appKey rangeOfString:@"com.apple."];
         if(range.location == 0 && range.length>0)
             continue;
-        
+        //NSLog(@"%@",appKey);
         NSDictionary* appDict = [dictionary objectForKey:appKey];
-        NSString* appVersion = [appDict objectForKey:@"CFBundleShortVersionString"];
+        NSString* appVersion = [appDict objectForKey:@"CFBundleVersion"];
+        //NSLog(@"CFBundleVersion %@",appVersion);
+
         NSRange dotrange;
         if(appVersion!=nil){
             dotrange= [appVersion rangeOfString:@"."];
         }
-        if(appVersion == nil || dotrange.length==0)
-            appVersion = [appDict objectForKey:@"CFBundleVersion"];
+        if(appVersion == nil || dotrange.length==0){
+            NSString* buildVersion = [appDict objectForKey:@"CFBundleShortVersionString"];
+            //NSLog(@"CFBundleVersion %@",appVersion);
+            if(buildVersion!=nil){
+                appVersion = buildVersion;
+            }
+            else if(buildVersion == nil && appVersion == nil){
+                appVersion = @""; 
+            }
+        }
         NSString* appValue = [NSString stringWithFormat:@"%@,%@",appKey,appVersion];
         [desktopApps addObject:appValue];
         [installedApps setObject:appVersion forKey:appKey];

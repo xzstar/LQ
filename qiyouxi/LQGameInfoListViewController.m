@@ -350,7 +350,7 @@
     // setup refresh
     [cell addRefreshActionHandler:^(int tag){
         
-        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue()/*dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)*/, ^{
             int row = tag/WALLPAPER_COUNT_PERLINE;
             NSIndexPath* index = [NSIndexPath indexPathForRow:row inSection:0];
             [weakTableView beginUpdates];
@@ -751,7 +751,7 @@
     // setup refresh
     [cell addRefreshActionHandler:^(int tag){
         
-        dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue()/*dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)*/, ^{
             int row = tag/WALLPAPER_COUNT_PERLINE;
             NSIndexPath* index = [NSIndexPath indexPathForRow:row inSection:0];
             [weakTableView beginUpdates];

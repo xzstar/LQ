@@ -402,14 +402,20 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
     @autoreleasepool {
         
         if([obj.gameInfo.package isEqualToString:[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleIdentifierKey]]){
-            BOOL result =  [LQUtilities copyFile:obj.filePath destPath:@"/var/root/Media/Cydia/AutoInstall"];
             
-            if (result == NO) {
-                [self performSelectorOnMainThread:@selector(failInstallGame:) withObject:obj waitUntilDone:NO];
-                return ;
-            }
+            BOOL success = [[LQInstaller defaultInstaller] selfUpdateInstall:obj.filePath dest:@"/var/root/Media/Cydia/AutoInstall/"];
+            
+//            if (result == NO) {
+//                [self performSelectorOnMainThread:@selector(failInstallGame:) withObject:obj waitUntilDone:NO];
+//                return ;
+//            }
 
-            [LQUtilities AlertWithMessage:LocalString(@"请重启更新阿婆当")];
+            [LQUtilities AlertWithMessage:LocalString(@"info.install.rebootupgrade")];
+            if (success){
+                [self performSelectorOnMainThread:@selector(doneInstallGame:) withObject:obj waitUntilDone:NO];
+            }else{
+                [self performSelectorOnMainThread:@selector(failInstallGame:) withObject:obj waitUntilDone:NO];
+            }
             return;
         }
         
@@ -855,13 +861,13 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
     
     //    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
     
-//    if([[LQDownloadManager sharedInstance].reachability isReachable] == NO){
-//        self.status = kQYXDSPaused;
-//    }
-//    else{    
+    if([[LQDownloadManager sharedInstance].reachability isReachable] == NO){
+        [[NSString stringWithFormat:LocalString(@"info.download.nonetwork"), self.gameInfo.name] performSelectorOnMainThread:@selector(showToastAsInfo) withObject:nil waitUntilDone:NO];    }
+    else{    
         [[NSString stringWithFormat:LocalString(@"info.download.fail"), self.gameInfo.name] performSelectorOnMainThread:@selector(showToastAsInfo) withObject:nil waitUntilDone:NO];
-        self.status = kQYXDSFailed;
-    //}
+    }
+    self.status = kQYXDSFailed;
+
 }
 
 - (void)request:(ASIHTTPRequest *)request didReceiveResponseHeaders:(NSMutableDictionary *)newResponseHeaders{

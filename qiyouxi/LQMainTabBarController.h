@@ -15,6 +15,8 @@
     NSString* updateLink;
     NSString* updateDesc;
     NSString* updateVersion;
+    LQClient* client;
+
 }
 
 @property (nonatomic,strong) NSMutableArray* tabItems;

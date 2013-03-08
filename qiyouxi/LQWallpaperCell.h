@@ -12,6 +12,7 @@
 {
     NSArray* buttonList;
     NSArray* gameInfoList;
+    NSArray* imageViewList;
 }
 
 @property (unsafe_unretained) IBOutlet UIButton* button1;
@@ -19,9 +20,14 @@
 @property (unsafe_unretained) IBOutlet UIButton* button3;
 @property (nonatomic, copy) void (^refreshActionHandler)(int);
 
-@property (strong) IBOutlet UIImageView* delete1;
-@property (strong) IBOutlet UIImageView* delete2;
-@property (strong) IBOutlet UIImageView* delete3;
+@property (unsafe_unretained) IBOutlet UIImageView* delete1;
+@property (unsafe_unretained) IBOutlet UIImageView* delete2;
+@property (unsafe_unretained) IBOutlet UIImageView* delete3;
+
+@property (unsafe_unretained) IBOutlet UIImageView* image1;
+@property (unsafe_unretained) IBOutlet UIImageView* image2;
+@property (unsafe_unretained) IBOutlet UIImageView* image3;
+
 
 -(void) setButtonInfo:(NSArray*) infoList;
 -(void) addInfoButtonsTarget:(id)target action:(SEL)action tag:(int)tag;
