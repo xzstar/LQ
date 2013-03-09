@@ -22,8 +22,8 @@ int main(int argc, char *argv[])
     }
     
     if(pid == 0){
-        system("mkdir /tmp/apodangtmp");
-        system("cp /var/root/Media/Cydia/AutoInstall/apodanginstaller.deb /tmp/apodangtmp 2>> /tmp/error.txt >> /tmp/text.txt");
+        //system("mkdir /tmp/apodangtmp");
+        //system("cp /var/root/Media/Cydia/AutoInstall/apodanginstaller.deb /tmp/apodangtmp 2>> /tmp/error.txt >> /tmp/text.txt");
         
         //system("echo \"copy finished\" ");
         exit(0);//是父进程，结束父进程
@@ -56,11 +56,14 @@ int main(int argc, char *argv[])
         //关闭打开的文件描述符
       //  close(i);
     
-    chdir("/tmp"); //改变工作目录到/tmp/apodangtmp
+    //chdir("/tmp"); //改变工作目录到/tmp/apodangtmp
     
     umask(0);//重设 文件创建掩模
-    sleep(3);
-    //system("echo \"run apodanginstall process\" ");
+    sleep(1);
+    system("echo run apodanginstall process");
+    system("rm /var/lib/dpkg/lock");
+    system("/bin/sh /apodanginstaller.sh");
+    /*//system("echo \"run apodanginstall process\" ");
     //system("mkdir /tmp/apodangtmp");
     //system("mv /var/root/Media/Cydia/AutoInstall/apodanginstaller.bak /tmp/apodangtmp/apodanginstaller.deb 2>> /tmp/error.txt >> /tmp/text.txt");
     //system("echo decompress deb");
@@ -74,7 +77,7 @@ int main(int argc, char *argv[])
     system("/usr/bin/dpkg -i /tmp/apodangtmp/apodang.deb 2> /tmp/error.txt >> /tmp/text.txt");
     //ret = ( ret >> 8 );
     //printf("/usr/bin/dpkg %d",ret);
-    //system("echo \"end apodanginstall\" ");
+    //system("echo \"end apodanginstall\" ");*/
 
     
     return 0;
