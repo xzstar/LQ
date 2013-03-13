@@ -83,7 +83,15 @@
         
     }
     else{
-        self.gameDetailLabel.text = [NSString stringWithFormat:@"%.2f%%/%@", [aDownloadObject percent], 
+        if(aDownloadObject.totalLength<=0){
+            if(self.downloadObject.status == kQYXDSFailed)
+                self.gameDetailLabel.text = @"下载错误，请重试";
+            else{
+                self.gameDetailLabel.text = [NSString stringWithFormat:@"%.2f%%", [aDownloadObject percent]];  
+            }
+        }
+        else
+            self.gameDetailLabel.text = [NSString stringWithFormat:@"%.2f%%/%@", [aDownloadObject percent], 
                                      [aDownloadObject totalSizeDesc]];
         
     }
@@ -94,7 +102,7 @@
     if (image != nil){
         self.gameIconView.image = image;
     }else {
-        if([self.downloadObject.gameInfo.name isEqualToString:[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleIdentifierKey]]){
+        if([self.downloadObject.gameInfo.package isEqualToString:[[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleIdentifierKey]]){
             self.gameIconView.image = [UIImage imageNamed:@"Icon.png"];
         }
         else {

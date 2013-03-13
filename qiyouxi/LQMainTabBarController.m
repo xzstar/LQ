@@ -306,6 +306,18 @@ extern NSString* const kNotificationUpdateListChanged;
     
 }
 -(void) showUpdateInfo{
+    
+    QYXDownloadObject* obj = [[LQDownloadManager sharedInstance] objectWithGameId:0];
+    if(obj != nil)
+    {
+        NSLog(@"%@,%@",obj.gameInfo.versionCode,updateVersion);
+        if([obj.gameInfo.versionCode isEqualToString:updateVersion])
+            return;
+        else {
+            [[LQDownloadManager sharedInstance] removeDownloadBy:0 silentRemove:YES];
+        }
+    }
+    
     UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"更新提示" 
                                                    message:updateDesc 
                                                   delegate:self   

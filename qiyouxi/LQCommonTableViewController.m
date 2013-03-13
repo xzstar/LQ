@@ -11,6 +11,7 @@
 #import "LQDetailTablesController.h"
 #import "LQGameMoreItemTableViewCell.h"
 #import "SVPullToRefresh.h"
+#import "Reachability.h"
 #define NAVIGATIONBAR_HEIGHT 44.0
 
 @interface LQCommonTableViewController (){
@@ -351,6 +352,11 @@
 }
 
 - (void)handleNetworkError:(LQClientError*)error{
+    BOOL reachable = [[Reachability reachabilityForInternetConnection] isReachable];
+    
+    if(reachable == NO){
+        [LocalString(@"info.download.nonetwork") showToastAsInfo] ;    
+    }   
 //    [self.errorView removeFromSuperview];
 //    CGRect frame = self.view.bounds;
 //    frame.origin.y += NAVIGATIONBAR_HEIGHT;
@@ -364,6 +370,11 @@
 }
 
 - (void)handleNoNetwork{
+    BOOL reachable = [[Reachability reachabilityForInternetConnection] isReachable];
+    
+    if(reachable == NO){
+        [LocalString(@"info.download.nonetwork") showToastAsInfo] ;    
+    }   
 //    [self.errorView removeFromSuperview];
 //    CGRect frame = self.view.bounds;
 //    frame.origin.y += NAVIGATIONBAR_HEIGHT;

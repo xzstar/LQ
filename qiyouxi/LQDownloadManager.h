@@ -25,13 +25,13 @@ typedef enum _DOWNLOAD_STATUS{
 @class QYXDownloadObject;
 @class Reachability;
 @interface LQDownloadManager : NSObject{
-    Reachability* reachability;
+    //Reachability* reachability;
     //ASINetworkQueue* downloadingQueue;
 }
 @property (nonatomic, strong) NSMutableArray* downloadGames;
 @property (nonatomic, strong) NSMutableArray* completedGames;
 @property (nonatomic, strong) NSMutableArray* installedGames;
-@property (nonatomic, strong) Reachability* reachability;
+//@property (nonatomic, strong) Reachability* reachability;
 //@property (nonatomic, strong) ASINetworkQueue* downloadingQueue;
 + (LQDownloadManager*)sharedInstance;
 
@@ -48,6 +48,7 @@ typedef enum _DOWNLOAD_STATUS{
 - (void)installGameBy:(int)gameId;
 - (void)installGameBy:(int)gameId force:(BOOL)force;
 - (void)removeDownloadBy:(int)gameId;
+- (void)removeDownloadBy:(int)gameId silentRemove:(BOOL) silentRemove;
 - (void)removeDownloadWallpaperBy:(NSArray*)gameIds;
 
 - (void)startGame:(NSString*)identifier;

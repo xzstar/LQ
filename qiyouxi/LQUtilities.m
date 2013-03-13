@@ -319,11 +319,11 @@ static NSString* const installedAppListPath = @"/private/var/mobile/Library/Cach
         NSString* appVersion = [appDict objectForKey:@"CFBundleVersion"];
         //NSLog(@"CFBundleVersion %@",appVersion);
 
-        NSRange dotrange;
-        if(appVersion!=nil){
-            dotrange= [appVersion rangeOfString:@"."];
-        }
-        if(appVersion == nil || dotrange.length==0){
+//        NSRange dotrange;
+//        if(appVersion!=nil){
+//            dotrange= [appVersion rangeOfString:@"."];
+//        }
+        if(appVersion == nil /*|| dotrange.length==0*/){
             NSString* buildVersion = [appDict objectForKey:@"CFBundleShortVersionString"];
             //NSLog(@"CFBundleVersion %@",appVersion);
             if(buildVersion!=nil){

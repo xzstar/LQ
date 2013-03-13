@@ -38,7 +38,7 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
 
 @synthesize ipaInstalled;
 @synthesize infoFilePath;
-@synthesize reachability;
+//@synthesize reachability;
 //@synthesize downloadingQueue;
 
 + (LQDownloadManager*)sharedInstance{
@@ -55,7 +55,7 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
 //        NSArray* documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 //        self.infoFilePath =  [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:@"downloads.plist"];
         
-        reachability = [[Reachability alloc]init];
+//        reachability = [[Reachability alloc]init];
 //        downloadingQueue = [[ASINetworkQueue alloc] init];
 //        downloadingQueue.maxConcurrentOperationCount = 2;
 //        [downloadingQueue setShouldCancelAllRequestsOnFailure:NO];
@@ -86,6 +86,12 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
                 gameInfo.downloadUrl = [dict objectForKey:@"downloadUri"];
                 gameInfo.package = [dict objectForKey:@"package"];
                 gameInfo.fileType = [dict objectForKey:@"fileType"]; 
+                if([dict objectForKey:@"version"]!=nil)
+                    gameInfo.versionCode = [dict objectForKey:@"version"];
+                else {
+                    gameInfo.versionCode = @"1.0";
+                }
+                
                 obj.gameInfo = gameInfo;
                 obj.finalFilePaths = [dict objectForKey:@"finalFilePaths"];
                 switch (status) {
@@ -144,6 +150,11 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
             [game setObject:obj.gameInfo.downloadUrl forKey:@"downloadUri"];
             [game setObject:obj.gameInfo.package forKey:@"package"];
             [game setObject:obj.gameInfo.tags forKey:@"category"];
+            if(obj.gameInfo.versionCode != nil)
+                [game setObject:obj.gameInfo.versionCode forKey:@"version"];
+            else {
+                [game setObject:@"1.0" forKey:@"version"];
+            }
             if(obj.gameInfo.fileType!=nil)
             [game setObject:obj.gameInfo.fileType forKey:@"fileType"];
             else {
@@ -325,30 +336,35 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
     }
 }
 
-- (void)removeDownloadBy:(int)gameId{
+- (void)removeDownloadBy:(int)gameId silentRemove:(BOOL) silentRemove{
     QYXDownloadObject* obj = [self objectWithGameId:gameId];
     [obj pause];
     
     [[NSFileManager defaultManager] removeItemAtPath:obj.filePath error:NULL];
     [[NSFileManager defaultManager] removeItemAtPath:[NSString stringWithFormat:@"%@%@", obj.filePath,@".download"] error:NULL];
-
+    
     NSString* toastMsg = LocalString(@"info.download.delete");
     if([self.downloadGames containsObject:obj] == YES){
         toastMsg = LocalString(@"info.download.remove");
     }
-        
+    
     
     [self.downloadGames removeObject:obj];
     [self.completedGames removeObject:obj];
     [self.installedGames removeObject:obj];
     
     [self.gameMap removeObjectForKey:[NSNumber numberWithInt:gameId]];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:obj];
+    //    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
     
-    [[NSString stringWithFormat:toastMsg, obj.gameInfo.name] showToastAsInfo];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:obj];
+    if(silentRemove == NO)
+        [[NSString stringWithFormat:toastMsg, obj.gameInfo.name] showToastAsInfo];
     [self synchronize];
+}
+
+
+- (void)removeDownloadBy:(int)gameId{
+    [self removeDownloadBy:gameId silentRemove:NO];
 }
 
 - (void)removeDownloadWallpaperBy:(NSArray*)gameIds{
@@ -389,7 +405,7 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
     [self.completedGames addObject:temp];
     [self synchronize];
     
-    NSLog(@"donwload completed src %@:%@",obj.filePath,obj.gameInfo.name);
+//    NSLog(@"donwload completed src %@:%@",obj.filePath,obj.gameInfo.name);
 
 //    obj.status = kQYXDSInstalling;
 //    [self performSelectorInBackground:@selector(installGame:) withObject:obj];
@@ -801,7 +817,7 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
 
 
 - (void)setProgress:(float)newProgress{
-    NSLog(@"percent %f",newProgress);
+    //NSLog(@"percent %f",newProgress);
     //oldpercent = percent;
     percent = newProgress;
 }
@@ -839,6 +855,8 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
 //    else {
 //        self.status = kQYXDSFailed;
 //    }
+    NSString* info = [NSString stringWithFormat:LocalString(@"info.download.downloaded"),gameInfo.name];
+    [info showToastAsInfo];
     [[LQDownloadManager sharedInstance] updateDownloadObject:self];
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotificationStatusChanged object:self];
 }
@@ -853,6 +871,7 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
     }
 
     //NSError *error = [request error];
+    //NSLog(@"%d %@",error.code, error.userInfo);
     
     if(self.status == kQYXDSPaused)
         return;
@@ -860,10 +879,12 @@ NSString* const kNotificationWallpaperRefresh    = @"NotificationWallpaperRefres
    // self.connection = nil;
     
     //    [[NSNotificationCenter defaultCenter] postNotificationName:kQYXDownloadStatusUpdateNotification object:self];
+    BOOL reachable = [[Reachability reachabilityForInternetConnection] isReachable];
     
-    if([[LQDownloadManager sharedInstance].reachability isReachable] == NO){
+    if(reachable == NO){
         [[NSString stringWithFormat:LocalString(@"info.download.nonetwork"), self.gameInfo.name] performSelectorOnMainThread:@selector(showToastAsInfo) withObject:nil waitUntilDone:NO];    }
-    else{    
+    else{
+        //NSLog(@"%d %@",error.code, error.userInfo);
         [[NSString stringWithFormat:LocalString(@"info.download.fail"), self.gameInfo.name] performSelectorOnMainThread:@selector(showToastAsInfo) withObject:nil waitUntilDone:NO];
     }
     self.status = kQYXDSFailed;

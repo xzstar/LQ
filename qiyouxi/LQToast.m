@@ -68,7 +68,8 @@
         
         _statusView = [[AMN_StatusViewControl alloc] init];
 
-        [_statusView setBgImage:[[UIImage imageNamed:@"status_bar.png"]                              stretchableImageWithLeftCapWidth:1 topCapHeight:1]];
+        [_statusView setBgImage: [UIImage imageNamed:@"status_bg"]];  
+         //[[UIImage imageNamed:@"status_bar.png"]                              stretchableImageWithLeftCapWidth:1 topCapHeight:1]];
         
         _statusView.runTime = DEFAULT_RUNTIME;
         _statusView.eachTime = DEFAULT_EACHTIME;
